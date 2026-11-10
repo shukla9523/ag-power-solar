@@ -1,0 +1,117 @@
+/*
+ * Purpose: the single source of truth for Mommantum's colours and fonts (SOP rule 9).
+ *
+ * Every Tailwind colour class used on the site (bg-brand, text-navy, border-admin-line …)
+ * resolves to one of these variables, so the whole website — site pages, blog, EDITZ and the
+ * admin panel — is restyled from this file (or from Admin → Settings → Theme, which writes
+ * overrides into :root at runtime). Values are RGB channels so opacity modifiers work
+ * (bg-brand/10). These values equal the colours used before centralisation: no visual change.
+ */
+
+:root {
+  /* ── Brand ─────────────────────────────────────────────────────────── */
+  --color-brand: 230 30 115;          /* #e61e73  primary pink: CTAs, links, highlights */
+  --color-brand-hover: 202 21 95;     /* #ca155f  hover / pressed */
+  --color-brand-deep: 201 24 99;      /* #c91863 */
+  --color-brand-bright: 239 58 107;   /* #ef3a6b */
+  --color-brand-soft: 239 106 153;    /* #ef6a99 */
+  --color-brand-pale: 251 182 212;    /* #fbb6d4  tinted borders */
+  --color-brand-blush: 252 231 237;   /* #fce7ed */
+  --color-brand-tint: 255 240 246;    /* #fff0f6  tinted backgrounds */
+  --color-brand-tint-2: 255 240 244;  /* #fff0f4 */
+  --color-navy: 14 37 71;             /* #0e2547  headings, dark sections */
+  --color-navy-light: 22 59 103;      /* #163b67 */
+  --color-accent-purple: 147 51 234;  /* #9333ea */
+  --color-accent-sky: 153 220 248;    /* #99dcf8  focus rings on forms */
+  --color-brand-rose: 239 91 135;     /* #ef5b87  hero heading underline */
+  --color-brand-fuchsia: 244 63 142;  /* #f43f8e  decorative icon */
+  --color-brand-pale-2: 248 198 218;  /* #f8c6da  blog callout border */
+  --color-brand-wash: 255 247 251;    /* #fff7fb  blog callout background */
+  --color-brand-rose-tint: 255 241 242; /* #fff1f2  dropdown promo gradient end */
+  --color-navy-mid: 30 58 95;         /* #1e3a5f  closed accordion title */
+  --color-navy-bright: 26 58 107;     /* #1a3a6b  navy gradient midpoint */
+  --color-accent-purple-deep: 76 29 149; /* #4c1d95  text on purple tint */
+  --color-accent-purple-tint: 245 238 255; /* #f5eeff  purple tinted panels */
+  --color-accent-violet: 124 58 237;  /* #7c3aed */
+  --color-accent-magenta: 192 38 211; /* #c026d3  hero gradient start */
+  --color-accent-lilac: 168 85 247;   /* #a855f7  hero gradient end */
+  --color-accent-blue: 56 110 220;    /* #386edc */
+  --color-accent-sky-bright: 56 189 248; /* #38bdf8 */
+  --color-accent-mint: 73 215 164;    /* #49d7a4  stats / live dots */
+  --color-accent-gold: 245 196 0;     /* #f5c400  rating stars */
+  --color-accent-orange: 234 88 12;   /* #ea580c  dropdown EDITZ links */
+  --color-accent-orange-tint: 255 247 237; /* #fff7ed  dropdown promo gradient start */
+
+  /* ── Neutrals (site + blog text and surfaces) ──────────────────────── */
+  --color-ink: 17 24 39;              /* #111827  darkest text */
+  --color-charcoal: 31 41 55;         /* #1f2937  body text / admin borders */
+  --color-graphite: 55 65 81;         /* #374151  secondary text */
+  --color-ash: 85 85 85;              /* #555555 */
+  --color-ash-light: 102 102 102;     /* #666666 */
+  --color-line: 234 234 234;          /* #eaeaea  hairlines */
+  --color-line-cool: 226 232 240;     /* #e2e8f0 */
+  --color-cloud: 243 244 246;         /* #f3f4f6  page background */
+  --color-field: 249 249 251;         /* #f9f9fb  input background */
+  --color-snow: 247 248 250;          /* #f7f8fa */
+  --color-paper: 250 250 250;         /* #fafafa */
+  --color-smoke: 245 245 247;         /* #f5f5f7 */
+  --color-smoke-2: 246 246 248;       /* #f6f6f8 */
+  --color-smoke-3: 244 244 244;       /* #f4f4f4 */
+  --color-ink-soft: 33 33 33;         /* #212121  autofill text / border */
+  --color-line-lavender: 215 215 230; /* #d7d7e6  hero frame outline */
+  --color-surface-ice: 252 253 255;   /* #fcfdff  FAQ page background */
+  --color-surface-frost: 250 251 254; /* #fafbfe  FAQ sections */
+  --color-surface-cool: 248 249 252;  /* #f8f9fc */
+  --color-surface-chip: 240 243 248;  /* #f0f3f8 */
+  --color-surface-media: 238 240 242; /* #eef0f2  image placeholders */
+  --color-surface-slate: 245 246 248; /* #f5f6f8 */
+  --color-surface-haze: 244 244 246;  /* #f4f4f6 */
+  --color-surface-mist: 245 245 245;  /* #f5f5f5 */
+  --color-surface-fog: 247 247 247;   /* #f7f7f7  home section background */
+  --color-glow-1: 239 239 239;        /* #efefef  soft blurred blobs */
+  --color-glow-2: 243 243 243;        /* #f3f3f3 */
+  --color-glow-3: 240 240 240;        /* #f0f0f0 */
+
+  /* ── EDITZ product palette ──────────────────────────────────────────── */
+  --color-editz-red: 227 39 89;       /* #e32759 */
+  --color-editz-black: 17 17 17;      /* #111111 */
+  --color-editz-cream: 255 253 250;   /* #fffdfa */
+  --color-editz-grey: 242 242 242;    /* #f2f2f2 */
+  --color-editz-alert: 255 85 85;     /* #ff5555 */
+  --color-editz-ink: 11 11 11;        /* #0b0b0b */
+  --color-editz-quote: 51 51 51;      /* #333333  testimonial text */
+  --color-editz-body: 68 68 68;       /* #444444  nav + eyebrow text */
+  --color-editz-muted: 119 119 119;   /* #777777  footer text */
+  --color-editz-dot: 153 153 153;     /* #999999  marquee separators */
+  --color-editz-live: 89 212 68;      /* #59d444  live indicator */
+
+  /* ── Admin panel (dark UI) ──────────────────────────────────────────── */
+  --color-admin-bg: 11 15 23;         /* #0b0f17 */
+  --color-admin-bg-deep: 10 15 25;    /* #0a0f19 */
+  --color-admin-panel: 24 35 55;      /* #182337 */
+  --color-admin-panel-2: 26 35 54;    /* #1a2336 */
+  --color-admin-line: 40 53 72;       /* #283548 */
+  --color-admin-line-2: 35 51 77;     /* #23334d */
+  --color-admin-muted: 45 58 79;      /* #2d3a4f */
+  --color-admin-code: 7 10 15;        /* #070a0f  inline code chips */
+  --color-admin-input: 12 18 30;      /* #0c121e */
+  --color-admin-inset: 13 19 31;      /* #0d131f  table header / inset chips */
+  --color-admin-tabs: 14 22 38;       /* #0e1626  editor tab bar */
+  --color-admin-modal: 15 20 32;      /* #0f1420  modal surfaces */
+  --color-admin-chip: 20 30 48;       /* #141e30 */
+  --color-admin-note: 24 32 48;       /* #182030 */
+  --color-admin-note-line: 35 45 66;  /* #232d42 */
+  --color-admin-hover: 37 50 77;      /* #25324d  secondary button hover */
+
+  /* ── Social brand colours ──────────────────────────────────────────── */
+  --color-social-facebook: 24 119 242; /* #1877f2 */
+  --color-social-instagram: 221 42 123; /* #dd2a7b */
+  --color-social-linkedin: 0 119 181; /* #0077b5 */
+
+  /* ── Typography ────────────────────────────────────────────────────── */
+  --font-display: "Epilogue", sans-serif;          /* headings */
+  --font-ui: "Outfit", sans-serif;                 /* body / UI */
+  --font-body: "DM Sans", sans-serif;              /* default body */
+  --font-serif: "Cormorant Garamond", serif;       /* editorial accents */
+  --font-hand: "Mansalva", cursive;                /* handwritten eyebrows */
+}

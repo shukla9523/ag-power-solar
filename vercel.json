@@ -1,0 +1,20 @@
+{
+  "crons": [
+    {
+      "path": "/api/keep-alive",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/publish-scheduled",
+      "schedule": "15 0 * * *"
+    },
+    {
+      "path": "/api/cron/leads-retry",
+      "schedule": "30 2 * * *"
+    },
+    {
+      "path": "/api/cron/seo-auto-fill",
+      "schedule": "0 3 1 * *"
+    }
+  ]
+}
