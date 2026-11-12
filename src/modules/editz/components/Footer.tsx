@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { Instagram, Facebook } from 'lucide-react';
 import LocalizedClientLink from '@modules/common/components/localized-client-link';
+import { scrollToEditzSection } from '@modules/editz/lib/scroll';
 
 export default function Footer() {
   return (
@@ -32,12 +33,14 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <a
-              href="#contact"
+            <LocalizedClientLink
+              href="/editz/contact"
+              scroll={false}
+              onClick={() => scrollToEditzSection('contact')}
               className="px-6 py-2.5 rounded-full bg-brand text-white text-sm font-extrabold uppercase hover:bg-brand-hover transition-colors shadow-md"
             >
               Contact Us
-            </a>
+            </LocalizedClientLink>
 
             <div className="flex items-center gap-3">
               <a

@@ -9,6 +9,7 @@ import ServicesDropdown from "./ServicesDropdown"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const MOBILE_BREAKPOINT = 1024
+const BLOG_AI_URL = "https://auto-blog.electroglobal.in/"
 
 const leftServices = [
   { name: "Performance Marketing — Meta & Google Ads", link: "/services/performance-marketing" },
@@ -40,7 +41,7 @@ const videoEditzServices = [
 
 const navItems = [
   { label: "Editz", href: "/editz" },
-  { label: "Blog AI", href: "/blog-ai" },
+  { label: "Blog AI", href: BLOG_AI_URL },
   { label: "About", href: "/about" },
   { label: "Work",  href: "/work" },
   { label: "Blog",  href: "/blog" },
@@ -76,7 +77,6 @@ export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState<boolean | null>(null)
-  const [blogAiOpen, setBlogAiOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -103,7 +103,7 @@ export default function NavBar() {
 
   function closeAll() { setMenuOpen(false) }
 
-  if (pathname === "/editz" || pathname?.endsWith("/editz")) {
+  if (pathname === "/editz" || pathname?.startsWith("/editz/")) {
     return null
   }
 
@@ -257,11 +257,14 @@ export default function NavBar() {
                   <LocalizedClientLink href="/services" className="nav-link">Services</LocalizedClientLink>
                   <ServicesDropdown />
                 </div>
-                <button
-                  onClick={() => setBlogAiOpen(true)}
+                <a
+                  href={BLOG_AI_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="nav-link"
-                  style={{ background: "none", border: "none", cursor: "pointer", padding: 0, font: "inherit" }}
-                >Blog AI</button>
+                >
+                  Blog AI
+                </a>
                 <LocalizedClientLink href="/about" className="nav-link">About</LocalizedClientLink>
                 <LocalizedClientLink href="/work"  className="nav-link">Case Studies</LocalizedClientLink>
                 <LocalizedClientLink href="/blog"  className="nav-link">Blog</LocalizedClientLink>
@@ -370,15 +373,17 @@ export default function NavBar() {
               {/* Bottom nav links */}
               <div className="mob-bottom-nav">
                 {navItems.map((item) =>
-                  item.label === "Blog AI" ? (
-                    <button
+                  item.href.startsWith("http") ? (
+                    <a
                       key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="mob-bottom-link"
-                      style={{ background: "none", border: "none", cursor: "pointer", padding: 0, font: "inherit", textAlign: "left" }}
-                      onClick={() => { closeAll(); setBlogAiOpen(true) }}
+                      onClick={closeAll}
                     >
                       {item.label}
-                    </button>
+                    </a>
                   ) : (
                     <LocalizedClientLink key={item.href} href={item.href} className="mob-bottom-link" onClick={closeAll}>
                       {item.label}
@@ -413,96 +418,6 @@ export default function NavBar() {
         )}
       </AnimatePresence>
 
-      {/* ── BLOG AI POPUP MODAL ── */}
-      <AnimatePresence>
-        {blogAiOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(0,0,0,0.5)", backdropFilter: "blur(6px)" }}
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setBlogAiOpen(false)}
-            />
-
-            {/* Modal Card */}
-            <motion.div
-              style={{
-                position: "fixed", top: "50%", left: "50%", zIndex: 201,
-                transform: "translate(-50%, -50%)",
-                background: "#fff",
-                borderRadius: 20,
-                padding: "44px 36px 36px",
-                maxWidth: 420,
-                width: "calc(100vw - 40px)",
-                boxShadow: "0 24px 60px rgba(14,37,71,0.14)",
-                textAlign: "center",
-              }}
-              initial={{ opacity: 0, scale: 0.93, y: 16 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.93, y: 16 }}
-              transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {/* Close button */}
-              <button
-                onClick={() => setBlogAiOpen(false)}
-                aria-label="Close"
-                style={{
-                  position: "absolute", top: 14, right: 14,
-                  width: 30, height: 30, borderRadius: "50%",
-                  border: "1.5px solid #e2e8f0", background: "#f8fafc",
-                  cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 17, color: "#94a3b8", lineHeight: 1,
-                }}
-              >×</button>
-
-              {/* Top accent line */}
-              <div style={{
-                width: 48, height: 4, borderRadius: 4,
-                background: "linear-gradient(90deg, #e61e73, #9333ea)",
-                margin: "0 auto 28px",
-              }} />
-
-              {/* Heading */}
-              <h2 style={{
-                fontFamily: "var(--font-display)",
-                fontSize: 28, fontWeight: 800, color: "#0e2547",
-                margin: "0 0 12px", lineHeight: 1.15,
-              }}>
-                Coming Soon
-              </h2>
-
-              {/* Description */}
-              <p style={{
-                fontSize: 15, color: "#64748b", lineHeight: 1.7,
-                margin: "0 0 32px", fontFamily: "var(--font-ui)",
-              }}>
-                We&apos;re working on something exciting for Blog AI.{" "}<br />
-                It will be available very soon. Stay tuned!
-              </p>
-
-              {/* Close CTA */}
-              <button
-                onClick={() => setBlogAiOpen(false)}
-                style={{
-                  display: "inline-flex", alignItems: "center", justifyContent: "center",
-                  padding: "12px 36px", borderRadius: 10,
-                  background: "#0e2547",
-                  color: "#fff", fontSize: 14, fontWeight: 600,
-                  border: "none", cursor: "pointer",
-                  letterSpacing: "0.01em",
-                  fontFamily: "var(--font-ui)",
-                  transition: "background 0.2s",
-                }}
-                onMouseEnter={e => (e.currentTarget.style.background = "#1a3a6b")}
-                onMouseLeave={e => (e.currentTarget.style.background = "#0e2547")}
-              >
-                Got it
-              </button>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </>
   )
 }

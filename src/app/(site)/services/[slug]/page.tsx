@@ -152,7 +152,7 @@ export default async function ServiceDetailPage({
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 560px"
-                    className="object-contain"
+                    className="object-cover"
                   />
                 </div>
               </div>

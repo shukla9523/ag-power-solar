@@ -41,7 +41,7 @@ export const articleLinks: FooterLink[] = [
 export const editzQuickLinks: FooterLink[] = [
   { name: "Services", href: "/services" },
   { name: "Our Work", href: "/work" },
-  { name: "How It Works", href: "/services/ai-video-generation#how-it-works" },
+  { name: "How It Works", href: "/services/ai-video-generation/how-it-works" },
   { name: "About Us", href: "/about" },
   { name: "Contact", href: "/contact" },
   { name: "Privacy Policy", href: "/privacy-policy" },

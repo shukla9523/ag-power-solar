@@ -5,14 +5,22 @@ import GENERATED_HERO_IMAGES from "./service-images.json"
 
 const HERO_SLUGS = new Set<string>(GENERATED_HERO_IMAGES as string[])
 
+function isDefaultServiceBanner(url: string, slug: string): boolean {
+  return (
+    url.startsWith("/og/services/") ||
+    url.endsWith(`/services/${slug}.jpg`) ||
+    url.includes(`/og/services/${slug}.jpg`)
+  )
+}
+
 /**
- * Hero illustration for the service page: an image uploaded in the admin wins; otherwise the
- * generated on-brand illustration (scripts/generate-service-images.mjs); otherwise the share card.
- * The share card (/og/services/<slug>.jpg) stays the Open Graph image because it shows the title.
+ * Hero illustration for the service page: an image uploaded in the admin wins (unless it is the
+ * legacy default text-card banner); otherwise the generated 1200x630 WebP illustration under
+ * /images/services/<slug>.webp; otherwise the share card.
  */
 export function resolveHeroImage(slug: string, dbImage?: string | null): string {
   const uploaded = dbImage?.trim()
-  if (uploaded && !uploaded.startsWith("/og/services/")) return uploaded
+  if (uploaded && !isDefaultServiceBanner(uploaded, slug)) return uploaded
   if (HERO_SLUGS.has(slug)) return `/images/services/${slug}.webp`
   return uploaded || `/og/services/${slug}.jpg`
 }

@@ -5,6 +5,12 @@ import FilmstripBackground from './FilmstripBackground';
 import LazyVideo from './LazyVideo';
 import { EDITZ_DEFAULTS } from '@modules/editz/lib/content-defaults';
 import { renderLines } from '@modules/editz/lib/lines';
+import {
+  getEditzSectionFromHref,
+  normalizeEditzHref,
+  scrollToEditzSection,
+} from '@modules/editz/lib/scroll';
+import LocalizedClientLink from '@modules/common/components/localized-client-link';
 import type { EditzHeroContent } from '@lib/validation/product-pages';
 
 export default function Hero({
@@ -17,6 +23,8 @@ export default function Hero({
   const [activeVideoModal, setActiveVideoModal] = useState<string | null>(null);
   const hero = content ?? EDITZ_DEFAULTS.hero;
   const tickerItems = marqueeItems ?? EDITZ_DEFAULTS.marquee.items;
+  const resolvedCtaHref = normalizeEditzHref(hero.ctaHref);
+  const ctaSection = getEditzSectionFromHref(resolvedCtaHref);
 
   const heroVideos = hero.videos.map((video, idx) => ({ id: String(idx + 1), ...video }));
 
@@ -63,12 +71,23 @@ export default function Hero({
 
         {/* CTA BUTTON */}
         <div className="mt-8 flex justify-center">
-          <a
-            href={hero.ctaHref}
-            className="px-7 py-3 rounded-full bg-editz-black text-white font-semibold text-sm hover:bg-zinc-800 transition-all duration-200"
-          >
-            {hero.ctaLabel}
-          </a>
+          {resolvedCtaHref.startsWith('/') ? (
+            <LocalizedClientLink
+              href={resolvedCtaHref}
+              scroll={!ctaSection}
+              onClick={ctaSection ? () => scrollToEditzSection(ctaSection) : undefined}
+              className="px-7 py-3 rounded-full bg-editz-black text-white font-semibold text-sm hover:bg-zinc-800 transition-all duration-200"
+            >
+              {hero.ctaLabel}
+            </LocalizedClientLink>
+          ) : (
+            <a
+              href={resolvedCtaHref}
+              className="px-7 py-3 rounded-full bg-editz-black text-white font-semibold text-sm hover:bg-zinc-800 transition-all duration-200"
+            >
+              {hero.ctaLabel}
+            </a>
+          )}
         </div>
 
         {/* HERO VIDEO CARDS (STACKED ONE-BY-ONE ON MOBILE, TILTED ROW ON DESKTOP) */}

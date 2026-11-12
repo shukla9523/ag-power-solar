@@ -16,7 +16,7 @@ export const EDITZ_DEFAULTS: EditzContent = {
     subtitle:
       "Helping creators and brands grow through strategic video editing, strong retention storytelling, and high-impact content.",
     ctaLabel: "Let's Grow Your Content",
-    ctaHref: "#contact",
+    ctaHref: "/editz/contact",
     videos: [
       {
         videoUrl: "/video1.mp4",

@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import LocalizedClientLink from '@modules/common/components/localized-client-link';
+import { getEditzSectionFromHref, scrollToEditzSection } from '@modules/editz/lib/scroll';
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -18,11 +21,23 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const section = getEditzSectionFromHref(pathname || '');
+    const rawHash = window.location.hash.replace(/^#/, '');
+    const target = section || rawHash;
+    if (!target) return;
+
+    const frame = requestAnimationFrame(() => {
+      scrollToEditzSection(target);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [pathname]);
+
   const navLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'Benefits', href: '#benefits' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Process', href: '#process' },
+    { name: 'Services', target: 'services', href: '/editz/services' },
+    { name: 'Benefits', target: 'benefits', href: '/editz/benefits' },
+    { name: 'Projects', target: 'projects', href: '/editz/projects' },
+    { name: 'Process', target: 'process', href: '/editz/process' },
   ];
 
   return (
@@ -59,24 +74,28 @@ export default function Navbar() {
         {/* DESKTOP NAV LINKS */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <LocalizedClientLink
               key={link.name}
               href={link.href}
+              scroll={false}
+              onClick={() => scrollToEditzSection(link.target)}
               className="text-sm font-medium text-editz-body hover:text-black transition-colors duration-200"
             >
               {link.name}
-            </a>
+            </LocalizedClientLink>
           ))}
         </nav>
 
         {/* DESKTOP RIGHT CTA */}
         <div className="hidden md:flex items-center">
-          <a
-            href="#contact"
+          <LocalizedClientLink
+            href="/editz/contact"
+            scroll={false}
+            onClick={() => scrollToEditzSection('contact')}
             className="px-6 py-2.5 rounded-full bg-editz-black text-white text-sm font-semibold hover:bg-zinc-800 transition-colors shadow-sm"
           >
             Contact Us
-          </a>
+          </LocalizedClientLink>
         </div>
 
         {/* MOBILE MENU TOGGLE */}
@@ -101,22 +120,30 @@ export default function Navbar() {
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <LocalizedClientLink
                   key={link.name}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  scroll={false}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    scrollToEditzSection(link.target);
+                  }}
                   className="text-base font-semibold text-zinc-800 hover:text-editz-red py-2 border-b border-zinc-100"
                 >
                   {link.name}
-                </a>
+                </LocalizedClientLink>
               ))}
-              <a
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
+              <LocalizedClientLink
+                href="/editz/contact"
+                scroll={false}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  scrollToEditzSection('contact');
+                }}
                 className="mt-2 w-full flex items-center justify-center py-3 rounded-full bg-editz-black text-white font-bold"
               >
                 Contact Us
-              </a>
+              </LocalizedClientLink>
             </div>
           </motion.div>
         )}
