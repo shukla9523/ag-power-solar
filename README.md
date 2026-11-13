@@ -40,10 +40,10 @@ Mommantum delivers performance marketing, SEO (AEO/GEO), creative video producti
 
 ### 1. Environment Setup
 
-Copy `.env.example` to `.env.local` and configure your keys:
+Configure your environment variables in `.env.local`:
 
 ```bash
-cp .env.example .env.local
+# Set your environment variables in .env.local
 ```
 
 ### 2. Install Dependencies
