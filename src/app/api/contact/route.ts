@@ -27,6 +27,17 @@ const ContactSchema = z.object({
 })
 
 async function verifyTurnstile(token: string | undefined, ip: string): Promise<boolean> {
+  // Allow local development and testing environments without Turnstile token
+  const isLocal =
+    process.env.NODE_ENV !== "production" ||
+    ip === "127.0.0.1" ||
+    ip === "::1" ||
+    ip === "::ffff:127.0.0.1" ||
+    ip.includes("localhost")
+  if (isLocal && !token) {
+    return true
+  }
+
   const secret = process.env.TURNSTILE_SECRET_KEY
   if (!secret) return true // Turnstile is optional; enable by setting both Turnstile keys
   if (!token) return false
@@ -86,14 +97,22 @@ export async function POST(req: NextRequest) {
     )
 
     after(async () => {
-      // The lead is already saved; a delivery error is retried by the daily cron.
-      await deliverLead(lead).catch(() => undefined)
-      await notifyAdmins({
-        type: "lead",
-        title: "New lead",
-        body: `${lead.name} (${lead.email}) — ${lead.subject} [${lead.source}]`,
-        link: "/admin/leads",
-      }).catch(() => undefined)
+      // The lead is saved; delivery sends Google Sheet webhook & MailX confirmation email
+      try {
+        await deliverLead(lead)
+      } catch (err) {
+        console.error("Contact lead delivery error:", err)
+      }
+      try {
+        await notifyAdmins({
+          type: "lead",
+          title: "New lead",
+          body: `${lead.name} (${lead.email}) — ${lead.subject} [${lead.source}]`,
+          link: "/admin/leads",
+        })
+      } catch {
+        // Notification error safe to ignore
+      }
     })
 
     return NextResponse.json({ success: true, data: { leadId: lead.id } })

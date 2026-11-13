@@ -15,6 +15,7 @@ import {
   BarChart3,
   BookOpen,
   Briefcase,
+  Building2,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
@@ -59,6 +60,7 @@ const NAV_GROUPS: { title: string; items: NavItem[] }[] = [
     title: "Administration",
     items: [
       { label: "Users & Roles", href: "/admin/users", icon: <Users size={17} /> },
+      { label: "Clients", href: "/admin/clients", icon: <Building2 size={17} /> },
       { label: "Audit Log", href: "/admin/audit", icon: <History size={17} /> },
       { label: "Security (2FA)", href: "/admin/security", icon: <ShieldCheck size={17} /> },
       { label: "Settings", href: "/admin/settings", icon: <Settings size={17} /> },
