@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest"
 import { generateSchemaGraph } from "../generate-graph"
 import { verifyGraphIdReferences, verifyNoForbiddenEntities } from "../validate"
+import { DEFAULT_ORGANIZATION_PROFILE } from "../site"
 import {
   resolveHomepageData,
   resolveAboutData,
@@ -81,7 +82,7 @@ describe("Step 5 Automated Verification: Exact Schema Node Matrix Per Page Type"
           image_urls: [],
           excerpt: "Guide to scaling D2C brands profitably.",
           content: "Full content...",
-          author_name: "Kuldeep Ahir",
+          author_name: DEFAULT_ORGANIZATION_PROFILE.founder.name,
           status: "published",
           published_at: "2026-06-01T00:00:00Z",
           updated_at: "2026-06-02T00:00:00Z",
@@ -151,7 +152,7 @@ describe("Step 5 Automated Verification: Exact Schema Node Matrix Per Page Type"
       expect(topLevelTypes).not.toContain("OnlineStore")
       if (page.pageType !== "home") {
         expect(topLevelTypes).not.toContain("ProfessionalService")
-        const org = graph["@graph"].find((n) => n["@id"] === "https://www.mommantum.com/#organization")
+        const org = graph["@graph"].find((n) => n["@id"] === "https://www.agpower.in/#organization")
         expect(Object.keys(org || {}).sort()).toEqual(["@id", "@type", "logo", "name", "url"])
       }
 

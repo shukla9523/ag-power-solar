@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "name": "Test Customer",
+    "company": "Test Customer's Brand",
+    "email": "test@example.com",
+    "phone": "9876543210",
+    "service": "AG POWER Enquiry: Contact",
+    "status": "lead",
+    "retainer": "In Discussion",
+    "notes": "Inquiry received: \"Testing AG POWER solar lead submission pipeline\"",
+    "startDate": "2026-11-14",
+    "id": "cl_1794646233390_q40t9",
+    "createdAt": "2026-11-14T08:50:33.390Z",
+    "updatedAt": "2026-11-14T08:50:33.390Z"
+  }
+]

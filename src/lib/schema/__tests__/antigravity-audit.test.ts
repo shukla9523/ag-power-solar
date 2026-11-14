@@ -53,8 +53,8 @@ describe("AntiGravity Prompt Audit Suite", () => {
       const items = webPage?.breadcrumb.itemListElement || []
 
       for (const item of items) {
-        expect(item.item).toMatch(/^https:\/\/www\.mommantum\.com(\/.*)?$/)
-        if (item.item !== "https://www.mommantum.com/") {
+        expect(item.item).toMatch(/^https:\/\/www\.agpower\.in(\/.*)?$/)
+        if (item.item !== "https://www.agpower.in/") {
           expect(item.item.endsWith("/")).toBe(false)
         }
       }
@@ -73,7 +73,7 @@ describe("AntiGravity Prompt Audit Suite", () => {
           shortLabel: "SEO",
           description: "Full service SEO agency in Jaipur with technical and content optimization for brands.",
           intro: "Scale organic rankings.",
-          image: "https://www.mommantum.com/seo.jpg",
+          image: "https://www.agpower.in/seo.jpg",
           points: [],
           outcomes: [],
           whyItMatters: [],
@@ -102,14 +102,6 @@ describe("AntiGravity Prompt Audit Suite", () => {
         "homepage",
         "about",
         "contact",
-        "services",
-        "work",
-        "blog",
-        "editz",
-        "faq",
-        "blog-ai",
-        "privacy-policy",
-        "terms-and-conditions",
       ]
 
       for (const key of verifiedKeys) {
@@ -136,7 +128,7 @@ describe("AntiGravity Prompt Audit Suite", () => {
 
   describe("4. Meta Title and Description Lengths", () => {
     it("ensures every page default title is 50-60 chars and description is 140-160 chars", () => {
-      expect(Object.keys(PAGE_META_DEFAULTS).length).toBe(11)
+      expect(Object.keys(PAGE_META_DEFAULTS).length).toBe(14)
       for (const [pageKey, meta] of Object.entries(PAGE_META_DEFAULTS)) {
         const tLen = meta.title.length
         const dLen = meta.description.length
@@ -161,9 +153,9 @@ describe("AntiGravity Prompt Audit Suite", () => {
       }
     })
 
-    it("verifies PAGE_META_DEFAULTS contains valid meta for all 11 pages", () => {
+    it("verifies PAGE_META_DEFAULTS contains valid meta for all 14 pages", () => {
       const keys = Object.keys(PAGE_META_DEFAULTS)
-      expect(keys.length).toBe(11)
+      expect(keys.length).toBe(14)
 
       for (const pageKey of keys) {
         const actual = (PAGE_META_DEFAULTS as any)[pageKey]

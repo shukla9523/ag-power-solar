@@ -97,7 +97,7 @@ const EXPECTED: Record<string, { top: string[]; nested: string[] }> = {
   contact: { top: ["ContactPage", ...COMPACT], nested: ["Answer", "BreadcrumbList", "FAQPage", "ImageObject", "ListItem", "Question"] },
   faq: { top: ["WebPage", ...COMPACT], nested: ["Answer", "BreadcrumbList", "FAQPage", "ImageObject", "ListItem", "Question"] },
   legal: { top: ["WebPage", ...COMPACT], nested: ["Answer", "BreadcrumbList", "FAQPage", "ImageObject", "ListItem", "Question"] },
-  "blog-ai": { top: ["WebPage", "Service", ...COMPACT], nested: ["Answer", "BreadcrumbList", "Country", "FAQPage", "ImageObject", "ListItem", "Question"] },
+  "blog-ai": { top: ["WebPage", "Service", ...COMPACT], nested: ["BreadcrumbList", "Country", "ImageObject", "ListItem"] },
   editz: {
     top: ["WebPage", "Service", ...COMPACT],
     nested: ["Answer", "BreadcrumbList", "Country", "FAQPage", "ImageObject", "ListItem", "Offer", "OfferCatalog", "Question", "Service"],
@@ -107,10 +107,10 @@ const EXPECTED: Record<string, { top: string[]; nested: string[] }> = {
     top: ["WebPage", "Service", ...COMPACT],
     nested: ["Answer", "BreadcrumbList", "Country", "FAQPage", "ImageObject", "ListItem", "Offer", "OfferCatalog", "Question", "Service"],
   },
-  "work index": { top: ["CollectionPage", "ItemList", ...COMPACT], nested: ["Answer", "BreadcrumbList", "FAQPage", "ImageObject", "ListItem", "Question"] },
-  "case study": { top: ["WebPage", "Article", ...COMPACT], nested: ["Answer", "BreadcrumbList", "FAQPage", "ImageObject", "ListItem", "Organization", "Question"] },
+  "work index": { top: ["CollectionPage", "ItemList", ...COMPACT], nested: ["BreadcrumbList", "ImageObject", "ListItem"] },
+  "case study": { top: ["WebPage", "Article", ...COMPACT], nested: ["BreadcrumbList", "ImageObject", "ListItem", "Organization"] },
   "blog index": { top: ["CollectionPage", "ItemList", ...COMPACT], nested: ["Answer", "BreadcrumbList", "FAQPage", "ImageObject", "ListItem", "Question"] },
-  "blog post": { top: ["BlogPosting", "Person", "WebPage", ...COMPACT], nested: ["Answer", "Blog", "BreadcrumbList", "FAQPage", "ImageObject", "ListItem", "Question"] },
+  "blog post": { top: ["BlogPosting", "WebPage", ...COMPACT], nested: ["Answer", "Blog", "BreadcrumbList", "FAQPage", "ImageObject", "ListItem", "Person", "Question"] },
 }
 
 function typesOf(value: unknown): string[] {
@@ -146,8 +146,8 @@ describe("Schema inventory per page type", () => {
       expect(verifyNoForbiddenEntities(nodes).valid).toBe(true)
       expect(verifyGraphIdReferences(nodes).valid).toBe(true)
       // Every page carries #organization and #website nodes
-      expect(nodes.some((n) => n["@id"] === "https://www.mommantum.com/#organization")).toBe(true)
-      expect(nodes.some((n) => n["@id"] === "https://www.mommantum.com/#website")).toBe(true)
+      expect(nodes.some((n) => n["@id"] === "https://www.agpower.in/#organization")).toBe(true)
+      expect(nodes.some((n) => n["@id"] === "https://www.agpower.in/#website")).toBe(true)
     })
   }
 

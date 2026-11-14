@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { epilogue, outfit, mansalva } from "@lib/fonts"
+import { manrope, inter } from "@lib/fonts"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { getSeoSetting } from "@lib/data/seo"
 import { getPageMetaDefault } from "@lib/schema/page-defaults"
@@ -28,7 +28,7 @@ export default async function PrivacyPolicyPage() {
   const faqs = getPageFaqs("privacy-policy", seoSetting)
 
   return (
-    <main className="relative overflow-hidden bg-snow pt-14 pb-20 lg:pt-20 lg:pb-24">
+    <main className={`relative overflow-hidden bg-ivory pt-12 pb-20 lg:pt-16 lg:pb-28 ${inter.className}`}>
       <JsonLd
         type="page"
         slug="privacy-policy"
@@ -36,116 +36,109 @@ export default async function PrivacyPolicyPage() {
         description={defaultMeta.description}
         seoSetting={seoSetting}
       />
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-[4%] top-[8%] h-[140px] w-[420px] rounded-full bg-white/45 blur-3xl" />
-        <div className="absolute right-[8%] top-[12%] h-[140px] w-[360px] rounded-full bg-white/35 blur-3xl" />
-      </div>
 
       <div className="content-container relative px-4 sm:px-6 lg:px-10">
-        <div className="mx-auto max-w-[860px]">
+        <div className="mx-auto max-w-[880px]">
 
           <LocalizedClientLink
             href="/"
-            className={`${outfit.className} inline-flex items-center gap-2 text-[14px] font-semibold text-slate-400 transition-colors hover:text-brand`}
+            className="inline-flex items-center gap-2 text-[14px] font-semibold text-charcoal/60 transition-colors hover:text-forest"
           >
             ← Back to Home
           </LocalizedClientLink>
 
-          <div className="mt-8">
-            <p className={`${mansalva.className} text-[18px] text-brand`}>
-              Legal
-            </p>
-            <h1 className={`${epilogue.className} mt-2 text-[36px] font-extrabold tracking-[-0.05em] text-navy sm:text-[48px]`}>
+          <div className="mt-6 border-b border-charcoal/10 pb-8">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-forest/10 px-3.5 py-1 text-[11.5px] font-bold uppercase tracking-[0.08em] text-forest">
+              Data Privacy & Protection
+            </span>
+            <h1 className={`${manrope.className} mt-3 text-[34px] font-extrabold tracking-[-0.03em] text-forest sm:text-[44px]`}>
               Privacy Policy
             </h1>
-            <p className={`${outfit.className} mt-3 text-[14px] text-slate-400`}>
-              Last updated: May 2026
+            <p className="mt-2 text-[14px] text-charcoal/70">
+              Electro Global (operating as AG POWER) • Effective Date: November 2026 • Compliant with DPDP Act 2023
             </p>
           </div>
 
-          <div className="mt-10 space-y-8">
-
+          <div className="mt-10 space-y-6">
             {[
               {
-                title: "1. Information We Collect",
-                content: `When you visit our website or contact us, we may collect information you provide directly, such as your name, email address, phone number, and any other details you share through our contact forms or booking pages. We also collect standard analytics data such as pages visited, time on site, and device type through tools like Google Analytics.`,
+                title: "1. Overview & Scope",
+                content: `Electro Global, doing business as AG POWER ("AG POWER", "we", "us", or "our"), is committed to safeguarding your personal data in accordance with the Digital Personal Data Protection (DPDP) Act 2023 of India. This Privacy Policy details the types of personal and property data we collect via agpower.in, how we process and store that information, and your legal rights as a data principal.`,
               },
               {
-                title: "2. How We Use Your Information",
-                content: `We use the information we collect to respond to your enquiries, provide our services, send you relevant updates if you have opted in, and improve our website and service quality. We do not sell or rent your personal information to any third party.`,
+                title: "2. Personal & Project Information We Collect",
+                content: `When you request a solar savings estimate, submit an enquiry, or schedule a rooftop survey, we collect: (a) Contact identifiers: full name, telephone number, and email address; (b) Site & Energy Data: installation pincode/city, property type (residential, commercial, housing society), average monthly electricity bill, sanctioned load, and estimated rooftop square footage; (c) Technical details: optional electricity bill uploads or DISCOM account identifiers required for net-metering feasibility.`,
               },
               {
-                title: "3. Cookies",
-                content: `Our website uses cookies to improve your browsing experience and to help us understand how visitors use our site. Cookies are small files placed on your device. You can choose to disable cookies through your browser settings, though this may affect some features of the site.`,
+                title: "3. Lawful Purpose & Processing",
+                content: `We collect and process your information strictly for legitimate commercial and engineering purposes: (a) Preparing customized solar kW sizing and financial payback calculations; (b) Scheduling and conducting on-site engineering surveys; (c) Coordinating with regional state DISCOMs and central government portals (e.g., PM Surya Ghar National Portal) for net-metering approvals and direct-benefit subsidy disbursements; (d) Delivering operational system alerts and scheduled maintenance notifications.`,
               },
               {
-                title: "4. Third-Party Services",
-                content: `We use third-party tools including Google Analytics, Google Ads, and Meta Ads to run campaigns and measure performance. These services may collect data in accordance with their own privacy policies. We recommend reviewing their policies separately.`,
+                title: "4. Zero-Spam & Non-Disclosure Commitment",
+                content: `AG POWER does NOT sell, rent, lease, trade, or transfer your contact details to third-party telemarketers, lead brokers, or unrelated advertisers. Your information is accessed solely by authorized AG POWER engineers, verified site surveyors, and project managers directly responsible for executing your solar project.`,
               },
               {
-                title: "5. Data Security",
-                content: `We take reasonable measures to protect your personal information from unauthorised access, use, or disclosure. However, no method of transmission over the internet is completely secure and we cannot guarantee absolute security.`,
+                title: "5. Data Storage, Security & Integration Partners",
+                content: `Inquiry submissions are transmitted using TLS 1.3 encryption. Lead information is stored in restricted-access databases and secure Google Sheets repositories protected by multi-factor authentication. Instant internal alerts are dispatched via encrypted bot notifications (such as Telegram API) to ensure immediate engineering follow-up.`,
               },
               {
-                title: "6. Your Rights",
-                content: `You have the right to request access to the personal data we hold about you, to ask us to correct any inaccurate data, and to request deletion of your data where applicable. To make any such request, please contact us at the email below.`,
+                title: "6. Cookies & Site Analytics",
+                content: `Our website uses standard technical cookies and anonymous analytics to understand site performance, navigation flows, and calculator utilization. You may adjust your browser preferences to reject non-essential cookies without affecting your ability to browse our solar solutions or contact our team.`,
               },
               {
-                title: "7. Data Retention",
-                content: `We retain your personal information only for as long as is necessary to fulfil the purposes for which it was collected, or as required by law. When data is no longer needed, we securely delete or anonymise it.`,
+                title: "7. Data Retention & Erasure",
+                content: `We retain inquiry details for the duration required to complete your solar consultation, project installation, and active warranty/AMC cycles. If you do not proceed with an installation, you may request permanent erasure of your contact record from our active databases at any time.`,
               },
               {
-                title: "8. Changes to This Policy",
-                content: `We may update this Privacy Policy from time to time. When we do, we will update the date at the top of this page. We encourage you to review this page periodically to stay informed about how we are protecting your information.`,
+                title: "8. Your Rights Under DPDP Act 2023",
+                content: `As an Indian citizen and data principal, you have the right to: (a) Confirm whether AG POWER processes your personal data; (b) Access a summary of personal data held; (c) Request correction, completion, or updating of inaccurate records; (d) Withdraw consent and request data deletion; (e) Nominate another individual to exercise rights in the event of incapacity.`,
               },
               {
-                title: "9. Contact Us",
-                content: `If you have any questions or concerns about this Privacy Policy or how we handle your data, please reach out to us at hello@mommantum.com or through our contact page.`,
+                title: "9. Grievance Officer & Contact",
+                content: `For any inquiries, requests for data deletion, or grievances regarding our privacy practices, please contact our Data Protection Officer: Electro Global (AG POWER), Email: privacy@agpower.in, Phone: +91 98765 43210, Address: Project Hub, Rajasthan, India. Grievances are reviewed and acknowledged within 48 hours.`,
               },
             ].map((section) => (
               <div
                 key={section.title}
-                className="rounded-[18px] bg-white p-7 shadow-[0_4px_16px_rgba(0,0,0,0.05)] lg:p-8"
+                className="rounded-[16px] border border-charcoal/10 bg-white p-6 shadow-xs lg:p-7"
               >
-                <h2 className={`${epilogue.className} text-[20px] font-extrabold tracking-[-0.03em] text-navy`}>
+                <h2 className={`${manrope.className} text-[18px] font-bold text-forest sm:text-[20px]`}>
                   {section.title}
                 </h2>
-                <p className={`${outfit.className} mt-3 text-[15px] leading-[1.9] text-slate-600`}>
+                <p className="mt-3 text-[14.5px] leading-[1.8] text-charcoal/80">
                   {section.content}
                 </p>
               </div>
             ))}
-
           </div>
 
           {faqs && faqs.length > 0 && (
-            <div className="mt-12">
+            <div className="mt-14">
               <PageFaqSection
                 faqs={faqs}
-                title="Privacy Policy FAQs"
-                subtitle="Common questions regarding how Mommantum collects, uses, and safeguards your data."
+                title="Privacy & Data Protection FAQs"
+                subtitle="Common questions regarding how AG POWER protects customer information under DPDP Act 2023."
               />
             </div>
           )}
 
           {/* CTA */}
-          <div
-            className="mt-12 rounded-[20px] p-8 text-center"
-            style={{ background: "linear-gradient(135deg, rgb(var(--color-navy)) 0%, rgb(var(--color-navy-bright)) 60%, rgb(var(--color-navy)) 100%)" }}
-          >
-            <p className={`${mansalva.className} text-[16px] text-brand-soft`}>
-              Have a question?
-            </p>
-            <h3 className={`${epilogue.className} mt-2 text-[22px] font-extrabold tracking-[-0.04em] text-white`}>
-              Get in touch with us
+          <div className="mt-14 rounded-[18px] bg-forest p-8 text-center text-white shadow-md sm:p-10">
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-gold/20 text-[20px]">
+              🔒
+            </span>
+            <h3 className={`${manrope.className} mt-3 text-[22px] font-extrabold text-white sm:text-[26px]`}>
+              Have questions about your solar data or privacy?
             </h3>
-            <div className="mt-6">
+            <p className="mx-auto mt-2 max-w-lg text-[14.5px] leading-relaxed text-white/80">
+              Our privacy and compliance officers are happy to assist you with any questions regarding our data practices.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <LocalizedClientLink
                 href="/contact"
-                className={`${epilogue.className} inline-flex h-[48px] items-center justify-center rounded-[12px] px-8 text-[13px] font-extrabold uppercase tracking-[0.04em] text-white transition-all hover:opacity-90`}
-                style={{ background: "linear-gradient(135deg, rgb(var(--color-brand)), rgb(var(--color-accent-purple)))" }}
+                className={`${manrope.className} inline-flex h-[46px] items-center justify-center rounded-[12px] bg-gold px-7 text-[13px] font-bold text-forest transition-all hover:bg-gold-light active:scale-95`}
               >
-                Contact Us →
+                Contact Privacy Desk →
               </LocalizedClientLink>
             </div>
           </div>

@@ -1,535 +1,350 @@
-/**
- * @file ContactClient.tsx
- * @description Interactive Contact page component for Mommantum.
- * Displays contact form, communication channels, social links,
- * and official office headquarters address in Jaipur.
- */
 "use client"
 
-import { epilogue, outfit, mansalva } from "@lib/fonts"
-import { useEffect, useRef, useState } from "react"
-import GoogleFormContact from "@modules/contact/components/google-form-contact"
-
-const stripItems = [
-  "Get in touch with our team",
-  "We'd love to hear from you",
-  "Let's build something great",
-  "Get in touch with our team",
-  "We'd love to hear from you",
-  "Let's build something great",
-]
-
-const InstagramIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width="20"
-    height="20"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-    <circle cx="12" cy="12" r="4" />
-    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
-  </svg>
-)
-
-const LinkedInIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width="20"
-    height="20"
-    fill="currentColor"
-  >
-    <path d="M20.447 20.452H16.89v-5.569c0-1.327-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a1.983 1.983 0 1 1 0-3.966 1.983 1.983 0 0 1 0 3.966zm1.997 13.019H3.34V9h3.994v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-  </svg>
-)
+import { useState } from "react"
+import { Phone, Mail, MapPin, MessageSquare, SunMedium, ShieldCheck, CheckCircle2, ArrowRight } from "lucide-react"
 
 export default function ContactClient() {
-  const headingRef = useRef<HTMLHeadingElement>(null)
-  const msgRef = useRef<HTMLDivElement>(null)
-  const [underlineVisible, setUnderlineVisible] = useState(false)
-  const [msgJumped, setMsgJumped] = useState(false)
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
+  const [category, setCategory] = useState("residential")
+  const [city, setCity] = useState("")
+  const [pincode, setPincode] = useState("")
+  const [service, setService] = useState("Rooftop Solar Installation")
+  const [monthlyBill, setMonthlyBill] = useState("")
+  const [message, setMessage] = useState("")
+  const [consent, setConsent] = useState(true)
 
-  // Hero underline draw
-  useEffect(() => {
-    const el = headingRef.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setUnderlineVisible(false)
-          requestAnimationFrame(() =>
-            requestAnimationFrame(() => setUnderlineVisible(true))
-          )
-        } else {
-          setUnderlineVisible(false)
-        }
-      },
-      { threshold: 0.6 }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
+  const [loading, setLoading] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [errorMsg, setErrorMsg] = useState("")
 
-  // "Message us" jump on scroll into view
-  useEffect(() => {
-    const el = msgRef.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setMsgJumped(false)
-          requestAnimationFrame(() =>
-            requestAnimationFrame(() => setMsgJumped(true))
-          )
-          obs.unobserve(el)
-        }
-      },
-      { threshold: 0.5 }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!consent) {
+      setErrorMsg("Please accept the privacy policy.")
+      return
+    }
 
-  // Generic scroll reveal
-  useEffect(() => {
-    const els = document.querySelectorAll(".reveal")
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            ;(entry.target as HTMLElement).style.opacity = "1"
-            ;(entry.target as HTMLElement).style.transform = "translateY(0)"
-            io.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-    els.forEach((el) => io.observe(el))
-    return () => io.disconnect()
-  }, [])
+    setLoading(true)
+    setErrorMsg("")
+
+    try {
+      const payload = {
+        name,
+        phone,
+        email,
+        category,
+        city,
+        pincode,
+        service,
+        monthly_bill: monthlyBill,
+        message,
+        enquiry_type: "Contact",
+        source_page: "/contact",
+        consent: true,
+      }
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+
+      const data = await res.json().catch(() => ({}))
+
+      if (res.ok && data.success) {
+        setSubmitted(true)
+      } else {
+        setErrorMsg(data.error || "Submission failed. Please check your phone number.")
+      }
+    } catch {
+      setErrorMsg("Network error. Please call +91 98765 43210.")
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
-    <main className="relative overflow-hidden bg-white">
-      <style>{`
+    <div className="py-12 sm:py-16 lg:py-20 bg-ivory">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        /* ─── Hero underline ─── */
-        @keyframes drawUnderline {
-          from { width: 0%; opacity: 0; }
-          to   { width: 100%; opacity: 1; }
-        }
-        .underline-animate {
-          display: block;
-          height: 6px;
-          border-radius: 999px;
-          background: linear-gradient(90deg, #a855f7, #e61e73);
-          width: 0%;
-          opacity: 0;
-          margin: 8px auto 0;
-        }
-        .underline-animate.visible {
-          animation: drawUnderline 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        /* Hero text has no entrance animation: it is above the fold and must paint immediately. */
-
-        /* ─── "Message us" spring jump ─── */
-        @keyframes jumpIn {
-          0%   { opacity: 0; transform: translateY(40px) scale(0.94); }
-          55%  { opacity: 1; transform: translateY(-10px) scale(1.03); }
-          75%  { transform: translateY(4px) scale(0.99); }
-          90%  { transform: translateY(-3px) scale(1.01); }
-          100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .msg-jump {
-          opacity: 0;
-        }
-        .msg-jump.active {
-          animation: jumpIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        /* ─── Scroll reveal ─── */
-        .reveal {
-          opacity: 0;
-          transform: translateY(28px);
-          transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
-                      transform 0.65s cubic-bezier(0.16,1,0.3,1);
-        }
-
-        /* ─── Marquee ─── */
-        @keyframes marquee {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .marquee-track {
-          display: flex;
-          width: max-content;
-          animation: marquee 30s linear infinite;
-          will-change: transform;
-        }
-        .marquee-track:hover { animation-play-state: paused; }
-
-        /* ─── Social icon spring ─── */
-        .social-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 50px;
-          height: 50px;
-          border-radius: 14px;
-          border: 1.5px solid #e2e8f0;
-          background: white;
-          color: #0e2547;
-          text-decoration: none;
-          transition:
-            border-color 0.2s ease,
-            color 0.2s ease,
-            transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
-            box-shadow 0.2s ease,
-            background 0.2s ease;
-        }
-
-        /* Instagram: pink/purple gradient on hover */
-        .social-btn.instagram:hover {
-          border-color: transparent;
-          color: white;
-          background: linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #8134af 100%);
-          transform: translateY(-5px) scale(1.1);
-          box-shadow: 0 10px 28px rgba(221,42,123,0.35);
-        }
-
-        /* LinkedIn: blue on hover */
-        .social-btn.linkedin:hover {
-          border-color: transparent;
-          color: white;
-          background: #0077b5;
-          transform: translateY(-5px) scale(1.1);
-          box-shadow: 0 10px 28px rgba(0,119,181,0.35);
-        }
-
-        /* ─── Info card ─── */
-        .info-card {
-          background: white;
-          border-radius: 18px;
-          padding: 30px 34px;
-          border: 1px solid #ededf2;
-          transition: box-shadow 0.25s ease, transform 0.25s ease;
-        }
-        .info-card:hover {
-          box-shadow: 0 14px 44px rgba(14,37,71,0.09);
-          transform: translateY(-3px);
-        }
-
-        /* ─── Map card ─── */
-        .map-card {
-          overflow: hidden;
-          border-radius: 24px;
-          box-shadow:
-            0 20px 60px rgba(14,37,71,0.09),
-            0 4px 16px rgba(14,37,71,0.05);
-          transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
-        .map-card:hover {
-          box-shadow:
-            0 28px 72px rgba(14,37,71,0.13),
-            0 6px 20px rgba(14,37,71,0.07);
-          transform: translateY(-3px);
-        }
-
-        /* ─── Heading accent underline ─── */
-        .h-accent {
-          position: relative;
-          display: inline-block;
-        }
-        .h-accent::after {
-          content: '';
-          position: absolute;
-          bottom: 3px;
-          left: 0;
-          width: 55%;
-          height: 10px;
-          background: #ef6a99;
-          z-index: -1;
-          border-radius: 2px;
-        }
-
-        /* ─── Section divider ─── */
-        .section-rule {
-          width: 100%;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, #e8e8ef 30%, #e8e8ef 70%, transparent);
-          margin: 0 auto;
-        }
-
-        /* ─── Contact link ─── */
-        .contact-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          color: #475569;
-          text-decoration: none;
-          transition: color 0.2s ease;
-        }
-        .contact-link:hover {
-          color: #e61e73;
-        }
-
-        /* ─── Contact icon pill ─── */
-        .contact-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 32px;
-          height: 32px;
-          border-radius: 8px;
-          background: #fdf2f7;
-          flex-shrink: 0;
-        }
-      `}</style>
-
-      {/* ════ HERO ════ */}
-      <section className="relative overflow-hidden bg-white pt-16 pb-20 lg:pt-20 lg:pb-24">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute left-[5%] top-[6%] h-[160px] w-[420px] rounded-full bg-purple-50 opacity-70 blur-3xl" />
-          <div className="absolute right-[6%] top-[12%] h-[140px] w-[360px] rounded-full bg-pink-50 opacity-60 blur-3xl" />
-          <div className="absolute right-[-3%] top-[4%] h-[380px] w-[380px] rounded-full border-[40px] border-slate-100 opacity-40" />
-          <div className="absolute left-[-2%] bottom-[8%] h-[200px] w-[200px] rounded-full border-[28px] border-purple-50 opacity-50" />
-        </div>
-
-        <div className="content-container relative px-4 sm:px-6 lg:px-10">
-          <div className="mx-auto max-w-[1320px] text-center">
-
-            <p className={`${mansalva.className} mb-3 text-[21px] text-brand`}>
-              Contact us
-            </p>
-
-            <h1
-              ref={headingRef}
-              className={`${epilogue.className} inline-block text-[40px] font-extrabold leading-[0.95] tracking-[-0.05em] text-navy sm:text-[54px] lg:text-[68px]`}
-            >
-              We are Mommantum!
-              <span className={`underline-animate${underlineVisible ? " visible" : ""}`} />
-            </h1>
-
-            <p className={`${outfit.className} mx-auto mt-6 max-w-[460px] text-[16px] leading-relaxed text-slate-400`}>
-              Tell us about your project — we typically reply within one business day.
-            </p>
-
+        {/* Header */}
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-sage-mist px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-forest">
+            <SunMedium className="h-4 w-4 text-gold" />
+            <span>Connect With Us</span>
           </div>
+          <h1 className="mt-4 font-manrope text-[36px] font-extrabold tracking-tight text-forest sm:text-[48px]">
+            Get Your Free Solar Feasibility Consultation
+          </h1>
+          <p className="mt-4 text-[16px] leading-relaxed text-charcoal/80 sm:text-[18px]">
+            Speak directly with our solar EPC engineers. We will analyze your monthly electricity bill, inspect rooftop shadow geometry, and provide a customized financial proposal.
+          </p>
         </div>
-      </section>
 
-      {/* ════ MARQUEE STRIP ════ */}
-      <div className="overflow-hidden bg-navy py-[13px]">
-        <div className="marquee-track">
-          {[0, 1].map((set) =>
-            stripItems.map((text, i) => (
-              <span
-                key={`${set}-${i}`}
-                className={`${epilogue.className} flex items-center whitespace-nowrap`}
-              >
-                <span className="px-7 text-[12.5px] font-extrabold uppercase tracking-[0.12em] text-white">
-                  {text}
-                </span>
-                <span style={{
-                  display: "inline-block",
-                  width: "5px",
-                  height: "5px",
-                  borderRadius: "50%",
-                  background: "rgb(var(--color-brand-soft))",
-                  flexShrink: 0,
-                }} />
+        {/* Main Grid */}
+        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12">
+
+          {/* Left Column: Direct Contacts (5 cols) */}
+          <div className="flex flex-col justify-between rounded-3xl bg-forest p-8 text-white shadow-xl sm:p-10 lg:col-span-5">
+            <div>
+              <span className="text-[12px] font-bold uppercase tracking-wider text-gold">
+                Electro Global · AG POWER
               </span>
-            ))
-          )}
-        </div>
-      </div>
-
-      {/* ════ MESSAGE US + FORM ════ */}
-      <section className="relative overflow-hidden bg-smoke py-20 lg:py-24">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute left-[3%] top-[6%] h-[130px] w-[400px] rounded-full bg-white/60 blur-3xl" />
-          <div className="absolute right-[4%] bottom-[6%] h-[120px] w-[360px] rounded-full bg-white/50 blur-3xl" />
-        </div>
-
-        <div className="content-container relative px-4 sm:px-6 lg:px-10">
-          <div className="mx-auto max-w-[1320px]">
-
-            {/* "Message us" — spring jump heading */}
-            <div
-              ref={msgRef}
-              className={`mx-auto max-w-[660px] text-center msg-jump${msgJumped ? " active" : ""}`}
-            >
-              <h2
-                className={`${epilogue.className} text-[36px] font-extrabold tracking-[-0.05em] text-navy sm:text-[46px] lg:text-[56px]`}
-              >
-                <span className="h-accent">Message us</span>
+              <h2 className="mt-2 font-manrope text-[28px] font-extrabold text-white">
+                Contact Information
               </h2>
-              <p className={`${outfit.className} mt-4 text-[15px] leading-relaxed text-slate-400`}>
-                Fill in the form and we&apos;ll get back to you shortly.
+              <p className="mt-3 text-[14px] leading-relaxed text-sage-mist/85">
+                Our solar consultation team is available Monday to Saturday to answer technical questions and schedule on-site surveys.
               </p>
-            </div>
 
-            {/* Form */}
-            <div className="reveal mt-12" style={{ transitionDelay: "0.12s" }}>
-              <GoogleFormContact />
-            </div>
+              <div className="mt-8 space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                    <Phone className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-[12px] text-sage">Direct Phone Line</p>
+                    <a
+                      href="tel:+919876543210"
+                      className="font-manrope text-[16px] font-bold text-white hover:text-gold transition-colors"
+                    >
+                      +91 98765 43210
+                    </a>
+                    <p className="text-[11px] text-sage-mist/60">Mon – Sat, 9:00 AM – 7:00 PM</p>
+                  </div>
+                </div>
 
-          </div>
-        </div>
-      </section>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                    <Mail className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-[12px] text-sage">Email Inquiries</p>
+                    <a
+                      href="mailto:contact@agpower.in"
+                      className="font-manrope text-[16px] font-bold text-white hover:text-gold transition-colors"
+                    >
+                      contact@agpower.in
+                    </a>
+                    <p className="text-[11px] text-sage-mist/60">Verified reply within 2 business hours</p>
+                  </div>
+                </div>
 
-      {/* ════ INQUIRIES + SOCIAL ════ */}
-      <section className="relative bg-smoke pb-20 lg:pb-24">
-        <div className="content-container px-4 sm:px-6 lg:px-10">
-          <div className="mx-auto max-w-[1320px]">
-
-            {/* subtle top rule to separate from form section */}
-            <div className="section-rule mb-16" />
-
-            <div className="grid gap-6 md:grid-cols-2">
-
-              {/* General Inquiries */}
-              <div className="reveal info-card" style={{ transitionDelay: "0.05s" }}>
-                <p className={`${mansalva.className} mb-2 text-[14px] text-brand`}>
-                  reach out directly
-                </p>
-                <h3 className={`${epilogue.className} text-[26px] font-extrabold tracking-[-0.04em] text-navy lg:text-[32px]`}>
-                  <span className="h-accent">General Inquiries</span>
-                </h3>
-
-                <div className="mt-5 flex flex-col gap-3">
-                  {/* Email */}
-                  <a
-                    href="mailto:kuldeep@mommantum.com"
-                    className={`${outfit.className} contact-link text-[15px]`}
-                  >
-                    <span className="contact-icon">
-                      {/* Email icon */}
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e61e73" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="4" width="20" height="16" rx="2" />
-                        <polyline points="2,4 12,13 22,4" />
-                      </svg>
-                    </span>
-                    kuldeep@mommantum.com
-                  </a>
-
-                  {/* Phone */}
-                  <a
-                    href="tel:+919588973492"
-                    className={`${outfit.className} contact-link text-[15px]`}
-                  >
-                    <span className="contact-icon">
-                      {/* Phone icon */}
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e61e73" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.42 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.92a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z" />
-                      </svg>
-                    </span>
-                    +91 95889 73492
-                  </a>
-
-                  {/* Office Address - Mommantum Jaipur Headquarters */}
-                  <div className={`${outfit.className} contact-link text-[14px] leading-relaxed text-slate-600`}>
-                    <span className="contact-icon flex-shrink-0">
-                      {/* Location Pin icon */}
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e61e73" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                        <circle cx="12" cy="10" r="3" />
-                      </svg>
-                    </span>
-                    <span>B-147, Anand Vihar, Jagatpura, Jaipur-302017, Rajasthan</span>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                    <MapPin className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-[12px] text-sage">Corporate Office</p>
+                    <p className="font-manrope text-[15px] font-medium text-white">
+                      Electro Global Solar EPC Division, India
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Social Networks */}
-              <div className="reveal info-card" style={{ transitionDelay: "0.12s" }}>
-                <p className={`${mansalva.className} mb-2 text-[14px] text-brand`}>
-                  follow our journey
-                </p>
-                <h3 className={`${epilogue.className} text-[26px] font-extrabold tracking-[-0.04em] text-navy lg:text-[32px]`}>
-                  <span className="h-accent">Social Networks</span>
+              {/* WhatsApp Quick Link */}
+              <div className="mt-8 rounded-2xl bg-white/10 p-4 border border-white/10">
+                <p className="text-[13px] font-semibold text-white">Need a quick WhatsApp chat?</p>
+                <a
+                  href="https://wa.me/919876543210?text=Hi%2C%20I%20am%20interested%20in%20AG%20POWER%20solar%20solutions."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-2 rounded-xl bg-social-whatsapp px-4 py-2 text-[13px] font-bold text-white hover:opacity-90"
+                >
+                  <MessageSquare className="h-4 w-4" />
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-8 border-t border-white/10 pt-4 text-[12px] text-sage">
+              ✓ MNRE compliant vendor · 25-Year performance warranty · 100% turnkey DISCOM net-metering.
+            </div>
+          </div>
+
+          {/* Right Column: Enquiry Form (7 cols) */}
+          <div className="rounded-3xl border border-charcoal/10 bg-white p-8 shadow-sm sm:p-10 lg:col-span-7">
+            {submitted ? (
+              <div className="py-16 text-center">
+                <CheckCircle2 className="mx-auto h-16 w-16 text-forest" />
+                <h3 className="mt-4 font-manrope text-[24px] font-extrabold text-forest">
+                  Enquiry Submitted Successfully!
                 </h3>
-                <div className="mt-6 flex items-center gap-4">
+                <p className="mx-auto mt-2 max-w-md text-[15px] text-charcoal-muted">
+                  Thank you, {name}. A dedicated AG POWER solar project engineer will contact you shortly to review your requirements.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="mt-6 rounded-xl bg-forest px-7 py-3 text-[14px] font-bold text-white hover:bg-forest-deep"
+                >
+                  Submit Another Enquiry
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <h3 className="font-manrope text-[22px] font-bold text-forest">
+                  Send Your Project Requirements
+                </h3>
 
-                  {/* Instagram */}
-                  <a
-                    href="https://www.instagram.com/mommantummedia?igsh=OXpxZ3Y0aTAxMTk4"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    className="social-btn instagram"
-                  >
-                    <InstagramIcon />
-                  </a>
-
-                  {/* LinkedIn */}
-                  <a
-                    href="https://www.linkedin.com/company/mommantum-media/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                    className="social-btn linkedin"
-                  >
-                    <LinkedInIcon />
-                  </a>
-
+                {/* Customer Category */}
+                <div>
+                  <label className="text-[13px] font-bold text-forest">Customer Category *</label>
+                  <div className="mt-2 grid grid-cols-3 gap-2">
+                    {["residential", "commercial", "society"].map((cat) => (
+                      <button
+                        key={cat}
+                        type="button"
+                        onClick={() => setCategory(cat)}
+                        className={`rounded-xl border py-2 text-[13px] font-bold capitalize transition-all ${category === cat
+                          ? "border-forest bg-forest text-white"
+                          : "border-charcoal/15 bg-ivory text-charcoal hover:bg-sage-mist"
+                          }`}
+                      >
+                        {cat === "society" ? "Housing Society" : cat}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
-                <p className={`${outfit.className} mt-5 text-[13px] text-slate-400`}>
-                  Stay connected and follow our latest updates.
-                </p>
-              </div>
+                {/* Name & Phone */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="text-[13px] font-semibold text-forest">Full Name *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Ramesh Chandra"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[13px] font-semibold text-forest">Phone Number *</label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="10-digit mobile"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    />
+                  </div>
+                </div>
 
-            </div>
+                {/* Email & City */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="text-[13px] font-semibold text-forest">Email Address</label>
+                    <input
+                      type="email"
+                      placeholder="email@example.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[13px] font-semibold text-forest">City / Location</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Jaipur, Delhi, NCR"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Monthly Bill & Pincode */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="text-[13px] font-semibold text-forest">Average Monthly Bill (₹)</label>
+                    <input
+                      type="number"
+                      placeholder="e.g. 6000"
+                      value={monthlyBill}
+                      onChange={(e) => setMonthlyBill(e.target.value)}
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[13px] font-semibold text-forest">Pincode</label>
+                    <input
+                      type="text"
+                      placeholder="6-digit pincode"
+                      maxLength={6}
+                      value={pincode}
+                      onChange={(e) => setPincode(e.target.value)}
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Service Requirement */}
+                <div>
+                  <label className="text-[13px] font-semibold text-forest">Service Required</label>
+                  <select
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
+                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                  >
+                    <option value="Rooftop Solar Installation">Rooftop Solar Installation</option>
+                    <option value="Commercial Solar Plant">Commercial & Industrial Solar Plant</option>
+                    <option value="Housing Society Solar">Housing Society Solar System</option>
+                    <option value="Solar Panel Enquiry">Solar Panel Procurement & Inverter</option>
+                    <option value="Solar Consultation">General Solar Feasibility Consultation</option>
+                  </select>
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label className="text-[13px] font-semibold text-forest">Additional Project Details</label>
+                  <textarea
+                    rows={3}
+                    placeholder="Tell us about your rooftop area, electrical load, or special requirements..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                  />
+                </div>
+
+                {/* Privacy Consent */}
+                <div className="flex items-start gap-2 pt-1">
+                  <input
+                    type="checkbox"
+                    id="privacy-consent"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 h-4 w-4 rounded border-charcoal/30 text-forest focus:ring-forest"
+                  />
+                  <label htmlFor="privacy-consent" className="text-[12px] text-charcoal-muted">
+                    I authorize AG POWER to contact me via phone, email, or WhatsApp with my solar feasibility assessment. My information is stored securely in accordance with the Privacy Policy.
+                  </label>
+                </div>
+
+                {errorMsg && (
+                  <p className="text-[12px] font-semibold text-red-600">{errorMsg}</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full rounded-xl bg-forest py-3.5 text-[15px] font-bold text-white shadow-md transition-all hover:bg-forest-deep disabled:opacity-50"
+                >
+                  {loading ? "Submitting..." : "Get Free Solar Consultation →"}
+                </button>
+              </form>
+            )}
           </div>
+
         </div>
-      </section>
 
-      {/* ════ MAP ════ */}
-      <section className="bg-white py-20 lg:py-24">
-        <div className="content-container px-4 sm:px-6 lg:px-10">
-          <div className="mx-auto max-w-[1320px]">
-
-            <div className="reveal text-center">
-              <p className={`${mansalva.className} text-[20px] text-brand`}>
-                Let&apos;s meet!
-              </p>
-              <h2 className={`${epilogue.className} mt-2 text-[34px] font-extrabold tracking-[-0.05em] text-navy lg:text-[50px]`}>
-                <span className="h-accent">Headquarters</span>
-              </h2>
-              {/* Official Office Address */}
-              <p className={`${outfit.className} mx-auto mt-3 max-w-[500px] text-[15px] font-medium text-slate-600`}>
-                B-147, Anand Vihar, Jagatpura, Jaipur-302017, Rajasthan
-              </p>
-              <p className={`${outfit.className} mx-auto mt-1 text-[13px] text-slate-400`}>
-                Open Monday to Saturday, 9:00 AM – 9:00 PM
-              </p>
-            </div>
-
-            <div className="reveal map-card mt-12" style={{ transitionDelay: "0.1s" }}>
-              {/* Google Maps embed centered on Anand Vihar, Jagatpura */}
-              <iframe
-                src="https://www.google.com/maps?q=B-147%2C%20Anand%20Vihar%2C%20Jagatpura%2C%20Jaipur%2C%20Rajasthan%20302017&z=15&output=embed"
-                width="100%"
-                height="460"
-                style={{ border: 0, display: "block" }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Mommantum Headquarters Map - Jagatpura, Jaipur"
-              />
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-    </main>
+      </div>
+    </div>
   )
 }

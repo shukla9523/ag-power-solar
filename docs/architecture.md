@@ -1,255 +1,103 @@
-# 2 · architecture.md — Architecture
+# Architecture · AG POWER Website · v1.0
 
-This file defines HOW Mommantum is built and WHERE each piece lives: system parts and their jobs, the responsibility split between frontend and backend, the exact folder tree, data tables, every API route, the auth flow, state, errors, performance, rendering, environments and the SEO/schema engine. Update it whenever routes, models or structure change.
-
-*Updated whenever structure, routes or models change · Aligned with production Next.js 15 App Router architecture*
-
-
-> **Note on E-Commerce:** E-commerce store removed on 2026-10-21; Supabase store tables intentionally left untouched. Proposals to drop them are archived in `db-proposals/drop_store_tables_PROPOSAL.sql`.
+Source: project brief + System Design SOP + Phase 1 audit (`momentum-audit-report.md`). Exact route paths and new table/column definitions for new features are written in the task plan of each task (task.md) and added here in the same PR (rules #16). Live Supabase column lists are not in the repo: export the schema and paste it in §4.
 
 ## 1. System map
-
-
 | Part | Technology | Job |
 |---|---|---|
-| Frontend | Next.js 15.3.9 App Router, React 19, Tailwind, Radix UI, Headless UI, Motion, lucide-react, Medusa UI | Renders pages (Server Components first), collects input, calls APIs. No business logic. |
-| Backend | Next.js route handlers in src/app/api/** and server-only modules in src/lib/** | Validation, permissions, calculations, orchestration. There is no separate Node server. |
-| Database / Auth | Supabase PostgreSQL 15, RLS, GoTrue Auth; anon client for public reads, service-role client (supabase-admin.ts) for admin APIs | System of record; sessions; row-level security. |
-| SEO services | Google Indexing API (googleapis), schema engine, sitemap routes | Index notifications, JSON-LD, sitemaps. |
-| AI services | OpenAI / Gemini, AnswerThePublic (RapidAPI), embeddings for link suggestions | SEO auto-fill, blog drafting (via n8n), internal linking. |
-| Automation | n8n workflow (mommantum_supabase.json), Vercel cron | Blog ingestion; keep-alive; monthly SEO auto-fill. |
-| Hosting | Vercel (https://mommantum-main.vercel.app), custom domain www.mommantum.com | Deploy, edge middleware, cron. |
+| Frontend | Next.js 15.3.9 App Router, React 19, Tailwind, Radix UI, Motion, lucide-react | Display, collect input, call APIs, loading/empty/error states |
+| Backend | Next.js route handlers `src/app/api/**` + server-only modules `src/lib/**` (no separate server) | Business calculations, validation, sensitive integrations, credentials, lead persistence, permissions |
+| Database / Auth | Supabase PostgreSQL, RLS, GoTrue | System of record, sessions |
+| Hosting | Vercel (cron jobs in `vercel.json`) | Deploy, edge middleware, cron |
+| Integrations | Google Sheets, Telegram Bot (new), MailX/SMTP, Cloudflare Turnstile | See §10 |
+| AI (existing only) | Cloudflare Workers AI / OpenAI via `src/lib/services/ai-provider.ts` | Existing SEO features; see ai-setup-guide.md |
 
+## 2. Responsibility rule
+Frontend: visual presentation, user interaction, form input, display of calculator results, loading/empty/error states. Nothing else.
+Backend: business calculations, input validation, sensitive integrations, credential management, lead persistence, permissions, SEO values.
+Existing backend responsibilities are not moved into the frontend.
 
-## 2. Responsibility rule (this project)
-
-- **Frontend displays:** components in src/modules and src/app pages render data, loading and error states, and call APIs or server data functions.
-- **Backend owns:** validation, role checks, slug and SEO validation, schema generation, revalidation, indexing.
-- **Example:** service descriptions and SEO metadata come from server data functions and resolvers; components only format and show them.
-- **Example:** admin roles are decided by roles.ts plus a database lookup in auth-helpers.ts, never by a cookie the browser can edit.
-
-## 3. Folder structure (exact tree)
-
-
+## 3. Folder structure (existing, from audit)
 ```
-mommantum-main/
-├── .agents/ (AGENTS.md + skills: schema, internal-linking, frontend-performance,
-│             project-architecture, security-hardening, sds-authoring)
-├── .workrules/RULES.md               (PRIVATE, never committed; excluded via .git/info/exclude)
-├── db-proposals/                     (reviewable SQL + seeds, executed by a human only)
-├── docs/                             (prd, architecture, rules, design, task, memory, BRAND_GUIDELINES.md)
-├── public/ images, team, blog, about, og/pages (11), og/services (16)
-├── scripts/gen-faq-sql.ts
-├── src/
-│   ├── middleware.ts                 (at src/ root, as Next.js requires) edge: sitemap/static bypass, public bypass, admin JWT + role
-│   ├── app/
-│   │   ├── layout.tsx, robots.ts, opengraph-image.jpg, twitter-image.jpg
-│   │   ├── sitemap/route.ts, sitemap/[type]/route.ts
-│   │   ├── (store)/ about, blog, blog-ai, contact, editz, faq, services, work,
-│   │   │            privacy-policy, terms-and-conditions, (main)/ home
-│   │   ├── admin/ (services, blog, case-studies, seo, users, ...)
-│   │   ├── admin-login/
-│   │   └── api/ admin/*, auth/*, blog/publish, cron/seo-auto-fill, keep-alive, store/internal-linking/*
-│   ├── lib/
-│   │   ├── config/roles.ts           RBAC matrix (admin, manager, seo, content_manager, ...)
-│   │   ├── auth-helpers.ts           session + role verification
-│   │   ├── supabase.ts / supabase-server.ts / supabase-admin.ts
-│   │   ├── revalidate.ts             revalidateContent({type, slug, oldSlug})
-│   │   ├── validation.ts             Zod schemas
-│   │   ├── fonts.ts                  Epilogue, Outfit, Mansalva, Cormorant Garamond, DM Sans
-│   │   ├── data/                     fetch layer: services, blog-posts, case-studies, seo, page-faqs, home-faqs,
-│   │   │                             all-faqs, onboarding, locales, cookies
-│   │   ├── schema/                   generate-graph.ts (orchestrator), build-graph.ts, serialize.ts (XSS-safe),
-│   │   │                             validate.ts, config.ts, site.ts, page-defaults.ts,
-│   │   │                             resolvers/ (page, service, blog, case-study, collection),
-│   │   │                             templates/ (11 node builders), __tests__/
-│   │   ├── services/                 ai-seo-service, indexer, linking-service
-│   │   ├── util/ env, linker ...
-│   │   ├── hooks/ , context/modal-context.tsx
-│   │   ├── modules/  (domain UI) common, contact, editz, home, layout
-│   ├── components/ KeepAlive.tsx, RelatedLinks.tsx
-│   ├── styles/globals.css            Tailwind layers + input and autofill utilities
-│   └── types/
-├── next.config.js, tailwind.config.js, tsconfig.json, vitest.config.mjs, vercel.json
-└── package.json (npm@11.7.0)
+src/
+  middleware.ts                 edge gate; public routes: zero DB work
+  app/(site)/                   public pages: home, about, contact, faq, blog, services, work, editz, blog-ai, privacy-policy, terms-and-conditions
+  app/admin/                    admin panel (blog, services, case-studies, pages, seo, sitemap, users, leads, clients, products, audit, security, settings)
+  app/api/                      admin/*, auth/*, blog/*, contact, cron/*, keep-alive, preview
+  app/{sitemap,robots,llms.txt}
+  lib/config                    roles.ts, leads.ts, owner.ts
+  lib/data                      fetch layer (services, blog-posts, case-studies, seo, faqs, product-pages…)
+  lib/schema                    JSON-LD engine (resolvers, templates, tests)
+  lib/seo                       sitemap, redirects, meta fields, page registry
+  lib/services                  leads-service, google-sheets, mailer, mailx, notifications, ai-*, audit…
+  lib/util                      rate-limit, sanitize, mask-pii, origin-check, api-response…
+  lib/validation*               Zod schemas
+  modules/                      common, contact, editz, home, layout (UI)
+  styles/                       tokens.css, globals.css
+db-proposals/                   reviewable SQL, executed by a human
+docs/                           project docs
 ```
 
+## 4. Data models
+**Existing (names from audit):** services, case_studies, post (blog), testimonials, site_setting (incl. theme_tokens), site_keywords, product_pages, clients, seo_setting, link_suggestion, link_embedding, organization_profile, redirects, contact_leads, admin_notifications, audit tables, profiles, customer; legacy store tables left untouched.
 
-## 4. Data models (Supabase tables found in code)
+`contact_leads` today: name, email, phone, subject, message, source, source_page, consent, consent_text_version, ip_hash, user_agent, status (new/contacted/qualified/closed/spam), notes, sheet_status/attempts, email_status/attempts, created_at, updated_at.
 
+**Required by the brief (definitions go in task plans; database structure changes need approval):**
+- Lead: Enquiry ID, date and time, name, phone, email, category (Residential / Commercial / Society), service, city, pincode, monthly bill, source page, enquiry type (Contact / Calculator / Catalogue), message, status (New / Contacted / Qualified / Closed), privacy consent; calculation details when submitted from the calculator; panel reference when submitted from the catalogue.
+- Calculator configuration (configurable, not hardcoded): electricity tariffs, solar generation assumptions, panel wattage, system installation costs, inverter costs, mounting structures, maintenance, subsidy eligibility and limits, degradation assumptions; residential and commercial separate.
+- Solar panel: brand, product/model name, wattage, cell technology, Mono PERC/TOPCon/other verified technology, bifacial/monofacial, DCR/NDCR, efficiency, dimensions, warranty, technical benefits, ideal applications, image.
+- Content: service page configuration (3 solar services), FAQs with categories, testimonials (real only), process steps — reuse existing tables/templates where possible.
 
-| Group | Tables | Key notes |
-|---|---|---|
-| Content | services, case_studies, post (blog), testimonials, site_setting, site_keywords | Slug unique; FAQs and keywords stored as data; schema_json column kept but no longer read. |
-| SEO | seo_setting (also referenced as seo_settings, verify), link_suggestion, link_embedding, organization_profile (proposed) | seo_setting keyed by page_key; embeddings power internal links; organization_profile is the single business-facts row. |
-| Identity | profiles (role), customer | Role from profiles table, verified server-side. Roles: admin, manager, seo, content_manager and others in roles.ts. |
-| Catalog (Legacy) | product, product_variant, product_collection, product_category, price_set, price, product_variant_price_set | Store removed 2026-10-21; Supabase tables preserved untouched (unexecuted proposal in db-proposals/). |
-| Cart / Order (Legacy) | cart, cart_line_item, cart_address, cart_shipping_method, order, order_item, order_line_item, order_address | Store removed 2026-10-21; Supabase tables preserved untouched. |
-| Region / shipping (Legacy) | region, region_country, shipping_option | Store removed 2026-10-21; Supabase tables preserved untouched. |
+## 5. API routes
+**Existing:** `POST /api/contact` (public lead form), `/api/auth/*`, `/api/admin/*` (role-checked), `/api/blog/publish` + `/upload`, `/api/cron/*` (CRON_SECRET), `/api/keep-alive`, sitemap/robots routes.
+**Required by the brief (paths defined in task plans):**
+- Enquiry submission for all form types with validation, duplicate protection, rate limiting, spam protection, source page.
+- Calculator estimate (backend calculation).
+- Panel catalogue list (search, filters, sorting, pagination) and panel detail.
+Standard response shape per rules #7; all inputs validated (Zod); all lists paginated.
 
-*Action: run a schema export from Supabase and paste the exact column lists here (field, type, relation, validation). Code scanning confirms table names and usage; exact columns must be copied from the live database because no DDL ships in the zip except db-proposals.*
+## 6. Auth and sessions
+Existing Momentum auth is retained unchanged: Supabase GoTrue, httpOnly cookies, middleware gate for admin, roles verified server-side from `profiles`, optional admin MFA. Public visitors do not log in. Changing authentication/security models requires approval.
 
+## 7. SEO data flow
+Existing: one resolver per route type feeds both `generateMetadata` and the JSON-LD `@graph`; `seo_setting` per page; sitemap routes; robots; redirects table (301). Brief additions: unique titles/descriptions, canonical, Open Graph, breadcrumbs, structured data types listed in prd.md §6, FAQPage only when FAQ visible, no Product/Offer markup for panels. Organisation facts come from `src/lib/schema/site.ts` / `organization_profile` using verified AG POWER details. Staging always noindex.
 
-## 5. API route map (contract)
+## 8. State plan
+Server data via Server Components + `src/lib/data/*` with `unstable_cache` and tag revalidation (existing). UI-only state local. (React Query is not installed; rules #8 exception to be decided — see memory.md.)
 
+## 9. Error flow
+Typed errors → route handler → standard response → client shows user-friendly message → `error.tsx` boundary keeps page alive. Forms preserve entered data on recoverable failures. Logs contain no personal data.
 
-| Route | Method | Auth | Purpose / errors |
+## 10. Integrations
+**Lead pipeline (brief §12):** Customer form → secure backend submission → validation and duplicate protection → Google Sheets → Telegram notification.
+- Credentials only in server env; never in browser bundles.
+- Validate all incoming data; rate-limit submissions; implement retries; log integration failures without personal data.
+- A Telegram failure never discards an accepted lead; submission handling is idempotent.
+- Telegram message: new enquiry alert, name, phone, category, enquiry type, city, source page, relevant message.
+- Existing building blocks: lead saved first then delivered in background, `cron/leads-retry`, Google Sheets with three delivery modes, honeypot, Turnstile, consent record.
+| Integration | Direction | Auth | Status |
 |---|---|---|---|
-| /api/auth/login, /logout, /callback, /me | POST/GET | Public → session | Supabase session cookies. /api/auth/dev-login must be disabled in production. |
-| /api/admin/auth | POST | Admin secret / session | Admin session check. |
-| /api/admin/services, /services/[slug] | GET POST PUT DELETE | Role: admin, manager | Service CRUD, revalidate tag "services". |
-| /api/admin/blog, /blog/[slug], /blog/images | GET POST PUT DELETE | admin, manager, seo, content_manager | Blog CRUD, image upload, revalidate "blog-posts". |
-| /api/admin/case-studies, /[id] | CRUD | admin, manager | Case studies, revalidate "case-studies". |
-| /api/admin/seo, /seo/site, /seo/preview, /seo/internal-linking/* | GET PUT POST | admin, manager | seo_setting rows, site SEO, preview, link sync/test. |
-| /api/admin/users (+ /[id]), stats, keywords (+ /[id]), custom/meta-listing, jobs/seo-auto-fill | mixed | admin (users) / role list | User management and operations. |
-| /api/blog/publish | POST | Secret header (n8n) | Ingestion; triggers indexer + revalidation. |
-| /api/cron/seo-auto-fill | GET | CRON_SECRET (must be enforced) | Monthly AI SEO fill. 401 if secret wrong. |
-| /api/keep-alive | GET | Public (cron) | Daily DB ping. |
-| /api/store/internal-linking/[type]/[id] | GET | Public | Related link suggestions. |
-| /sitemap, /sitemap/[type] | GET | Public | XML sitemaps. |
+| Google Sheets | out | env credentials/webhook | exists; columns change to brief's lead structure |
+| Telegram Bot | out | bot token in env | new |
+| MailX / SMTP | out | env | exists |
+| Turnstile | out | secret in env | exists |
+| WhatsApp | link | none | CTA only |
 
-**Standard error shape (target):** `{ success:false, data:null, error:{ code, message }, meta:null }`. Status codes: 400 validation, 401 unauthenticated, 403 forbidden, 404 not found, 409 conflict, 429 rate limit, 500 internal.
+## 11. Environments and config
+dev (localhost:8000) / staging (Vercel preview, noindex) / production (Vercel). Variables listed in `.env.example`; secrets only in the secret manager; `.env.local` never committed or shared.
 
+## 12. AI components
+Existing only (SEO auto-fill, image fill, embeddings); see ai-setup-guide.md. No AI in new AG POWER features.
 
-## 6. Auth flow
+## 13. Diagrams
+Lead flow in §10. Calculator and panel flows: added with their task plans.
 
-
-```
-Browser → POST /api/auth/login → Supabase GoTrue → sb-access-token (httpOnly cookie)
-Request to /admin/* → middleware.ts:
-   1. 404 for /admin/schema and /api/admin/schema
-   2. bypass: /sitemap, /_next, /api/*, files, public routes (0 DB queries)
-   3. resolve CUSTOM_ADMIN_PATH (default "admin"); no token → 404/307 to /admin-login
-   4. parse JWT exp/sub, look up role in profiles (short-lived cache), isPathAllowed(role, path)
-   5. allowed → rewrite to internal /admin page
-API handlers re-check role with auth-helpers.ts (defence in depth)
-```
-
-Target changes from the audit: never read the sb-role cookie; no automatic admin provisioning on first login; add Origin/CSRF check on mutating admin routes; refresh and revoke per rule 11 as supported by Supabase.
-
-
-## 7. State plan
-
-- **Server state:** Server Components calling src/lib/data/* wrapped in unstable_cache with tags; client interactions use the Medusa SDK and Server Actions.
-- **UI state:** React useState and modal-context only. API data is not duplicated into client stores.
-- **Gap:** SOP rule 8 asks for React Query; not installed. Decision needed: adopt for client-side lists or record an exception (see memory.md D-04).
-
-
-## 8. Error flow
-
-Supabase error → data function or route handler → typed error → route returns standard error JSON with status → client shows a clear message → page-level error.tsx boundary. No empty catch blocks (the current middleware parseJwt catch returns null by design and is commented).
-
-
-## 9. Performance plan
-
-- Public routes bypass DB work in middleware; pages use ISR plus unstable_cache and tag revalidation.
-- next.config.js headers: no-store for dynamic/admin, public s-maxage=60 stale-while-revalidate=300 for cacheable responses.
-- Pagination on all list endpoints; indexes on slug, page_key, status; avoid N+1 in admin lists.
-- Images via next/image with 1200×630 OG assets pre-rendered in public/og.
-- API-call budget: 1 data call per server-rendered section; no API calls in loops.
-
-
-## 10. Rendering
-
-
-| Page | Mode |
-|---|---|
-| Home, About, Contact, FAQ, Legal, Editz | SSG/ISR |
-| Services, Work, Blog (index and detail) | ISR with tag revalidation |
-| Admin | Dynamic SSR, noindex |
-| sitemap, robots | Route handlers / metadata routes |
-
-
-## 11. Environments
-
-
-| Env | Purpose | Config |
+## Feature → routes → models
+| PRD feature | Routes | Models |
 |---|---|---|
-| dev | localhost:8000 (next dev -p 8000) | .env.local, never committed |
-| staging | To create: Vercel preview; noindex forced | Separate Supabase project recommended |
-| production | www.mommantum.com on Vercel | Vercel env vars; indexable |
-
-**Environment variables** (documented in .env.example, no values): NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, NEXT_PUBLIC_BASE_URL, ADMIN_SECRET, CRON_SECRET, CUSTOM_ADMIN_PATH, GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY, OPENAI_API_KEY, RAPIDAPI_KEY, ANSWER_THE_PUBLIC_KEY, VERCEL_URL.
-
-
-## 12. Dynamic SEO and schema architecture
-
-- One resolver per route type (page, service, blog, case-study, collection) feeds **both** generateMetadata() and the JSON-LD @graph, so they cannot drift.
-- generate-graph.ts orchestrates and build-graph.ts assembles WebSite, Organization, Person (founder), WebPage, BreadcrumbList, FAQPage, Service, BlogPosting, CaseStudy, Collection/ItemList, Product, ProfessionalService nodes with stable @id URIs such as https://www.mommantum.com/#organization.
-- `src/lib/schema/site.ts` (and `config.ts`) is the central code location for confirmed brand facts (`DEFAULT_ORGANIZATION_PROFILE`); `organization_profile` table is the data source after the SQL runs; `inLanguage` is `en-IN`.
-- serialize escapes output to prevent XSS; validate/sanitize drop invalid nodes; tests in src/lib/schema/__tests__ (build-graph, revalidate) run with vitest.
-- revalidate.ts matrix: service → tag services + /services, /services/{slug} (old+new), /; blog → blog-posts; case study → case-studies + /work; seo_setting → tag + page path; site_setting → revalidatePath("/", "layout").
-- Rule: no aggregateRating or review; omit missing optional properties; never fabricate authors, dates, images or FAQs.
-
-
-## 13. Mapping to the SOP four-layer rule
-
-
-| SOP layer | Where it lives in Mommantum |
-|---|---|
-| routes | src/app/api/**/route.ts export handlers (URL → handler only) |
-| controller | The handler body: read request, call service, return response |
-| service (all logic) | src/lib/services/*, src/lib/schema/*, src/lib/revalidate.ts, src/lib/util/* (to extract from handlers where logic leaks) |
-| repository (DB only) | src/lib/data/* and Supabase calls; target: no business logic inside them |
-
-
-## 14. Local setup and commands
-
-
-| Command | What it does |
-|---|---|
-| npm install | Installs dependencies (npm 11.7.0) |
-| npm run dev | Dev server on http://localhost:8000 |
-| npm run dev:clean | Deletes .next cache then starts dev |
-| npm run typecheck | tsc --noEmit type check |
-| npm run lint | next lint |
-| npm test | vitest run (schema tests) |
-| npm run build / start | Production build / serve on port 8000 |
-| npm run analyze | Build with bundle analyzer |
-
-Setup: copy .env.example to .env.local, fill values from the secret holder, run npm install and npm run dev. Never commit .env.local.
-
-
-## 15. Caching and revalidation map
-
-
-| Content changed | Tag / paths refreshed |
-|---|---|
-| Service | tag services; /services, /services/{slug} (old and new), / |
-| Blog post | tag blog-posts; /blog, /blog/{slug} |
-| Case study | tag case-studies; /work, /work/{slug} |
-| SEO setting | seo tag; the page path of that page_key |
-| Site setting | revalidatePath("/", "layout") |
-
-Every admin save API must call revalidateContent() from src/lib/revalidate.ts, otherwise the public page stays stale.
-
-
-## 16. Scheduled jobs and automation
-
-
-| Job | Schedule (vercel.json) | Purpose |
-|---|---|---|
-| /api/keep-alive | Daily 00:00 UTC | Pings Supabase so the project does not pause |
-| /api/cron/seo-auto-fill | 1st of month 00:00 UTC | AI fills missing SEO fields; must verify CRON_SECRET |
-| /api/blog/publish | On demand (n8n) | Receives automated blog posts, then indexes and revalidates |
-
-
-## 17. Admin panel pages
-
-src/app/admin contains: services, blog, case-studies, pages, seo, sitemap and users, with shared _components and _lib. Access per role is defined in src/lib/config/roles.ts; hidden path controlled by CUSTOM_ADMIN_PATH.
-
-
-## 18. Third-party failure handling
-
-- Google Indexing API fails: log and continue; publishing is never blocked.
-- OpenAI/Gemini/RapidAPI fail or time out: skip auto-fill for that item, retry next run.
-- Supabase slow: cached pages keep serving; admin shows an error message.
-- Use timeouts on every external call; never put secrets in logs.
-
-
-## 19. Logging, monitoring and backups
-
-- Server errors logged without tokens, passwords or full phone numbers.
-- Check Vercel logs and Search Console coverage weekly.
-- Backup database (export) before every SQL proposal runs; store in db-proposals/backups, outside git history of secrets.
-- Rotate keys when a developer leaves or a key is exposed.
+| F1–F5, F8, F9, F13, F14 pages | existing page routes (`app/(site)`) + services template | existing page/services/FAQ tables |
+| F6 Calculator | calculator estimate (new) | Calculator configuration |
+| F7 Catalogue | panel list/detail (new) | Solar panel |
+| F10, F11 Forms + pipeline | enquiry submission (extends `/api/contact`) | Lead |
+| F12 Blog | existing blog routes | existing blog tables |

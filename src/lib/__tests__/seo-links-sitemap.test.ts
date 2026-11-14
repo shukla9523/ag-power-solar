@@ -70,7 +70,7 @@ describe("Service focus case-study links", () => {
 describe("og:image dimensions", () => {
   it("defaults static pages to their /og/pages share image with 1200x630", () => {
     const resolved = resolveAboutData(null)
-    expect(resolved.image).toBe("https://www.mommantum.com/og/pages/about.jpg")
+    expect(resolved.image).toBe("https://www.agpower.in/og/pages/about.jpg")
     const meta = buildMetadataFromResolved(resolved)
     expect((meta.openGraph as any).images[0]).toMatchObject({ width: 1200, height: 630 })
   })
@@ -86,7 +86,7 @@ describe("og:image dimensions", () => {
   })
 
   it("recognises the verified 1200x630 locations", () => {
-    expect(isKnown1200x630("https://www.mommantum.com/og/services/seo.jpg")).toBe(true)
+    expect(isKnown1200x630("https://www.agpower.in/og/services/seo.jpg")).toBe(true)
     expect(isKnown1200x630("/images/services/performance-marketing.webp")).toBe(true)
     expect(isKnown1200x630("https://cdn.example.com/blog/post.webp")).toBe(false)
   })
@@ -99,9 +99,9 @@ describe("Page registry fallback", () => {
     const pages = await getPageRegistry()
     const services = pages.filter((p) => p.kind === "service")
     expect(services.length).toBe(Object.keys(FALLBACK_SERVICES).length)
-    expect(services.map((s) => s.path)).toContain("/services/performance-marketing")
-    // Other kinds are simply empty when the DB has none
-    expect(pages.filter((p) => p.kind === "blog")).toEqual([])
+    expect(services.map((s) => s.path)).toContain("/services/residential-solar")
+    // Blog fallback provides verified educational solar articles
+    expect(pages.filter((p) => p.kind === "blog").length).toBeGreaterThanOrEqual(1)
     expect(pages.find((p) => p.path === "/about")?.image).toBe("/og/pages/about.jpg")
   })
 })
@@ -114,11 +114,11 @@ describe("/llms.txt", () => {
     const res = await GET()
     expect(res.headers.get("Content-Type")).toContain("text/plain")
     const body = await res.text()
-    expect(body.startsWith("# Mommantum")).toBe(true)
-    expect(body).toContain("https://www.mommantum.com/services/performance-marketing")
-    for (const path of ["/about", "/work", "/blog", "/faq", "/contact", "/editz", "/blog-ai"]) {
-      expect(body).toContain(`(https://www.mommantum.com${path})`)
+    expect(body.startsWith("# AG POWER")).toBe(true)
+    expect(body).toContain("https://www.agpower.in/services/residential-solar")
+    for (const path of ["/about", "/calculator", "/solar-panels", "/customer-services", "/faq", "/blog", "/contact"]) {
+      expect(body).toContain(`(https://www.agpower.in${path})`)
     }
-    expect(body).toContain("kuldeep@mommantum.com")
+    expect(body).toContain("contact@agpower.in")
   })
 })

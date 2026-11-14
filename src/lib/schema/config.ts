@@ -1,5 +1,5 @@
 export const SCHEMA_CONTEXT = "https://schema.org"
-export const DEFAULT_BASE_URL = "https://www.mommantum.com"
+export const DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.agpower.in"
 export const DEFAULT_IN_LANGUAGE = "en-IN"
 
 

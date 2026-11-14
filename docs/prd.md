@@ -1,149 +1,378 @@
-# 1 · prd.md — Product Requirements Document
+# PRD · AG POWER Website (Momentum → AG POWER) · v1.0
 
-This file defines WHAT Mommantum builds and WHY: who the users are, the goals and how success is measured, every feature as a user story, the exact acceptance criteria used to accept each feature, what is deliberately not built, SEO targets, constraints and open questions. Developers and AI tools read it before planning any task; if a feature has no acceptance criteria here, it is not built.
+Project owner: Electro Global · Final approver: CEO · Priority: High
+Type: Existing website transformation + frontend redesign + functional integrations
+Reference website: SolarSquare — https://www.solarsquare.in/ (learn from approach; do not copy layouts, text, brand assets or illustrations)
+Solar panel reference: https://www.thesolarclub.in/category/solar-panels
 
-*Changes when scope changes · v1.1, verified and aligned with codebase*
+This is NOT a rebuild of Momentum. Momentum already has dynamic frontend blocks, schemas, reusable structures, content management and blog functionality. We keep that architecture and transform visual identity, frontend experience, content and service structure.
 
+---
 
 ## 1. Problem and users
 
-**Mommantum** (legal name Mommantum, founded 2025-12-15, Jaipur, Rajasthan; about 15 team members) is a growth agency for high-growth D2C brands. Prospective clients today find agencies through referrals, Google search and social media, then have to piece together services, proof of results and pricing from scattered sources. There is no single place that shows what the agency does, proves it with case studies, answers their questions, and lets them contact the team or buy a packaged offering.
+**Objective.** Create a premium, professional solar-energy website for AG POWER that:
+1. Establishes AG POWER as a trustworthy solar-energy brand.
+2. Communicates residential, commercial and housing society solar solutions.
+3. Educates customers about solar technology and its benefits.
+4. Helps customers estimate their solar requirements and potential savings.
+5. Showcases solar panels and their technical advantages.
+6. Generates qualified enquiries through functional forms.
+7. Provides a strong foundation for SEO and future marketing.
 
+It must feel like a premium, established solar-energy company — not a generic WordPress template or an ordinary equipment-selling website.
 
-> **Note on E-Commerce:** E-commerce store removed on 2026-10-21; Supabase store tables intentionally left untouched.
+**Every important section answers one of these questions:**
+- Why should I choose solar?
+- Why should I trust AG POWER?
+- Which solar solution is suitable for me?
+- How much capacity do I need?
+- How much could I save?
+- What happens after I submit an enquiry?
 
-| User | Need | How they solve it today |
-|---|---|---|
-| D2C brand founder / marketing head (India and international) | Evaluate an agency fast: services, proof of ROI, how to start | Referrals, Google, Instagram/LinkedIn, calls |
-| Prospect from search (SEO/GEO/AEO traffic) | Direct, trustworthy answers to service questions | Competitor sites, generic blogs |
-| Video-content buyer (Editz) | Short-form video, motion graphics, podcast, AI video | Freelancers, marketplaces |
-| Mommantum admin (admin, manager, seo, content_manager roles) | Edit services, blogs, case studies, SEO without developers | Direct DB or developer help |
-| Search engines and AI answer engines | Clean structured data (JSON-LD), sitemaps, canonical, FAQs | n/a |
+**User types**
+- Homeowner (residential customer)
+- Business (offices, factories, warehouses — commercial customer)
+- Housing society / RWA / apartment association
+- Admin (manages content through Momentum's existing content management)
 
+**Brand personality:** Trust, Reliability, Innovation, Energy independence, Sustainability, Affordability, Engineering expertise, Long-term value. Not overly playful, overly colourful or excessively futuristic. Premium, clean, confident, approachable.
+
+**Tagline (from brand material):** "Powering a Brighter Tomorrow." · "Clean Energy. Smarter Living."
+
+---
 
 ## 2. Goals and success metrics
 
+| Goal | Metric | Target | Measured in |
+|---|---|---|---|
+| Fast mobile pages | Mobile LCP | under 2.5 s | Lighthouse CI |
+| Stable layout | CLS | under 0.1 | Lighthouse CI |
+| Responsive interaction | INP | under 200 ms | Lighthouse / field data |
+| Performance | Lighthouse performance | 80+ minimum | Lighthouse CI |
+| Discoverability | Lighthouse SEO | 90+ | Lighthouse CI |
+| Accessibility | Lighthouse accessibility | 90+ | Lighthouse CI |
+| Quality | Lighthouse best practices | 90+ | Lighthouse CI |
+| Lead capture | Every accepted enquiry recorded in Google Sheets + Telegram notification | 100% of accepted enquiries | Integration tests (see F11) |
 
-| Goal | Metric | Target (confirm with Product) |
+Analytics goals / conversion targets: not provided — see Open questions.
+
+---
+
+## 3. Features (user stories)
+Project priority: High (per brief). All features below are in scope for this version.
+
+### F1. Brand identity and design system
+As a visitor, I see one consistent AG POWER look on every page so that the brand feels trustworthy.
+Acceptance criteria:
+- [ ] Given any page, when rendered, then only the approved palette, Manrope + Inter, and approved radius/spacing tokens are used.
+- [ ] Given any page, when viewed at 375 / 768 / 1024 / 1440 px, then there is no horizontal overflow, overlapping text or broken image ratio.
+- [ ] Given a user with reduced-motion enabled, when animations would play, then they are disabled and no content is blocked.
+
+### F2. Header and navigation
+As a visitor, I can reach any page easily on desktop and mobile.
+Navigation: Home · About Us · Solar Solutions (Residential / Commercial / Housing Society) · Solar Calculator · Solar Panels · Blogs · Contact Us, plus a prominent "Get Free Consultation" button.
+Acceptance criteria:
+- [ ] Given desktop, when I open "Solar Solutions", then a dropdown lists Residential, Commercial, Housing Society.
+- [ ] Given mobile, when I open the menu, then it is clean, keyboard/touch accessible, with touch targets ≥ 44px.
+- [ ] Given scrolling, when the header becomes sticky, then the transition is smooth and content is not covered.
+- [ ] Default header background Warm Ivory with Forest Green typography; logo is AG POWER.
+
+### F3. Homepage (12 sections, in this order)
+As a visitor, I understand what AG POWER does and am guided to calculate savings or enquire.
+1. **Header**
+2. **Hero banner** — premium residential rooftop with solar panels, bright natural daylight, clean architectural photography, Forest Green dominant, Gold CTA. Headline: "Power Your Home with Smarter Solar Energy." Supporting copy: "Make the switch to cleaner energy, reduce your electricity expenses and take control of your energy future with AG POWER." Primary CTA: "Calculate Your Solar Savings". Secondary CTA: "Get Free Consultation". Responsive image handling, fixed image dimensions, hero prioritised for loading.
+3. **Solar solutions** — three large visual cards (Residential, Commercial, Housing Society), each with image, short description, main benefits, Learn More → dedicated service page.
+4. **Why choose solar?** — reduced electricity expenses; energy independence; long-term financial value; clean energy generation; better utilisation of rooftop space. Visual illustrations and iconography. No unverified savings or financial guarantees.
+5. **Why AG POWER?** — expert consultation; customised solar planning; quality components; professional installation; after-sales assistance. Only claims supported by actual company information.
+6. **Quick solar calculator** — compact preview. Inputs: customer category, monthly electricity bill, city or pincode. Shows indicative recommended capacity, estimated monthly savings, approximate system investment. CTA to the full calculator.
+7. **Installation process** — timeline: Initial consultation → Site assessment → Solar system design → Proposal and approval → Installation → Commissioning and after-sales support.
+8. **Featured solar panels** — each card: panel image, brand, model, wattage, technology, efficiency (where verified), key benefits. CTA: "Explore Solar Panels".
+9. **Customer testimonials** — real testimonials only: name (where permission exists), project category, feedback, photo/video if authorised. Never fabricate reviews, ratings or outcomes.
+10. **FAQs** — solar installation, investment, maintenance, electricity savings, solar panels; link to full FAQ page.
+11. **Final CTA** — headline: "Your Solar Journey Starts Here." CTA: "Get Your Free Solar Consultation".
+12. **Footer** — logo, short company introduction, main navigation, solar solutions, contact information, social links, legal pages, copyright.
+Acceptance criteria:
+- [ ] Given the homepage, when loaded, then sections appear in the order above.
+- [ ] Given a section with no approved real content (e.g. testimonials), when published, then it is hidden or shows an empty state — never placeholder or fabricated content.
+- [ ] Given each service card, when "Learn More" is clicked, then the matching service page opens.
+
+### F4. About Us page
+Sections: Hero · Company introduction · Our mission · Our vision · Why AG POWER · Our approach to solar energy · Our expertise · Team (only if approved information is available) · Trust indicators · FAQs · Contact CTA.
+Acceptance criteria:
+- [ ] Given the page, when published, then no company history, certifications, employee counts or achievements appear unless supplied by the company.
+
+### F5. Service landing pages (shared reusable template, data-driven)
+Every service page is a dedicated SEO-friendly landing page with unique content, images, benefits, FAQs (5–8 contextual) and CTAs, unique SEO metadata. No separate static implementation per page.
+
+**F5a Residential Solar** — audience: individual homeowners.
+Sections: hero · benefits of home solar · how rooftop solar works · suitable system capacities · solar panels and components · installation process · savings calculator CTA · subsidy information (where applicable) · testimonials · FAQs · enquiry form · final CTA. Primary CTA: "Calculate My Home Solar Savings".
+
+**F5b Commercial Solar** — audience: businesses, offices, factories, warehouses.
+Sections: hero · business electricity expenditure problem · commercial solar benefits · rooftop and project applications · custom system design · project installation process · investment and ROI explanation · relevant case studies (if available) · FAQs · business enquiry form · final CTA. Primary CTA: "Get a Commercial Solar Proposal".
+
+**F5c Housing Society Solar** — audience: apartment associations, RWAs, housing societies.
+Sections: hero · common-area electricity challenges · solar for lifts, pumps and common facilities · shared electricity cost benefits · installation planning · society approval and coordination process · project examples (if available) · FAQs · society enquiry form · final CTA. Primary CTA: "Get a Society Solar Consultation".
+
+Acceptance criteria:
+- [ ] Given each service page, when rendered, then it uses the shared template and a data configuration.
+- [ ] Given each service page, when viewed, then it has 5–8 contextual FAQs, unique title/description, one H1.
+- [ ] Given optional sections (case studies, project examples, testimonials) with no data, when rendered, then they are hidden or show an empty state.
+
+### F6. Solar Calculator (real working feature, not a mockup)
+As a visitor, I can estimate system size, cost and savings and then request a consultation.
+**Inputs.** Required: customer category (Residential / Commercial / Housing Society), monthly electricity bill, city or pincode. Optional: monthly consumption in units, available rooftop area, roof type, electricity tariff, preferred system capacity.
+**Results.** Recommended system capacity (kW) · approximate number of solar panels · expected monthly generation · estimated installation investment · estimated monthly savings · estimated annual savings · estimated payback period · indicative CO₂ reduction.
+**Calculation rules.**
+- All assumptions documented.
+- No arbitrary prices or generation figures hardcoded in UI components.
+- Configurable inputs for: electricity tariffs, solar generation assumptions, panel wattage, system installation costs, inverter costs, mounting structures, maintenance, subsidy eligibility and applicable limits, degradation assumptions (if calculating long-term savings).
+- Residential and commercial assumptions kept separate.
+- Subsidy is never applied automatically without checking eligibility and current applicable rules.
+- Results shown as estimates, not guaranteed savings or quotations, with a clear disclaimer.
+**Experience.** Step-based or single screen: (1) select property type → (2) bill and location → (3) optional roof information → (4) calculate → (5) result with visual summary → (6) consultation form. Customer can submit calculation details with their enquiry. Validation, loading and error states required.
+Acceptance criteria:
+- [ ] Given valid required inputs, when I calculate, then all eight results are shown with the disclaimer.
+- [ ] Given missing/invalid inputs, when I calculate, then field-level messages explain what to fix.
+- [ ] Given calculation in progress, then a loading state is shown; given a server error, then a friendly error and retry are shown with inputs preserved.
+- [ ] Given a result, when I submit the consultation form, then the calculation details are included in the lead (enquiry type "Calculator").
+- [ ] Calculations run in the backend; the frontend only displays.
+
+### F7. Solar Panel Catalogue (information and discovery — NOT ecommerce)
+Catalogue listing page, panel cards, and individual panel detail pages or equivalent expandable views (depending on existing architecture).
+Each panel shows: brand · product/model name · wattage · cell technology · Mono PERC / TOPCon / other verified technology · bifacial or monofacial · DCR / NDCR (where applicable) · efficiency % · dimensions (where available) · warranty (where verified) · technical benefits · ideal applications.
+Images: actual solar panel images from The Solar Club reference, subject to usage permission or appropriate licensing. No random substitute images; accurate product-image mapping.
+Features: dynamic panel cards · search by brand or model · filters for wattage and technology · sorting where useful · panel comparison if feasible in existing architecture · individual panel information · enquiry CTA.
+Every panel has an **"Enquire About This Panel"** action.
+**Strictly prohibited:** cart, checkout, online payment, purchase flow, ecommerce order management, add-to-cart buttons.
+Acceptance criteria:
+- [ ] Given the catalogue, when I search by brand/model or filter by wattage/technology, then results update (search debounced) and an empty state shows when nothing matches.
+- [ ] Given a panel, when I click "Enquire About This Panel", then the enquiry form opens with the panel prefilled (enquiry type "Catalogue").
+- [ ] Given any catalogue page, then no cart/checkout/payment/add-to-cart element exists.
+- [ ] Given a field with no verified data (efficiency, warranty, etc.), then it is not shown.
+
+### F8. Customer Services page
+Includes: installation assistance · solar consultation · system maintenance · technical support · after-sales assistance · service request enquiry. Contextual FAQs and a contact CTA. Only services the business actually provides are advertised.
+
+### F9. Contact page
+Contact hero · contact details · phone number · email · address (once provided and verified) · map (if applicable) · WhatsApp CTA · contact enquiry form · FAQs.
+
+### F10. Reusable enquiry form system
+Common fields: full name · phone number · email · customer category · city · pincode · service required · monthly electricity bill (where relevant) · message · privacy consent. Fields adapt to the enquiry type (not every field everywhere). One reusable form system wherever possible.
+Every form must: validate inputs · show loading state · show success state · show user-friendly errors · prevent duplicate submissions · include spam protection · record the source page · preserve form data on recoverable failure.
+Acceptance criteria:
+- [ ] Given invalid input, when I submit, then field-level messages appear and nothing is sent.
+- [ ] Given a submission in progress, when I click again, then no duplicate is created.
+- [ ] Given a recoverable failure, then my entered data is preserved.
+- [ ] Given success, then a success state tells me what happens next.
+- [ ] Given consent is not ticked, then submission is blocked.
+
+### F11. Google Sheets + Telegram lead pipeline (critical business requirement)
+Flow: Customer form → secure backend submission → validation and duplicate protection → Google Sheets → Telegram notification.
+**Google Sheets lead structure**
+
+| Field | Description |
+|---|---|
+| Enquiry ID | Unique ID |
+| Date and time | Submission timestamp |
+| Name | Customer name |
+| Phone | Contact number |
+| Email | Email |
+| Category | Residential / Commercial / Society |
+| Service | Selected service |
+| City | Location |
+| Monthly bill | Customer's electricity bill |
+| Source page | Website page |
+| Enquiry type | Contact / Calculator / Catalogue |
+| Message | Additional information |
+| Status | New / Contacted / Qualified / Closed |
+
+Additional fields may be added based on actual requirements.
+**Telegram notification** contains: new enquiry alert · customer name · phone number · customer category · enquiry type · city · source page · relevant customer message.
+**Security/reliability:** credentials on the server only; secure environment variables; validate all incoming data; rate-limit submissions; implement retries; log integration failures without exposing personal data; a Telegram failure must not discard an accepted lead; submission handling is idempotent.
+Acceptance criteria:
+- [ ] Given a valid enquiry from each form type, then a correct Sheets row (ID, timestamp, source page, enquiry type) and a correct Telegram message appear.
+- [ ] Given the same submission twice, then only one lead is recorded.
+- [ ] Given Telegram is down, then the lead stays recorded and the failure is logged without personal data.
+- [ ] Given Google Sheets is temporarily unavailable, then behaviour is defined, tested and the failure is logged without personal data.
+- [ ] Given the browser bundle, then no tokens or credentials are present.
+
+### F12. Blog system (reuse Momentum blog — do not rebuild)
+Adapt content to solar. Categories: Solar Energy Basics · Residential Solar · Commercial Solar · Solar Panel Technology · Solar Installation Guides · Solar Maintenance · Government Schemes and Subsidies · Solar Savings and ROI.
+Maintain: blog listing · blog detail · categories · featured images · author details · publication dates · related articles · dynamic metadata · structured data · responsive reading experience. Each article has internal links to relevant services or the solar calculator.
+Acceptance criteria:
+- [ ] Given the blog, then listing, detail, categories, related articles and metadata work as they do in Momentum, with solar categories.
+
+### F13. FAQ system
+Central FAQ page plus a contextual FAQ section on every relevant core and service page. Categories: General solar questions · Residential solar · Commercial solar · Housing society solar · Solar panels · Installation · Maintenance · Savings and subsidy. Reusable dynamic FAQ blocks. FAQ content must be visible on the page if FAQ structured data is used.
+
+### F14. Legal pages
+Terms of Service and Privacy Policy. Privacy policy accurately explains: information collected · purpose · Google Sheets lead storage · Telegram notifications · data retention · customer rights · contact details for privacy requests. Legal content reviewed and approved by the company before publication.
+
+### F15. Animations
+Scroll-triggered section reveals · smooth fade/slide transitions · subtle image parallax · hover animations on cards · animated numerical counters · solar energy flow illustrations · smooth calculator result updates · testimonial carousel transitions · sticky navigation transitions · subtle button interactions. Use existing animation dependencies; no large new animation library without reason; respect reduced motion; never block content or interaction.
+
+---
+
+## 4. Out of scope (this version)
+
+- Rebuilding Momentum from scratch.
+- Any ecommerce: cart, checkout, online payment, purchase flow, order management, add-to-cart buttons.
+- Product/Offer ecommerce structured data for informational panel listings (unless the page and data genuinely qualify).
+- Fabricated reviews, ratings, project outcomes, company history, certifications, employee counts, achievements.
+- Unverified savings figures or financial guarantees; calculator results presented as quotations.
+- Copying SolarSquare layouts, text, brand assets or proprietary illustrations.
+- Additional fonts beyond Manrope and Inter without approval.
+- Replacing existing architecture, changing major database structures, removing existing functionality, changing authentication/security models, introducing a different technology stack, destructive production changes, materially increasing scope — all require approval first.
+
+---
+
+## 5. Roles and permissions
+
+Momentum's existing role model is retained (roles verified server-side from the `profiles` table; no change to authentication or security models without approval):
+
+| Action | Visitor | customer | marketer | admin | owner |
+|---|---|---|---|---|---|
+| View public pages, calculator, catalogue, blog | yes | yes | yes | yes | yes |
+| Submit enquiry forms | yes | yes | yes | yes | yes |
+| Manage content through Momentum admin (blog, services, SEO, leads, pages) | no | no | per `src/lib/config/roles.ts` | per `roles.ts` | per `roles.ts` |
+
+Exact per-role page/API access is defined in `src/lib/config/roles.ts` (existing). Any additional role (e.g. seo_editor) — see Open questions.
+
+---
+
+## 6. SEO goals (public sites)
+
+Implement: unique page titles · unique meta descriptions · one primary keyword per page · one H1 per page · canonical URLs · Open Graph metadata · appropriate structured data · XML sitemap · robots.txt · breadcrumbs where relevant · internal linking · image alt text · responsive rendering.
+Structured data: Organization · WebSite · WebPage · Service · ContactPage · Article/BlogPosting · FAQPage (only when eligible and visibly supported) · BreadcrumbList.
+Company details in structured data come from verified company information only.
+Target keywords per page type and which SEO fields admins edit: not provided — see Open questions.
+
+---
+
+## 7. AI use
+
+**No new AI in AG POWER features.** The existing Momentum codebase already contains AI features (SEO auto-fill, image fill, embeddings for internal links; `ai-provider.ts`, kill switch `AI_ENABLED`). These are existing functionality and stay unless removal is approved (brief §19). Because AI exists in the repo, `ai-setup-guide.md` is required — keep Momentum's guide and adapt naming only (see momentum-audit-report.md §7-D). Any new AI feature needs the guide updated first.
+
+---
+
+## 8. Performance expectations
+
+Targets: mobile LCP < 2.5 s · CLS < 0.1 · INP < 200 ms · Lighthouse performance 80+ · SEO 90+ · accessibility 90+ · best practices 90+.
+Also: optimise images (WebP/AVIF), lazy-load below-the-fold imagery, prioritise hero imagery, split code by route, avoid unnecessary dependencies and excessive animations, optimise font delivery, minimise layout shifts.
+Expected users and data size now and in 12 months: not provided — see Open questions.
+
+---
+
+## 9. Integrations
+
+| Integration | Purpose | Status |
 |---|---|---|
-| Generate qualified leads | Contact / onboarding form submissions per month | Baseline in first month, then agreed growth % |
-| Rank for the 11 active service pages | Primary keyword positions in Search Console; indexed pages | All public pages indexed; service pages top-10 for primary keyword in 6 months |
-| Technical SEO completeness | Lighthouse SEO / Best Practices / Accessibility; one valid JSON-LD graph per page | SEO ≥ 95; 0 Schema.org validator errors |
-| Performance | LCP, CLS, INP; TTFB on public routes | LCP ≤ 2.5 s, CLS ≤ 0.1, INP ≤ 200 ms |
-| Content velocity | Blog posts published (manual and n8n automated) | Agreed weekly cadence |
-| Admin self-service | Content changes done without a developer | 100% of copy and SEO edits via /admin |
-| Security | Open critical/high findings | 0 critical, 0 high (audit V-01 to V-08 closed) |
+| Google Sheets | Store every accepted lead | Exists in Momentum (webhook / Sheets API / Google Form); lead structure changes to the AG POWER structure (F11) |
+| Telegram Bot | Notify team of each new enquiry | New (none exists) |
+| WhatsApp | CTA on contact page | Link/CTA only (brief) |
+| Map | Contact page map, if applicable | Brief |
+| Email (MailX / SMTP), Cloudflare Turnstile | Existing lead emails / spam check | Exist in Momentum; retained |
+| Analytics | Not specified in brief | See Open questions |
 
+---
 
-## 3. Features as user stories
+## 10. Data and compliance
 
-- **Services:** As a visitor, I can browse 16 service offerings (11 active) and open /services/[slug] to see description, FAQs, keywords and related links.
-- **Editz:** As a visitor, I can view the Editz video-production landing page (services, process, projects, testimonials, FAQ, CTA).
-- **Work:** As a prospect, I can read case studies at /work and /work/[slug] with measurable results.
-- **Blog:** As a reader, I can read articles at /blog, /blog/[slug] and AI-focused articles at /blog-ai; as an automation (n8n), I can publish posts through POST /api/blog/publish.
-- **Company pages:** About, Contact (lead and onboarding forms), FAQ directory, Privacy Policy, Terms and Conditions.
-- **Admin suite:** As an admin I can manage Services, Case Studies, Blogs (with images), SEO settings and site-wide SEO, Keywords, Pages, Sitemap and Users, restricted by role.
-- **Dynamic SEO engine:** As the business, every page gets title, description, canonical, OG and a single connected JSON-LD @graph from one resolver, matching visible content exactly.
-- **Automation:** Monthly AI SEO auto-fill cron, Google Indexing API notification on publish, internal-link suggestions via embeddings, daily Supabase keep-alive.
+Personal data collected via forms: full name, phone, email, city, pincode, monthly electricity bill, message, customer category, service required, source page, privacy consent; calculator inputs/results when submitted with an enquiry.
+Purpose: respond to solar enquiries and consultations.
+Stored in: Google Sheets (leads); Telegram receives notification content.
+No secrets/tokens/OTPs/full phone numbers in code or logs; integration failures logged without personal data.
+Compliance: DPDP Act 2023 (per company SOP). Privacy policy must cover collection, purpose, Sheets storage, Telegram, retention, customer rights, privacy contact.
+Retention: Momentum's existing code deletes leads after 730 days (`LEAD_RETENTION_DAYS`); whether AG POWER keeps this value, and the deletion-on-request process, are in Open questions.
 
+---
 
-## 4. Acceptance criteria (exact and testable)
+## 11. Constraints
 
+- Retain existing Momentum architecture wherever practical.
+- Devices/breakpoints: test at 375px mobile, 768px tablet, 1024px laptop, 1440px desktop; mobile designed intentionally.
+- Accessibility: touch targets ≥ 44px, accessible forms, keyboard-accessible navigation, visible focus states, proper contrast (WCAG AA), reduced-motion support.
+- Fonts: Manrope + Inter only; self-host variable fonts where practical with fallback fonts.
+- Stack/hosting (found by audit): Next.js 15 App Router + Supabase on Vercel; domain currently Momentum's.
+- Deadline, budget, languages: not provided — see Open questions.
 
-| Feature | Acceptance criteria |
-|---|---|
-| Public pages | Every public page returns 200, renders server-side (view-source shows content), has exactly one H1, a self-referencing canonical, one <script type="application/ld+json"> tag. |
-| Metadata parity | Title, description, canonical and og:image in <head> equal the WebPage node in JSON-LD for all remaining route types. |
-| Schema integrity | FAQPage lists exactly the FAQs visible on the page (service FAQs 40–60 words, max 8; home 5). No aggregateRating or review nodes. Missing optional fields are omitted, never invented. |
-| Admin access | Unauthenticated request to the admin path returns 404 (custom path) or 307 to /admin-login; each role reaches only paths listed in roles.ts; role is verified from the database, never from a cookie. |
-| Hidden panels | /admin/schema and /api/admin/schema always return 404. |
-| Sitemaps | /sitemap and /sitemap/[type] list all published URLs and update when content is created, edited or deleted. |
-| Revalidation | Saving a service, blog, case study, SEO row or site setting refreshes the affected tags and paths through revalidateContent(). |
-| Cron | /api/cron/seo-auto-fill rejects requests without the correct CRON_SECRET; /api/keep-alive runs daily. |
-| Quality gates | tsc --noEmit, lint, vitest and build all pass before release. |
+---
 
+## 12. Open questions (must be resolved before Gate 1)
 
-## 5. Out of scope
+1. Verified company information: phone, email, address, WhatsApp number, social links, logo files, company introduction, mission, vision, team, trust indicators, differentiators actually supported.
+2. Real testimonials, case studies and project examples available, with permissions.
+3. Solar panel data (brands, models, wattage, technology, bifacial/mono, DCR/NDCR, efficiency, dimensions, warranty) and written permission/licence to use The Solar Club panel images.
+4. Calculator assumption values (tariffs by customer/city, generation per kW, panel wattage, installation/inverter/mounting costs, maintenance, subsidy rules and limits, degradation) and who owns/updates them.
+5. Telegram chat/group details and Google Sheet owner/access.
+6. Enquiry-type value for service-page, business and society enquiry forms (brief lists Contact / Calculator / Catalogue only).
+7. Data retention period for AG POWER (existing code: 730 days), deletion-on-request process, privacy contact, legal content approver.
+8. Roles beyond Momentum's existing ones (e.g. seo_editor) and which SEO fields admins edit; target keywords per page.
+9. Analytics tools and conversion goals.
+10. Expected users/data size now and in 12 months.
+11. Languages (English only or also Hindi), deadline, budget.
+12. Dark mode: brief defines the light palette only (SOP asks for light and dark values) — is dark mode required?
+13. Is the Supabase project new for AG POWER or the same as Momentum's?
+14. Approvals required by the brief (§19) for items found in the audit: replacing/archiving Momentum's existing `docs/`; removing existing Momentum pages/functionality (EDITZ, Blog AI, Work/case studies, agency services); new tables/columns in the database; changing existing lead-save behaviour. See momentum-audit-report.md.
 
-1. **E-Commerce / Store System:** E-commerce store (cart, checkout, product catalog, customer accounts, Medusa proxy) removed on 2026-10-21; Supabase store tables intentionally left untouched.
-2. **Standalone Medusa Backend Server:** No Medusa server exists or is needed.
-3. **Multi-Currency & International Region Handling (Phase 1):** Country prefix `/in` has been removed. The default region is `in`, default currency is INR, and primary target geography is India (`en-IN`).
-4. **Native Mobile Applications:** iOS and Android native applications are out of scope. Responsive Next.js 15 App Router web application serves all mobile users down to 320px.
-5. **Public Review System & Rating Aggregate:** No unverified user reviews or Schema.org `aggregateRating`/`review` nodes will be added to avoid Google search manual actions without verified proof.
-6. **Per-Page Custom Schema Ingestion in Admin:** `/admin/schema` and `/api/admin/schema` are permanently removed; all structured data is deterministically derived from data resolvers.
-7. **Direct Client-Side Database Access:** Supabase credentials with elevated privileges are never exposed to the browser; all mutations flow through authenticated server-side API handlers.
-8. **Production Direct Database Writes from Local Dev:** Dev environments cannot write directly to the production Supabase database; all schema changes must follow the `db-proposals/` review process.
+Gate 1 check: every feature has acceptance criteria ✔ · sections 5, 7, 10 filled ✔ · **section 12 is NOT empty — Gate 1 cannot pass until answered.**
 
+---
 
-## 6. SEO goals and target keywords
+## Appendix A. Reference study (brief §3.1)
+Study SolarSquare (https://www.solarsquare.in/) carefully. Pay attention to: hero composition · typography hierarchy · section spacing · residential and commercial service presentation · photography · customer trust elements · savings calculator UX · conversion placement · mobile experience. Purpose: learn from its design approach, not copy its layouts, text, brand assets or proprietary illustrations. Create an original AG POWER visual identity.
+General UI principles (brief §3.2): minimal and clean · flat UI with restrained shadows · rounded corners generally 10–14px · generous whitespace · consistent container widths · strong typography hierarchy · beautiful photography · consistent button styles · subtle transitions · excellent responsive behaviour.
 
-Target keywords live in the database (site_keywords, services.keywords) and are seeded by db-proposals/seed_keywords.sql for 11 active services: performance marketing, SEO/GEO/AEO, AI automation, web and app development, branding, copywriting and video production. Pages that must rank: Home, Services index, each active Service detail, Editz, Work index and case studies, Blog and Blog-AI, About, Contact. Language en-IN; areaServed India and worldwide. Local SEO: ProfessionalService schema, address B-147, Anand Vihar, Jagatpura, Jaipur 302017, hours Mon–Sat 09:00–21:00.
+## Appendix B. Lead pipeline testing (brief §12.5)
+Submit test enquiries from every form type and verify: (1) correct Google Sheets row · (2) correct Telegram notification · (3) correct source page · (4) correct timestamp · (5) duplicate protection · (6) behaviour when either integration is temporarily unavailable.
 
+## Appendix C. Developer authority and boundaries (brief §19)
+Authorised to: redesign the frontend · improve layouts · extend dynamic blocks · build reusable components · add appropriate animations · improve responsiveness · implement the calculator · build the catalogue · implement approved integrations · improve frontend structure · refactor relevant code.
+Approval required before: replacing the existing architecture · changing major database structures · removing existing functionality · changing authentication or security models · introducing a different technology stack · making destructive production changes · increasing project scope materially.
+If an architectural limitation is found: report the issue and recommend a solution instead of silently working around it.
 
-## 7. Constraints
+## Appendix D. Working agreements (brief §22)
+1. Decisions within scope are trusted. 2. No permission needed for every small design choice. 3. Questions and technical discussions are encouraged. 4. Mistakes are opportunities to improve, not reasons for blame. 5. Report blockers early. 6. Never hide an issue or mark incomplete work as complete. 7. If something is technically difficult, explain it and recommend an alternative. 8. Do not compromise security or existing functionality to meet an artificial deadline. 9. Maintain reasonable working boundaries. 10. Prioritise quality and transparent communication.
+Daily progress update: completed today · currently working on · next deliverable · blockers · decisions requiring approval. Report actual progress, not just activity.
+Think like a senior product designer, frontend architect and engineering lead: not a simple redesign that changes colours and swaps text — a cohesive, premium solar-energy customer experience, trustworthy for a homeowner, professional for a commercial client, organised for a large housing society. Proceed with implementation only after the required planning and approval gates are completed.
 
-- **Hosting:** Vercel serverless; crons limited to those in vercel.json (daily keep-alive, monthly SEO auto-fill).
-- **Database:** Supabase production project; no direct writes to production from dev. SQL goes through db-proposals and a human operator.
-- **Compliance:** DPDP Act 2023 (consent, minimum data, deletion on request); GSTIN shown publicly only as client approved.
-- **Integrations:** Google Indexing API, Google Search Console, OpenAI / Gemini, AnswerThePublic via RapidAPI, n8n.
-- **Currency / locale:** INR, en-IN.
-- **Dependencies:** no new package without a one-line reason and approval.
-
-
-## 8. Open questions (resolve before further architecture work)
-
-1. **React Query Adoption vs Server Component Fetching (D-04 / T-06):** SOP rule 8 requires React Query, but the project currently uses Server Components with `unstable_cache`. Decide whether to adopt React Query for client-side admin lists or formally approve the exception.
-2. **Rate Limiting Architecture (T-10):** Decide whether to implement Upstash Redis or Supabase PostgreSQL table/stored procedures for rate limiting login, contact forms, and AI auto-fill endpoints.
-3. **Staging Environment Setup (T-11):** Decide whether to provision a separate staging Supabase project with automated schema migrations, or use Vercel preview environments with simulated database credentials.
-4. **Lighthouse CI & Core Web Vitals Budget (T-12):** Confirm exact numeric thresholds for LCP, CLS, INP, and Lighthouse CI score gating.
-5. **Database Table Name Discrepancy (K-16):** Reconcile references between `seo_setting` and `seo_settings` across codebase and database schema.
-
-
-## 9. Non-functional requirements
-
-
-| Area | Requirement |
-|---|---|
-| Performance | LCP ≤ 2.5 s, CLS ≤ 0.1, INP ≤ 200 ms on mobile; public pages served from ISR/cache, no DB work in middleware for visitors. |
-| Availability | Daily keep-alive cron prevents the Supabase project pausing; pages stay served from cache if the DB is slow. |
-| Security | Server-side role checks, validated input, secrets only in env, RLS on all tables (see rules.md Part C). |
-| Accessibility | Semantic headings, alt text on all meaningful images, keyboard-usable forms and menus, sufficient colour contrast (WCAG 2.1 AA target). |
-| SEO | One H1, canonical, JSON-LD parity, sitemaps, noindex on non-public areas. |
-| Browsers / devices | Latest Chrome, Safari, Edge, Firefox; mobile first from 320 px. |
-| Privacy | Consent on forms, minimum data, deletion on request (DPDP Act 2023). |
-| Maintainability | Files under 400 lines, functions under 50, tests for schema and services. |
-
-
-## 10. Assumptions and risks
-
-
-| Item | Detail | Mitigation |
-|---|---|---|
-| Assumption | Content (services, blogs, case studies) is edited only through /admin | Block direct DB edits except via db-proposals |
-| Assumption | Production Supabase is the single source of truth | Keep backups before any SQL |
-| Risk | Security findings V-01 to V-08 are exploitable today | Fix first (task NTF-301) |
-| Risk | Type/lint errors hidden by disabled build checks | Turn checks on (NTF-302) |
-| Risk | Third-party limits or outages (OpenAI, Google Indexing, RapidAPI, Stripe) | Timeouts, graceful fallbacks, never block page rendering |
-| Risk | AI-generated SEO text could be inaccurate | Admin reviews; schema only from verified data |
-
-
-## 11. Release scope
-
-- **Live now:** public site (home, services, Editz, work, blog, about, contact, FAQ, legal), admin suite, dynamic SEO engine, sitemaps, store, cron jobs.
-- **Next:** security hardening, build gates, run database scripts, standard API, docs alignment (see task.md).
-- **Later:** staging environment, Lighthouse budgets, React Query decision, cleanup of Medusa starter leftovers.
-
-
-## 12. Glossary
-
-
-| Term | Meaning |
-|---|---|
-| GEO / AEO | Generative / Answer Engine Optimisation: being cited by AI answer engines |
-| JSON-LD | Structured data in a script tag that tells search engines what the page is |
-| ISR | Incremental Static Regeneration: static pages refreshed on a schedule or on demand |
-| RLS | Row Level Security in Supabase/PostgreSQL |
-| RBAC | Role Based Access Control (roles.ts) |
-| IDOR | Accessing another user's data by guessing an id |
-| Editz | Mommantum's video-production service line |
-| SDS | System Design Specification document in the repo |
+## Appendix E. Definition of Done (brief §21)
+Brand and design
+- [ ] AG POWER brand identity is implemented.
+- [ ] Approved palette is used consistently.
+- [ ] Manrope and Inter are implemented.
+- [ ] Responsive design is complete.
+- [ ] Animations work smoothly.
+- [ ] Design is consistent across all pages.
+Website
+- [ ] All main pages are implemented.
+- [ ] All three service pages are implemented.
+- [ ] Every relevant page has contextual FAQs.
+- [ ] Blog functionality works.
+- [ ] Navigation and footer work.
+- [ ] All internal links are correct.
+Functionality
+- [ ] Solar calculator produces valid estimates.
+- [ ] Panel catalogue works.
+- [ ] Search and filters work where implemented.
+- [ ] Every form works.
+- [ ] Google Sheets receives leads.
+- [ ] Telegram notifications are received.
+- [ ] Errors and loading states are handled.
+Technical quality
+- [ ] Existing Momentum architecture is preserved wherever practical.
+- [ ] Dynamic schemas work.
+- [ ] No unrelated functionality is broken.
+- [ ] No exposed secrets.
+- [ ] No major console errors.
+- [ ] SEO implementation is complete.
+- [ ] Lighthouse targets are achieved.
+- [ ] Security review passes.
+- [ ] End-to-end testing passes.
+Release
+- [ ] All work is committed.
+- [ ] Documentation is updated.
+- [ ] Known issues are documented.
+- [ ] Staging has been reviewed.
+- [ ] Final approval is received.

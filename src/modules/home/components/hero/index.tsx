@@ -1,214 +1,186 @@
 "use client"
 
-import Image from "next/image"
-import Link from "next/link"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { useEffect, useMemo, useState } from "react"
-import { epilogue, mansalva, outfit } from "@lib/fonts"
-
-const words = ["faster,", "predictable,", "profitable"]
-
-const CrownIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 80 56" fill="none">
-    <path d="M6 48 L18 16 L34 32 L40 8 L46 32 L62 16 L74 48 Z"
-      fill="none" stroke="currentColor" strokeWidth="3"
-      strokeLinejoin="round" strokeLinecap="round" />
-    <rect x="6" y="49" width="68" height="6" rx="3"
-      fill="none" stroke="currentColor" strokeWidth="2.5" />
-    <circle cx="40" cy="8" r="3.5" fill="none" stroke="currentColor" strokeWidth="2" />
-    <circle cx="18" cy="16" r="2.5" fill="none" stroke="currentColor" strokeWidth="2" />
-    <circle cx="62" cy="16" r="2.5" fill="none" stroke="currentColor" strokeWidth="2" />
-  </svg>
-)
-
-const SparkleIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 64 64" fill="none">
-    <path d="M32 4 C32 4 34 22 48 28 C34 34 32 52 32 52 C32 52 30 34 16 28 C30 22 32 4 32 4Z"
-      fill="currentColor" />
-    <path d="M56 12 C56 12 57.5 20 63 22.5 C57.5 25 56 33 56 33 C56 33 54.5 25 49 22.5 C54.5 20 56 12 56 12Z"
-      fill="currentColor" opacity="0.6" />
-  </svg>
-)
-
-const SquiggleArrowIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 80 64" fill="none">
-    <path d="M8 48 C16 48 16 20 28 20 C40 20 40 44 52 44 C60 44 64 36 68 28"
-      stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M60 18 L68 28 L76 18"
-      stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-)
-
-const BarsIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 64 64" fill="none">
-    <rect x="4"  y="44" width="12" height="16" rx="3" fill="currentColor" opacity="0.45" />
-    <rect x="20" y="32" width="12" height="28" rx="3" fill="currentColor" opacity="0.65" />
-    <rect x="36" y="20" width="12" height="40" rx="3" fill="currentColor" opacity="0.85" />
-    <rect x="52" y="8"  width="12" height="52" rx="3" fill="currentColor" />
-    <circle cx="58" cy="5" r="3" fill="currentColor" opacity="0.5" />
-  </svg>
-)
+import { SunMedium, ArrowRight, ShieldCheck, Zap, Award, Sparkles, CheckCircle2 } from "lucide-react"
 
 export default function Hero() {
-  const [wordIndex, setWordIndex] = useState(0)
-  const [displayedText, setDisplayedText] = useState(words[0])
-  const [isDeleting, setIsDeleting] = useState(false)
-  const currentWord = useMemo(() => words[wordIndex], [wordIndex])
-
-  useEffect(() => {
-    let timeout: NodeJS.Timeout
-    if (!isDeleting && displayedText === currentWord) {
-      timeout = setTimeout(() => setIsDeleting(true), 1200)
-    } else if (isDeleting && displayedText === "") {
-      setIsDeleting(false)
-      setWordIndex((prev) => (prev + 1) % words.length)
-    } else {
-      timeout = setTimeout(() => {
-        const nextText = isDeleting
-          ? currentWord.slice(0, displayedText.length - 1)
-          : currentWord.slice(0, displayedText.length + 1)
-        setDisplayedText(nextText)
-      }, isDeleting ? 55 : 90)
-    }
-    return () => clearTimeout(timeout)
-  }, [displayedText, isDeleting, currentWord])
-
   return (
-    <section className="relative overflow-hidden bg-white pt-10 pb-14 lg:pt-14 lg:pb-20">
-      <style>{`
-        .scribble {
-          transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        .scribble:hover {
-          transform: scale(1.15) rotate(8deg);
-          opacity: 0.75;
-        }
-        @keyframes bob {
-          0%, 100% { transform: translateX(-50%) translateY(0px); }
-          50%       { transform: translateX(-50%) translateY(-7px); }
-        }
-        .crown-bob {
-          animation: bob 2.8s ease-in-out infinite;
-        }
-        .btn-get-started {
-          position: relative;
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 16px 36px;
-          border-radius: 14px;
-          font-size: 17px;
-          font-weight: 800;
-          letter-spacing: -0.01em;
-          color: #fff;
-          text-decoration: none;
-          background: linear-gradient(135deg, #9333ea 0%, #c026d3 55%, #e11d78 100%);
-          box-shadow: 0 4px 20px rgba(147, 51, 234, 0.35);
-          transition: transform 0.22s ease, box-shadow 0.22s ease;
-          overflow: hidden;
-        }
-        .btn-get-started::before {
-          content: "";
-          position: absolute; inset: 0;
-          background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
-          transform: translateX(-100%);
-          transition: transform 0.5s ease;
-        }
-        .btn-get-started:hover::before { transform: translateX(100%); }
-        .btn-get-started:hover {
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 8px 28px rgba(192, 38, 211, 0.45);
-        }
-        .btn-get-started .arrow {
-          display: inline-block;
-          transition: transform 0.22s ease;
-        }
-        .btn-get-started:hover .arrow { transform: translateX(5px); }
-      `}</style>
+    <section className="relative overflow-hidden bg-forest text-white">
+      {/* Background glow effects */}
+      <div className="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-gold/15 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 left-10 h-80 w-80 rounded-full bg-sage/10 blur-3xl" />
 
-      {/* RESPONSIVE LAYOUT */}
-      <div className="content-container relative px-4 sm:px-6 lg:px-10">
-        <div className="mx-auto max-w-[1320px]">
-          <div className="grid items-center gap-8 lg:grid-cols-[1fr_1fr]">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
+          
+          {/* Left Column: Messaging */}
+          <div className="lg:col-span-7">
+            
+            {/* Pill Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-forest-deep px-4 py-1.5 shadow-sm">
+              <SunMedium className="h-4 w-4 text-gold" />
+              <span className="text-[12px] font-bold uppercase tracking-wider text-gold">
+                India&apos;s Trusted Solar EPC Partner
+              </span>
+            </div>
 
-            {/* VISUAL COLUMN */}
-            <div className="relative flex justify-start order-2 lg:order-1">
-              <div className="relative w-full max-w-[720px]">
-                {/* BG blobs */}
-                <div className="absolute left-1/2 lg:left-[8%] top-[10%] lg:top-[14%] -translate-x-1/2 lg:translate-x-0 h-[220px] lg:h-[74%] w-[220px] lg:w-[78%] rounded-[28%] bg-slate-200/35" />
-                <div
-                  className="absolute left-1/2 lg:left-[13%] top-[14%] lg:top-[18%] -translate-x-1/2 lg:translate-x-0 h-[200px] lg:h-[68%] w-[200px] lg:w-[72%] rounded-[24%]"
-                  style={{ background: "linear-gradient(135deg, rgb(var(--color-accent-magenta)) 0%, rgb(var(--color-accent-purple)) 45%, rgb(var(--color-accent-lilac)) 100%)" }}
-                />
-                <div className="absolute left-1/2 lg:left-[12%] top-[13%] lg:top-[17%] -translate-x-1/2 lg:translate-x-0 h-[205px] lg:h-[70%] w-[205px] lg:w-[74%] rounded-[24%] border-[3px] border-line-lavender/70" />
-                
-                <div className="relative z-10 flex justify-center pt-2">
-                  <Image
-                    src="/hero-girl.webp"
-                    alt="Performance marketing agency"
-                    width={700}
-                    height={880}
-                    priority
-                    fetchPriority="high"
-                    sizes="(max-width: 1024px) 280px, 620px"
-                    className="h-auto w-[68%] lg:w-[95%] max-w-[280px] lg:max-w-[620px] object-contain"
-                  />
-                </div>
-
-                <div
-                  className="crown-bob absolute left-1/2 lg:left-[50%] top-[2%] lg:top-[3%] z-20 w-[44px] lg:w-[72px] drop-shadow-md text-accent-purple -translate-x-1/2"
+            {/* Main Headline */}
+            <h1 className="mt-6 font-manrope text-[40px] font-extrabold leading-[1.15] tracking-tight text-white sm:text-[54px] lg:text-[62px]">
+              Power Your Home with{" "}
+              <span className="relative inline-block text-gold">
+                Smarter Solar
+                <svg
+                  className="absolute -bottom-2 left-0 w-full"
+                  height="8"
+                  viewBox="0 0 200 8"
+                  fill="none"
                 >
-                  <CrownIcon />
-                </div>
-                <div className="scribble absolute right-[8%] top-[16%] lg:top-[12%] z-20 w-[28px] lg:w-[50px] text-rose-400 drop-shadow">
-                  <SparkleIcon />
-                </div>
-                <div className="scribble absolute left-[6%] lg:left-[0%] top-[45%] lg:top-[48%] z-20 w-[40px] lg:w-[66px] text-violet-400 drop-shadow">
-                  <SquiggleArrowIcon />
-                </div>
-                <div className="scribble absolute bottom-[10%] lg:bottom-[14%] right-[6%] lg:right-[3%] z-20 w-[28px] lg:w-[54px] text-sky-400 drop-shadow">
-                  <BarsIcon />
-                </div>
+                  <path
+                    d="M1 5.5C50 1.5 150 1.5 199 5.5"
+                    stroke="#E9B949"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>{" "}
+              Energy.
+            </h1>
+
+            {/* Supporting Copy */}
+            <p className="mt-6 max-w-2xl font-inter text-[17px] leading-relaxed text-sage-mist/90 sm:text-[19px]">
+              Make the switch to cleaner energy, reduce your electricity expenses by up to 90%, and take control of your energy future with AG POWER.
+            </p>
+
+            {/* Value Highlights */}
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              <div className="flex items-center gap-2 text-[14px] font-medium text-sage-mist">
+                <CheckCircle2 className="h-4 w-4 text-gold" />
+                <span>Up to 90% Bill Savings</span>
+              </div>
+              <div className="flex items-center gap-2 text-[14px] font-medium text-sage-mist">
+                <CheckCircle2 className="h-4 w-4 text-gold" />
+                <span>25-Yr Performance Warranty</span>
+              </div>
+              <div className="flex items-center gap-2 text-[14px] font-medium text-sage-mist">
+                <CheckCircle2 className="h-4 w-4 text-gold" />
+                <span>Govt Subsidy Support</span>
               </div>
             </div>
 
-            {/* CONTENT COLUMN */}
-            <div className="max-w-[760px] text-center lg:text-left px-5 lg:px-0 pb-8 lg:pb-0 order-1 lg:order-2">
-              {/* The keyword line is the page's single H1; the typewriter slogan below is a <p>.
-                  Both keep their exact classes (preflight resets h1/p to the same box), so the look
-                  is unchanged. */}
-              <h1 className={`${mansalva.className} mb-3 lg:mb-4 text-[18px] lg:text-[22px] font-bold text-brand-bright`}>
-                Performance Marketing & D2C Branding
-              </h1>
-              <p className={`${epilogue.className} text-navy leading-[1.05]`}>
-                <span className="block lg:inline text-[38px] sm:text-[60px] lg:text-[76px] xl:text-[84px] font-bold">
-                  We make it{" "}
-                </span>
-                <span className="block lg:inline-block text-[38px] sm:text-[60px] lg:text-[76px] xl:text-[84px] font-bold min-h-[1.2em] lg:min-h-0 lg:w-[13ch]">
-                  {displayedText}
-                  <span className="ml-1 inline-block h-[0.85em] lg:h-[0.9em] w-[3px] animate-pulse bg-navy" />
-                </span>
-                <span className="relative block text-[38px] sm:text-[60px] lg:text-[76px] xl:text-[84px] font-bold">
-                  and scalable
-                  <span className="absolute left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 bottom-[4px] lg:bottom-[6px] -z-10 h-[8px] lg:h-[10px] w-[45%] lg:w-[40%] bg-brand-rose" />
-                </span>
-              </p>
-              <p className={`${outfit.className} mt-5 lg:mt-7 text-[15px] lg:text-[18px] leading-[1.85] lg:leading-[2] text-slate-600`}>
-                Performance marketing service in India that combines data, design, and strategy
-                to help D2C brands grow faster and build a strong market presence.
-              </p>
-              <div className="mt-7 lg:mt-9 flex justify-center lg:justify-start">
-                <LocalizedClientLink href="/contact" className={`${epilogue.className} btn-get-started`}>
-                  Book a Call
-                  <span className="arrow">→</span>
-                </LocalizedClientLink>
+            {/* Call to Actions */}
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <LocalizedClientLink
+                href="/calculator"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-gold px-7 font-inter text-[16px] font-bold text-forest shadow-md transition-all hover:bg-gold-hover hover:shadow-lg active:scale-95"
+              >
+                <span>Calculate Your Solar Savings</span>
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </LocalizedClientLink>
+
+              <LocalizedClientLink
+                href="/contact"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 font-inter text-[16px] font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/50 active:scale-95"
+              >
+                Get Free Consultation
+              </LocalizedClientLink>
+            </div>
+
+            {/* Trust Footnote */}
+            <div className="mt-10 flex items-center gap-6 border-t border-white/10 pt-6 text-[13px] text-sage">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-gold" />
+                <span>MNRE Approved Components</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Award className="h-5 w-5 text-gold" />
+                <span>Tier-1 Solar Modules</span>
               </div>
             </div>
 
           </div>
+
+          {/* Right Column: Hero Visual Showcase */}
+          <div className="lg:col-span-5">
+            <div className="relative mx-auto max-w-md lg:max-w-none">
+              
+              {/* Glass Card Visual Wrapper */}
+              <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-forest to-forest-deep p-6 shadow-2xl backdrop-blur-md">
+                
+                {/* Solar Installation Graphic Representation */}
+                <div className="relative h-72 w-full overflow-hidden rounded-2xl bg-forest-deep p-5 border border-white/10">
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-transparent to-transparent z-10" />
+                  
+                  {/* Solar Panel Cells Pattern Illustration */}
+                  <div className="grid grid-cols-4 gap-2 h-full opacity-80">
+                    {[...Array(12)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="rounded-lg border border-gold/30 bg-gradient-to-br from-forest to-forest-deep p-2 flex flex-col justify-between"
+                      >
+                        <div className="h-1 w-full bg-gold/40 rounded-full" />
+                        <div className="flex justify-between items-center text-[10px] text-sage">
+                          <Zap className="h-3 w-3 text-gold" />
+                          <span>550W</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Overlay Live Metric Pill */}
+                  <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between rounded-xl bg-forest/95 border border-gold/30 p-3.5 backdrop-blur-md">
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-sage">
+                        Daily Solar Generation
+                      </p>
+                      <p className="font-manrope text-[20px] font-bold text-white">
+                        24.5 kWh <span className="text-[12px] font-normal text-gold">/ Day avg</span>
+                      </p>
+                    </div>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gold text-forest">
+                      <Zap className="h-5 w-5 fill-current" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sub Features Inside Hero Card */}
+                <div className="mt-6 grid grid-cols-2 gap-4">
+                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                    <p className="text-[12px] text-sage">Estimated Savings</p>
+                    <p className="mt-1 font-manrope text-[22px] font-extrabold text-gold">
+                      80 - 90%
+                    </p>
+                    <p className="text-[11px] text-sage-mist/70">on monthly power bills</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                    <p className="text-[12px] text-sage">System Payback</p>
+                    <p className="mt-1 font-manrope text-[22px] font-extrabold text-white">
+                      3 - 4 Yrs
+                    </p>
+                    <p className="text-[11px] text-sage-mist/70">Free electricity for 20+ yrs</p>
+                  </div>
+                </div>
+
+                {/* PM Surya Ghar Subsidy Banner */}
+                <div className="mt-4 flex items-center justify-between rounded-xl bg-gold/15 border border-gold/30 px-4 py-3 text-[13px] text-sage-mist">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-gold" />
+                    <span>Get up to <strong>₹78,000</strong> Central Subsidy</span>
+                  </div>
+                  <LocalizedClientLink
+                    href="/services/residential-solar"
+                    className="font-bold text-gold hover:underline"
+                  >
+                    Details →
+                  </LocalizedClientLink>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
-
     </section>
   )
 }

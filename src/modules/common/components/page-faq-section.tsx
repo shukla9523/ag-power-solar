@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { epilogue, outfit, mansalva } from "@lib/fonts"
+import { manrope, inter } from "@lib/fonts"
 import { PageFAQ } from "@lib/data/page-faqs"
 
 interface PageFaqSectionProps {
@@ -16,7 +16,7 @@ interface PageFaqSectionProps {
 
 export default function PageFaqSection({
   faqs,
-  badge = "Got Questions?",
+  badge = "Frequently Asked",
   heading,
   title,
   subheading,
@@ -29,8 +29,8 @@ export default function PageFaqSection({
       ? subtitle
       : subheading !== undefined
       ? subheading
-      : "Clear answers to common questions about our services, process, and deliverables."
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+      : "Clear, verified answers to common questions about our solar EPC solutions and technical processes."
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   if (!faqs || faqs.length === 0) return null
 
@@ -39,22 +39,22 @@ export default function PageFaqSection({
   }
 
   return (
-    <section aria-labelledby="page-faqs-heading" className={`border-t border-slate-100 bg-surface-frost/90 py-14 sm:py-18 ${className}`}>
+    <section aria-labelledby="page-faqs-heading" className={`border-t border-charcoal/10 bg-ivory py-14 sm:py-18 ${inter.className} ${className}`}>
       <div className="content-container px-4 sm:px-6 lg:px-10">
         <div className="mx-auto max-w-[960px]">
           {/* Header */}
           <div className="mb-8 text-center sm:mb-12">
-            <span className={`${mansalva.className} inline-flex items-center rounded-full bg-brand/10 px-3.5 py-1 text-[13px] font-bold text-brand`}>
+            <span className="inline-flex items-center rounded-full bg-forest/10 px-3.5 py-1 text-[12px] font-bold uppercase tracking-[0.08em] text-forest">
               {badge}
             </span>
             <h2
               id="page-faqs-heading"
-              className={`${epilogue.className} mt-3 text-[26px] font-extrabold tracking-[-0.03em] text-navy sm:text-[32px] lg:text-[36px]`}
+              className={`${manrope.className} mt-3 text-[26px] font-extrabold tracking-[-0.03em] text-forest sm:text-[32px] lg:text-[36px]`}
             >
               {displayHeading}
             </h2>
             {displaySubheading && (
-              <p className={`${outfit.className} mx-auto mt-2.5 max-w-xl text-[14.5px] leading-relaxed text-slate-500 sm:text-[15.5px]`}>
+              <p className="mx-auto mt-2.5 max-w-xl text-[14.5px] leading-relaxed text-charcoal/70 sm:text-[15.5px]">
                 {displaySubheading}
               </p>
             )}
@@ -70,10 +70,10 @@ export default function PageFaqSection({
               return (
                 <div
                   key={index}
-                  className={`overflow-hidden rounded-[16px] border bg-white transition-all duration-200 ${
+                  className={`overflow-hidden rounded-[14px] border bg-white transition-all duration-200 ${
                     isOpen
-                      ? "border-brand/40 shadow-[0_4px_16px_rgba(230,30,115,0.06)]"
-                      : "border-slate-200/80 shadow-[0_2px_6px_rgba(0,0,0,0.02)] hover:border-slate-300"
+                      ? "border-forest/40 shadow-sm"
+                      : "border-charcoal/10 shadow-xs hover:border-forest/20"
                   }`}
                 >
                   <button
@@ -82,27 +82,27 @@ export default function PageFaqSection({
                     aria-expanded={isOpen}
                     aria-controls={answerId}
                     onClick={() => handleToggle(index)}
-                    className="flex w-full items-center justify-between gap-4 p-4.5 text-left transition-colors sm:p-5 cursor-pointer"
+                    className="flex w-full items-center justify-between gap-4 p-4.5 text-left transition-colors sm:p-5 cursor-pointer group"
                   >
                     <div className="flex items-center gap-3.5">
                       <span
                         className={`flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full text-[11px] font-extrabold transition-colors ${
                           isOpen
-                            ? "bg-brand text-white"
-                            : "bg-slate-100 text-slate-400"
+                            ? "bg-forest text-gold"
+                            : "bg-sage-mist text-forest/70 group-hover:bg-forest/10"
                         }`}
                       >
                         {String(index + 1).padStart(2, "0")}
                       </span>
 
-                      <span className={`${epilogue.className} text-[15px] font-bold text-navy transition-colors hover:text-brand sm:text-[16px]`}>
+                      <span className={`${manrope.className} text-[15px] font-bold text-forest transition-colors group-hover:text-gold sm:text-[16px]`}>
                         {faq.question}
                       </span>
                     </div>
 
                     <div
                       className={`flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full transition-transform duration-200 ${
-                        isOpen ? "rotate-180 bg-brand/10 text-brand" : "bg-slate-100 text-slate-400"
+                        isOpen ? "rotate-180 bg-forest/10 text-forest" : "bg-sage-mist text-charcoal/60"
                       }`}
                     >
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,8 +120,8 @@ export default function PageFaqSection({
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="border-t border-slate-100 px-4.5 pb-5 pt-3.5 sm:px-5">
-                        <p className={`${outfit.className} pl-[42px] text-[14.5px] leading-[1.85] text-slate-600 sm:text-[15px]`}>
+                      <div className="border-t border-charcoal/10 px-4.5 pb-5 pt-3.5 sm:px-5">
+                        <p className="pl-[42px] text-[14.5px] leading-[1.8] text-charcoal/80 sm:text-[15px]">
                           {faq.answer}
                         </p>
                       </div>

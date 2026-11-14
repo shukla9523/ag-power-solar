@@ -14,13 +14,13 @@ import { getPageRegistry } from "@lib/seo/page-registry"
 export const revalidate = 3600
 
 const KEY_PAGES: { key: string; path: string; label: string }[] = [
-  { key: "about", path: "/about", label: "About Mommantum" },
-  { key: "work", path: "/work", label: "Case studies" },
-  { key: "blog", path: "/blog", label: "Blog" },
-  { key: "faq", path: "/faq", label: "FAQs" },
-  { key: "contact", path: "/contact", label: "Contact" },
-  { key: "editz", path: "/editz", label: "EDITZ by Mommantum (video editing studio)" },
-  { key: "blog-ai", path: "/blog-ai", label: "Blog AI by Mommantum" },
+  { key: "about", path: "/about", label: "About AG POWER" },
+  { key: "calculator", path: "/calculator", label: "Solar Savings Calculator" },
+  { key: "solar-panels", path: "/solar-panels", label: "Solar Panel Catalogue" },
+  { key: "customer-services", path: "/customer-services", label: "Solar Customer Services & Maintenance" },
+  { key: "faq", path: "/faq", label: "Solar FAQs" },
+  { key: "blog", path: "/blog", label: "Solar Insights Blog" },
+  { key: "contact", path: "/contact", label: "Contact AG POWER" },
 ]
 
 /** One line, no markdown-breaking newlines. */
@@ -55,7 +55,7 @@ export async function GET() {
     "",
     `> ${oneLine(PAGE_META_DEFAULTS.homepage?.description)}`,
     "",
-    `${p.name} is a digital marketing and growth agency based in ${a.addressLocality}, ${a.addressRegion}, India, founded by ${p.founder.name} (${p.founder.jobTitle}). It helps D2C and ecommerce brands grow with performance marketing, SEO, social media, web development, AI automation and video.`,
+    `${p.name} is a premier solar energy engineering and EPC solutions company based in ${a.addressLocality}, ${a.addressRegion}, India, owned by Electro Global. It delivers turnkey rooftop solar power plants for residential homes, commercial enterprises, and housing societies with PM Surya Ghar subsidy assistance and DISCOM net-metering synchronization.`,
     "",
     "## Contact",
     "",

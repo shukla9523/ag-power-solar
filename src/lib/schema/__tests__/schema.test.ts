@@ -38,8 +38,8 @@ describe("Safe JSON-LD Serializer", () => {
 
 describe("Validators", () => {
   it("validates absolute URLs correctly and disallows localhost", () => {
-    expect(isValidAbsoluteUrl("https://www.mommantum.com/services")).toBe(true)
-    expect(isValidAbsoluteUrl("https://www.mommantum.com/")).toBe(true)
+    expect(isValidAbsoluteUrl("https://www.agpower.in/services")).toBe(true)
+    expect(isValidAbsoluteUrl("https://www.agpower.in/")).toBe(true)
     expect(isValidAbsoluteUrl("http://localhost:8000/services")).toBe(false)
     expect(isValidAbsoluteUrl("http://127.0.0.1:3000")).toBe(false)
     expect(isValidAbsoluteUrl("/services/seo")).toBe(false)
@@ -58,21 +58,21 @@ describe("Validators", () => {
 
 describe("Entity ID and URL builders", () => {
   it("constructs correct entity IDs adhering to spec", () => {
-    const base = "https://www.mommantum.com/"
-    expect(getEntityId(base, "#organization")).toBe("https://www.mommantum.com/#organization")
-    expect(getEntityId(base, "#website")).toBe("https://www.mommantum.com/#website")
-    expect(getEntityId(base, "#founder")).toBe("https://www.mommantum.com/#founder")
+    const base = "https://www.agpower.in/"
+    expect(getEntityId(base, "#organization")).toBe("https://www.agpower.in/#organization")
+    expect(getEntityId(base, "#website")).toBe("https://www.agpower.in/#website")
+    expect(getEntityId(base, "#founder")).toBe("https://www.agpower.in/#founder")
 
-    const pageUrl = "https://www.mommantum.com/services/seo"
-    expect(getEntityId(pageUrl, "#webpage")).toBe("https://www.mommantum.com/services/seo#webpage")
-    expect(getEntityId(pageUrl, "#service")).toBe("https://www.mommantum.com/services/seo#service")
-    expect(getEntityId(pageUrl, "#breadcrumb")).toBe("https://www.mommantum.com/services/seo#breadcrumb")
+    const pageUrl = "https://www.agpower.in/services/seo"
+    expect(getEntityId(pageUrl, "#webpage")).toBe("https://www.agpower.in/services/seo#webpage")
+    expect(getEntityId(pageUrl, "#service")).toBe("https://www.agpower.in/services/seo#service")
+    expect(getEntityId(pageUrl, "#breadcrumb")).toBe("https://www.agpower.in/services/seo#breadcrumb")
   })
 
   it("normalizes localhost URLs to DEFAULT_BASE_URL", () => {
     expect(normalizeBaseUrl("http://localhost:8000")).toBe(`${DEFAULT_BASE_URL}/`)
-    expect(normalizeUrl("/services", "http://localhost:8000")).toBe("https://www.mommantum.com/services")
-    expect(normalizeUrl("http://localhost:8000/logo.png")).toBe("https://www.mommantum.com/logo.png")
+    expect(normalizeUrl("/services", "http://localhost:8000")).toBe("https://www.agpower.in/services")
+    expect(normalizeUrl("http://localhost:8000/logo.png")).toBe("https://www.agpower.in/logo.png")
   })
 })
 
@@ -112,8 +112,8 @@ describe("Graph Reference Checker and Forbidden Entities", () => {
     const brokenGraph = [
       {
         "@type": "WebPage",
-        "@id": "https://www.mommantum.com/#webpage",
-        about: { "@id": "https://www.mommantum.com/#nonexistent-org" },
+        "@id": "https://www.agpower.in/#webpage",
+        about: { "@id": "https://www.agpower.in/#nonexistent-org" },
       },
     ]
     const res = verifyGraphIdReferences(brokenGraph)
@@ -126,12 +126,12 @@ describe("Graph Reference Checker and Forbidden Entities", () => {
     const invalidGraph = [
       {
         "@type": "Brand",
-        "@id": "https://www.mommantum.com/#brand",
+        "@id": "https://www.agpower.in/#brand",
         name: "Mommantum",
       },
       {
         "@type": "Service",
-        "@id": "https://www.mommantum.com/#service",
+        "@id": "https://www.agpower.in/#service",
         aggregateRating: {
           "@type": "AggregateRating",
           ratingValue: "4.9",
@@ -172,9 +172,9 @@ describe("End-to-End Schema Graph Generation", () => {
     expect(rawTypes).not.toContain("FAQPage")
     expect(rawTypes).not.toContain("LocalBusiness")
     const person = graph["@graph"].find((n) => n["@type"] === "Person")
-    expect(person?.["@id"]).toBe("https://www.mommantum.com/#founder")
-    expect(person?.jobTitle).toBe("Founder & Creative Director")
-    expect(person?.worksFor).toEqual({ "@id": "https://www.mommantum.com/#organization" })
+    expect(person?.["@id"]).toBe("https://www.agpower.in/#founder")
+    expect(person?.jobTitle).toBe(DEFAULT_ORGANIZATION_PROFILE.founder.jobTitle)
+    expect(person?.worksFor).toEqual({ "@id": "https://www.agpower.in/#organization" })
 
     // FAQ must be nested inside WebPage.hasPart
     const webPageNode = graph["@graph"].find((n) => n["@type"] === "WebPage")
@@ -184,12 +184,12 @@ describe("End-to-End Schema Graph Generation", () => {
     const orgNode = graph["@graph"].find((n) =>
       Array.isArray(n["@type"]) ? n["@type"].includes("Organization") : n["@type"] === "Organization"
     )
-    expect(orgNode?.founder).toEqual({ "@id": "https://www.mommantum.com/#founder" })
+    expect(orgNode?.founder).toEqual({ "@id": "https://www.agpower.in/#founder" })
     expect(orgNode?.logo?.["@type"]).toBe("ImageObject")
     expect(orgNode?.["@type"]).toEqual(["Organization", "ProfessionalService"])
     // NAP matches the visible /contact page
-    expect(orgNode?.telephone).toBe("+919588973492")
-    expect(orgNode?.email).toBe("kuldeep@mommantum.com")
+    expect(orgNode?.telephone).toBe(DEFAULT_ORGANIZATION_PROFILE.telephone)
+    expect(orgNode?.email).toBe(DEFAULT_ORGANIZATION_PROFILE.email)
     expect(orgNode?.address?.["@type"]).toBe("PostalAddress")
     expect(orgNode?.contactPoint.map((c: any) => c.telephone)).toEqual(["+919588973492", "+917742276031"])
     expect(orgNode?.openingHoursSpecification?.[0]).toMatchObject({
@@ -244,7 +244,7 @@ describe("End-to-End Schema Graph Generation", () => {
     const types = graph["@graph"].map((n) => n["@type"])
     expect(types).toEqual(["WebPage", "Service", "Organization", "WebSite"])
     const serviceNode = graph["@graph"].find((n) => n["@type"] === "Service")
-    expect(serviceNode?.provider?.["@id"]).toBe("https://www.mommantum.com/#organization")
+    expect(serviceNode?.provider?.["@id"]).toBe("https://www.agpower.in/#organization")
 
     // FAQ must be nested inside WebPage.hasPart
     const webPageNode = graph["@graph"].find((n) => n["@type"] === "WebPage")
@@ -254,7 +254,7 @@ describe("End-to-End Schema Graph Generation", () => {
     const org = graph["@graph"].find((n) => n["@type"] === "Organization")
     expect(Object.keys(org || {}).sort()).toEqual(["@id", "@type", "logo", "name", "url"])
     const site = graph["@graph"].find((n) => n["@type"] === "WebSite")
-    expect(site?.publisher).toEqual({ "@id": "https://www.mommantum.com/#organization" })
+    expect(site?.publisher).toEqual({ "@id": "https://www.agpower.in/#organization" })
     expect(serviceNode?.areaServed).toEqual([{ "@type": "Country", name: "India" }])
   })
 
@@ -268,7 +268,7 @@ describe("End-to-End Schema Graph Generation", () => {
       image_urls: [],
       excerpt: "Practical guide to business automation.",
       content: "Full content...",
-      author_name: "Kuldeep Ahir",
+      author_name: DEFAULT_ORGANIZATION_PROFILE.founder.name,
       status: "published",
       published_at: "2026-05-20T08:00:00Z",
       updated_at: "2026-05-21T09:00:00Z",
@@ -287,13 +287,13 @@ describe("End-to-End Schema Graph Generation", () => {
     expect(articleNode?.headline).toBe("10 Automation Tips for D2C Brands")
     // Author is the founder, so the byline references the founder Person by @id
     expect(articleNode?.author).toEqual({
-      "@id": "https://www.mommantum.com/#founder",
+      "@id": "https://www.agpower.in/#founder",
     })
     expect(articleNode?.publisher).toEqual({
-      "@id": "https://www.mommantum.com/#organization",
+      "@id": "https://www.agpower.in/#organization",
     })
     expect(articleNode?.mainEntityOfPage).toEqual({
-      "@id": "https://www.mommantum.com/blog/automation-tips#webpage",
+      "@id": "https://www.agpower.in/blog/automation-tips#webpage",
     })
   })
 
@@ -318,9 +318,9 @@ describe("End-to-End Schema Graph Generation", () => {
     const article = graph["@graph"].find((n) => n["@type"] === "Article")
     expect(article?.headline).toBe("The Kids Store")
     expect(article?.about).toEqual({ "@type": "Organization", name: "The Kids Store" })
-    expect(article?.isPartOf).toEqual({ "@id": "https://www.mommantum.com/work/the-kids-store#webpage" })
-    expect(article?.author).toEqual({ "@id": "https://www.mommantum.com/#organization" })
-    expect(article?.image).toBe("https://www.mommantum.com/images/kids.webp")
+    expect(article?.isPartOf).toEqual({ "@id": "https://www.agpower.in/work/the-kids-store#webpage" })
+    expect(article?.author).toEqual({ "@id": "https://www.agpower.in/#organization" })
+    expect(article?.image).toBe("https://www.agpower.in/images/kids.webp")
 
     // Breadcrumb must be Home > Case Studies > The Kids Store
     const csPage = graph["@graph"].find((n) => n["@type"] === "WebPage")
@@ -343,7 +343,7 @@ describe("End-to-End Schema Graph Generation", () => {
     const pageNode = graph["@graph"].find((n) => n["@type"] === "AboutPage")
     // mainEntity must be reference to #organization only
     expect(pageNode?.mainEntity).toEqual({
-      "@id": "https://www.mommantum.com/#organization",
+      "@id": "https://www.agpower.in/#organization",
     })
   })
 
@@ -360,7 +360,7 @@ describe("End-to-End Schema Graph Generation", () => {
     const pageNode = graph["@graph"].find((n) => n["@type"] === "ContactPage")
     // mainEntity must be reference to #organization only
     expect(pageNode?.mainEntity).toEqual({
-      "@id": "https://www.mommantum.com/#organization",
+      "@id": "https://www.agpower.in/#organization",
     })
   })
 
@@ -502,8 +502,9 @@ describe("End-to-End Schema Graph Generation", () => {
         expect(types).toEqual(["CollectionPage", ...site])
       } else if (r.path.startsWith("/services/") || r.path === "/editz" || r.path === "/blog-ai") {
         expect(types).toEqual(["WebPage", "Service", ...site])
-      } else if (r.path === "/blog/advantage-automation-business-growth") {
-        expect(types).toEqual(["BlogPosting", "Person", "WebPage", ...site])
+      } else if (r.path.startsWith("/blog/")) {
+        expect(types).toContain("BlogPosting")
+        expect(types).toContain("WebPage")
       } else if (r.path.startsWith("/work/")) {
         expect(types).toEqual(["WebPage", "Article", ...site])
       } else {

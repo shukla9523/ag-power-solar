@@ -1,133 +1,111 @@
-# 4 · design.md — Design System
+# Design · AG POWER Website · v1.0
 
-This file defines HOW Mommantum looks: colour and typography tokens taken from the code, utility classes, where each component lives, responsive breakpoints, and image/OG/alt-text standards. Use only what is listed here; reuse before creating anything new.
+Approved brand tokens are the *initial* approved values. Direction: premium, clean, confident, approachable. Keep Forest Green dominant, Gold the recognisable accent, Ivory as breathing room. Do not use every colour equally.
 
-*Changes when the design system changes · Keep in sync with docs/BRAND_GUIDELINES.md*
+## 1. Tokens (tokens.css)
 
-
-## 1. Tokens (as found in code)
-
-The project uses the Tailwind theme as its token source (approved exception to tokens.css). Values below are taken from tailwind.config.js and the most-used colours in modules.
-
-
+### Colour
 | Token | Value | Use |
 |---|---|---|
-| Brand pink | #e61e73 (hover/alt #ef3a6b) | Primary accent, CTAs, highlights (most used colour, 62 occurrences in home/layout/about) |
-| Brand navy | #0e2547 | Headings, dark sections, text (59 occurrences) |
-| Purple | #9333ea; tint #f5eeff | Secondary accent, gradients, badges |
-| Pink tint | #fff0f6 | Soft section backgrounds |
-| Mint | #49d7a4 | Success / positive stats |
-| Orange | #ea580c | Warning / highlight |
-| Slate and grey | #64748b, #e2e8f0, #f7f8fa, #f3f4f6 | Secondary text, borders, surfaces |
-| Grey scale (theme) | grey-0 #FFFFFF · 5 #F9FAFB · 10 #F3F4F6 · 20 #E5E7EB · 30 #D1D5DB · 40 #9CA3AF · 50 #6B7280 · 60 #4B5563 · 70 #374151 · 80 #1F2937 · 90 #111827 | Neutral palette (class names like text-grey-50) |
-| Radius | none 0 · soft 2px · base 4px · rounded 8px · large 16px · circle 9999px | rounded-* classes |
-| Max width | 8xl = 100rem | Page containers |
-| Font sizes | Tailwind defaults plus 3xl = 2rem; Medusa preset text styles (e.g. text-xsmall-regular) | Typography scale |
-| Dark mode | darkMode: "class" | Supported by config; storefront is light-first |
+| --color-primary (Deep Forest Green) | #173F32 | Primary brand; hero sections, footer, primary brand areas, important banners, calculator result panels, selected navigation states |
+| --color-accent (Solar Gold) | #E9B949 | Primary CTA buttons, highlights, icons, important figures, interactive accents |
+| --color-bg (Warm Ivory) | #F7F6EF | Main page background, large content sections, whitespace |
+| --color-secondary (Sage Green) | #A8C5A0 | Supporting illustrations, secondary cards, small highlights, informational elements |
+| --color-text (Charcoal) | #26332C | Headings, body text, descriptions, labels |
+| --color-card (Soft Sage Mist) | #E8EDE5 | Card backgrounds |
+| --color-surface (Pure White) | #FFFFFF | Cards, forms, product information, content surfaces |
 
+Success / warning / danger / muted colours and **dark-mode values**: not defined in the brief — see prd.md §12 (Q14). Do not invent them.
 
-## 2. Typography
-
-
-| Font | Source | Role |
-|---|---|---|
-| Epilogue 400–800 | next/font/google | Headings / display |
-| Outfit 400–700 | next/font/google | Body / UI accents |
-| DM Sans | next/font/google | Body text |
-| Cormorant Garamond 400/600/700 | next/font/google | Editorial serif accents |
-| Mansalva 400 | next/font/google | Handwritten accent |
-| Inter + system stack | tailwind fontFamily.sans | Fallback and admin UI |
-
-All fonts load with display:"swap" through src/lib/fonts.ts (one central file). Always give a fallback stack.
-
-
-## 3. Utility classes and helpers
-
-- **.no-scrollbar**: hides scrollbars on carousels and filmstrips (globals.css).
-- **Floating label inputs:** input:focus ~ label and :not(:placeholder-shown) ~ label shift up with text-xsmall-regular.
-- **Autofill fix:** neutral border/text colour and white inset shadow so browser autofill does not tint inputs.
-- **Search input reset:** removes native search decorations.
-- **Animations (keyframes):** ring, fade-in-right, fade-in-top, fade-out-top, accordion-slide-up/down (Radix accordion height variable).
-- **Plugins:** @tailwindcss/typography (blog prose), tailwindcss-radix, Medusa UI preset.
-
-
-## 4. Component library (where things live)
-
-
-| Area | Location | Components |
-|---|---|---|
-| Common / primitives | src/modules/common/components | Input, Checkbox, Radio, NativeSelect, Modal, Divider, DeleteButton, InteractiveLink, FilterRadioGroup, LocalizedClientLink, LineItemPrice/UnitPrice/Options, CartTotals, JsonLd, PageFaqSection |
-| Icons | src/modules/common/icons | spinner, eye, eye-off, user, trash, x, back, chevron-down, map-pin, package, refresh, fast-delivery, payment logos |
-| Layout | src/modules/layout | Header, NavBar, ServicesDropdown, SideMenu, Footer, FooterFaqSection, CartDropdown, CartButton, LanguageSelect, CountrySelect, CartMismatchBanner |
-| Home | src/modules/home/components | Hero, StatsStrip, WhoWeAre, OurServices, ServicesDetails, OurWork, FeaturedProducts/ProductRail, HomeFaq, SectionHeading |
-| Editz | src/modules/editz/components | Navbar, Hero, Marquee, BrandMarquee, Services, Process, Projects, VideoShowcase, Benefits, Audience, Testimonials, FAQ, CTA, Footer, FilmstripBackground |
-| Commerce | src/modules/cart, checkout, order, account, products, store, collections, categories, shipping | Cart items, Checkout forms (addresses, shipping, payment, Stripe wrapper, discount code, review), Order details, Account nav, forms, modals |
-| Loading states | src/modules/skeletons | Skeletons for cart, order, product grid, related products |
-
-**Reuse rule:** before creating a component, search these folders. A label or emoji change stays a one-line edit.
-
-
-## 5. Responsive breakpoints and mobile rules
-
-
-| Name | Min width |
+### Usage by element
+| Website element | Colour |
 |---|---|
-| 2xsmall | 320px |
-| xsmall | 512px |
-| small | 1024px |
-| medium | 1280px |
-| large | 1440px |
-| xlarge | 1680px |
-| 2xlarge | 1920px |
+| Navbar | Warm Ivory (Forest Green typography) |
+| Hero section | Deep Forest Green |
+| Primary buttons | Solar Gold |
+| Secondary buttons | Forest Green |
+| Main backgrounds | Warm Ivory |
+| Service cards | White / Soft Sage |
+| Calculator | Forest Green + Ivory |
+| Testimonials | Soft Sage Mist |
+| Footer | Deep Forest Green |
+| Icons and highlights | Solar Gold |
 
-- Mobile first; test at 375 px and tablet width before every push; no horizontal scrolling of the page body.
-- Tap targets at least 44 px; mobile drawer navigation (SideMenu).
-- Note: custom screen names replace default sm/md/lg; use the names above.
+### Contrast rules
+- Gold buttons use dark Forest Green or Charcoal text.
+- Never green text on Sage Green.
+- Body text highly readable; WCAG AA (4.5:1 for text) wherever applicable.
+- Hover and focus states remain accessible.
 
+### Typography
+- **Manrope** (primary): main/hero/section/card headings, important statistics, calculator results, large numerical values. Weights 400, 500, 600, 700; 800 only for selected display elements. Numbers: Manrope SemiBold.
+- **Inter** (secondary): body paragraphs, navigation, buttons, form fields, labels, FAQ content, blog text, descriptions, tables. Weights 400, 500, 600, 700.
+- Use tabular numerals for financial figures and calculator results. No additional fonts without approval.
+- Self-host variable font files where practical; provide fallback fonts; avoid unnecessary external font dependencies.
+- Clear hierarchy, readable paragraph widths, consistent line heights.
 
-## 6. Images, OG and alt text
+| Element | Desktop | Mobile |
+|---|---|---|
+| Hero H1 | 56–68px | 36–42px |
+| Page H1 | 44–56px | 32–38px |
+| Section H2 | 36–44px | 28–34px |
+| Card H3 | 22–26px | 20–24px |
+| Body | 16–18px | 15–17px |
+| Small text | 13–14px | 12–14px |
+Starting tokens, not rigid rules; adapt to actual layouts.
 
-- **OpenGraph Assets:** Standard dimensions are 1200×630 px.
-  - 11 pre-rendered page share images live in `public/og/pages/*.jpg`.
-  - 16 pre-rendered service share images live in `public/og/services/*.jpg`.
-  - Global fallbacks live at `src/app/opengraph-image.jpg` and `src/app/twitter-image.jpg`.
-- **next/image Usage:** Always render images using Next.js `Image` with explicit `width` and `height` (or `fill` with appropriate `sizes`) to prevent Cumulative Layout Shift (CLS).
-- **Hero / LCP Images:** The primary hero/LCP image above the fold must be marked with `priority={true}` and must never be lazy loaded.
-- **Below-the-fold Assets:** All below-the-fold imagery and video thumbnails must load lazily (`loading="lazy"`).
-- **Alt Text Standard:** Every meaningful content image must provide descriptive, context-specific `alt` text incorporating primary keyword intent naturally (no keyword stuffing). Purely decorative visuals must carry `alt=""` and `aria-hidden="true"`.
-- **Formats:** Modern AVIF and WebP delivery configured in `next.config.js`.
+### Spacing, radius, shadow
+- --space-1 … --space-8 (4px steps).
+- Radius: generally 10–14px (--radius-sm / -md / -lg within this range); avoid excessive radii.
+- Flat UI, restrained shadows (--shadow-sm / -md).
+- Generous whitespace; consistent container widths.
 
+## 2. Global helpers (global.css)
+Utility classes (.stack, .row, .card, .btn, .btn-primary …) defined once; styles only from tokens.css and global.css.
 
-## 7. Forms, Inputs and Interactive Feedback
-
-- **Floating Labels:** Form fields (Contact, Onboarding, Checkout, Admin) implement floating labels (`input:focus ~ label` and `:not(:placeholder-shown) ~ label`) transitioning smoothly to `text-xsmall-regular`.
-- **Autofill Normalization:** Configured in `src/styles/globals.css` with neutral borders and inset box-shadow to prevent harsh browser autofill yellow/blue highlights.
-- **Validation Feedback:** Error messages appear immediately beneath the invalid input in `text-red-600 text-xs mt-1`, never communicating errors via color alone.
-- **Interactive Buttons & CTAs:** Smooth transitions with active feedback (`hover:brightness-110 active:scale-[0.98] transition-all duration-150`). Disabled states reduce opacity (`opacity-50 cursor-not-allowed`).
-- **Modals & Overlays:** Accessible Radix-powered modals with `backdrop-blur-sm bg-black/40`, focus trapping, and `Escape` key dismissal.
-
-
-## 8. Accessibility and interaction standards
-
-- Contrast: text on pink/navy backgrounds must meet WCAG AA (4.5:1 for body text).
-- Visible focus states on all links, buttons and inputs; never remove outlines without a replacement.
-- All form inputs have labels (the floating label pattern counts); errors shown as text, not colour only.
-- Motion: respect prefers-reduced-motion for animated sections and marquees.
-- Buttons use real button/anchor elements; modals trap focus and close with Escape.
-
-
-## 9. UI states every screen needs
-
-
-| State | Requirement |
+## 3. Components (components/ui) — reuse existing Momentum blocks first; create new only when necessary
+| Component | Notes |
 |---|---|
-| Loading | Use skeletons from src/modules/skeletons or a spinner icon |
-| Empty | Clear message and a next action |
-| Error | Plain user message, retry option, no technical details |
-| Success | Short confirmation (form sent, saved) |
-| Disabled | Reduced opacity, not clickable, explained if needed |
+| Button | primary (Gold), secondary (Forest Green), ghost; states default, hover, focus, loading, disabled; subtle interaction |
+| Input / form fields | labelled, validated, error text; reusable enquiry form system |
+| Card | white / Soft Sage Mist; consistent heights |
+| Navigation + dropdown + mobile menu | sticky behaviour; accessible |
+| Footer | Forest Green |
+| Hero | image handling with fixed dimensions |
+| Service cards | image, description, benefits, Learn More |
+| Benefits grid | icons Solar Gold, consistent icon style |
+| Process timeline | 6 steps |
+| Testimonials | carousel, Soft Sage Mist background |
+| FAQ accordion | reusable dynamic block |
+| CTA | |
+| Enquiry form | |
+| Solar calculator | Forest Green + Ivory; result panels Forest Green |
+| Panel catalogue cards | search, filters, sort, enquiry action |
+| Statistics | animated counters |
+| Blog cards | |
+| Contact section | |
+Every list screen: loading skeleton, empty state, error state. Every component lists its loading, empty and error states.
 
+## 4. Layout and responsive
+Breakpoints 375 / 768 / 1024 / 1440. Mobile first, designed intentionally. Touch targets ≥ 44px. No horizontal scroll at 375px; wide content scrolls inside its own container. No overlapping text, no broken image ratios, consistent card heights.
 
-## 10. Admin UI
+## 5. Accessibility
+Contrast 4.5:1 for text; every input labelled; keyboard reachable; visible focus; alt text required (enforced by the image component); accessible forms; reduced-motion support.
 
-Admin screens (src/app/admin) are functional and utilitarian: tables with pagination, forms with validation messages, SEO tab with title/description character counters (60 and 120–160) and a Google result preview, and role-based hiding of menu items.
+## 6. Images and media
+- WebP/AVIF; lazy-load below the fold; prioritise hero; fixed dimensions; responsive image handling.
+- Beautiful real photography preferred over generic stock illustrations.
+- Hero: premium residential rooftop with solar panels, bright natural daylight, clean architectural photography.
+- Panel images: actual product images per catalogue item, usage permission/licence required.
+- Max sizes per slot, OG image 1200×630 template, alt-text guidance: to be set at implementation.
+
+## 7. Animation guidelines
+Professional and subtle: scroll-triggered section reveals; fade/slide transitions; subtle image parallax; card hover; animated counters; solar energy flow illustrations; smooth calculator result updates; testimonial carousel; sticky navigation transitions; subtle button interactions. Use existing animation dependencies; no large new library without reason; respect reduced-motion; never block content or interaction. Avoid excessive gradients, too many floating elements, glassmorphism, unnecessary animations, random icon styles.
+
+## 8. Admin-editable settings
+Existing in Momentum: theme tokens editable in Admin → Settings → Theme (stored in `site_setting.theme_tokens`, injected into :root, no redeploy; text colours must keep WCAG AA contrast); SEO fields per page in `seo_setting`; services, blog, FAQs, case studies via the admin. Changes apply without redeploy; changes are audit-logged (existing audit log).
+
+## 9. Content and tone
+Premium, clean, confident, approachable. Button wording as specified in PRD (e.g. "Calculate Your Solar Savings", "Get Free Consultation", "Enquire About This Panel"). Error messages: what happened + what to do. No unverified savings claims; calculator output labelled as estimate with disclaimer.
+
+Gate check: no colour, size or font appears anywhere except section 1; every component lists loading/empty/error states.

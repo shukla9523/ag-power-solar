@@ -8,6 +8,90 @@ function getFaqsForSlug(slug: string) {
 }
 
 export const FALLBACK_SERVICES: Record<string, Service> = {
+  "residential-solar": {
+    slug: "residential-solar",
+    title: "Residential Rooftop Solar Installation",
+    shortLabel: "Residential Solar",
+    description: "Turnkey rooftop solar solutions for independent homes, villas, and kothis. Slash electricity bills by up to 90% with PM Surya Ghar central subsidies.",
+    intro: "Transform your home rooftop into an independent clean energy generator. With customized system capacities from 1 kW to 10 kW, Tier-1 Mono PERC & TOPCon modules, and direct central government subsidies up to ₹78,000, AG POWER makes solar adoption seamless.",
+    image: "/og/services/residential-solar.jpg",
+    heroImage: "/images/services/residential-solar.webp",
+    points: [
+      "1 kW to 10 kW custom system capacities engineered for your roof",
+      "Tier-1 Mono PERC and N-Type TOPCon panels with 25-30 year linear warranty",
+      "PM Surya Ghar Muft Bijli Yojana subsidy processing up to ₹78,000",
+      "Non-penetrating, wind-rated mounting structures protecting roof waterproofing",
+      "DISCOM net-metering synchronization and turnkey paperwork execution",
+    ],
+    outcomes: [
+      "Up to 90% reduction in recurring monthly grid power bills",
+      "Complete capital payback achieved in 3 to 4 years",
+      "Protection against rising residential electricity tariffs for 25+ years",
+    ],
+    whyItMatters: [
+      "Solar increases your property valuation while eliminating peak summer AC bill spikes.",
+      "Government subsidies significantly lower upfront capital outlay.",
+      "Net-metering credits surplus daytime power back to the DISCOM grid.",
+    ],
+    faqs: getFaqsForSlug("residential-solar"),
+  },
+
+  "commercial-solar": {
+    slug: "commercial-solar",
+    title: "Commercial & Industrial Solar Solutions",
+    shortLabel: "Commercial Solar",
+    description: "High-yield solar power plants for factories, industrial sheds, commercial complexes, and warehouses. Cut OpEx and leverage 40% accelerated depreciation.",
+    intro: "Commercial and industrial power tariffs in India are among the highest operational expenses for growing enterprises. AG POWER engineers turnkey 10 kW to 500+ kW solar installations that deliver immediate bottom-line cost reductions and rapid capital recovery.",
+    image: "/og/services/commercial-solar.jpg",
+    heroImage: "/images/services/commercial-solar.webp",
+    points: [
+      "10 kW to 500+ kW engineered EPC installations customized for C&I roofs",
+      "Custom anodized aluminum clamping for trapezoidal and curved metal sheds",
+      "40% accelerated depreciation tax benefits under Section 32 of Income Tax Act",
+      "High-efficiency N-Type TOPCon bifacial modules with dual-side generation",
+      "Remote SCADA string monitoring and zero-downtime installation execution",
+    ],
+    outcomes: [
+      "Rapid capital payback within 2.5 to 4 years",
+      "Dramatic reduction in operational overhead and peak demand tariff penalties",
+      "Compliance with corporate ESG and sustainable green manufacturing standards",
+    ],
+    whyItMatters: [
+      "Guarantees predictability in operating energy costs for 25+ years.",
+      "Tax depreciation shields profits while reducing electricity bills simultaneously.",
+      "Enhances brand sustainability credentials for domestic and export clients.",
+    ],
+    faqs: getFaqsForSlug("commercial-solar"),
+  },
+
+  "housing-society-solar": {
+    slug: "housing-society-solar",
+    title: "Housing Society Solar Installation",
+    shortLabel: "Housing Society Solar",
+    description: "Rooftop solar for apartment complexes, RWAs, and residential societies. Offset common area electricity for lifts, water pumps, corridors, and clubhouses.",
+    intro: "Common area electricity bills for elevators, multi-stage water pumping, parking security, and clubhouses are a continuous financial burden on housing society maintenance budgets. AG POWER delivers engineered solar installations that offset up to 80% of common utility bills.",
+    image: "/og/services/housing-society-solar.jpg",
+    heroImage: "/images/services/housing-society-solar.webp",
+    points: [
+      "Tailored solar systems from 15 kW to 100+ kW for apartment common areas",
+      "Powers heavy inductive loads including lifts, pumps, and fire systems safely",
+      "Complete assistance with RWA General Body presentations and approvals",
+      "Bulk DISCOM net-metering documentation and regulatory clearances",
+      "Heavy-duty elevated structural design retaining usable rooftop terrace area",
+    ],
+    outcomes: [
+      "Reduces common area society maintenance expenditure by 70% to 85%",
+      "Shields apartment residents from recurring maintenance fee hikes",
+      "Increases society prestige and green building certification status",
+    ],
+    whyItMatters: [
+      "Elevated structure designs allow residents to continue using terrace space for recreation.",
+      "Turnkey liaison removes administrative stress from RWA committee members.",
+      "Surplus generation credits directly offset society common meter charges.",
+    ],
+    faqs: getFaqsForSlug("housing-society-solar"),
+  },
+
   "performance-marketing": {
     slug: "performance-marketing",
     title: "Performance Marketing - Meta Ads & Google Ads",

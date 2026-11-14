@@ -11,6 +11,7 @@ import { supabaseAdmin } from "@lib/supabase-admin"
 import { PAGE_META_DEFAULTS } from "@lib/schema/page-defaults"
 import { namedCache } from "@lib/util/ttl-cache"
 import { FALLBACK_SERVICES } from "@lib/data/fallback-services"
+import { FALLBACK_BLOG_POSTS } from "@lib/data/blog-posts"
 
 export type PageKind = "static" | "service" | "blog" | "case-study"
 
@@ -36,6 +37,9 @@ export const STATIC_PAGES: { key: string; path: string; cluster: string }[] = [
   { key: "homepage", path: "/", cluster: "brand" },
   { key: "about", path: "/about", cluster: "brand" },
   { key: "services", path: "/services", cluster: "services" },
+  { key: "calculator", path: "/calculator", cluster: "calculator" },
+  { key: "solar-panels", path: "/solar-panels", cluster: "panels" },
+  { key: "customer-services", path: "/customer-services", cluster: "services" },
   { key: "work", path: "/work", cluster: "work" },
   { key: "blog", path: "/blog", cluster: "blog" },
   { key: "editz", path: "/editz", cluster: "video" },
@@ -101,7 +105,7 @@ async function loadRegistry(): Promise<RegisteredPage[]> {
 
   // Each query fails independently; an empty or failed kind yields no rows except services,
   // which fall back to the built-in list so /sitemap/services.xml is never empty.
-  const [dbServices, posts, studies] = await Promise.all([
+  const [dbServices, dbPosts, studies] = await Promise.all([
     safeRows(supabaseAdmin.from("services").select("*")),
     safeRows(
       supabaseAdmin
@@ -112,6 +116,10 @@ async function loadRegistry(): Promise<RegisteredPage[]> {
     ),
     safeRows(supabaseAdmin.from("case_studies").select("*")),
   ])
+
+  const posts: any[] = dbPosts.filter((p) => p && p.slug).length
+    ? dbPosts.filter((p) => p && p.slug)
+    : FALLBACK_BLOG_POSTS
 
   const services: any[] = dbServices.filter((s) => s && s.slug).length
     ? dbServices.filter((s) => s && s.slug)

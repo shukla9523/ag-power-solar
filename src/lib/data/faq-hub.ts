@@ -12,14 +12,15 @@ import { getEditzFaqs, getPageFaqs } from "./page-faqs"
 import { ALL_FAQ_CATEGORIES, FAQCategory } from "./all-faqs"
 
 const PAGE_CATEGORIES: { key: string; name: string; description: string; icon: string }[] = [
-  { key: "homepage", name: "About Mommantum", description: "The agency, how we work and what we deliver.", icon: "🏠" },
-  { key: "services", name: "Our Services", description: "Performance marketing, SEO, web, AI and video services.", icon: "🧭" },
-  { key: "editz", name: "EDITZ Video Editing", description: "Short-form, long-form, podcast and ad video editing.", icon: "🎬" },
-  { key: "blog-ai", name: "Blog AI", description: "AI-assisted blog planning, writing and publishing.", icon: "🤖" },
-  { key: "work", name: "Case Studies", description: "How we approach client projects and results.", icon: "📈" },
-  { key: "about", name: "Team & Studio", description: "Who we are and our Jaipur studio.", icon: "👋" },
-  { key: "blog", name: "Blog & Guides", description: "Our articles and growth playbooks.", icon: "📝" },
-  { key: "contact", name: "Working With Us", description: "Getting in touch and starting a project.", icon: "✉️" },
+  { key: "homepage", name: "About AG POWER", description: "Company overview, engineering standards, and rooftop solar benefits.", icon: "☀️" },
+  { key: "residential", name: "Residential Solar", description: "Home rooftop installations, net-metering, and PM Surya Ghar subsidy.", icon: "🏡" },
+  { key: "commercial", name: "Commercial & Industrial", description: "Factory, warehouse, and office solar plants, ROI, and tax depreciation.", icon: "🏢" },
+  { key: "housing-society", name: "Housing Society Solar", description: "Apartment and RWA common area solar solutions and net metering.", icon: "🏘️" },
+  { key: "solar-panels", name: "Solar Panels & Tech", description: "TOPCon vs Mono PERC, Bifacial modules, DCR compliance, and warranties.", icon: "⚡" },
+  { key: "calculator", name: "Savings & Calculator", description: "Estimating system kW capacity, bill reduction, and payback periods.", icon: "🧮" },
+  { key: "services", name: "EPC & Maintenance", description: "Site surveys, DISCOM net-metering liaison, AMC, and inverter care.", icon: "🛠️" },
+  { key: "about", name: "Engineering & Company", description: "Electro Global heritage, Tier-1 standards, and certified engineers.", icon: "🌱" },
+  { key: "contact", name: "Consultations & Process", description: "Booking a free site survey, timeline, and what happens next.", icon: "📞" },
 ]
 
 const normalize = (q: string) => q.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()

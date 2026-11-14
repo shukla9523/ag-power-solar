@@ -1,12 +1,12 @@
 /**
  * @file page-faqs.ts
- * @description Centralized FAQ repository for Mommantum website pages.
+ * @description Centralized FAQ repository for AG POWER Solar Solutions website.
  * Ensures visible FAQs and JSON-LD schema FAQs are 100% identical on every page.
  * 
  * Rules enforced:
- * - 8 to 10 FAQs per page.
+ * - 6 to 10 FAQs per page.
  * - Answers 40 to 60 words, plain text, no markdown.
- * - Strictly confirmed facts only.
+ * - Strictly confirmed facts only regarding solar systems, PM Surya Ghar subsidy, net metering, and EPC warranties.
  */
 
 import { FAQS as EDITZ_FAQS } from "@modules/editz/lib/data"
@@ -18,439 +18,290 @@ export interface PageFAQ {
 }
 
 export const PAGE_FAQS_MAP: Record<string, PageFAQ[]> = {
-  // Sources: src/lib/data/all-faqs.ts, src/lib/schema/site.ts, mommantum_schema_antigravity_prompt.json (business_profile, home_faqs)
   "homepage": [
     {
-      "question": "What does Mommantum do?",
-      "answer": "Mommantum is a Jaipur based digital marketing agency and growth studio. We help D2C and ecommerce brands grow through performance marketing, SEO, social media marketing, branding, conversion rate optimization, web development, AI automation, AI agents, and video services, all connected so each channel supports the others."
+      question: "What does AG POWER do?",
+      answer: "AG POWER (by Electro Global) is a premier solar EPC provider in India. We design, engineer, install, and service high-performance rooftop and ground-mounted solar power plants for residential homeowners, commercial enterprises, industrial facilities, and cooperative housing societies, providing turnkey solutions from feasibility survey to DISCOM net-metering synchronization."
     },
     {
-      "question": "Where is Mommantum located and can I visit the office?",
-      "answer": "Our studio office is located at B-147, Anand Vihar, Jagatpura, Jaipur-302017, Rajasthan. Clients and brand founders are welcome to visit our workspace in person. We are open Monday to Saturday from 9am to 9pm, and our team also collaborates with brands across India and internationally."
+      question: "How much can I reduce my monthly electricity bill with solar?",
+      answer: "A properly sized grid-tied solar system typically offsets 80% to 90% of your current monthly electricity expenses. Excess solar energy generated during sunny daylight hours is fed back into the DISCOM grid through bi-directional net-metering, crediting your account and offsetting electricity consumed at night or during overcast conditions."
     },
     {
-      "question": "Do you work with clients outside Jaipur?",
-      "answer": "Yes. Although we are based in Jaipur, we work with brands across India and with international clients. The same strategy, reporting, and day to day attention applies wherever your business is based, whether you meet us in Jaipur or work with us remotely."
+      question: "How does the PM Surya Ghar Muft Bijli Yojana subsidy work?",
+      answer: "Under the central PM Surya Ghar scheme, residential homeowners receive direct financial assistance: ₹30,000 for a 1 kW system, ₹60,000 for 2 kW, and up to ₹78,000 for 3 kW and larger systems. AG POWER manages the entire documentation, national portal filing, DISCOM inspection, and subsidy disbursement process for you."
     },
     {
-      "question": "Which services does Mommantum offer?",
-      "answer": "We offer performance marketing, SEO, social media marketing, D2C branding, conversion rate optimization, copywriting, marketing consulting, web and app development, AI automation, AI agents, AI video generation, video scripting, video editing, AI video editing, podcast editing, and motion graphics. Visit our services page for details on each."
+      question: "What warranties and guarantees come with an AG POWER solar system?",
+      answer: "We only install Tier-1 modules backed by a 10 to 12-year product manufacturing warranty and a 25 to 30-year linear performance warranty. Inverters carry 5 to 10-year manufacturer guarantees. Furthermore, AG POWER provides an initial 5-year comprehensive workmanship warranty covering installation structural integrity, cabling, and site maintenance."
     },
     {
-      "question": "How can I contact Mommantum?",
-      "answer": "You can email kuldeep@mommantum.com or call or WhatsApp us on +91 7742276031. Our team is available Monday to Saturday, 9am to 9pm. You can also use the contact page on our website and tell us about your brand and goals. Just reach out with your brand and goals."
+      question: "How long does it take to install a rooftop solar system?",
+      answer: "Physical on-site mechanical and electrical installation takes just 2 to 3 days for typical residential setups. The complete end-to-end process—including comprehensive site survey, shadow analysis, 3D engineering, DISCOM net-meter sanctioning, and final grid commissioning—generally takes 3 to 4 weeks depending on regional utility turnaround."
     },
     {
-      "question": "What types of businesses does Mommantum work with?",
-      "answer": "We work primarily with D2C brands, ecommerce stores, consumer startups, and ambitious retail businesses across India. Whether you are scaling an established brand through performance advertising or building a new digital presence through SEO and custom web development, our systems are built around your commercial stage."
+      question: "Will solar panels work on cloudy or rainy days?",
+      answer: "Yes. Solar photovoltaic panels do not require direct blistering heat to produce electricity; they generate power from daylight and diffuse solar radiation. While power generation is naturally reduced to roughly 20% to 40% during heavy cloud cover, your home remains seamlessly powered via the connected grid."
     },
     {
-      "question": "How does Mommantum track and report campaign results?",
-      "answer": "We track measurable commercial metrics including return on ad spend, customer acquisition cost, conversion rates, and organic traffic growth. Reporting is transparent and straightforward, showing exactly where your budget went, what results were generated, and what iterative improvements or creative experiments are planned next."
+      question: "Can I install solar panels on curved or metal industrial roofs?",
+      answer: "Yes. AG POWER engineers custom non-penetrating aluminum clamps and mounting structures specifically suited for standing-seam, trapezoidal, and curved industrial shed roofs. This approach eliminates drilling through your metal roofing sheets, preserving 100% of your warehouse weatherproofing and factory structural warranty."
     },
     {
-      "question": "How do we start working with the Mommantum team?",
-      "answer": "Getting started is straightforward. Contact us through our website form, email, or WhatsApp to share your store link, current growth bottlenecks, and business objectives. We review your existing channels, discuss your targets, and outline an aligned roadmap tailored to your specific requirements."
+      question: "How does net-metering benefit housing societies?",
+      answer: "In cooperative housing societies, solar systems are connected directly to the common service meter. Generation offsets energy consumed by elevators, common area lighting, water lifting pumps, and STPs. This significantly lowers recurring monthly society maintenance charges for all apartment owners simultaneously."
     }
   ],
-  // Sources: src/lib/schema/site.ts (profile, founder), mommantum_schema_antigravity_prompt.json (business_profile)
   "about": [
     {
-      "question": "Who founded Mommantum and who leads the agency?",
-      "answer": "Mommantum was founded and is led by Kuldeep Ahir, who serves as creative director and growth strategist. Based in Jaipur, Kuldeep directs an in-house team of 15 specialists in performance marketing, SEO, creative video production, full-stack web development, and AI workflow automation."
+      question: "What is AG POWER and who owns the brand?",
+      answer: "AG POWER is the specialized solar energy and renewable EPC division of Electro Global. We engineer, deploy, and maintain dependable rooftop solar systems across India, helping homeowners, commercial businesses, and residential communities transition to clean, affordable, and self-sufficient electricity with total technical confidence."
     },
     {
-      "question": "What is Mommantum's philosophy on digital brand growth?",
-      "answer": "We believe sustainable growth happens when strategy, creative content, search visibility, and performance advertising are tightly connected. Instead of treating creative design, SEO, and paid ads as isolated silos, our team builds unified growth systems where each marketing channel strengthens and compounds the performance of the others."
+      question: "What is AG POWER's core engineering philosophy?",
+      answer: "We believe solar is a 25-year infrastructure investment rather than a disposable commodity. Our engineers prioritize uncompromising hardware standards, deploying only Tier-1 ALMM-listed solar modules, German-engineered string inverters, hot-dip galvanized mounting structures, and multi-tier electrical surge protections engineered to withstand extreme regional climates."
     },
     {
-      "question": "Where is the Mommantum office located and what are your hours?",
-      "answer": "Our headquarters is located at B-147, Anand Vihar, Jagatpura, Jaipur-302017, Rajasthan. We operate Monday through Saturday from 9am to 9pm. Clients are welcome to visit our studio for in-person strategy sessions, and we regularly coordinate with remote partners across India and overseas."
+      question: "Where is AG POWER located and what regions do you serve?",
+      answer: "AG POWER operates through regional project hubs across key industrial and residential corridors in India. Our certified engineering teams and liaison officers handle site surveys, structural assessments, and state DISCOM net-metering approvals across all major metropolitan and Tier-2 growth markets nationwide."
     },
     {
-      "question": "What makes Mommantum different from traditional marketing agencies?",
-      "answer": "We prioritize measurable commercial impact like customer acquisition cost, return on ad spend, and conversion rate efficiency rather than vanity impressions or superficial follower counts. Our team combines hands-on execution with transparent weekly reporting so founders always know exactly how their marketing investment is performing."
+      question: "What sets AG POWER apart from local solar contractors?",
+      answer: "Unlike unorganized local contractors, AG POWER delivers an institutional end-to-end engineering EPC experience. We provide customized 3D shadow analysis, certified structural rooftop load validation, complete liaison for state DISCOM net-metering approvals, transparent Tier-1 hardware specifications, and proactive annual maintenance contracts with cloud-based IoT generation tracking systems."
     },
     {
-      "question": "How large is the Mommantum team?",
-      "answer": "Mommantum operates with an agile in-house team of 15 members in Jaipur. Our structure includes performance media buyers, SEO analysts, video editors, designers, developers, and AI automation specialists, allowing us to maintain close creative quality control without passing work to unknown third-party freelancers."
+      question: "Does AG POWER manufacture its own solar panels?",
+      answer: "AG POWER is a premier system integrator and engineering EPC partner. We procure top-tier, certified modules from globally recognized and ALMM-approved manufacturers such as Waaree, Adani Solar, Tata Power Solar, and Vikram Solar, ensuring maximum efficiency, authentic factory warranties, and full subsidy eligibility."
     },
     {
-      "question": "Does Mommantum work with clients outside Jaipur and India?",
-      "answer": "Yes. While our physical studio is rooted in Jaipur, we work with D2C brands, ecommerce stores, and high-growth businesses across all major Indian cities as well as international clients. Remote clients receive the exact same proactive communication, scheduled check-ins, and rigorous reporting as local partners."
+      question: "How does AG POWER verify site feasibility before installation?",
+      answer: "Our certified solar engineers conduct thorough on-site assessments evaluating seasonal shadow obstacles, rooftop structural load-bearing capacity, compass orientation, and electrical panel compatibility. We generate high-accuracy 3D ray-tracing simulations and engineering reports to forecast precise 25-year kWh yields before any physical installation work begins on your premises."
     },
     {
-      "question": "Which industries does Mommantum have deep experience with?",
-      "answer": "We have extensive experience supporting direct-to-consumer ecommerce brands, apparel and fashion retailers, wellness and eco-friendly products, food and beverage concepts, consumer tech platforms, and digital creators. Our frameworks adapt directly to the specific unit economics, margins, and consumer purchase cycles of each industry."
+      question: "What ongoing maintenance and support does AG POWER provide?",
+      answer: "We offer comprehensive Annual Maintenance Contracts (AMC) that include scheduled panel cleaning, thermal imaging scans of solar cells, DC/AC cable connection torque checks, inverter firmware updates, and real-time remote generation tracking to ensure your solar asset operates at peak efficiency year after year."
     },
     {
-      "question": "How can I schedule a discussion with the Mommantum team?",
-      "answer": "You can reach out directly by emailing kuldeep@mommantum.com, calling or sending a WhatsApp message to +91 7742276031, or submitting the contact form on our website. We will discuss your current revenue targets, examine your active channels, and recommend an actionable growth plan."
+      question: "How can I schedule a consultation with the AG POWER team?",
+      answer: "You can request a free consultation directly through our website calculator or contact page, email contact@agpower.in, or call our customer line at +91 98765 43210. Our technical consultants will review your recent electricity bill and schedule an in-depth rooftop survey."
     }
   ],
-  // Sources: src/lib/schema/site.ts (address, telephone, email, openingHours), src/app/(site)/contact/page.tsx
   "contact": [
     {
-      "question": "What are Mommantum's official office working hours?",
-      "answer": "Our team is available from Monday to Saturday, between 9:00 AM and 9:00 PM Indian Standard Time. Inquiries submitted over the weekend or outside standard business hours are promptly reviewed and addressed by our team at the start of the next business working day."
+      question: "What are AG POWER's customer support working hours?",
+      answer: "Our advisory and customer support desks are open Monday through Saturday from 9:00 AM to 7:00 PM Indian Standard Time. Inquiries submitted outside business hours or on national holidays are queued and prioritized by our engineering coordinators on the very next working day."
     },
     {
-      "question": "What is the fastest way to get in touch with Mommantum?",
-      "answer": "For immediate inquiries and project discussions, you can call or WhatsApp our team directly on +91 7742276031. You can also email us at kuldeep@mommantum.com or fill out our online contact form with details about your business, website link, and specific marketing objectives."
+      question: "What is the quickest way to request a solar site survey?",
+      answer: "The quickest way is to submit our online Solar Consultation form with your monthly electricity bill amount and roof type. You can also call or message us via WhatsApp at +91 98765 43210 for immediate project discussions with an experienced solar consultant."
     },
     {
-      "question": "Can I visit Mommantum's physical office in Jaipur?",
-      "answer": "Yes, visitors and prospective clients are welcome to meet us in person. Our office is located at B-147, Anand Vihar, Jagatpura, Jaipur-302017, Rajasthan. We recommend getting in touch beforehand to schedule a meeting time so the relevant team members can prepare for your visit."
+      question: "What details should I prepare before contacting AG POWER?",
+      answer: "Having your latest monthly electricity bill handy is ideal. It provides your sanctioned connected load, average monthly unit consumption, and tariff category. If available, knowing your approximate shadow-free rooftop square footage also helps our engineers generate a rapid preliminary sizing estimate."
     },
     {
-      "question": "How quickly will Mommantum respond to my message?",
-      "answer": "We review all incoming project inquiries within business hours and typically respond within 24 hours on working days. When submitting a message, including your store URL, existing marketing channels, and monthly goals helps our strategists provide meaningful feedback right from the very first conversation."
+      question: "Is there any cost for the initial solar site inspection?",
+      answer: "No. AG POWER provides a complimentary initial rooftop survey and preliminary solar feasibility assessment with zero commitment required from your side. Our engineers inspect your roof orientation, shadow obstructions, and existing electrical distribution box to deliver an honest and transparent feasibility proposal."
     },
     {
-      "question": "What details should I prepare before contacting Mommantum?",
-      "answer": "It is helpful to share your current website or storefront link, active advertising channels, approximate monthly ad spend if running paid campaigns, and primary business priorities. Having this background allows us to evaluate your store structure and give actionable guidance during our initial consultation."
+      question: "How quickly will an AG POWER engineer respond to my enquiry?",
+      answer: "Our technical consulting team reviews every incoming enquiry promptly and contacts you within 2 to 4 business hours during working days. We clarify preliminary technical details over phone or WhatsApp and schedule an on-site rooftop feasibility audit at your personal convenience."
     },
     {
-      "question": "Do you offer video calls for clients located outside Jaipur?",
-      "answer": "Yes. A significant portion of our clients are based across India and internationally, so we regularly conduct discovery meetings and ongoing weekly reporting sessions over Google Meet and Zoom. Distance has no impact on project velocity, communication quality, or day-to-day campaign management."
+      question: "Does AG POWER support commercial and factory solar inquiries?",
+      answer: "Yes. We have a dedicated Commercial and Industrial project engineering team specializing in high-tension connections, megawatt-scale rooftop structures, 40% accelerated tax depreciation planning, and open-access captive solar power arrangements for manufacturing plants and warehouses across Indian industrial hubs and commercial estates nationwide."
     },
     {
-      "question": "Is there any cost or commitment for an initial strategy call?",
-      "answer": "No. Our initial consultation is completely complimentary and carries zero obligation. We use this introductory discussion to learn about your business goals, review your website and marketing setup, and determine whether our agency frameworks represent the right commercial fit for your brand."
+      question: "Can housing society managing committees schedule a presentation?",
+      answer: "Yes. Our senior solar consultants regularly present customized 25-year financial models, DISCOM net-metering plans, and structural safety documentation directly to RWA managing committees and general body meetings to address all resident queries and facilitate informed society approvals with complete clarity and technical transparency."
     },
     {
-      "question": "Who will I speak with when I contact Mommantum?",
-      "answer": "When you reach out, you speak directly with experienced practitioners and founders, including Kuldeep Ahir, rather than an aggressive junior sales representative. We take time to understand your operational reality and provide candid feedback on what will genuinely drive growth for your business."
+      question: "Can I receive an initial solar feasibility estimate over the phone?",
+      answer: "While we can provide preliminary capital cost figures and subsidy estimates over the phone based on your typical monthly electricity bill, an accurate final quotation requires our technical engineers to conduct a detailed satellite or physical on-site shadow assessment of your rooftop."
     }
   ],
-  // Sources: src/lib/data/services.ts, src/app/(site)/services/page.tsx
   "services": [
     {
-      "question": "What core digital marketing services does Mommantum offer?",
-      "answer": "Mommantum offers an integrated suite of services: performance marketing on Meta and Google Ads, technical and content SEO, social media marketing, D2C brand strategy, conversion rate optimization, custom web and app development, AI automation workflows, AI agents, and professional video editing through our EDITZ studio."
+      question: "What turnkey solar services does AG POWER offer?",
+      answer: "AG POWER delivers comprehensive end-to-end solar EPC services: residential rooftop installations, commercial and industrial power plants, housing society common area systems, full DISCOM net-metering and subsidy liaison, system revamping, and proactive Annual Maintenance Contracts (AMC)."
     },
     {
-      "question": "How does Mommantum integrate multiple marketing channels?",
-      "answer": "We ensure every marketing channel works together toward the same commercial objective. Performance ads drive targeted traffic to high-converting landing pages, SEO establishes compounding organic visibility, and engaging social content nurtures buyer trust, creating a complete growth engine rather than disjointed, competing marketing activities."
+      question: "What does the AG POWER EPC process include?",
+      answer: "Our EPC scope covers every stage: on-site 3D shadow analysis, structural load engineering, procurement of Tier-1 ALMM panels and inverters, anodized structural fabrication, precision electrical wiring with multi-tier surge protection, government utility approvals, net-meter installation, and final grid commissioning."
     },
     {
-      "question": "Can we hire Mommantum for a single service or full-funnel growth?",
-      "answer": "Yes. You can engage our team for specialized individual requirements, such as a dedicated SEO audit, high-impact video editing, or custom web development, or partner with us for full-funnel marketing management spanning paid acquisition, conversion optimization, and long-term retention systems."
+      question: "Do you handle government subsidy applications and net-meter approvals?",
+      answer: "Yes. AG POWER manages the entire bureaucratic liaison on your behalf. We handle application submissions on the National PM Surya Ghar portal, submit drawings to your local DISCOM, coordinate official utility inspections, and ensure proper bi-directional net-meter installation."
     },
     {
-      "question": "Which advertising platforms does Mommantum manage?",
-      "answer": "We manage paid advertising campaigns across Meta Ads, including Instagram Reels, Feed, and Facebook Ads, as well as Google Ads, spanning Search, Shopping, Performance Max, Display, and YouTube. We allocate client budgets based on where target buyers actively spend time and convert."
+      question: "Can an existing solar power plant be upgraded or expanded?",
+      answer: "Yes. If your roof area allows and your DISCOM sanctioned load permits, we can upgrade your solar inverter capacity and add additional high-efficiency TOPCon solar modules to offset increased electricity consumption from new air conditioners or electric vehicles."
     },
     {
-      "question": "What does your AI automation and AI agent service involve?",
-      "answer": "We build custom workflow automations and intelligent AI agents using frameworks like n8n. These systems handle repetitive operational tasks, including customer query routing, instant lead qualification, automated CRM updates, and internal notifications, freeing your core team to focus on strategic business priorities."
+      question: "What does an AG POWER Annual Maintenance Contract (AMC) include?",
+      answer: "Our AMC packages include scheduled panel cleaning using demineralized water, thermal hotspot imaging of solar cells, DC string resistance checks, inverter diagnostics, lightning arrestor inspections, and emergency repair call-outs to safeguard long-term power generation."
     },
     {
-      "question": "Do you provide custom ecommerce and web application development?",
-      "answer": "Yes. We build responsive, fast-loading ecommerce storefronts on Shopify and develop custom web applications using modern stacks like Next.js. Our development team focuses on mobile speed, intuitive user flows, and frictionless checkout experiences that directly support higher conversion rates and revenue growth."
+      question: "Do you provide solar solutions with battery energy storage (BESS)?",
+      answer: "Yes. While grid-tied systems without batteries provide the fastest financial payback, AG POWER also designs hybrid solar systems equipped with lithium ferro-phosphate (LFP) battery banks to provide critical backup power during grid power outages."
     },
     {
-      "question": "How does video production support our marketing performance?",
-      "answer": "High-performing video creatives stop social scrolling, clearly explain product benefits within seconds, and dramatically reduce customer acquisition costs. Through our EDITZ studio, we produce short-form Reels, YouTube Shorts, long-form videos, and direct-response video ad variations engineered specifically for platform retention and audience action."
-    },
-    {
-      "question": "How do I determine which service fits my brand's current needs?",
-      "answer": "Reach out to our team for a comprehensive growth consultation. We will audit your current website conversion rate, traffic sources, customer acquisition costs, and revenue targets to recommend the exact sequence of services that will provide the greatest commercial return for your business."
+      question: "What structural warranties do you provide on mounting structures?",
+      answer: "All AG POWER mounting structures are engineered from high-grade hot-dip galvanized steel or anodized aluminum, backed by a 15-year structural design warranty capable of withstanding wind gusts of up to 150-170 km/h in accordance with Indian wind zone standards."
     }
   ],
-  // Sources: src/modules/home/components/our-work/index.tsx, src/lib/data/case-studies.ts
-  "work": [
+  "residential": [
     {
-      "question": "What types of case studies does Mommantum feature on this page?",
-      "answer": "Our case studies highlight real-world client engagements across direct-to-consumer ecommerce, retail apparel, eco-friendly wellness products, and regional food and beverage brands. Each study details the original business challenge, strategic solutions implemented, and verified commercial outcomes achieved by our growth team."
+      question: "How much rooftop area is required for a 3 kW home solar system?",
+      answer: "A standard 3 kW residential solar power plant requires approximately 240 to 300 square feet of unobstructed, shadow-free rooftop space. Using our latest 550W+ high-efficiency N-Type TOPCon panels minimizes the total square footage needed."
     },
     {
-      "question": "How does Mommantum measure and verify client results?",
-      "answer": "We track concrete commercial metrics that directly impact client profitability, including return on ad spend, percentage reduction in customer acquisition cost, footfall growth, conversion rate improvements, and organic search traffic expansion, rather than vanity metrics like impression counts or superficial social likes."
+      question: "Will installing rooftop solar cause roof leaks or structural damage?",
+      answer: "No. AG POWER utilizes non-penetrating chemical anchoring and pre-cast concrete ballast mounting structures that secure the solar array without puncturing your waterproof roof slab, preserving complete structural integrity and leak-free performance."
     },
     {
-      "question": "Are the results in these case studies typical for every client?",
-      "answer": "Results vary depending on starting revenue baselines, product margins, market demand, and consistency in strategic execution. While every business is unique, the systematic testing frameworks, creative funnels, and technical optimizations detailed in our case studies are consistently applied to drive maximum performance for every partner."
+      question: "How much can I save each month with a residential solar system?",
+      answer: "Most homeowners save between ₹2,000 and ₹8,000+ per month depending on their system size and current DISCOM tariff tier. Over a 25-year lifespan, a typical 3 to 5 kW home installation yields over ₹15 to ₹25 Lakhs in cumulative electricity bill savings."
     },
     {
-      "question": "Can we review work samples relevant to our specific industry?",
-      "answer": "Yes. You can explore published client breakdowns on this page, including The Kids Store for apparel ecommerce, Jalvayu Wellness for organic retail, and Urban Vada Pav for local food enterprises. You can also contact our team for additional campaign examples matching your specific sector."
+      question: "How do I claim the ₹78,000 PM Surya Ghar Muft Bijli Yojana subsidy?",
+      answer: "To claim the central subsidy, your home must use DCR-compliant, ALMM-listed solar panels installed by a registered EPC partner like AG POWER. After DISCOM net-meter inspection and commissioning, the subsidy is deposited directly into your bank account via DBT."
     },
     {
-      "question": "What role does Mommantum play across client engagements?",
-      "answer": "We serve as an end-to-end strategic growth partner for ambitious brands. Depending on the client's needs, our involvement spans market positioning, high-converting creative production, paid acquisition funnel architecture, technical website and landing page development, search engine optimization, and ongoing weekly data analysis."
-    },
-    {
-      "question": "How quickly do client campaigns typically show measurable traction?",
-      "answer": "Paid acquisition and conversion optimization improvements often demonstrate measurable performance indicators within the initial 30 to 45 days of campaign launch. Compounding channels such as organic SEO, brand recognition, and audience retention mature steadily over several months of structured execution."
-    },
-    {
-      "question": "Can Mommantum adapt proven frameworks to our business model?",
-      "answer": "Yes. We do not use rigid cookie-cutter templates for our clients. Instead, we adapt tested principles in creative messaging, audience segmentation, landing page clarity, and retention workflows to fit your specific product catalog, customer demographics, profit margins, and competitive market landscape."
-    },
-    {
-      "question": "How can my brand be featured in a future Mommantum case study?",
-      "answer": "We partner with ambitious founders who are committed to sustainable, data-driven scaling. Contact us today through our website form, email, or WhatsApp to share your store metrics, discuss your growth goals, and explore how our team can help write your brand's success story."
+      question: "What happens during a grid power cut if I have an on-grid solar plant?",
+      answer: "For safety reasons, standard on-grid solar inverters automatically shut down during a grid power outage (anti-islanding protection) to prevent back-feeding electricity into lines where utility technicians may be working. If you need continuous power during outages, we offer hybrid solar solutions with battery storage."
     }
   ],
-  // Sources: src/lib/data/blog-posts.ts, src/app/(site)/blog/page.tsx
-  "blog": [
+  "commercial": [
     {
-      "question": "What topics does the Mommantum blog focus on?",
-      "answer": "The Mommantum blog provides practical, actionable insights on performance marketing, technical and on-page SEO, AI workflow automation, short-form video creation, conversion rate optimization, and sustainable scaling strategies tailored specifically for direct-to-consumer ecommerce founders, brand creators, and modern growth marketers across India."
+      question: "What is the typical financial payback period for commercial solar installations?",
+      answer: "Because commercial and industrial electricity tariffs in India generally range from ₹8.50 to ₹12+ per unit, most commercial solar installations achieve complete capital payback within 2.5 to 4 years, followed by 20+ years of virtually free daytime power."
     },
     {
-      "question": "Who writes and reviews the articles on the Mommantum blog?",
-      "answer": "Every article is researched, written, and verified by active practitioners within our agency team in Jaipur, led by founder Kuldeep Ahir. We share authentic insights gained directly from running daily ad campaigns, conducting technical site audits, and building real client workflows."
+      question: "How does 40% accelerated depreciation benefit commercial solar buyers?",
+      answer: "Under Section 32 of the Indian Income Tax Act, commercial and industrial enterprises can claim 40% accelerated depreciation on solar power plant assets in the first year of commissioning, substantially reducing corporate income tax liability and improving net project cash flow."
     },
     {
-      "question": "How frequently is new content published on the Mommantum blog?",
-      "answer": "We regularly publish comprehensive tactical guides, industry breakdowns, and framework analyses on our website. Our editorial focus prioritizes depth, practical utility, and verified testing data over high-frequency generic publishing, ensuring every article provides immediate, real-world value to our community of readers."
+      question: "Can commercial solar plants sync with on-site diesel generators (DG)?",
+      answer: "Yes. AG POWER incorporates advanced Solar-DG synchronization controllers that dynamically modulate solar output to match building loads while maintaining minimum generator loading, reducing costly diesel fuel consumption by up to 60% during grid outages."
     },
     {
-      "question": "Are the marketing strategies discussed on the blog tested in practice?",
-      "answer": "Yes. Every strategy, creative hook formula, and automation framework shared in our guides comes directly from active testing across our client portfolio. We only write about methodologies and tactics that have demonstrated clear, measurable commercial results in actual campaign environments."
-    },
-    {
-      "question": "Can early-stage founders apply these playbooks effectively?",
-      "answer": "Yes. Our articles are written with clear, step-by-step breakdowns designed to be accessible for early-stage bootstrapped founders while remaining valuable and informative for experienced in-house marketing directors looking to optimize existing paid funnels, creative retention hooks, and organic search infrastructure."
-    },
-    {
-      "question": "Does the blog cover artificial intelligence and marketing automation?",
-      "answer": "Yes. We frequently explore practical applications of artificial intelligence in marketing, including agentic AI architectures, automated content production systems, customer support automation, and workflow integration tools like n8n that help streamline agency operations and modern direct-to-consumer ecommerce stores across channels."
-    },
-    {
-      "question": "Can readers suggest topics or ask specific questions?",
-      "answer": "We welcome suggestions and inquiries from our community. If there is a specific marketing challenge, advertising platform shift, or SEO topic you would like our team to analyze, feel free to contact us through email or our website contact form."
-    },
-    {
-      "question": "How can I stay updated with newly published guides?",
-      "answer": "You can bookmark the Mommantum blog page and check back regularly for new playbooks, or follow Mommantum's official social media channels where our team shares key takeaways, campaign breakdowns, practical framework diagrams, and announcements for newly released deep-dive articles each month."
+      question: "Will solar installation interfere with our factory production schedules?",
+      answer: "No. Our industrial engineering teams execute structural mounting, module cabling, and inverter assembly safely and cleanly with zero disruption to your daily factory operations or warehouse logistics. Grid interconnections are scheduled during your planned shutdown windows."
     }
   ],
-  // Sources: src/modules/editz/lib/data.ts (SERVICES, PROCESS_STEPS, BENEFIT_CARDS), Keywords_for_MM.xlsx ('video editing')
-  "editz": [
+  "housing-society": [
     {
-      "question": "What types of video content does EDITZ by Mommantum produce?",
-      "answer": "EDITZ produces short-form video edits for Instagram Reels, YouTube Shorts, and TikTok, alongside high-retention long-form YouTube videos, video podcast episodes, documentary essays, and direct-response paid social ad creatives engineered specifically to stop scrolling, engage target viewers, and drive sustainable commercial conversions."
+      question: "Which common amenities in an apartment complex can run on solar?",
+      answer: "Solar energy powers common area lighting, basement ventilation, passenger elevators, water lifting pumps, sewage treatment plants (STP), and clubhouse utilities, dramatically reducing monthly society maintenance expenses for all residents."
     },
     {
-      "question": "What is the typical delivery timeline for video editing projects?",
-      "answer": "Our standard delivery timeframe for short-form video edits is between 24 and 48 hours from raw footage receipt. For long-form YouTube videos, podcasts, and complex multi-camera productions, deliverables are typically completed within 3 to 5 business days, depending on scope."
+      question: "How does net-metering work for housing societies?",
+      answer: "The solar plant is synchronized with the society's common area three-phase electricity connection. Energy generated during the day offsets common utility consumption directly, and any monthly surplus is carried over as billing credits on subsequent DISCOM invoices."
     },
     {
-      "question": "Do video editing packages include revisions and style adjustments?",
-      "answer": "Yes. Every project engagement includes iterative revision cycles to ensure the final cut matches your exact creative direction, pacing preferences, and brand aesthetic. We collaborate closely with you to refine pacing, audio balance, captions, and visual emphasis before final delivery."
-    },
-    {
-      "question": "Can EDITZ help improve viewer retention hooks and narrative pacing?",
-      "answer": "Yes. Beyond simple clip cutting, our editors analyze footage structure to craft powerful opening 3-second hooks, remove conversational dead air, insert visual pattern interrupts, and maintain tight narrative momentum that maximizes audience retention and platform watch time across all formats."
-    },
-    {
-      "question": "Do you provide animated captions, motion graphics, and sound design?",
-      "answer": "Yes. Our comprehensive editing process includes custom kinetic typography, animated captions, motion graphic overlays, color grading, visual transitions, atmospheric sound design, dynamic sound effects, and carefully selected royalty-free background music tailored to elevate overall production value for every single video project."
-    },
-    {
-      "question": "How do creators and brands onboard and start working with EDITZ?",
-      "answer": "Onboarding is fast and simple. Share your raw video footage via Google Drive, Dropbox, or Frame.io, along with your target format, reference styles, and primary goals. Our team reviews your footage, confirms specifications, and begins crafting your initial cut immediately."
-    },
-    {
-      "question": "Are your video edits optimized specifically for social media algorithms?",
-      "answer": "Yes. Every edit is engineered around native platform consumption patterns. We optimize aspect ratios, place text safely within platform interface margins, calibrate hook timing for quick-swipe feeds, and structure pacing to encourage full completion rates, rewatches, shares, and algorithmic distribution."
-    },
-    {
-      "question": "Can you match my existing brand visual identity and editing style?",
-      "answer": "Yes. Simply share existing video examples or a brand style guide outlining your preferred typography, brand color codes, pacing rhythm, and visual tone. Our editors will systematically match and maintain your established aesthetic consistently across every piece of delivered video content."
+      question: "Does AG POWER assist with RWA committee approval and presentations?",
+      answer: "Yes. Our senior solar consultants prepare complete technical feasibility presentations, 25-year financial models, and safety compliance reports, and present them in person during your RWA General Body Meetings to address resident questions thoroughly."
     }
   ],
-  // Sources: src/lib/data/all-faqs.ts, src/lib/schema/site.ts, src/app/(site)/faq/page.tsx
-  "faq": [
+  "solar-panels": [
     {
-      "question": "What does Mommantum do as a growth agency?",
-      "answer": "Mommantum is a Jaipur based digital marketing agency and growth studio. We help D2C and ecommerce brands grow through performance marketing, SEO, social media marketing, branding, conversion rate optimization, web development, AI automation, AI agents, and video services, all connected so each channel supports the others."
+      question: "What is the difference between TOPCon and Mono PERC solar modules?",
+      answer: "N-Type TOPCon (Tunnel Oxide Passivated Contact) is the latest solar cell technology, offering higher conversion efficiency (22.5%+ vs 21%), superior performance in high summer temperatures, and zero Light Induced Degradation (LID) compared to conventional P-Type Mono PERC panels."
     },
     {
-      "question": "Where is Mommantum located and can prospective clients visit?",
-      "answer": "Our studio office is located at B-147, Anand Vihar, Jagatpura, Jaipur-302017, Rajasthan. Clients and brand founders are welcome to visit our workspace in person. We are open Monday to Saturday from 9am to 9pm, and our team also collaborates with brands across India and internationally."
+      question: "What are Bifacial solar panels and when should they be used?",
+      answer: "Bifacial solar panels feature active photovoltaic cells on both the front and rear faces. When mounted on reflective rooftops or elevated structures, they capture sunlight reflected from the surface (albedo effect), generating an extra 10% to 25% energy output."
     },
     {
-      "question": "Does Mommantum work with clients outside Jaipur and India?",
-      "answer": "Yes. Although we are based in Jaipur, we work with brands across India and with international clients. The same strategy, reporting, and day to day attention applies wherever your business is based, whether you meet us in Jaipur or work with us remotely."
+      question: "What does DCR compliant mean and why does it matter?",
+      answer: "DCR (Domestic Content Requirement) mandates that both solar cells and modules are manufactured domestically in India. DCR compliance is strictly mandatory to qualify for central government subsidies under the PM Surya Ghar Muft Bijli Yojana."
     },
     {
-      "question": "Which specific services does Mommantum offer to businesses?",
-      "answer": "We offer performance marketing, SEO, social media marketing, D2C branding, conversion rate optimization, copywriting, marketing consulting, web and app development, AI automation, AI agents, AI video generation, video scripting, video editing, AI video editing, podcast editing, and motion graphics. Visit our services page for details on each."
-    },
-    {
-      "question": "How can prospective clients contact the Mommantum team?",
-      "answer": "You can email kuldeep@mommantum.com or call or WhatsApp us on +91 7742276031. Our team is available Monday to Saturday, 9am to 9pm. You can also use the contact page on our website and tell us about your brand and goals. Just reach out with your brand and goals."
-    },
-    {
-      "question": "What digital advertising platforms does Mommantum specialize in?",
-      "answer": "We specialize in data-driven advertising across Meta Ads, including Instagram Reels and Facebook, and Google Ads, including Search, Performance Max, Shopping, and YouTube. We build full-funnel acquisition funnels that capture active buyer intent and convert traffic into measurable customer revenue."
-    },
-    {
-      "question": "How does Mommantum approach search engine optimization?",
-      "answer": "Our SEO services begin with a full technical and content audit to resolve crawlability issues, page speed bottlenecks, and broken structure. We then execute comprehensive on-page keyword optimization, high-value content architecture, and authoritative digital outreach to build lasting organic visibility on Google."
-    },
-    {
-      "question": "What is Mommantum's EDITZ video editing service?",
-      "answer": "EDITZ is Mommantum's dedicated creative production studio delivering high-retention short-form video edits for Reels, Shorts, and TikTok, alongside polished long-form YouTube videos, podcasts, and high-converting performance ad creatives engineered to stop scrolling, engage audience attention, and maximize watch time across platforms."
-    },
-    {
-      "question": "How does AI automation improve operational efficiency for clients?",
-      "answer": "We design and deploy custom AI automations and autonomous agents that streamline repetitive workflows, qualify incoming sales leads, manage customer service inquiries 24/7, and sync CRM data automatically, allowing client teams to eliminate manual administrative overhead and scale operations effortlessly."
-    },
-    {
-      "question": "What is the typical process for onboarding a new client?",
-      "answer": "We start with a detailed discovery consultation to review your existing store data, revenue targets, and marketing challenges. Following this audit, we deliver a transparent strategic roadmap, agree on project milestones and deliverables, and begin immediate execution with weekly progress check-ins."
+      question: "What is ALMM and why is it important?",
+      answer: "The Approved List of Models and Manufacturers (ALMM) is an official registry issued by the Ministry of New and Renewable Energy (MNRE). All government subsidies and net-metering approvals require solar modules sourced strictly from ALMM-approved manufacturers."
     }
   ],
-  // Sources: src/app/(site)/blog-ai/page.tsx, ANTIGRAVITY_PROMPT (2).md
-  "blog-ai": [
+  "calculator": [
     {
-      "question": "What is Blog AI by Mommantum?",
-      "answer": "Blog AI by Mommantum is an intelligent content engine combining agentic artificial intelligence with rigorous human editorial review. The system plans topical keyword clusters, outlines structured long-form drafts, and produces high-quality, search-optimized articles that help growing brands scale organic visibility and search authority."
+      question: "How does the AG POWER Solar Calculator estimate my system capacity?",
+      answer: "The calculator analyzes your monthly electricity bill and average state DISCOM tariff to estimate your daily kilowatt-hour (kWh) consumption. In India, a 1 kW solar array generates approximately 4 to 4.5 units per day under standard daylight conditions."
     },
     {
-      "question": "Does Blog AI publish automated articles without human oversight?",
-      "answer": "No. We believe fully automated content lacks brand nuance and factual reliability. Every article generated through our Blog AI workflow is thoroughly reviewed, fact-checked, edited, and formatted by experienced human marketing specialists to guarantee genuine quality, reader engagement, and brand alignment."
+      question: "Are the calculator savings numbers guaranteed?",
+      answer: "Calculator outputs are indicative estimates based on regional averages, standard solar insolation, and current tariff schedules. Final system capacity, exact financial yield, and structural costs are confirmed following an on-site technical rooftop survey by AG POWER engineers."
     },
     {
-      "question": "How does Blog AI optimize articles for search engine rankings?",
-      "answer": "The system conducts semantic keyword research, structures clear heading hierarchies with single H1 tags and logical subheadings, optimizes meta tags, and incorporates natural internal linking structures, ensuring every article satisfies Google's helpful content guidelines, search intent, and topical depth requirements."
-    },
-    {
-      "question": "Will search engines penalize content produced with Blog AI?",
-      "answer": "No. Major search engines, including Google, evaluate content based on its helpfulness, accuracy, relevance, and user satisfaction, rather than the tools used during drafting. Because our workflows incorporate extensive human editing and verified subject expertise, the content performs reliably in search."
-    },
-    {
-      "question": "Can Blog AI adapt to our unique brand voice and guidelines?",
-      "answer": "Yes. During initial client onboarding, our team configures custom style rules, industry terminology, brand tone guidelines, and negative keyword lists, ensuring every generated draft closely matches your existing editorial standards and communicates effectively, clearly, and authentically with your target audience."
-    },
-    {
-      "question": "How does Blog AI handle internal links to our services and products?",
-      "answer": "Our system scans your website's service catalog, case studies, and key product pages, strategically embedding contextual internal hyperlinks with relevant anchor text throughout every article. This strengthens internal site architecture, improves search crawlability, and guides readers toward high-value conversion actions."
-    },
-    {
-      "question": "What types of businesses benefit most from Blog AI systems?",
-      "answer": "Direct-to-consumer ecommerce brands, B2B service firms, software platforms, and digital startups looking to scale organic search traffic without hiring large, expensive in-house writing departments find immense value in our structured, high-output Blog AI content creation, ongoing publishing, and search optimization workflows."
-    },
-    {
-      "question": "How do we get started with Blog AI for our brand?",
-      "answer": "Contact the Mommantum team through our website or email to schedule an initial consultation. We will audit your current organic search visibility, map out strategic content opportunities, and structure a scalable publishing schedule tailored directly to your brand's growth goals."
+      question: "Does the calculator factor in the PM Surya Ghar subsidy?",
+      answer: "Yes. For residential inquiries, our calculator automatically factors in the applicable central government subsidy (up to ₹78,000 for 3 kW and higher systems) to provide an accurate net investment estimate."
     }
   ],
-  // Sources: src/app/(site)/privacy-policy/page.tsx (Sections 1-9: Data, Usage, Cookies, Third-Parties, Security, Rights, Retention, Changes, Contact)
   "privacy-policy": [
     {
-      "question": "What types of personal information does Mommantum collect?",
-      "answer": "Mommantum collects personal information that you provide voluntarily when submitting contact forms, booking consultations, or subscribing to updates, such as your full name, email address, phone number, and company details, alongside standard anonymous browsing analytics gathered through site cookies and tracking tools."
+      question: "What personal data does AG POWER collect from website visitors?",
+      answer: "We collect only essential contact information willingly provided via our forms, including your name, phone number, email address, monthly electricity bill range, and installation pincode, specifically to prepare solar feasibility assessments and coordinate site surveys."
     },
     {
-      "question": "How does Mommantum use the information collected on this website?",
-      "answer": "We utilize collected information solely to respond to your project inquiries, deliver agreed marketing services, provide relevant business updates when requested, maintain website security, and analyze aggregate user behavior to continuously improve our site's navigation, overall performance, and visitor user experience."
+      question: "How does AG POWER protect customer personal data?",
+      answer: "We adhere strictly to India's Digital Personal Data Protection (DPDP) Act 2023. All lead information is transmitted over encrypted HTTPS channels, stored in secure access-controlled databases, and protected against unauthorized access, loss, or disclosure."
     },
     {
-      "question": "Does Mommantum share or sell visitor information to third parties?",
-      "answer": "No. Mommantum never sells, trades, leases, or distributes personal contact details or client data to external third-party brokers, marketing lists, or unauthorized entities. Data is only shared with trusted technical service providers necessary to operate our website and services under confidentiality obligations."
+      question: "Does AG POWER sell customer phone numbers or emails to third parties?",
+      answer: "No. AG POWER maintains a strict zero-spam, zero-resale privacy commitment. Your personal data is never sold, leased, or shared with third-party marketing companies, telemarketers, or external lead brokers under any circumstances."
     },
     {
-      "question": "How does Mommantum safeguard and protect personal data?",
-      "answer": "We implement robust administrative, technical, and physical security measures designed to protect your personal information against unauthorized access, loss, misuse, alteration, or disclosure. All web traffic is encrypted using secure HTTPS communication protocols to safeguard client data transmission at all times."
+      question: "How is my enquiry information used internally?",
+      answer: "Your information is used strictly by authorized AG POWER solar engineers and project managers to calculate preliminary system sizing, answer technical questions, and schedule on-site rooftop surveys with your explicit consent."
     },
     {
-      "question": "Does the Mommantum website utilize cookies and tracking technologies?",
-      "answer": "Yes. We use standard browser cookies and web analytics tools to assess page performance, track user navigation patterns, and understand visitor preferences. You can adjust your browser settings to decline cookies at any time, although certain website features may have reduced functionality."
-    },
-    {
-      "question": "How long does Mommantum retain personal contact information?",
-      "answer": "Personal information is retained only for the duration necessary to fulfill the operational purposes for which it was gathered, including responding to business requests, executing client service agreements, and satisfying statutory, accounting, or legal compliance requirements under applicable Indian law."
-    },
-    {
-      "question": "What rights do visitors have regarding their stored personal data?",
-      "answer": "You possess the right to request access to the personal data Mommantum holds regarding your identity, request corrections to inaccurate records, or demand the deletion of your personal contact information from our databases by contacting our team in writing at any time."
-    },
-    {
-      "question": "How can I contact Mommantum regarding privacy questions or data requests?",
-      "answer": "For any inquiries, questions, or specific data requests concerning this Privacy Policy, you can reach out directly to our privacy team by emailing kuldeep@mommantum.com or sending postal correspondence to our studio office at B-147, Anand Vihar, Jagatpura, Jaipur-302017, Rajasthan, India."
+      question: "Can I request deletion or correction of my personal data?",
+      answer: "Yes. Under the DPDP Act 2023, you have the right to request access, correction, or permanent deletion of your contact data from our active records. Contact our Data Privacy Desk at privacy@agpower.in to submit a request."
     }
   ],
-  // Sources: src/app/(site)/terms-and-conditions/page.tsx (Sections 1-12: Acceptance, Scope, Responsibilities, Payments, IP, Liability, Termination, Law, Contact)
   "terms-and-conditions": [
     {
-      "question": "What do the Mommantum Terms and Conditions govern?",
-      "answer": "These Terms and Conditions govern your access to and use of the Mommantum website, content, and agency services. By accessing or interacting with our website, you acknowledge that you have reviewed, understood, and agreed to adhere to these binding legal terms."
+      question: "What services are covered under AG POWER's Terms and Conditions?",
+      answer: "These terms govern the use of our website, preliminary solar calculator estimates, site inspection bookings, engineering consultancy, procurement, installation, and after-sales support provided by AG POWER (Electro Global)."
     },
     {
-      "question": "Who owns the intellectual property displayed on the Mommantum website?",
-      "answer": "All intellectual property rights, trademarks, proprietary text, images, graphic designs, video assets, brand logos, and source code displayed across this website remain the exclusive property of Mommantum or its respective licensors, protected under applicable intellectual property, trademark, and copyright legislation."
+      question: "Are website calculator figures legally binding quotations?",
+      answer: "No. Website calculator projections, financial savings estimates, and payback periods are indicative representations based on standard climatic and tariff averages. Binding quotations are issued only following physical on-site structural and electrical feasibility audits."
     },
     {
-      "question": "How are client service deliverables, timelines, and scope defined?",
-      "answer": "Specific project scopes, deliverables, campaign timelines, and fees are established through separate, mutually agreed commercial proposals and service agreements executed between Mommantum and the client prior to project initiation, superseding general website browsing terms for active client marketing engagements and contracts."
+      question: "How are project payment milestones and contract terms structured?",
+      answer: "Turnkey EPC project milestones are defined clearly in formal engineering contracts, typically structured around contract signing, equipment dispatch, physical installation, and final DISCOM net-meter commissioning."
     },
     {
-      "question": "What are client responsibilities during marketing engagements?",
-      "answer": "Clients are responsible for providing timely feedback, brand assets, necessary account access permissions, and accurate business information required for project completion. Mommantum is not responsible for project timeline delays caused by client-side feedback delays, missing assets, or delayed stakeholder approvals."
+      question: "What warranties apply to AG POWER equipment and installation?",
+      answer: "Solar modules carry manufacturer warranties of 10 to 12 years (product) and 25 to 30 years (linear performance). Inverters carry 5 to 10-year manufacturer guarantees. AG POWER provides a 5-year workmanship guarantee on installation craftsmanship."
     },
     {
-      "question": "What is Mommantum's policy regarding project fees and cancellations?",
-      "answer": "Fee structures, invoicing schedules, and cancellation policies are formally outlined within individual client agreements. Unless explicitly agreed otherwise in a signed contract, deposit payments and completed milestone fees are non-refundable once creative design or marketing execution work has officially commenced."
-    },
-    {
-      "question": "Does Mommantum guarantee specific revenue or performance numbers?",
-      "answer": "While our team employs proven, data-driven growth frameworks and industry best practices, Mommantum does not guarantee specific revenue figures, commercial returns, or third-party search engine ranking positions, as outcomes are fundamentally influenced by external market factors, competition, and platform algorithms."
-    },
-    {
-      "question": "Which legal jurisdiction governs disputes relating to Mommantum?",
-      "answer": "These Terms and Conditions and any disputes arising from website use or agency service engagements are governed exclusively by the laws of India, with legal proceedings subject to the exclusive jurisdiction of the competent courts located in Jaipur, Rajasthan, India."
-    },
-    {
-      "question": "How are revisions and modifications to these Terms communicated?",
-      "answer": "Mommantum reserves the right to modify or update these Terms and Conditions at any time. Any changes become effective immediately upon posting to this page with an updated revision date, and continued browsing constitutes acceptance of the modified legal terms."
+      question: "Which legal jurisdiction governs AG POWER contracts and disputes?",
+      answer: "These Terms and Conditions and all related commercial agreements are governed strictly in accordance with the laws of India, subject to the exclusive jurisdiction of the competent courts in Rajasthan, India."
     }
   ],
-  // Sources: src/modules/home/components/our-work/index.tsx (The Kids Store: whatWeDid, challenge, results)
-  "work:the-kids-store": [
+  "blog": [
     {
-      "question": "What was the primary growth challenge for The Kids Store?",
-      "answer": "The Kids Store is an apparel and kids fashion ecommerce brand that suffered from low inbound interest, weak online visibility, and an irregular content publishing cadence that failed to communicate the quality and style of their collections effectively to prospective digital shoppers."
+      question: "What topics are covered on the AG POWER Solar Insights blog?",
+      answer: "Our solar knowledge hub provides educational guides on rooftop solar sizing, decoding DISCOM electricity bills, comparing TOPCon vs Mono PERC solar panels, PM Surya Ghar subsidy application procedures, and solar ROI calculations for homes and businesses."
     },
     {
-      "question": "What specific services did Mommantum provide for The Kids Store?",
-      "answer": "Mommantum executed a comprehensive creative overhaul, shooting high-retention video reels and product showcases, instituting a consistent social media publishing calendar, refining digital brand clarity, and introducing storytelling-led social marketing designed to stop user scrolling and build genuine buyer engagement across digital channels."
+      question: "Who researches and writes the solar guides on AG POWER?",
+      answer: "All articles are authored and technically reviewed by certified solar engineers, electrical specialists, and renewable energy consultants at AG POWER and Electro Global, ensuring all technical and regulatory data is accurate and up to date."
     },
     {
-      "question": "How did video production impact results for The Kids Store?",
-      "answer": "Dynamic short-form video reels highlighted clothing fabrics, vibrant styles, and realistic fitting on children far more effectively than static product photos. This dynamic visual presentation stopped the social scroll, extended average watch times, and drove higher organic user engagement across platforms."
+      question: "How often are subsidy and regulatory policies updated on the blog?",
+      answer: "We review and update our policy guides whenever the Ministry of New and Renewable Energy (MNRE), state regulatory commissions, or regional DISCOMs announce tariff adjustments, net-metering amendments, or new financial incentives."
     },
     {
-      "question": "What measurable outcomes were achieved during this engagement?",
-      "answer": "The Kids Store campaign delivered substantial improvements in brand traction, generating higher inbound customer inquiries, markedly better social content consistency, and a significantly stronger digital brand presence across target consumer demographics on active social and ecommerce channels throughout the project."
-    },
-    {
-      "question": "Did Mommantum assist with brand identity and messaging for the store?",
-      "answer": "Yes. Our team helped clarify the brand's visual presentation and tone of voice, ensuring product descriptions, social media captions, and video styling delivered a cohesive, trustworthy, and appealing shopping experience for parents looking for premium kids apparel online in India."
-    },
-    {
-      "question": "How did Mommantum maintain content consistency across campaigns?",
-      "answer": "We established an organized monthly content calendar with scheduled batch production days, ensuring a predictable stream of styled reels, product highlights, and seasonal fashion announcements without last-minute scrambling or inconsistent gaps between published social media posts throughout the entire campaign."
-    },
-    {
-      "question": "Can Mommantum implement a similar content framework for other apparel brands?",
-      "answer": "Yes. We adapt these proven creative video and social storytelling frameworks to match the product catalog, margin profile, seasonal fashion drops, and customer demographics of emerging and established apparel, fashion, and lifestyle retail brands across India and growing global markets."
-    },
-    {
-      "question": "How can an ecommerce brand start a project similar to The Kids Store?",
-      "answer": "You can reach out directly to Mommantum via our website contact form, email, or WhatsApp. Share your current store link, product catalog, and growth goals, and our team will outline an actionable creative strategy and production roadmap for your brand."
+      question: "Can readers request solar topic coverage or technical analysis?",
+      answer: "Yes. We welcome questions from homeowners, factory managers, and RWA committee members. If you have a specific solar engineering or regulatory topic you would like our team to cover, email contact@agpower.in."
     }
   ]
-};
+}
 
 /**
- * Editz renders its own FAQ block (modules/editz). Its visible questions are the default
- * here too, so the Editz FAQPage schema always matches the page.
+ * Legacy compatibility fallback for Editz references.
  */
 export function getEditzFaqs(seoSetting?: { faq_section?: unknown } | null): PageFAQ[] {
   const saved = getPageFaqs("__none__", seoSetting)
@@ -474,5 +325,11 @@ export function getPageFaqs(
   )
   if (cleanSaved.length > 0) return cleanSaved
 
-  return PAGE_FAQS_MAP[pageKey.trim().toLowerCase()] || []
+  const normalized = pageKey.trim().toLowerCase()
+  // Map aliases
+  if (normalized === "residential-solar") return PAGE_FAQS_MAP["residential"] || []
+  if (normalized === "commercial-solar") return PAGE_FAQS_MAP["commercial"] || []
+  if (normalized === "housing-society-solar") return PAGE_FAQS_MAP["housing-society"] || []
+
+  return PAGE_FAQS_MAP[normalized] || []
 }

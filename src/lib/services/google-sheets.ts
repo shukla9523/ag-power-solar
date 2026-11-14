@@ -1,11 +1,20 @@
 /**
- * Purpose: copy a lead into the team's Google Sheet.
+ * Purpose: copy an AG POWER solar lead into the team's Google Sheet.
  *
- * Priority 1: Webhook via Google Apps Script (GOOGLE_SHEET_WEBHOOK_URL) — zero-setup webhook,
- * appends rows in real-time with IST timestamp and formula safety.
- * Priority 2: Sheets API with a service account (GOOGLE_SHEETS_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL,
- * GOOGLE_PRIVATE_KEY).
- * Priority 3: Fallback Google Form server-side submission.
+ * Implements brief Part 12.2 with 13-column lead structure:
+ * 1. Enquiry ID
+ * 2. Date and time (IST)
+ * 3. Name
+ * 4. Phone
+ * 5. Email
+ * 6. Category (Residential / Commercial / Society)
+ * 7. Service (Selected service or panel)
+ * 8. City (Location)
+ * 9. Monthly bill
+ * 10. Source page
+ * 11. Enquiry type (Contact / Calculator / Catalogue / Customer Service)
+ * 12. Message
+ * 13. Status (New / Contacted / Qualified / Closed)
  */
 
 import "server-only"
@@ -17,12 +26,19 @@ export interface SheetLead {
   id: string
   createdAt: string
   name: string
-  email: string
   phone?: string | null
-  subject: string
-  message: string
-  source: string
+  email: string
+  category?: string | null
+  service?: string | null
+  city?: string | null
+  monthlyBill?: string | null
   sourcePage?: string | null
+  enquiryType?: string | null
+  message: string
+  status?: string | null
+  // Backward compatibility fields
+  subject?: string | null
+  source?: string | null
 }
 
 export type SheetResult = { ok: true; via: "webhook" | "sheets-api" | "google-form" } | { ok: false; error: string }
@@ -47,15 +63,19 @@ async function appendViaWebhook(lead: SheetLead): Promise<SheetResult> {
 
   const istTimestamp = formatIST(lead.createdAt ? new Date(lead.createdAt) : new Date())
   const payload = {
+    enquiryId: lead.id,
     timestamp: istTimestamp,
     name: neutralizeFormula(lead.name),
-    email: neutralizeFormula(lead.email),
-    subject: neutralizeFormula(lead.subject),
-    message: neutralizeFormula(lead.message),
     phone: lead.phone ? neutralizeFormula(lead.phone) : "",
-    source: lead.source || "contact",
-    sourcePage: lead.sourcePage || "",
-    id: lead.id,
+    email: neutralizeFormula(lead.email),
+    category: neutralizeFormula(lead.category || "General"),
+    service: neutralizeFormula(lead.service || lead.subject || "Solar Installation"),
+    city: neutralizeFormula(lead.city || ""),
+    monthlyBill: neutralizeFormula(lead.monthlyBill || ""),
+    sourcePage: lead.sourcePage || lead.source || "",
+    enquiryType: neutralizeFormula(lead.enquiryType || "Contact"),
+    message: neutralizeFormula(lead.message),
+    status: lead.status || "New",
   }
 
   const res = await fetch(webhookUrl, {
@@ -81,15 +101,28 @@ async function appendViaApi(lead: SheetLead): Promise<SheetResult> {
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   })
   const sheets = google.sheets({ version: "v4", auth })
+  const istTimestamp = formatIST(lead.createdAt ? new Date(lead.createdAt) : new Date())
+
   await sheets.spreadsheets.values.append({
     spreadsheetId: process.env.GOOGLE_SHEETS_ID,
-    range: process.env.GOOGLE_SHEETS_RANGE || "Leads!A:I",
+    range: process.env.GOOGLE_SHEETS_RANGE || "Leads!A:M",
     valueInputOption: "RAW",
     insertDataOption: "INSERT_ROWS",
     requestBody: {
       values: [[
-        lead.createdAt, lead.name, lead.email, lead.phone || "", lead.subject,
-        lead.message, lead.source, lead.sourcePage || "", lead.id,
+        lead.id,
+        istTimestamp,
+        lead.name,
+        lead.phone || "",
+        lead.email,
+        lead.category || "General",
+        lead.service || lead.subject || "Solar Installation",
+        lead.city || "",
+        lead.monthlyBill || "",
+        lead.sourcePage || lead.source || "",
+        lead.enquiryType || "Contact",
+        lead.message,
+        lead.status || "New",
       ].map(neutralizeFormula)],
     },
   })
@@ -100,7 +133,7 @@ async function submitGoogleForm(lead: SheetLead): Promise<SheetResult> {
   const body = new URLSearchParams({
     [GOOGLE_FORM.fields.name]: lead.name,
     [GOOGLE_FORM.fields.email]: lead.email,
-    [GOOGLE_FORM.fields.subject]: lead.source === "contact" ? lead.subject : `[${lead.source}] ${lead.subject}`,
+    [GOOGLE_FORM.fields.subject]: lead.subject || lead.service || "AG POWER Solar Enquiry",
     [GOOGLE_FORM.fields.message]: lead.phone ? `${lead.message}\n\nPhone: ${lead.phone}` : lead.message,
   })
   const res = await fetch(`https://docs.google.com/forms/d/e/${GOOGLE_FORM.id}/formResponse`, {
@@ -147,7 +180,6 @@ export interface GoogleSheetTableData {
 
 /**
  * Fetches all headers and rows directly from the configured Google Sheet in real-time.
- * Strictly dynamic: returns exact columns and rows from the sheet with no hardcoding.
  */
 export async function readSheetData(): Promise<GoogleSheetTableData> {
   const spreadsheetId = process.env.GOOGLE_SHEETS_ID
@@ -172,7 +204,7 @@ export async function readSheetData(): Promise<GoogleSheetTableData> {
   })
   const sheets = google.sheets({ version: "v4", auth })
 
-  let title = "Mommantum Leads"
+  let title = "AG POWER Leads"
   let sheetTab = "Leads"
 
   try {
@@ -202,20 +234,18 @@ export async function readSheetData(): Promise<GoogleSheetTableData> {
     }
   }
 
-  // Row 1 contains the headers exactly as configured in the user's sheet
-  const headers = (rawValues[0] || []).map((h) => String(h).trim()).filter(Boolean)
+  const headers = (rawValues[0] || []).map((h: unknown) => String(h).trim()).filter(Boolean)
   const rawRows = rawValues.slice(1)
 
   const rows: GoogleSheetRow[] = []
-  rawRows.forEach((rowArr, index) => {
-    if (!Array.isArray(rowArr) || !rowArr.some((c) => String(c).trim().length > 0)) {
+  rawRows.forEach((rowArr: unknown[], index: number) => {
+    if (!Array.isArray(rowArr) || !rowArr.some((c: unknown) => String(c).trim().length > 0)) {
       return
     }
     const record: Record<string, string> = {}
     const values: string[] = []
-    headers.forEach((header, colIndex) => {
+    headers.forEach((header: string, colIndex: number) => {
       let cell = rowArr[colIndex] !== undefined && rowArr[colIndex] !== null ? String(rowArr[colIndex]).trim() : ""
-      // Clean leading single quote from formula neutralization so it displays cleanly in the UI
       if (cell.startsWith("'")) {
         cell = cell.slice(1)
       }
@@ -241,4 +271,3 @@ export async function readSheetData(): Promise<GoogleSheetTableData> {
     lastUpdated: new Date().toISOString(),
   }
 }
-

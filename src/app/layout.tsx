@@ -12,10 +12,10 @@ import { buildThemeCss } from "@lib/theme/theme-tokens"
  */
 export const metadata: Metadata = {
   metadataBase: new URL(DEFAULT_BASE_URL),
-  title: "Mommantum | Digital Marketing Agency in Jaipur, India",
+  title: "AG POWER | Clean Energy. Smarter Living.",
   description:
-    "Mommantum is a Jaipur-based digital marketing agency helping D2C and B2B brands grow with strategy, creative systems, SEO, and performance marketing.",
-  applicationName: "Mommantum",
+    "Power your home and business with smarter solar energy. Make the switch to cleaner energy, reduce electricity expenses and take control of your energy future with AG POWER.",
+  applicationName: "AG POWER",
   formatDetection: { telephone: false },
   ...(process.env.GOOGLE_SITE_VERIFICATION
     ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }

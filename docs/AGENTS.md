@@ -1,0 +1,1 @@
+Before any change, read docs/rules.md, docs/architecture.md, docs/design.md, docs/performance.md (and docs/ai-setup-guide.md for AI features). Check docs/memory.md. Work only from an approved plan in docs/task.md. Keep changes minimal.

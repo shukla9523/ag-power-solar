@@ -10,7 +10,7 @@ import { resolveCollectionData } from "../resolvers/collection"
 import { resolveServiceData } from "../resolvers/service"
 import { resolveCaseStudyData } from "../resolvers/case-study"
 
-const BASE = "https://www.mommantum.com"
+const BASE = "https://www.agpower.in"
 
 const crumbs = (graph: any) =>
   graph["@graph"].find((n: any) => n.breadcrumb).breadcrumb.itemListElement.map((i: any) => ({

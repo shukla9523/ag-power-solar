@@ -41,8 +41,8 @@ export default async function ServicesPage() {
       {faqs && faqs.length > 0 && (
         <PageFaqSection
           faqs={faqs}
-          title="Mommantum Services FAQs"
-          subtitle="Everything you need to know about our service models, technology stacks, execution, and deliverables."
+          title="Solar EPC Services FAQs"
+          subtitle="Everything you need to know about our turnkey rooftop solar installations, DISCOM net-metering liaison, and AMC maintenance."
         />
       )}
     </>

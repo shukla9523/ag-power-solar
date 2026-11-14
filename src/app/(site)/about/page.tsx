@@ -28,8 +28,8 @@ export default async function AboutPage() {
         {faqs && faqs.length > 0 && (
           <PageFaqSection
             faqs={faqs}
-            title="About Mommantum FAQs"
-            subtitle="Everything you need to know about our growth agency, process, and partnership model."
+            title="About AG POWER FAQs"
+            subtitle="Verified answers about our solar EPC engineering, Tier-1 standards, and Electro Global leadership."
           />
         )}
       </AboutClient>

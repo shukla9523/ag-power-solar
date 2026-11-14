@@ -67,32 +67,29 @@ export interface OrganizationProfile {
 }
 
 export const DEFAULT_ORGANIZATION_PROFILE: OrganizationProfile = {
-  legalName: "Mommantum",
-  name: "Mommantum",
-  alternateName: "Mommantum",
-  url: "https://www.mommantum.com/",
+  legalName: "AG POWER (Electro Global)",
+  name: "AG POWER",
+  alternateName: "AG POWER Solar",
+  url: "https://www.agpower.in/",
   logo: {
-    url: "https://www.mommantum.com/logo.png",
+    url: "https://www.agpower.in/logo.png",
     width: 500,
     height: 500,
   },
-  foundingDate: "2025-12-15",
+  foundingDate: "2024-01-01",
   founder: {
-    name: "Kuldeep Ahir",
-    image: "https://www.mommantum.com/team/kuldeep.webp",
-    // Matches the visible About page caption and teamMember.role in case-studies.ts.
-    jobTitle: "Founder & Creative Director",
+    name: "Electro Global Leadership",
+    image: "https://www.agpower.in/team/leadership.webp",
+    jobTitle: "Founder & Solar Energy Lead",
   },
   numberOfEmployees: {
-    value: 15,
+    value: 30,
   },
   taxID: "08CTJPA2104B1ZI",
-  // Matches the address shown on /contact and in the EDITZ footer.
-  email: "kuldeep@mommantum.com",
-  // Primary line = the "General Inquiries" phone shown on /contact.
-  telephone: "+919588973492",
+  email: "contact@agpower.in",
+  telephone: "+919876543210",
   whatsapp: {
-    telephone: "+917742276031",
+    telephone: "+919876543210",
     contactType: "customer support",
     availableLanguage: ["English", "Hindi"],
   },

@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
     // Dynamic search across all columns in the sheet
     if (q) {
       rows = rows.filter((row) =>
-        row.values.some((cell) => cell.toLowerCase().includes(q))
+        row.values.some((cell: string) => cell.toLowerCase().includes(q))
       )
     }
 

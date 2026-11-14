@@ -10,19 +10,43 @@
  * carries the size-adjusted fallback. The quoted family names remain as a last resort.
  */
 :root {
-  --font-display: var(--font-epilogue-latin-ext, "Epilogue"), var(--font-epilogue-latin, "Epilogue"), sans-serif;
-  --font-ui: var(--font-outfit-latin-ext, "Outfit"), var(--font-outfit-latin, "Outfit"), sans-serif;
-  --font-body: var(--font-dm-sans-latin-ext, "DM Sans"), var(--font-dm-sans-latin, "DM Sans"), sans-serif;
-  --font-hand: var(--font-mansalva-latin-ext, "Mansalva"), var(--font-mansalva-latin, "Mansalva"), cursive;
+  --font-display: var(--font-manrope-latin-ext, "Manrope"), var(--font-manrope-latin, "Manrope"), sans-serif;
+  --font-ui: var(--font-inter-latin-ext, "Inter"), var(--font-inter-latin, "Inter"), sans-serif;
+  --font-body: var(--font-inter-latin-ext, "Inter"), var(--font-inter-latin, "Inter"), sans-serif;
+  --font-manrope: var(--font-manrope-latin-ext, "Manrope"), var(--font-manrope-latin, "Manrope"), sans-serif;
+  --font-inter: var(--font-inter-latin-ext, "Inter"), var(--font-inter-latin, "Inter"), sans-serif;
 }
 
-.font-epilogue { font-family: var(--font-display); }
-.font-outfit { font-family: var(--font-ui); }
-.font-mansalva { font-family: var(--font-hand); }
-.font-cormorant { font-family: var(--font-serif); }
-.font-dmsans { font-family: var(--font-body); }
+.font-manrope {
+  font-family: var(--font-manrope);
+}
+
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+.font-epilogue {
+  font-family: var(--font-manrope);
+}
+
+.font-outfit {
+  font-family: var(--font-inter);
+}
+
+.font-mansalva {
+  font-family: var(--font-manrope);
+}
+
+.font-cormorant {
+  font-family: var(--font-manrope);
+}
+
+.font-dmsans {
+  font-family: var(--font-inter);
+}
 
 @layer utilities {
+
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -33,16 +57,18 @@
   }
 
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 
-  input:focus ~ label,
-  input:not(:placeholder-shown) ~ label {
+  input:focus~label,
+  input:not(:placeholder-shown)~label {
     @apply -translate-y-2 text-xsmall-regular;
   }
 
-  input:focus ~ label {
+  input:focus~label {
     @apply left-0;
   }
 
@@ -72,6 +98,18 @@
 html,
 body {
   overflow-x: clip;
+  background-color: rgb(var(--color-ivory));
+  color: rgb(var(--color-charcoal));
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-manrope), sans-serif;
 }
 
 .blog-content .blog-toc {
