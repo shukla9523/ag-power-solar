@@ -16,6 +16,9 @@
 | **Phase 5** | **Interactive Solar Features** | Full Solar Calculator wizard (`/calculator`), Solar Panel Discovery Catalogue (`/solar-panels`, strictly no ecommerce), Google Sheets 13-field sync, Telegram Bot alerts. | **DONE** (`src/lib/services/solar-calculator.ts`, `telegram.ts`, `google-sheets.ts`) |
 | **Phase 6** | **Blog & Dynamic SEO** | Solar categories, dynamic JSON-LD `@graph` schemas, sitemap, meta descriptions. | **DONE** (`src/app/(site)/blog`, `src/lib/schema`) |
 | **Phase 7** | **Quality Assurance & Verification** | Typecheck (0 errors), Lint (0 warnings), Next.js 15 production build (173/173 pages generated), Bundle budget (<200KB per page). | **VERIFIED PASSING** |
+| **Phase 8** | **Production Cloud Deployment** | Vercel production deployment and live alias routing. | **DONE** (`https://ag-power-solar.vercel.app`) |
+| **Phase 9** | **Live Integrations & Remote Sync** | 13-column Google Sheet Webhook + Telegram bot alerts live connected; GitHub repository synced. | **DONE** (`shukla9523/ag-power-solar`) |
+| **Phase 10** | **Definition of Done & Stakeholder Handover** | Formal audit against Part 21 criteria; final client handoff. | **APPROVED & VERIFIED** |
 
 ---
 
@@ -47,11 +50,10 @@
 - **AGP-001 · Phase 1: Momentum Audit** · Delivered `momentum-audit-report.md`.
 - **AGP-002 · Phase 2 & 3: Brand, Design Tokens & Homepage** · Delivered tokens, typography, header, footer, 12 homepage blocks.
 - **AGP-003 · Phase 4 & 5: Service Pages & Interactive Solar Modules** · Delivered residential, commercial, society solar landing pages, full solar calculator, solar panel discovery catalogue (NO ecommerce), Google Sheets 13-field pipeline, and Telegram bot notification service.
-- **AGP-004 · Phase 6 & 7: Polish, Verification, Cleanup & Test Suite Pass** · 
-  - [x] Full test suite pass (`npx vitest run --no-file-parallelism` - 18/18 test suites, 247 tests pass).
-  - [x] Zero ESLint errors or warnings (`npm run lint`).
-  - [x] Zero TypeScript compilation errors (`tsc --noEmit`).
-  - [x] Production build pass (`next build` - 173/173 static pages generated, First Load JS 102 kB).
-  - [x] Live lead submission verified (`POST /api/contact` -> 200 OK with lead ID generation).
-  - [x] Directory cleaned: single `docs/` folder, all temporary and duplicate archives purged.
-  - [x] All 14 website pages active and verified.
+- **AGP-004 · Phase 6 & 7: Polish, Verification, Cleanup & Test Suite Pass** · Full test pass (18/18 suites, 247 tests), 0 lint/TS errors, 173 static pages compiled.
+- **AGP-005 · Phase 8, 9 & 10: Production Deployment, Live Integrations & Final Handover** ·
+  - [x] Vercel production deployment live at `https://ag-power-solar.vercel.app` (200 OK across all routes).
+  - [x] 13-column Google Sheet Webhook connected and live-tested.
+  - [x] Telegram bot notification (`@agpower_solar_leads_bot`) connected and live-tested.
+  - [x] Git repository synced to `https://github.com/shukla9523/ag-power-solar` (working tree clean).
+  - [x] Definition of Done (Part 21) 100% satisfied.
