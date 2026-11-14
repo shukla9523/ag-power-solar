@@ -1,20 +1,27 @@
-# 📊 Mommantum Google Sheet & Contact Automation Setup Guide
+# 📊 AG POWER Solar — Google Sheet & Lead Automation Setup Guide
 
-This guide walks you through connecting your Google Sheet to the Mommantum contact page (`mommantum.com/contact`) in **under 2 minutes**.
+Connect your Google Sheet to the live AG POWER Solar website (`https://ag-power-solar.vercel.app`) in **under 2 minutes** to automatically capture every customer enquiry in real-time.
 
 ---
 
 ## Step 1: Create Your Google Sheet
 
-1. Open [Google Sheets](https://sheets.google.com) and create a new sheet (e.g., named **"Mommantum Contact Leads"**).
-2. In **Row 1**, enter these column headers:
-   * **A1:** `Timestamp (IST)`
-   * **B1:** `Name`
-   * **C1:** `Email`
-   * **D1:** `Subject`
-   * **E1:** `Message`
-
-*(Optional extra columns if needed: F1: `Phone`, G1: `Source`)*
+1. Open [Google Sheets](https://sheets.google.com) and create a new sheet (e.g., named **"AG POWER Solar Leads"**).
+2. Rename the active tab at the bottom to **`Leads`**.
+3. In **Row 1**, enter the official 13 column headers:
+   * **A1:** `Enquiry ID`
+   * **B1:** `Timestamp (IST)`
+   * **C1:** `Name`
+   * **D1:** `Phone`
+   * **E1:** `Email`
+   * **F1:** `Category` *(Residential / Commercial / Society)*
+   * **G1:** `Service / Panel`
+   * **H1:** `City`
+   * **I1:** `Monthly Bill`
+   * **J1:** `Source Page`
+   * **K1:** `Enquiry Type` *(Contact / Calculator / Consultation)*
+   * **L1:** `Message`
+   * **M1:** `Status` *(New / Contacted / Qualified / Closed)*
 
 ---
 
@@ -25,21 +32,23 @@ This guide walks you through connecting your Google Sheet to the Mommantum conta
 
 ```javascript
 /**
- * Mommantum Contact Form Webhook (Google Apps Script)
- * Automatically appends contact form submissions into this Google Sheet.
+ * AG POWER Solar Lead Capture Webhook (Google Apps Script)
+ * Automatically appends solar enquiries into this Google Sheet.
  *
- * Column Headers (Row 1):
- * A1: Timestamp (IST) | B1: Name | C1: Email | D1: Subject | E1: Message
+ * 13 Column Headers (Row 1):
+ * A: Enquiry ID | B: Timestamp (IST) | C: Name | D: Phone | E: Email |
+ * F: Category | G: Service | H: City | I: Monthly Bill | J: Source Page |
+ * K: Enquiry Type | L: Message | M: Status
  */
 function doPost(e) {
   try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Leads") || SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     var data = {};
     if (e && e.postData && e.postData.contents) {
       data = JSON.parse(e.postData.contents);
     }
 
-    // Sanitize string to prevent Google Sheets formula injection (#ERROR!, =SUM, +cmd, etc.)
+    // Sanitize string to prevent formula injection
     function sanitize(val) {
       if (val === null || val === undefined) return '';
       var s = String(val).trim();
@@ -50,22 +59,25 @@ function doPost(e) {
     }
 
     var timestamp = data.timestamp || Utilities.formatDate(new Date(), "Asia/Kolkata", "dd MMM yyyy, hh:mm:ss a 'IST'");
-    var name = sanitize(data.name);
-    var email = sanitize(data.email);
-    var subject = sanitize(data.subject);
-    var message = sanitize(data.message);
 
-    // Append new row
     sheet.appendRow([
+      sanitize(data.enquiryId || 'lead_' + new Date().getTime()),
       timestamp,
-      name,
-      email,
-      subject,
-      message
+      sanitize(data.name),
+      sanitize(data.phone),
+      sanitize(data.email),
+      sanitize(data.category || 'General'),
+      sanitize(data.service || 'Solar Installation'),
+      sanitize(data.city),
+      sanitize(data.monthlyBill),
+      sanitize(data.sourcePage || '/'),
+      sanitize(data.enquiryType || 'Contact'),
+      sanitize(data.message),
+      sanitize(data.status || 'New')
     ]);
 
     return ContentService
-      .createTextOutput(JSON.stringify({ status: "success", message: "Lead recorded successfully" }))
+      .createTextOutput(JSON.stringify({ status: "success", message: "AG POWER lead recorded successfully" }))
       .setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
     return ContentService
@@ -75,57 +87,42 @@ function doPost(e) {
 }
 ```
 
-3. Click the **Save** (💾) icon or press `Ctrl + S`.
+3. Click **Save** (`Ctrl + S`).
 
 ---
 
-## Step 3: Deploy as a Web App
+## Step 3: Deploy as Web App
 
-1. In the top-right corner of Apps Script, click **Deploy** → **New deployment**.
-2. Click the gear icon (⚙️) next to "Select type" and choose **Web app**.
-3. Configure the settings:
-   * **Description:** `Mommantum Contact Webhook`
-   * **Execute as:** `Me (your Google account email)`
-   * **Who has access:** `Anyone` *(Crucial: must be "Anyone" so the website can post new inquiries)*
+1. Click **Deploy** → **New deployment**.
+2. Select type: **Web app**.
+3. Configuration:
+   * **Description:** `AG POWER Solar Lead Capture`
+   * **Execute as:** `Me` (your Google account)
+   * **Who has access:** `Anyone` *(Crucial: allows website serverless backend to post leads)*
 4. Click **Deploy**.
-5. If Google prompts for permissions:
-   * Click **Authorize access**
-   * Select your Google account
-   * Click **Advanced** (bottom left) → **Go to Untitled project (unsafe)** → **Allow**
-6. Copy the generated **Web App URL** (looks like `https://script.google.com/macros/s/AKfycb.../exec`).
+5. Grant access when prompted (click *Advanced* → *Go to Untitled project (unsafe)* → *Allow*).
+6. Copy the generated **Web App URL** (e.g. `https://script.google.com/macros/s/AKfycb.../exec`).
 
 ---
 
-## Step 4: Share the Web App URL
+## Step 4: Add to Vercel Environment Variables
 
-Send the copied Web App URL to complete the setup. It will be added as:
-
-```env
-GOOGLE_SHEET_WEBHOOK_URL="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"
+In your Vercel Dashboard or via CLI:
+```bash
+vercel env add GOOGLE_SHEET_WEBHOOK_URL production
+# Paste the copied Web App URL
 ```
 
 ---
 
-## ⚡ What Runs Automatically on Every Submission:
+## ⚡ Telegram Real-Time Notification (Optional)
 
-1. **Google Sheets Real-Time Sync**: A new row is appended with IST timestamp, name, email, subject, and message.
-2. **Formula Neutralization**: Strings with special leading characters (`=`, `+`, `-`, `@`) are prefixed with `'` to completely avoid `#ERROR!` formula parse errors.
-3. **Automated Branded Confirmation Email via MailX REST API** (`POST https://mailx.rapidchip.in/api/v1/send`):
-   * **Sender:** `Mommantum <sales@notify.mommantum.com>`
-   * **Recipient:** The submitter's email address
-   * **CC:** `kuldeep@mommantum.com`, `sharmasaurabh2604@gmail.com`
-   * **Resilience:** If delivery with CC fails (e.g. suppression list error), it automatically retries sending to the primary recipient alone.
-4. **Google Calendar Strategy Link**:
-   * Direct booking link: `https://calendar.app.google/TFNjVK79KmTMEgsW6`
-   * Hours: 10:00 AM – 6:00 PM IST (Mon–Sat)
-   * Max 4-day advance booking window with 1-hour buffer between calls and double-booking prevention.
-   * Participants on invite: `ahirkuldeep1709@gmail.com`, `sharmasaurabh2604@gmail.com`
-5. **Mommantum Service Overview**:
-   * **Editz** (Short-form video editing, Reels/TikToks)
-   * **Growth Services** (Performance Marketing, AI Agents, SEO/AEO/GEO, Web/App Development)
-   * **Blog AI** (Autonomous SEO engine: `https://auto-blog.electroglobal.in/`)
-   * **Creative Strategy & CRO**
-6. **Direct Support**:
-   * `kuldeep@mommantum.com`
-   * `sharmasaurabh2604@gmail.com`
-
+To receive instant lead pings directly on your phone/team group:
+1. Create a bot using `@BotFather` on Telegram and copy the Bot Token.
+2. Get your User ID or Group Chat ID via `@userinfobot`.
+3. Add to Vercel:
+```bash
+vercel env add TELEGRAM_BOT_TOKEN production
+vercel env add TELEGRAM_CHAT_ID production
+```
+Every time a customer submits on the calculator, panel consultation, or contact page, a clean alert with customer name, phone, city, bill, and system size will immediately ping your team.
