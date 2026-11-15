@@ -191,7 +191,7 @@ describe("End-to-End Schema Graph Generation", () => {
     expect(orgNode?.telephone).toBe(DEFAULT_ORGANIZATION_PROFILE.telephone)
     expect(orgNode?.email).toBe(DEFAULT_ORGANIZATION_PROFILE.email)
     expect(orgNode?.address?.["@type"]).toBe("PostalAddress")
-    expect(orgNode?.contactPoint.map((c: any) => c.telephone)).toEqual(["+919876543210"])
+    expect(orgNode?.contactPoint.map((c: any) => c.telephone)).toEqual(["+919523467849"])
     expect(orgNode?.openingHoursSpecification?.[0]).toMatchObject({
       "@type": "OpeningHoursSpecification",
       opens: "09:00",

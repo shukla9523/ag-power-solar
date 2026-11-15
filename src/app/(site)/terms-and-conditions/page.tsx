@@ -99,7 +99,7 @@ export default async function TermsAndConditionsPage() {
               },
               {
                 title: "10. Contact & Official Notices",
-                content: `For legal notices or questions regarding these terms, please contact: Electro Global (AG POWER), Email: legal@agpower.in or contact@agpower.in, Phone: +91 98765 43210.`,
+                content: `For legal notices or questions regarding these terms, please contact: Electro Global (AG POWER), Email: akashshukla9523@gmail.com, Phone: +91 95234 67849.`,
               },
             ].map((section) => (
               <div

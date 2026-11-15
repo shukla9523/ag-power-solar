@@ -27,7 +27,7 @@ export const PAGE_META_DEFAULTS: Record<string, PageMetaDefault> = {
   contact: {
     title: "Contact AG POWER | Request a Free Rooftop Solar Survey",
     description:
-      "Connect with AG POWER solar engineers for a free site audit, shadow analysis, and customized rooftop solar proposal. Call or WhatsApp +91 98765 43210.",
+      "Connect with AG POWER solar engineers for a free site audit, shadow analysis, and customized rooftop solar proposal. Call or WhatsApp +91 95234 67849.",
   },
   services: {
     title: "Solar EPC Services | Residential, Commercial & Society",

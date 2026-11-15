@@ -94,7 +94,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
         setEnquiryError(data.error || "Submission failed. Please check your phone number.")
       }
     } catch (err) {
-      setEnquiryError("Network error. Please try again or call +91 98765 43210.")
+      setEnquiryError("Network error. Please try again or call +91 95234 67849.")
     } finally {
       setLoading(false)
     }

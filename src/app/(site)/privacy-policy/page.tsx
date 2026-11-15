@@ -95,7 +95,7 @@ export default async function PrivacyPolicyPage() {
               },
               {
                 title: "9. Grievance Officer & Contact",
-                content: `For any inquiries, requests for data deletion, or grievances regarding our privacy practices, please contact our Data Protection Officer: Electro Global (AG POWER), Email: privacy@agpower.in, Phone: +91 98765 43210, Address: Project Hub, Rajasthan, India. Grievances are reviewed and acknowledged within 48 hours.`,
+                content: `For any inquiries, requests for data deletion, or grievances regarding our privacy practices, please contact our Data Protection Officer: Electro Global (AG POWER), Email: akashshukla9523@gmail.com, Phone: +91 95234 67849, Address: Corporate Office, India. Grievances are reviewed and acknowledged within 48 hours.`,
               },
             ].map((section) => (
               <div

@@ -54,7 +54,7 @@ export default function FinalCta() {
         <div className="mt-12 flex flex-wrap items-center justify-center gap-6 border-t border-white/10 pt-8 text-[14px] text-sage">
           <div className="flex items-center gap-2">
             <PhoneCall className="h-4 w-4 text-gold" />
-            <span>Direct Call: <strong>+91 98765 43210</strong></span>
+            <span>Direct Call: <strong>+91 95234 67849</strong></span>
           </div>
           <span className="hidden text-white/20 sm:inline">|</span>
           <div className="flex items-center gap-2">

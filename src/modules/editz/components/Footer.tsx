@@ -67,7 +67,7 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-editz-muted">
           <div>© 2026 MOMMANTUM EDITZ. All Rights Reserved.</div>
-          <div>Email: <a href="mailto:contact@agpower.in" className="font-semibold text-editz-black hover:underline">contact@agpower.in</a></div>
+          <div>Email: <a href="mailto:akashshukla9523@gmail.com" className="font-semibold text-editz-black hover:underline">akashshukla9523@gmail.com</a></div>
         </div>
       </div>
     </footer>

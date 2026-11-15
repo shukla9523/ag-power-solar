@@ -79,14 +79,14 @@ export default function MainFooter({
             <div className="mt-5 flex flex-col gap-2 text-[13px] text-sage-mist/90">
               <div className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 text-gold" />
-                <a href="tel:+919876543210" className="hover:text-gold transition-colors">
-                  +91 98765 43210
+                <a href="tel:+919523467849" className="hover:text-gold transition-colors">
+                  +91 95234 67849
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 text-gold" />
-                <a href="mailto:contact@agpower.in" className="hover:text-gold transition-colors">
-                  contact@agpower.in
+                <a href="mailto:akashshukla9523@gmail.com" className="hover:text-gold transition-colors">
+                  akashshukla9523@gmail.com
                 </a>
               </div>
               <div className="flex items-start gap-2.5">

@@ -83,7 +83,7 @@ export const PAGE_FAQS_MAP: Record<string, PageFAQ[]> = {
     },
     {
       question: "How can I schedule a consultation with the AG POWER team?",
-      answer: "You can request a free consultation directly through our website calculator or contact page, email contact@agpower.in, or call our customer line at +91 98765 43210. Our technical consultants will review your recent electricity bill and schedule an in-depth rooftop survey."
+      answer: "You can request a free consultation directly through our website calculator or contact page, email akashshukla9523@gmail.com, or call our customer line at +91 95234 67849. Our technical consultants will review your recent electricity bill and schedule an in-depth rooftop survey."
     }
   ],
   "contact": [
@@ -93,7 +93,7 @@ export const PAGE_FAQS_MAP: Record<string, PageFAQ[]> = {
     },
     {
       question: "What is the quickest way to request a solar site survey?",
-      answer: "The quickest way is to submit our online Solar Consultation form with your monthly electricity bill amount and roof type. You can also call or message us via WhatsApp at +91 98765 43210 for immediate project discussions with an experienced solar consultant."
+      answer: "The quickest way is to submit our online Solar Consultation form with your monthly electricity bill amount and roof type. You can also call or message us via WhatsApp at +91 95234 67849 for immediate project discussions with an experienced solar consultant."
     },
     {
       question: "What details should I prepare before contacting AG POWER?",
@@ -295,7 +295,7 @@ export const PAGE_FAQS_MAP: Record<string, PageFAQ[]> = {
     },
     {
       question: "Can readers request solar topic coverage or technical analysis?",
-      answer: "Yes. We welcome questions from homeowners, factory managers, and RWA committee members. If you have a specific solar engineering or regulatory topic you would like our team to cover, email contact@agpower.in."
+      answer: "Yes. We welcome questions from homeowners, factory managers, and RWA committee members. If you have a specific solar engineering or regulatory topic you would like our team to cover, email akashshukla9523@gmail.com."
     }
   ]
 }

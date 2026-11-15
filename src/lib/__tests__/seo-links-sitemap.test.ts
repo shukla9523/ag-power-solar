@@ -119,6 +119,6 @@ describe("/llms.txt", () => {
     for (const path of ["/about", "/calculator", "/solar-panels", "/customer-services", "/faq", "/blog", "/contact"]) {
       expect(body).toContain(`(https://www.agpower.in${path})`)
     }
-    expect(body).toContain("contact@agpower.in")
+    expect(body).toContain("akashshukla9523@gmail.com")
   })
 })

@@ -179,7 +179,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error("Enquiry submission error:", error)
     return NextResponse.json(
-      { success: false, error: "We could not process your enquiry. Please call +91 98765 43210." },
+      { success: false, error: "We could not process your enquiry. Please call +91 95234 67849." },
       { status: 500 }
     )
   }

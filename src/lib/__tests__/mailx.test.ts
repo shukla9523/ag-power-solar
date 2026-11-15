@@ -30,16 +30,16 @@ describe("MailX & Contact Automation Pipeline", () => {
     })
 
     expect(email.subject).toContain("Thank you for contacting AG POWER")
-    expect(email.html).toContain("contact@agpower.in")
-    expect(email.html).toContain("+91 98765 43210")
+    expect(email.html).toContain("akashshukla9523@gmail.com")
+    expect(email.html).toContain("+91 95234 67849")
     expect(email.html).toContain("Clean Energy. Smarter Living.")
 
     // Check plaintext version
-    expect(email.text).toContain("contact@agpower.in")
+    expect(email.text).toContain("akashshukla9523@gmail.com")
     expect(email.text).toContain("Alex Rivera")
   })
 
   it("includes AG POWER CC recipient by default", () => {
-    expect(DEFAULT_CC_RECIPIENTS).toEqual(["contact@agpower.in"])
+    expect(DEFAULT_CC_RECIPIENTS).toEqual(["akashshukla9523@gmail.com"])
   })
 })

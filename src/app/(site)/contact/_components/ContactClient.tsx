@@ -59,7 +59,7 @@ export default function ContactClient() {
         setErrorMsg(data.error || "Submission failed. Please check your phone number.")
       }
     } catch {
-      setErrorMsg("Network error. Please call +91 98765 43210.")
+      setErrorMsg("Network error. Please call +91 95234 67849.")
     } finally {
       setLoading(false)
     }
@@ -107,10 +107,10 @@ export default function ContactClient() {
                   <div>
                     <p className="text-[12px] text-sage">Direct Phone Line</p>
                     <a
-                      href="tel:+919876543210"
+                      href="tel:+919523467849"
                       className="font-manrope text-[16px] font-bold text-white hover:text-gold transition-colors"
                     >
-                      +91 98765 43210
+                      +91 95234 67849
                     </a>
                     <p className="text-[11px] text-sage-mist/60">Mon – Sat, 9:00 AM – 7:00 PM</p>
                   </div>
@@ -123,10 +123,10 @@ export default function ContactClient() {
                   <div>
                     <p className="text-[12px] text-sage">Email Inquiries</p>
                     <a
-                      href="mailto:contact@agpower.in"
+                      href="mailto:akashshukla9523@gmail.com"
                       className="font-manrope text-[16px] font-bold text-white hover:text-gold transition-colors"
                     >
-                      contact@agpower.in
+                      akashshukla9523@gmail.com
                     </a>
                     <p className="text-[11px] text-sage-mist/60">Verified reply within 2 business hours</p>
                   </div>
@@ -149,7 +149,7 @@ export default function ContactClient() {
               <div className="mt-8 rounded-2xl bg-white/10 p-4 border border-white/10">
                 <p className="text-[13px] font-semibold text-white">Need a quick WhatsApp chat?</p>
                 <a
-                  href="https://wa.me/919876543210?text=Hi%2C%20I%20am%20interested%20in%20AG%20POWER%20solar%20solutions."
+                  href="https://wa.me/919523467849?text=Hi%2C%20I%20am%20interested%20in%20AG%20POWER%20solar%20solutions."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-2 inline-flex items-center gap-2 rounded-xl bg-social-whatsapp px-4 py-2 text-[13px] font-bold text-white hover:opacity-90"

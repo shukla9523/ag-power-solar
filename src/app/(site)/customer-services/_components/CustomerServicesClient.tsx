@@ -87,7 +87,7 @@ export default function CustomerServicesClient() {
         setErrorMsg(data.error || "Submission failed. Please check your phone number.")
       }
     } catch {
-      setErrorMsg("Network error. Please call +91 98765 43210.")
+      setErrorMsg("Network error. Please call +91 95234 67849.")
     } finally {
       setLoading(false)
     }
@@ -158,7 +158,7 @@ export default function CustomerServicesClient() {
               <div className="mt-8 space-y-4 border-t border-white/10 pt-6 text-[14px] text-sage">
                 <div className="flex items-center gap-3">
                   <PhoneCall className="h-5 w-5 text-gold" />
-                  <span>Helpline: <strong>+91 98765 43210</strong> (Mon - Sat, 9am - 7pm)</span>
+                  <span>Helpline: <strong>+91 95234 67849</strong> (Mon - Sat, 9am - 7pm)</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <ShieldCheck className="h-5 w-5 text-gold" />

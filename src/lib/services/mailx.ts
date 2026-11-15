@@ -4,9 +4,9 @@
  * with serverless and cloud hosting platforms like Vercel where SMTP ports are blocked.
  *
  * Endpoint: POST https://mailx.rapidchip.in/api/v1/send
- * Sender: AG POWER <contact@agpower.in>
+ * Sender: AG POWER <akashshukla9523@gmail.com>
  * Recipient: Submitter's email
- * CC: contact@agpower.in
+ * CC: akashshukla9523@gmail.com
  * Resilience: Automatically retries sending without CC if the CC send fails (e.g., suppression list error).
  */
 
@@ -30,9 +30,9 @@ export interface MailXResult {
 export const DEFAULT_MAILX_URL = ""
 export const DEFAULT_MAILX_API_KEY = ""
 export const DEFAULT_MAILX_MAILBOX_ID = ""
-export const DEFAULT_MAIL_FROM = "AG POWER <contact@agpower.in>"
+export const DEFAULT_MAIL_FROM = "AG POWER <akashshukla9523@gmail.com>"
 export const DEFAULT_CALENDAR_URL = ""
-export const DEFAULT_CC_RECIPIENTS = ["contact@agpower.in"]
+export const DEFAULT_CC_RECIPIENTS = ["akashshukla9523@gmail.com"]
 
 export function getMailXConfig() {
   return {
@@ -238,10 +238,10 @@ export function buildContactConfirmationEmail(lead: {
                 <table cellpadding="0" cellspacing="0" style="margin: 8px 0;">
                   <tr>
                     <td style="padding: 4px 16px 4px 0;">
-                      ✉️ <a href="mailto:contact@agpower.in" style="color: #173F32; font-weight: 600; text-decoration: none; font-size: 13.5px;">contact@agpower.in</a>
+                      ✉️ <a href="mailto:akashshukla9523@gmail.com" style="color: #173F32; font-weight: 600; text-decoration: none; font-size: 13.5px;">akashshukla9523@gmail.com</a>
                     </td>
                     <td style="padding: 4px 0;">
-                      📞 <a href="tel:+919876543210" style="color: #173F32; font-weight: 600; text-decoration: none; font-size: 13.5px;">+91 98765 43210</a>
+                      📞 <a href="tel:+919523467849" style="color: #173F32; font-weight: 600; text-decoration: none; font-size: 13.5px;">+91 95234 67849</a>
                     </td>
                   </tr>
                 </table>
@@ -266,7 +266,7 @@ export function buildContactConfirmationEmail(lead: {
             <td style="background-color: #f8fafc; padding: 22px 36px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 12px; color: #94a3b8; line-height: 1.6;">
               &copy; 2026 AG POWER (Electro Global). All rights reserved.<br/>
               Corporate Office, India &bull; <a href="https://ag-power-solar.vercel.app" style="color: #94a3b8; text-decoration: underline;">ag-power-solar.vercel.app</a><br/>
-              Sent automatically from <strong>contact@agpower.in</strong>
+              Sent automatically from <strong>akashshukla9523@gmail.com</strong>
             </td>
           </tr>
 
@@ -286,8 +286,8 @@ We have received your message regarding "${lead.subject}". Our solar engineering
 ============================================================
 DIRECT SUPPORT & CONTACT
 ============================================================
-• Email: contact@agpower.in
-• Phone: +91 98765 43210
+• Email: akashshukla9523@gmail.com
+• Phone: +91 95234 67849
 
 Your Submitted Details:
 • Name: ${lead.name}
@@ -299,7 +299,7 @@ ${lead.phone ? `• Phone: ${lead.phone}\n` : ""}• Subject: ${lead.subject}
 Best regards,
 The AG POWER Team
 https://ag-power-solar.vercel.app
-contact@agpower.in`
+akashshukla9523@gmail.com`
 
   return { html, text, subject: emailSubject }
 }

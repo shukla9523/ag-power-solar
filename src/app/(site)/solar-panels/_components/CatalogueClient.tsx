@@ -97,7 +97,7 @@ export default function CatalogueClient({ initialPanels }: Props) {
         setErrorMsg(data.error || "Submission failed. Please check your phone number.")
       }
     } catch (err) {
-      setErrorMsg("Network error. Please call +91 98765 43210.")
+      setErrorMsg("Network error. Please call +91 95234 67849.")
     } finally {
       setLoading(false)
     }

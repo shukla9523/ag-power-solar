@@ -128,7 +128,7 @@ export const EDITZ_DEFAULTS: EditzContent = {
     heading: "Starts Here",
     description: "Bring your footage or ideas, we'll craft videos that look better, engage viewers, and support your growth.",
     buttonLabel: "Let's Grow Your Content",
-    buttonHref: "mailto:contact@agpower.in",
+    buttonHref: "mailto:akashshukla9523@gmail.com",
     instagramUrl: "https://instagram.com",
     youtubeUrl: "https://youtube.com",
     tiktokUrl: "https://tiktok.com",

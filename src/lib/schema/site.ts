@@ -86,18 +86,18 @@ export const DEFAULT_ORGANIZATION_PROFILE: OrganizationProfile = {
     value: 30,
   },
   taxID: "",
-  email: "contact@agpower.in",
-  telephone: "+919876543210",
+  email: "akashshukla9523@gmail.com",
+  telephone: "+919523467849",
   whatsapp: {
-    telephone: "+919876543210",
+    telephone: "+919523467849",
     contactType: "customer support",
     availableLanguage: ["English", "Hindi"],
   },
   contactPoints: [
     {
-      telephone: "+919876543210",
+      telephone: "+919523467849",
       contactType: "customer service",
-      email: "contact@agpower.in",
+      email: "akashshukla9523@gmail.com",
       availableLanguage: ["English", "Hindi"],
     },
   ],

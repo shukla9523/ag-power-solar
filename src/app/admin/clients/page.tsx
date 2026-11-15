@@ -511,7 +511,7 @@ export default function ClientsPage() {
                 <label className="block text-[12.5px] font-medium text-slate-300 mb-1">Phone</label>
                 <input
                   type="tel"
-                  placeholder="e.g. +91 98765 43210"
+                  placeholder="e.g. +91 95234 67849"
                   value={addForm.phone}
                   onChange={(e) => setAddForm({ ...addForm, phone: e.target.value })}
                   className={`${inputClass} w-full text-[13px]`}
