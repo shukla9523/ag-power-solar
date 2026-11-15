@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Phone, Mail, MapPin, MessageSquare, SunMedium, ShieldCheck, CheckCircle2, ArrowRight } from "lucide-react"
+import { Phone, Mail, MapPin, MessageSquare, SunMedium, ShieldCheck, CheckCircle2, ArrowRight, ExternalLink } from "lucide-react"
 
 export default function ContactClient() {
   const [name, setName] = useState("")
@@ -14,6 +14,7 @@ export default function ContactClient() {
   const [monthlyBill, setMonthlyBill] = useState("")
   const [message, setMessage] = useState("")
   const [consent, setConsent] = useState(true)
+  const [honeypot, setHoneypot] = useState("") // anti-bot spam protection
 
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -23,6 +24,12 @@ export default function ContactClient() {
     e.preventDefault()
     if (!consent) {
       setErrorMsg("Please accept the privacy policy.")
+      return
+    }
+
+    // Bot detection via honeypot
+    if (honeypot) {
+      setSubmitted(true)
       return
     }
 
@@ -56,6 +63,7 @@ export default function ContactClient() {
       if (res.ok && data.success) {
         setSubmitted(true)
       } else {
+        // Preserves form data when a recoverable submission failure occurs
         setErrorMsg(data.error || "Submission failed. Please check your phone number.")
       }
     } catch {
@@ -141,11 +149,12 @@ export default function ContactClient() {
                     <p className="font-manrope text-[15px] font-medium text-white">
                       Electro Global Solar EPC Division, India
                     </p>
+                    <p className="text-[11px] text-sage-mist/60">Pan-India Solar EPC Execution</p>
                   </div>
                 </div>
               </div>
 
-              {/* WhatsApp Quick Link */}
+              {/* WhatsApp Quick CTA */}
               <div className="mt-8 rounded-2xl bg-white/10 p-4 border border-white/10">
                 <p className="text-[13px] font-semibold text-white">Need a quick WhatsApp chat?</p>
                 <a
@@ -169,42 +178,69 @@ export default function ContactClient() {
           <div className="rounded-3xl border border-charcoal/10 bg-white p-8 shadow-sm sm:p-10 lg:col-span-7">
             {submitted ? (
               <div className="py-16 text-center">
-                <CheckCircle2 className="mx-auto h-16 w-16 text-forest" />
-                <h3 className="mt-4 font-manrope text-[24px] font-extrabold text-forest">
-                  Enquiry Submitted Successfully!
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sage-mist text-forest">
+                  <CheckCircle2 className="h-8 w-8 text-forest" />
+                </div>
+                <h3 className="mt-4 font-manrope text-[24px] font-bold text-forest">
+                  Consultation Request Received!
                 </h3>
-                <p className="mx-auto mt-2 max-w-md text-[15px] text-charcoal-muted">
-                  Thank you, {name}. A dedicated AG POWER solar project engineer will contact you shortly to review your requirements.
+                <p className="mx-auto mt-2 max-w-md text-[14px] leading-relaxed text-charcoal/70">
+                  Thank you, <strong>{name}</strong>. Our solar engineering team has received your details and will call you on <strong>{phone}</strong> to discuss your feasibility assessment.
                 </p>
                 <button
                   type="button"
-                  onClick={() => setSubmitted(false)}
-                  className="mt-6 rounded-xl bg-forest px-7 py-3 text-[14px] font-bold text-white hover:bg-forest-deep"
+                  onClick={() => {
+                    setSubmitted(false)
+                    setName("")
+                    setPhone("")
+                    setEmail("")
+                    setMessage("")
+                  }}
+                  className="mt-6 rounded-xl bg-forest px-6 py-2.5 text-[14px] font-bold text-white transition-colors hover:bg-forest-deep"
                 >
                   Submit Another Enquiry
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <h3 className="font-manrope text-[22px] font-bold text-forest">
-                  Send Your Project Requirements
-                </h3>
+                {/* Honeypot field for bot spam protection */}
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  style={{ display: "none" }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
+                <div className="flex items-center justify-between">
+                  <h3 className="font-manrope text-[20px] font-bold text-forest">
+                    Request Solar Feasibility Proposal
+                  </h3>
+                  <span className="text-[12px] text-charcoal-muted">* Required</span>
+                </div>
 
                 {/* Customer Category */}
                 <div>
-                  <label className="text-[13px] font-bold text-forest">Customer Category *</label>
-                  <div className="mt-2 grid grid-cols-3 gap-2">
-                    {["residential", "commercial", "society"].map((cat) => (
+                  <label className="text-[13px] font-semibold text-forest">Customer Category *</label>
+                  <div className="mt-1.5 grid grid-cols-3 gap-2">
+                    {[
+                      { id: "residential", label: "Residential" },
+                      { id: "commercial", label: "Commercial" },
+                      { id: "society", label: "Housing Society" },
+                    ].map((cat) => (
                       <button
-                        key={cat}
+                        key={cat.id}
                         type="button"
-                        onClick={() => setCategory(cat)}
-                        className={`rounded-xl border py-2 text-[13px] font-bold capitalize transition-all ${category === cat
-                          ? "border-forest bg-forest text-white"
-                          : "border-charcoal/15 bg-ivory text-charcoal hover:bg-sage-mist"
-                          }`}
+                        onClick={() => setCategory(cat.id)}
+                        className={`rounded-xl border py-2 text-[13px] font-bold transition-all ${
+                          category === cat.id
+                            ? "border-forest bg-forest text-white shadow-sm"
+                            : "border-charcoal/15 bg-ivory text-charcoal hover:bg-sage-mist"
+                        }`}
                       >
-                        {cat === "society" ? "Housing Society" : cat}
+                        {cat.label}
                       </button>
                     ))}
                   </div>
@@ -217,10 +253,10 @@ export default function ContactClient() {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Ramesh Chandra"
+                      placeholder="e.g. Ramesh Sharma"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                     />
                   </div>
                   <div>
@@ -228,10 +264,10 @@ export default function ContactClient() {
                     <input
                       type="tel"
                       required
-                      placeholder="10-digit mobile"
+                      placeholder="10-digit mobile number"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                     />
                   </div>
                 </div>
@@ -242,20 +278,20 @@ export default function ContactClient() {
                     <label className="text-[13px] font-semibold text-forest">Email Address</label>
                     <input
                       type="email"
-                      placeholder="email@example.com"
+                      placeholder="e.g. name@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                     />
                   </div>
                   <div>
                     <label className="text-[13px] font-semibold text-forest">City / Location</label>
                     <input
                       type="text"
-                      placeholder="e.g. Jaipur, Delhi, NCR"
+                      placeholder="e.g. Jaipur, Delhi, Lucknow"
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                     />
                   </div>
                 </div>
@@ -269,7 +305,7 @@ export default function ContactClient() {
                       placeholder="e.g. 6000"
                       value={monthlyBill}
                       onChange={(e) => setMonthlyBill(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                     />
                   </div>
                   <div>
@@ -280,7 +316,7 @@ export default function ContactClient() {
                       maxLength={6}
                       value={pincode}
                       onChange={(e) => setPincode(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                     />
                   </div>
                 </div>
@@ -291,7 +327,7 @@ export default function ContactClient() {
                   <select
                     value={service}
                     onChange={(e) => setService(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] font-medium text-forest focus:border-forest focus:outline-none"
                   >
                     <option value="Rooftop Solar Installation">Rooftop Solar Installation</option>
                     <option value="Commercial Solar Plant">Commercial & Industrial Solar Plant</option>
@@ -309,7 +345,7 @@ export default function ContactClient() {
                     placeholder="Tell us about your rooftop area, electrical load, or special requirements..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                   />
                 </div>
 
@@ -322,7 +358,7 @@ export default function ContactClient() {
                     onChange={(e) => setConsent(e.target.checked)}
                     className="mt-1 h-4 w-4 rounded border-charcoal/30 text-forest focus:ring-forest"
                   />
-                  <label htmlFor="privacy-consent" className="text-[12px] text-charcoal-muted">
+                  <label htmlFor="privacy-consent" className="text-[12px] text-charcoal-muted leading-relaxed">
                     I authorize AG POWER to contact me via phone, email, or WhatsApp with my solar feasibility assessment. My information is stored securely in accordance with the Privacy Policy.
                   </label>
                 </div>
@@ -336,12 +372,51 @@ export default function ContactClient() {
                   disabled={loading}
                   className="w-full rounded-xl bg-forest py-3.5 text-[15px] font-bold text-white shadow-md transition-all hover:bg-forest-deep disabled:opacity-50"
                 >
-                  {loading ? "Submitting..." : "Get Free Solar Consultation →"}
+                  {loading ? "Submitting Request..." : "Get Free Solar Consultation →"}
                 </button>
               </form>
             )}
           </div>
 
+        </div>
+
+        {/* Office Location & Map Section */}
+        <div className="mt-16 overflow-hidden rounded-3xl border border-charcoal/10 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-charcoal/10 pb-6">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-charcoal-muted">
+                Locate Us
+              </span>
+              <h3 className="mt-1 font-manrope text-[22px] font-bold text-forest">
+                Solar EPC Engineering Headquarters
+              </h3>
+              <p className="mt-1 text-[13px] text-charcoal/80">
+                Electro Global Solar EPC Division · Pan-India Service Presence
+              </p>
+            </div>
+            <a
+              href="https://maps.google.com/?q=Jaipur,Rajasthan,India"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-forest bg-ivory px-4 py-2.5 text-[13px] font-bold text-forest hover:bg-forest hover:text-white transition-colors"
+            >
+              <span>Open in Google Maps</span>
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+
+          <div className="mt-6 h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-charcoal/10 bg-sage-mist/30">
+            <iframe
+              title="AG POWER Solar Location Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227748.3825624477!2d75.65046970761273!3d26.88544791796718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
 
       </div>
