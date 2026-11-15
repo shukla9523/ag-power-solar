@@ -61,9 +61,10 @@ export default async function BlogPostDetailPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const [{ post, preview }, seoSetting] = await Promise.all([
+  const [{ post, preview }, seoSetting, allPosts] = await Promise.all([
     loadPost(slug),
     getSeoSetting(`blog:${slug}`).catch(() => null),
+    getBlogPosts().catch(() => []),
   ])
 
   // Renamed URLs 301 to their new address; anything else is a real 404 (not a soft redirect).
@@ -95,6 +96,16 @@ export default async function BlogPostDetailPage({
     answer: f.answer,
     category: "Article FAQ",
   }))
+
+  // Related articles (matching category first or other guides, max 3)
+  const relatedPosts = allPosts
+    .filter((p) => p.slug !== post.slug)
+    .sort((a, b) => {
+      if (a.category_id === post.category_id && b.category_id !== post.category_id) return -1
+      if (b.category_id === post.category_id && a.category_id !== post.category_id) return 1
+      return 0
+    })
+    .slice(0, 3)
 
   return (
     <>
@@ -185,6 +196,74 @@ export default async function BlogPostDetailPage({
                 title="Frequently Asked Questions"
                 subtitle="Key technical takeaways and practical advice on this solar topic."
               />
+            </div>
+          )}
+
+          {/* ─── RELATED ARTICLES ─── */}
+          {relatedPosts.length > 0 && (
+            <div className="mt-16 border-t border-charcoal/10 pt-10">
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="text-[12px] font-bold uppercase tracking-wider text-charcoal-muted">
+                    Continue Reading
+                  </span>
+                  <h3 className={`${manrope.className} mt-1 text-2xl font-extrabold text-forest`}>
+                    Related Solar Articles
+                  </h3>
+                </div>
+                <LocalizedClientLink
+                  href="/blog"
+                  className="text-[13px] font-bold text-forest hover:text-gold transition-colors"
+                >
+                  View All Guides →
+                </LocalizedClientLink>
+              </div>
+
+              <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {relatedPosts.map((rel) => (
+                  <article
+                    key={rel.slug}
+                    className="group flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-white p-5 shadow-xs transition-all hover:border-forest/30 hover:shadow-md"
+                  >
+                    <div>
+                      {rel.featured_image && (
+                        <div className="relative mb-3.5 aspect-[16/9] w-full overflow-hidden rounded-xl bg-forest">
+                          <Image
+                            src={rel.featured_image}
+                            alt={rel.title}
+                            fill
+                            sizes="(max-width: 640px) 100vw, 300px"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        </div>
+                      )}
+                      {rel.category_id && (
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-forest">
+                          {rel.category_id}
+                        </span>
+                      )}
+                      <h4 className={`${manrope.className} mt-1.5 text-[15px] font-bold leading-snug text-forest transition-colors group-hover:text-gold`}>
+                        <LocalizedClientLink href={`/blog/${rel.slug}`}>
+                          {rel.title}
+                        </LocalizedClientLink>
+                      </h4>
+                      {rel.excerpt && (
+                        <p className="mt-2 text-[12.5px] line-clamp-2 text-charcoal/70 leading-relaxed">
+                          {rel.excerpt}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-charcoal/8">
+                      <LocalizedClientLink
+                        href={`/blog/${rel.slug}`}
+                        className="text-[12px] font-bold text-forest hover:text-gold transition-colors inline-flex items-center gap-1"
+                      >
+                        Read Guide →
+                      </LocalizedClientLink>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           )}
 
