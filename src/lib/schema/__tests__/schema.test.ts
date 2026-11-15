@@ -419,7 +419,7 @@ describe("End-to-End Schema Graph Generation", () => {
       image_urls: [],
       excerpt: "Excerpt",
       content: "Content",
-      author_name: "Kuldeep Ahir",
+      author_name: "AG POWER Technical Desk",
       status: "published",
       published_at: "2026-01-01T00:00:00Z",
       updated_at: "2026-01-02T00:00:00Z",

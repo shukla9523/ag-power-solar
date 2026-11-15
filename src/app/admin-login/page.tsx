@@ -104,7 +104,7 @@ function AdminLoginForm() {
             <span className="text-[20px] font-extrabold text-white">M</span>
           </div>
           <div>
-            <p className="text-[16px] font-extrabold text-navy">Mommantum</p>
+            <p className="text-[16px] font-extrabold text-forest">AG POWER Admin</p>
             <p className="text-[12px] text-slate-400">Admin Panel</p>
           </div>
         </div>

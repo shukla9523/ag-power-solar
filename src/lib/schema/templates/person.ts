@@ -19,7 +19,7 @@ export function isFounderName(name: string | undefined | null, profile: Organiza
 }
 
 /**
- * Creates the founder Person node (Kuldeep Ahir) with stable @id {base}/#founder.
+ * Creates the founder Person node (Electro Global Leadership) with stable @id {base}/#founder.
  * Only real data from the organization profile; sameAs only when profile URLs exist.
  * Never fabricate unconfirmed team members.
  */

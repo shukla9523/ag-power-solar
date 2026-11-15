@@ -127,9 +127,9 @@ export const getTestimonials = unstable_cache(
 
 // teamMember stays static — it's personal info not needing a DB
 export const teamMember = {
-  name: "Kuldeep Ahir",
-  role: "Founder & Creative Director",
+  name: "Electro Global Leadership",
+  role: "Solar Energy Advisory Team",
   description:
-    "A growth-focused creator helping D2C brands scale through strategic content, performance marketing, and aligned execution. Based in Jaipur, working with brands across India.",
-  image: "/team/kuldeep.webp",
+    "Engineering-first solar specialists delivering rooftop and commercial solar solutions across India.",
+  image: "/team/leadership.webp",
 }

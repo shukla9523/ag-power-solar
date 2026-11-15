@@ -454,7 +454,7 @@ export default function BlogEditor({
                     type="text"
                     value={form.author_name}
                     onChange={(e) => updateForm("author_name", e.target.value)}
-                    placeholder="e.g. Kuldeep Ahir"
+                    placeholder="e.g. AG POWER Technical Desk"
                     className={inputClass}
                   />
                 </div>

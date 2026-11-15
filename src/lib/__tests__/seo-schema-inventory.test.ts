@@ -48,7 +48,7 @@ const post = {
   image_urls: [],
   excerpt: "Guide.",
   content: "<p>Body</p>",
-  author_name: "Kuldeep Ahir",
+  author_name: "AG POWER Technical Desk",
   status: "published",
   published_at: "2026-06-01T00:00:00Z",
   updated_at: "2026-06-02T00:00:00Z",
