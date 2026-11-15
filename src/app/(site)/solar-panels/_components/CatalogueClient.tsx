@@ -5,15 +5,16 @@ import { SolarPanel } from "@lib/data/solar-panels"
 import {
   Layers,
   Search,
-  Filter,
   Zap,
   ArrowRight,
   ShieldCheck,
   CheckCircle2,
   X,
   Sparkles,
-  PhoneCall,
   Info,
+  Scale,
+  Check,
+  SlidersHorizontal,
 } from "lucide-react"
 
 interface Props {
@@ -23,11 +24,17 @@ interface Props {
 export default function CatalogueClient({ initialPanels }: Props) {
   const [search, setSearch] = useState("")
   const [techFilter, setTechFilter] = useState<string>("All")
+  const [wattageFilter, setWattageFilter] = useState<string>("All")
   const [typeFilter, setTypeFilter] = useState<string>("All")
+  const [dcrFilter, setDcrFilter] = useState<boolean>(false)
   const [sortBy, setSortBy] = useState<"wattage" | "efficiency">("wattage")
 
   // Modal detail state
   const [selectedPanel, setSelectedPanel] = useState<SolarPanel | null>(null)
+
+  // Comparison state (up to 3 panels)
+  const [compareIds, setCompareIds] = useState<string[]>([])
+  const [showCompareModal, setShowCompareModal] = useState<boolean>(false)
 
   // Enquiry modal state
   const [enquiryPanel, setEnquiryPanel] = useState<SolarPanel | null>(null)
@@ -55,7 +62,18 @@ export default function CatalogueClient({ initialPanels }: Props) {
         const matchesType =
           typeFilter === "All" || panel.moduleType === typeFilter
 
-        return matchesSearch && matchesTech && matchesType
+        const matchesDcr = !dcrFilter || panel.dcrCompliant
+
+        let matchesWattage = true
+        if (wattageFilter === "<500W") {
+          matchesWattage = panel.wattage < 500
+        } else if (wattageFilter === "500W-550W") {
+          matchesWattage = panel.wattage >= 500 && panel.wattage <= 550
+        } else if (wattageFilter === ">550W") {
+          matchesWattage = panel.wattage > 550
+        }
+
+        return matchesSearch && matchesTech && matchesType && matchesDcr && matchesWattage
       })
       .sort((a, b) => {
         if (sortBy === "efficiency") {
@@ -63,7 +81,25 @@ export default function CatalogueClient({ initialPanels }: Props) {
         }
         return b.wattage - a.wattage
       })
-  }, [initialPanels, search, techFilter, typeFilter, sortBy])
+  }, [initialPanels, search, techFilter, wattageFilter, typeFilter, dcrFilter, sortBy])
+
+  // Compare helpers
+  function toggleCompare(panelId: string) {
+    setCompareIds((prev) => {
+      if (prev.includes(panelId)) {
+        return prev.filter((id) => id !== panelId)
+      }
+      if (prev.length >= 3) {
+        alert("You can compare up to 3 panels at once.")
+        return prev
+      }
+      return [...prev, panelId]
+    })
+  }
+
+  const comparedPanels = useMemo(() => {
+    return initialPanels.filter((p) => compareIds.includes(p.id))
+  }, [initialPanels, compareIds])
 
   // Submit panel enquiry
   async function handlePanelEnquiry(e: React.FormEvent) {
@@ -96,7 +132,7 @@ export default function CatalogueClient({ initialPanels }: Props) {
         const data = await res.json().catch(() => ({}))
         setErrorMsg(data.error || "Submission failed. Please check your phone number.")
       }
-    } catch (err) {
+    } catch {
       setErrorMsg("Network error. Please call +91 95234 67849.")
     } finally {
       setLoading(false)
@@ -109,6 +145,14 @@ export default function CatalogueClient({ initialPanels }: Props) {
     setErrorMsg("")
   }
 
+  function resetAllFilters() {
+    setSearch("")
+    setTechFilter("All")
+    setWattageFilter("All")
+    setTypeFilter("All")
+    setDcrFilter(false)
+  }
+
   return (
     <div className="py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -117,42 +161,57 @@ export default function CatalogueClient({ initialPanels }: Props) {
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-sage-mist px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-forest">
             <Layers className="h-4 w-4 text-gold" />
-            <span>Product Discovery</span>
+            <span>Product Information & Discovery</span>
           </div>
           <h1 className="mt-4 font-manrope text-[36px] font-extrabold tracking-tight text-forest sm:text-[48px]">
             Tier-1 Solar Panels Catalogue
           </h1>
           <p className="mt-4 text-[16px] leading-relaxed text-charcoal/80 sm:text-[18px]">
-            Discover industry-certified N-Type TOPCon and Mono PERC solar modules tested for maximum electrical yield and extreme durability.
+            Explore verified Tier-1 solar modules from India&apos;s leading manufacturers. Compare N-Type TOPCon and Mono PERC technologies designed for maximum rooftop yield and 25 to 30 years durability.
           </p>
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="mt-12 rounded-2xl border border-charcoal/10 bg-white p-5 shadow-sm">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-10 rounded-2xl border border-charcoal/10 bg-white p-5 shadow-sm">
+          <div className="flex flex-col gap-4">
             
-            {/* Search Box */}
-            <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-charcoal-muted" />
-              <input
-                type="text"
-                placeholder="Search by brand, technology, or model..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full rounded-xl border border-charcoal/15 bg-ivory pl-10 pr-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
-              />
+            {/* Search Box & Sort */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="relative flex-1">
+                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-charcoal-muted" />
+                <input
+                  type="text"
+                  placeholder="Search by brand, technology, or model name..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-full rounded-xl border border-charcoal/15 bg-ivory pl-10 pr-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
+                />
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-[12px] font-bold text-charcoal-muted">Sort:</span>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as "wattage" | "efficiency")}
+                  className="rounded-lg border border-charcoal/15 bg-ivory px-3 py-2 text-[12px] font-semibold text-forest focus:outline-none"
+                >
+                  <option value="wattage">Highest Wattage</option>
+                  <option value="efficiency">Highest Efficiency</option>
+                </select>
+              </div>
             </div>
 
-            {/* Filter Pills */}
-            <div className="flex flex-wrap items-center gap-2.5">
-              <div className="flex items-center gap-1.5">
+            {/* Filter Pills Groups */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-charcoal/10 pt-4">
+              {/* Tech Filter */}
+              <div className="flex flex-wrap items-center gap-1.5">
                 <span className="text-[12px] font-bold text-charcoal-muted">Tech:</span>
                 {["All", "N-Type TOPCon", "Mono PERC"].map((tech) => (
                   <button
                     key={tech}
                     type="button"
                     onClick={() => setTechFilter(tech)}
-                    className={`rounded-lg px-3 py-1.5 text-[12px] font-bold transition-all ${
+                    className={`rounded-lg px-3 py-1 text-[12px] font-bold transition-all ${
                       techFilter === tech
                         ? "bg-forest text-white shadow-sm"
                         : "bg-ivory text-charcoal hover:bg-sage-mist"
@@ -163,128 +222,221 @@ export default function CatalogueClient({ initialPanels }: Props) {
                 ))}
               </div>
 
-              <div className="flex items-center gap-1.5 ml-0 sm:ml-2">
-                <span className="text-[12px] font-bold text-charcoal-muted">Sort:</span>
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as any)}
-                  className="rounded-lg border border-charcoal/15 bg-ivory px-2.5 py-1.5 text-[12px] font-semibold text-forest"
-                >
-                  <option value="wattage">Highest Wattage</option>
-                  <option value="efficiency">Highest Efficiency</option>
-                </select>
+              {/* Wattage Filter */}
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="text-[12px] font-bold text-charcoal-muted">Wattage:</span>
+                {[
+                  { label: "All", val: "All" },
+                  { label: "< 500W", val: "<500W" },
+                  { label: "500W - 550W", val: "500W-550W" },
+                  { label: "> 550W", val: ">550W" },
+                ].map((item) => (
+                  <button
+                    key={item.val}
+                    type="button"
+                    onClick={() => setWattageFilter(item.val)}
+                    className={`rounded-lg px-3 py-1 text-[12px] font-bold transition-all ${
+                      wattageFilter === item.val
+                        ? "bg-forest text-white shadow-sm"
+                        : "bg-ivory text-charcoal hover:bg-sage-mist"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
               </div>
 
+              {/* DCR Toggle */}
+              <button
+                type="button"
+                onClick={() => setDcrFilter(!dcrFilter)}
+                className={`flex items-center gap-1.5 rounded-lg border px-3 py-1 text-[12px] font-bold transition-all ${
+                  dcrFilter
+                    ? "border-forest bg-forest text-white"
+                    : "border-charcoal/15 bg-ivory text-charcoal hover:bg-sage-mist"
+                }`}
+              >
+                <CheckCircle2 className="h-3.5 w-3.5" />
+                <span>DCR Only (PM Surya Ghar)</span>
+              </button>
+
+              {/* Active filters counter & reset */}
+              {(techFilter !== "All" || wattageFilter !== "All" || typeFilter !== "All" || dcrFilter || search) && (
+                <button
+                  type="button"
+                  onClick={resetAllFilters}
+                  className="text-[12px] font-bold text-forest underline hover:text-forest-deep"
+                >
+                  Clear All Filters
+                </button>
+              )}
             </div>
 
           </div>
         </div>
 
+        {/* Comparison Bar (Floating Bottom if items selected) */}
+        {compareIds.length > 0 && (
+          <div className="fixed bottom-6 left-1/2 z-40 -translate-x-1/2 rounded-2xl bg-forest px-6 py-3 text-white shadow-2xl flex items-center gap-4 border border-white/20 backdrop-blur-md">
+            <div className="flex items-center gap-2">
+              <Scale className="h-5 w-5 text-gold" />
+              <span className="text-[13px] font-bold">
+                {compareIds.length} {compareIds.length === 1 ? "panel" : "panels"} selected for comparison
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setShowCompareModal(true)}
+                className="rounded-xl bg-gold px-4 py-1.5 text-[12px] font-extrabold text-forest transition-transform hover:scale-105"
+              >
+                Compare Now ({compareIds.length})
+              </button>
+              <button
+                type="button"
+                onClick={() => setCompareIds([])}
+                className="rounded-lg bg-white/10 p-1.5 text-white/80 hover:bg-white/20"
+                title="Clear comparison"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Panels Grid */}
         <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {filteredPanels.map((panel) => (
-            <div
-              key={panel.id}
-              className="group flex flex-col justify-between rounded-3xl border border-charcoal/10 bg-white p-7 shadow-sm transition-all duration-300 hover:border-forest/30 hover:shadow-xl"
-            >
-              <div>
-                {/* Visual Panel Head */}
-                <div className="relative flex h-52 w-full flex-col justify-between rounded-2xl bg-forest p-5 text-white overflow-hidden">
-                  <div className="absolute inset-0 grid grid-cols-6 grid-rows-3 gap-1 p-2 opacity-20 pointer-events-none">
-                    {[...Array(18)].map((_, i) => (
-                      <div key={i} className="rounded border border-white/50 bg-white/20" />
-                    ))}
-                  </div>
+          {filteredPanels.map((panel) => {
+            const isCompared = compareIds.includes(panel.id)
+            return (
+              <div
+                key={panel.id}
+                className={`group flex flex-col justify-between rounded-3xl border bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-xl ${
+                  isCompared ? "border-forest ring-2 ring-forest" : "border-charcoal/10 hover:border-forest/30"
+                }`}
+              >
+                <div>
+                  {/* Visual Solar Panel Schematic Head */}
+                  <div className="relative flex h-52 w-full flex-col justify-between rounded-2xl bg-forest p-5 text-white overflow-hidden shadow-inner">
+                    {/* Photovoltaic Cell Grid Schematic */}
+                    <div className="absolute inset-0 grid grid-cols-6 grid-rows-3 gap-1.5 p-3 opacity-25 pointer-events-none">
+                      {[...Array(18)].map((_, i) => (
+                        <div key={i} className="rounded border border-white/60 bg-white/20" />
+                      ))}
+                    </div>
 
-                  <div className="relative z-10 flex items-center justify-between">
-                    <span className="rounded-full bg-gold px-3 py-0.5 text-[11px] font-extrabold text-forest">
-                      {panel.badge || "Tier-1 ALMM"}
-                    </span>
-                    {panel.dcrCompliant && (
-                      <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-bold text-white">
-                        DCR Subsidy Approved
+                    <div className="relative z-10 flex items-center justify-between">
+                      <span className="rounded-full bg-gold px-3 py-0.5 text-[11px] font-extrabold text-forest">
+                        {panel.badge || "Tier-1 ALMM"}
                       </span>
-                    )}
+                      {panel.dcrCompliant && (
+                        <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-bold text-white">
+                          DCR Approved
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="relative z-10 text-center">
+                      <p className="font-manrope text-[38px] font-black tracking-tight text-white drop-shadow-sm">
+                        {panel.wattage}W
+                      </p>
+                      <p className="text-[12px] font-semibold text-sage">{panel.moduleType}</p>
+                    </div>
+
+                    <div className="relative z-10 flex items-center justify-between border-t border-white/15 pt-2 text-[11px] text-sage">
+                      <span>Efficiency: <strong className="text-white">{panel.efficiency}%</strong></span>
+                      <span>{panel.cellTechnology}</span>
+                    </div>
                   </div>
 
-                  <div className="relative z-10 text-center">
-                    <p className="font-manrope text-[36px] font-black tracking-tight text-white">
-                      {panel.wattage}W
+                  {/* Brand & Model Title */}
+                  <div className="mt-5">
+                    <span className="text-[12px] font-bold uppercase tracking-wider text-charcoal-muted">
+                      {panel.brand}
+                    </span>
+                    <h3 className="mt-1 font-manrope text-[19px] font-bold text-forest">
+                      {panel.modelName}
+                    </h3>
+                  </div>
+
+                  {/* Specs List */}
+                  <div className="mt-5 space-y-2 border-t border-charcoal/8 pt-4 text-[13px]">
+                    <div className="flex items-center justify-between">
+                      <span className="text-charcoal-muted">Dimensions:</span>
+                      <span className="font-medium text-charcoal">{panel.dimensions}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-charcoal-muted">Weight:</span>
+                      <span className="font-medium text-charcoal">{panel.weightKg} kg</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-charcoal-muted">Performance Warranty:</span>
+                      <span className="font-bold text-forest">
+                        {panel.performanceWarrantyYears} Years
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Benefits Bullet List */}
+                  <div className="mt-4 border-t border-charcoal/8 pt-3">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-forest">
+                      Key Technical Advantages:
                     </p>
-                    <p className="text-[12px] font-semibold text-sage">{panel.moduleType}</p>
+                    <ul className="mt-2 space-y-1.5 text-[12px] text-charcoal/90">
+                      {panel.keyBenefits.slice(0, 2).map((b, i) => (
+                        <li key={i} className="flex items-start gap-1.5">
+                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-forest" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <div className="relative z-10 flex items-center justify-between border-t border-white/10 pt-2 text-[11px] text-sage">
-                    <span>Eff: <strong>{panel.efficiency}%</strong></span>
-                    <span>{panel.cellTechnology}</span>
-                  </div>
                 </div>
 
-                {/* Model Title */}
-                <div className="mt-5">
-                  <span className="text-[12px] font-bold uppercase tracking-wider text-charcoal-muted">
-                    {panel.brand}
-                  </span>
-                  <h3 className="mt-1 font-manrope text-[19px] font-bold text-forest">
-                    {panel.modelName}
-                  </h3>
-                </div>
-
-                {/* Specs List */}
-                <div className="mt-5 space-y-2 border-t border-charcoal/8 pt-4 text-[13px]">
-                  <div className="flex items-center justify-between">
-                    <span className="text-charcoal-muted">Dimensions:</span>
-                    <span className="font-medium text-charcoal">{panel.dimensions}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-charcoal-muted">Weight:</span>
-                    <span className="font-medium text-charcoal">{panel.weightKg} kg</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-charcoal-muted">Linear Warranty:</span>
-                    <span className="font-bold text-forest">
-                      {panel.performanceWarrantyYears} Years
+                {/* Compare Checkbox & Action Buttons */}
+                <div className="mt-6 pt-4 border-t border-charcoal/8">
+                  <div className="mb-3 flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={() => toggleCompare(panel.id)}
+                      className={`inline-flex items-center gap-1.5 text-[12px] font-bold transition-colors ${
+                        isCompared ? "text-forest" : "text-charcoal-muted hover:text-forest"
+                      }`}
+                    >
+                      <div className={`flex h-4 w-4 items-center justify-center rounded border ${
+                        isCompared ? "border-forest bg-forest text-white" : "border-charcoal/30 bg-white"
+                      }`}>
+                        {isCompared && <Check className="h-3 w-3 stroke-[3]" />}
+                      </div>
+                      <span>{isCompared ? "Added to Compare" : "+ Add to Compare"}</span>
+                    </button>
+                    <span className="text-[11px] font-semibold text-charcoal-muted">
+                      {panel.wattageDisplay}
                     </span>
                   </div>
-                </div>
 
-                {/* Benefits Bullet List */}
-                <div className="mt-4 border-t border-charcoal/8 pt-3">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-forest">
-                    Key Advantages:
-                  </p>
-                  <ul className="mt-2 space-y-1.5 text-[12px] text-charcoal/90">
-                    {panel.keyBenefits.slice(0, 2).map((b, i) => (
-                      <li key={i} className="flex items-start gap-1.5">
-                        <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-forest" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedPanel(panel)}
+                      className="flex-1 rounded-xl border border-forest py-2.5 text-[13px] font-bold text-forest transition-colors hover:bg-forest/5"
+                    >
+                      Full Specs
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openEnquiry(panel)}
+                      className="flex-1 rounded-xl bg-forest py-2.5 text-[13px] font-bold text-white shadow-sm transition-all hover:bg-forest-deep"
+                    >
+                      Enquire Now
+                    </button>
+                  </div>
                 </div>
 
               </div>
-
-              {/* Action Buttons */}
-              <div className="mt-6 flex items-center gap-2 pt-4 border-t border-charcoal/8">
-                <button
-                  type="button"
-                  onClick={() => setSelectedPanel(panel)}
-                  className="flex-1 rounded-xl border border-forest py-2.5 text-[13px] font-bold text-forest transition-colors hover:bg-forest/5"
-                >
-                  View Full Specs
-                </button>
-                <button
-                  type="button"
-                  onClick={() => openEnquiry(panel)}
-                  className="flex-1 rounded-xl bg-forest py-2.5 text-[13px] font-bold text-white shadow-sm transition-all hover:bg-forest-deep"
-                >
-                  Enquire Now
-                </button>
-              </div>
-
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Empty Search State */}
@@ -292,17 +444,17 @@ export default function CatalogueClient({ initialPanels }: Props) {
           <div className="mt-12 rounded-2xl bg-white p-12 text-center border border-charcoal/10">
             <Info className="mx-auto h-10 w-10 text-charcoal-muted" />
             <h3 className="mt-3 font-manrope text-[18px] font-bold text-forest">
-              No solar panels match your search
+              No solar panels match your selected filters
             </h3>
             <p className="mt-1 text-[14px] text-charcoal-muted">
-              Try clearing your search filters or browse all modules.
+              Try resetting your filters or modifying your search keyword.
             </p>
             <button
               type="button"
-              onClick={() => { setSearch(""); setTechFilter("All"); setTypeFilter("All"); }}
-              className="mt-4 rounded-xl bg-forest px-5 py-2 text-[13px] font-bold text-white"
+              onClick={resetAllFilters}
+              className="mt-4 rounded-xl bg-forest px-5 py-2.5 text-[13px] font-bold text-white"
             >
-              Reset Filters
+              Reset All Filters
             </button>
           </div>
         )}
@@ -328,6 +480,11 @@ export default function CatalogueClient({ initialPanels }: Props) {
               <span className="text-[13px] font-bold text-charcoal-muted">
                 {selectedPanel.cellTechnology}
               </span>
+              {selectedPanel.dcrCompliant && (
+                <span className="rounded-full bg-forest/10 px-2.5 py-0.5 text-[11px] font-bold text-forest">
+                  DCR Subsidy Approved
+                </span>
+              )}
             </div>
 
             <h2 className="mt-3 font-manrope text-[24px] font-extrabold text-forest">
@@ -353,13 +510,32 @@ export default function CatalogueClient({ initialPanels }: Props) {
               </div>
             </div>
 
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-[13px] border-t border-charcoal/10 pt-4">
+              <div>
+                <span className="text-charcoal-muted">Dimensions:</span>{" "}
+                <span className="font-bold text-charcoal">{selectedPanel.dimensions}</span>
+              </div>
+              <div>
+                <span className="text-charcoal-muted">Weight:</span>{" "}
+                <span className="font-bold text-charcoal">{selectedPanel.weightKg} kg</span>
+              </div>
+              <div>
+                <span className="text-charcoal-muted">Temp Coefficient:</span>{" "}
+                <span className="font-bold text-charcoal">{selectedPanel.temperatureCoefficient}</span>
+              </div>
+              <div>
+                <span className="text-charcoal-muted">Max System Voltage:</span>{" "}
+                <span className="font-bold text-charcoal">{selectedPanel.maxSystemVoltage}</span>
+              </div>
+            </div>
+
             <div className="mt-6 space-y-4 text-[14px]">
               <div>
                 <h4 className="font-bold text-forest">Key Technical Advantages:</h4>
                 <ul className="mt-2 space-y-2">
                   {selectedPanel.keyBenefits.map((b, i) => (
                     <li key={i} className="flex items-start gap-2 text-charcoal">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 text-forest" />
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 text-forest flex-shrink-0" />
                       <span>{b}</span>
                     </li>
                   ))}
@@ -400,7 +576,155 @@ export default function CatalogueClient({ initialPanels }: Props) {
         </div>
       )}
 
-      {/* Modal 2: Direct Panel Enquiry Form */}
+      {/* Modal 2: Side-by-Side Panel Comparison */}
+      {showCompareModal && comparedPanels.length > 0 && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+          <div className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8">
+            <button
+              type="button"
+              onClick={() => setShowCompareModal(false)}
+              className="absolute right-5 top-5 rounded-full p-2 text-charcoal hover:bg-sage-mist"
+            >
+              <X className="h-6 w-6" />
+            </button>
+
+            <div className="flex items-center gap-2">
+              <Scale className="h-5 w-5 text-gold" />
+              <h2 className="font-manrope text-[24px] font-extrabold text-forest">
+                Solar Panel Specifications Comparison
+              </h2>
+            </div>
+            <p className="mt-1 text-[13px] text-charcoal-muted">
+              Comparing technical specifications of {comparedPanels.length} Tier-1 solar modules.
+            </p>
+
+            <div className="mt-6 overflow-x-auto">
+              <table className="w-full text-left text-[13px]">
+                <thead>
+                  <tr className="border-b border-charcoal/10">
+                    <th className="py-3 pr-4 font-bold text-charcoal-muted w-1/4">Specification</th>
+                    {comparedPanels.map((p) => (
+                      <th key={p.id} className="py-3 px-3 font-bold text-forest">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-charcoal-muted block">
+                          {p.brand}
+                        </span>
+                        {p.modelName}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-charcoal/8">
+                  <tr>
+                    <td className="py-2.5 pr-4 font-semibold text-charcoal-muted">Wattage</td>
+                    {comparedPanels.map((p) => (
+                      <td key={p.id} className="py-2.5 px-3 font-bold text-forest">
+                        {p.wattage}W
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="py-2.5 pr-4 font-semibold text-charcoal-muted">Cell Technology</td>
+                    {comparedPanels.map((p) => (
+                      <td key={p.id} className="py-2.5 px-3 font-medium text-charcoal">
+                        {p.cellTechnology}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="py-2.5 pr-4 font-semibold text-charcoal-muted">Module Type</td>
+                    {comparedPanels.map((p) => (
+                      <td key={p.id} className="py-2.5 px-3 font-medium text-charcoal">
+                        {p.moduleType}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="py-2.5 pr-4 font-semibold text-charcoal-muted">Module Efficiency</td>
+                    {comparedPanels.map((p) => (
+                      <td key={p.id} className="py-2.5 px-3 font-bold text-forest">
+                        {p.efficiency}%
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="py-2.5 pr-4 font-semibold text-charcoal-muted">DCR Status</td>
+                    {comparedPanels.map((p) => (
+                      <td key={p.id} className="py-2.5 px-3 font-medium">
+                        {p.dcrCompliant ? (
+                          <span className="text-forest font-bold">DCR Approved (Govt Subsidy)</span>
+                        ) : (
+                          <span className="text-charcoal-muted">Non-DCR</span>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="py-2.5 pr-4 font-semibold text-charcoal-muted">Dimensions</td>
+                    {comparedPanels.map((p) => (
+                      <td key={p.id} className="py-2.5 px-3 text-charcoal">
+                        {p.dimensions}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="py-2.5 pr-4 font-semibold text-charcoal-muted">Weight</td>
+                    {comparedPanels.map((p) => (
+                      <td key={p.id} className="py-2.5 px-3 text-charcoal">
+                        {p.weightKg} kg
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="py-2.5 pr-4 font-semibold text-charcoal-muted">Product Warranty</td>
+                    {comparedPanels.map((p) => (
+                      <td key={p.id} className="py-2.5 px-3 font-bold text-charcoal">
+                        {p.productWarrantyYears} Years
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="py-2.5 pr-4 font-semibold text-charcoal-muted">Linear Performance Warranty</td>
+                    {comparedPanels.map((p) => (
+                      <td key={p.id} className="py-2.5 px-3 font-bold text-forest">
+                        {p.performanceWarrantyYears} Years
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="py-4 pr-4 font-semibold text-charcoal-muted">Enquiry Action</td>
+                    {comparedPanels.map((p) => (
+                      <td key={p.id} className="py-4 px-3">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setShowCompareModal(false)
+                            openEnquiry(p)
+                          }}
+                          className="w-full rounded-xl bg-forest py-2 px-3 text-[12px] font-bold text-white transition-all hover:bg-forest-deep"
+                        >
+                          Enquire About {p.brand}
+                        </button>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-6 flex justify-end border-t border-charcoal/10 pt-4">
+              <button
+                type="button"
+                onClick={() => setShowCompareModal(false)}
+                className="rounded-xl border border-charcoal/20 px-6 py-2.5 text-[13px] font-bold text-charcoal"
+              >
+                Close Comparison
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal 3: Direct Panel Enquiry Form */}
       {enquiryPanel && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
           <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8">
