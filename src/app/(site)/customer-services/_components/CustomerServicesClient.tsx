@@ -13,6 +13,9 @@ import {
   Activity,
   ArrowRight,
   PhoneCall,
+  ChevronDown,
+  MessageSquare,
+  HelpCircle,
 } from "lucide-react"
 
 const servicesList = [
@@ -48,6 +51,33 @@ const servicesList = [
   },
 ]
 
+const serviceFaqs = [
+  {
+    q: "How often does a rooftop solar plant require cleaning and maintenance?",
+    a: "Under typical Indian environmental conditions, solar panels should be washed with soft, clean water once every 10 to 15 days in dry seasons. Regular washing removes airborne dust and bird droppings, restoring 8% to 12% generation that would otherwise be lost to soiling.",
+  },
+  {
+    q: "What is included in an AG POWER Annual Maintenance Contract (AMC)?",
+    a: "Our AMC packages include scheduled professional cleaning, electrical junction box inspections, DC/AC wiring terminal tightening, inverter error-log audits, string Voc/Isc health diagnostics, and priority on-call technician dispatch for unexpected grid faults.",
+  },
+  {
+    q: "What should I do if my solar inverter displays an error code or red light?",
+    a: "First check if your home grid power is active (grid-tied inverters automatically pause during grid outages for lineman safety). If grid power is available but generation remains halted, note the fault code on the inverter screen and call our technical support line at +91 95234 67849 for remote diagnosis or same-day technician dispatch.",
+  },
+  {
+    q: "How does AG POWER handle manufacturer warranty claims?",
+    a: "You do not have to struggle with third-party manufacturer portals. AG POWER facilitates all 10-15 year product warranty and 25-30 year linear output claims directly with Tier-1 brands (Waaree, Adani, Tata Power, Sungrow, Growatt), including module testing and RMA replacements.",
+  },
+  {
+    q: "Do you provide assistance with DISCOM net-metering and government subsidies?",
+    a: "Yes. Our operations team manages the entire administrative workflow: applying on the National PM Surya Ghar portal, liaisoning with your local DISCOM for transformer feasibility, coordinating bi-directional meter testing, and expediting Direct Benefit Transfer (DBT) subsidy disbursement.",
+  },
+  {
+    q: "Is the initial rooftop feasibility survey truly zero cost?",
+    a: "Yes. Our solar engineers visit your residential or commercial site, measure shadow-free rooftop area, evaluate electrical sanction load, and provide a 3D layout simulation and generation report completely free with no obligation to buy.",
+  },
+]
+
 export default function CustomerServicesClient() {
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
@@ -57,6 +87,9 @@ export default function CustomerServicesClient() {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
+
+  // FAQ Accordion State
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
 
   async function handleServiceSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -152,17 +185,21 @@ export default function CustomerServicesClient() {
                 Book a Solar Service or Site Inspection
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-sage-mist/85">
-                Whether you need a new rooftop feasibility survey, AMC panel maintenance, or inverter repair, our engineers are ready to assist.
+                Whether you need a new rooftop feasibility survey, AMC panel maintenance, or inverter repair, our certified technicians are ready to assist.
               </p>
 
               <div className="mt-8 space-y-4 border-t border-white/10 pt-6 text-[14px] text-sage">
                 <div className="flex items-center gap-3">
-                  <PhoneCall className="h-5 w-5 text-gold" />
-                  <span>Helpline: <strong>+91 95234 67849</strong> (Mon - Sat, 9am - 7pm)</span>
+                  <PhoneCall className="h-5 w-5 text-gold flex-shrink-0" />
+                  <span>Helpline: <strong className="text-white">+91 95234 67849</strong> (Mon - Sat, 9am - 7pm)</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <ShieldCheck className="h-5 w-5 text-gold" />
-                  <span>Certified Solar PV Technicians</span>
+                  <ShieldCheck className="h-5 w-5 text-gold flex-shrink-0" />
+                  <span>Certified Solar PV Technicians & Guaranteed Safety Norms</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CalendarCheck className="h-5 w-5 text-gold flex-shrink-0" />
+                  <span>Rapid 24-48 Hour On-Ground Ticket Resolution</span>
                 </div>
               </div>
             </div>
@@ -185,7 +222,7 @@ export default function CustomerServicesClient() {
                 <button
                   type="button"
                   onClick={() => setSubmitted(false)}
-                  className="mt-6 rounded-xl bg-forest px-6 py-2.5 text-[14px] font-bold text-white"
+                  className="mt-6 rounded-xl bg-forest px-6 py-2.5 text-[14px] font-bold text-white transition-colors hover:bg-forest-deep"
                 >
                   Book Another Service
                 </button>
@@ -204,7 +241,7 @@ export default function CustomerServicesClient() {
                     placeholder="e.g. Anil Verma"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                   />
                 </div>
 
@@ -217,7 +254,7 @@ export default function CustomerServicesClient() {
                       placeholder="10-digit mobile"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                     />
                   </div>
                   <div>
@@ -227,7 +264,7 @@ export default function CustomerServicesClient() {
                       placeholder="e.g. Jaipur"
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                     />
                   </div>
                 </div>
@@ -237,7 +274,7 @@ export default function CustomerServicesClient() {
                   <select
                     value={serviceType}
                     onChange={(e) => setServiceType(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] font-medium text-forest focus:border-forest focus:outline-none"
                   >
                     <option value="Solar Consultation">Free Rooftop Solar Consultation</option>
                     <option value="Installation Feasibility">Installation & Feasibility Assessment</option>
@@ -254,7 +291,7 @@ export default function CustomerServicesClient() {
                     placeholder="Tell us about your rooftop type or issue..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] focus:border-forest focus:outline-none"
+                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
                   />
                 </div>
 
@@ -273,6 +310,80 @@ export default function CustomerServicesClient() {
             )}
           </div>
 
+        </div>
+
+        {/* Section: Contextual FAQs */}
+        <div className="mt-20">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-sage-mist px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-forest">
+              <HelpCircle className="h-4 w-4 text-gold" />
+              <span>Customer Helpdesk</span>
+            </div>
+            <h2 className="mt-3 font-manrope text-[30px] font-extrabold text-forest sm:text-[38px]">
+              Frequently Asked Questions About Solar Services
+            </h2>
+            <p className="mt-3 text-[15px] text-charcoal/80">
+              Clear answers regarding our maintenance protocols, inverter support, and warranty coverage.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-10 max-w-3xl space-y-4">
+            {serviceFaqs.map((faq, index) => {
+              const isOpen = openFaqIndex === index
+              return (
+                <div
+                  key={index}
+                  className="overflow-hidden rounded-2xl border border-charcoal/10 bg-white transition-all duration-200"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                    className="flex w-full items-center justify-between p-5 sm:p-6 text-left transition-colors hover:bg-sage-mist/20"
+                  >
+                    <span className="font-manrope text-[16px] sm:text-[17px] font-bold text-forest pr-4">
+                      {faq.q}
+                    </span>
+                    <ChevronDown
+                      className={`h-5 w-5 flex-shrink-0 text-forest transition-transform duration-300 ${
+                        isOpen ? "rotate-180 text-gold" : ""
+                      }`}
+                    />
+                  </button>
+                  {isOpen && (
+                    <div className="border-t border-charcoal/8 px-5 pb-6 pt-3 sm:px-6 text-[14px] leading-relaxed text-charcoal/85">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Section: Final Contact CTA */}
+        <div className="mt-16 rounded-3xl bg-sage-mist/50 p-8 sm:p-12 text-center border border-charcoal/10">
+          <h3 className="font-manrope text-[24px] sm:text-[30px] font-extrabold text-forest">
+            Need Immediate Technical Support?
+          </h3>
+          <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-charcoal/80">
+            Our solar engineers and customer support desk are available Monday through Saturday to answer any technical queries or dispatch maintenance teams.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="tel:+919523467849"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-forest px-7 py-3 text-[14px] font-bold text-white shadow-sm transition-all hover:bg-forest-deep"
+            >
+              <PhoneCall className="h-4 w-4 text-gold" />
+              <span>Call Helpline: +91 95234 67849</span>
+            </a>
+            <LocalizedClientLink
+              href="/contact"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-forest bg-white px-7 py-3 text-[14px] font-bold text-forest transition-all hover:bg-ivory"
+            >
+              <span>Visit Contact Page</span>
+              <ArrowRight className="h-4 w-4" />
+            </LocalizedClientLink>
+          </div>
         </div>
 
       </div>
