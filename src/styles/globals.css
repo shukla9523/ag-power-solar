@@ -386,3 +386,20 @@ html body .blog-content :is(div, section)[style*="padding"][style*="border-radiu
     @apply text-[32px] leading-[44px] font-semibold;
   }
 }
+
+
+/* Reduced motion support for accessibility (Part 18) */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessible focus ring for keyboard navigation */
+:focus-visible {
+  outline: 2px solid #173F32;
+  outline-offset: 2px;
+}
