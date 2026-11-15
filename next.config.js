@@ -126,6 +126,11 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      {
+        source: "/terms-of-service",
+        destination: "/terms-and-conditions",
+        permanent: true,
+      },
     ]
   },
   async headers() {
