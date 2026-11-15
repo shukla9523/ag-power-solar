@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo, use } from "react"
+import { useState, useMemo } from "react"
 import {
   Calculator,
   Sun,
@@ -22,17 +22,16 @@ import { calculateSolarSavings, CalculatorResult } from "@lib/services/solar-cal
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 interface Props {
-  initialSearchParams?: Promise<{ cat?: string; bill?: string }>
+  initialCat?: string
+  initialBill?: string
 }
 
-export default function CalculatorClient({ initialSearchParams }: Props) {
-  const resolvedParams = initialSearchParams ? use(initialSearchParams) : {}
+export default function CalculatorClient({ initialCat, initialBill }: Props) {
+  const validCat = (initialCat as "residential" | "commercial" | "society") || "residential"
+  const validBill = initialBill && !isNaN(Number(initialBill)) ? Number(initialBill) : 6000
 
-  const initialCat = (resolvedParams.cat as "residential" | "commercial" | "society") || "residential"
-  const initialBill = resolvedParams.bill ? Number(resolvedParams.bill) : 6000
-
-  const [category, setCategory] = useState<"residential" | "commercial" | "society">(initialCat)
-  const [monthlyBill, setMonthlyBill] = useState<number>(initialBill)
+  const [category, setCategory] = useState<"residential" | "commercial" | "society">(validCat)
+  const [monthlyBill, setMonthlyBill] = useState<number>(validBill)
   const [city, setCity] = useState<string>("")
   const [pincode, setPincode] = useState<string>("")
   const [roofArea, setRoofArea] = useState<number | undefined>(undefined)

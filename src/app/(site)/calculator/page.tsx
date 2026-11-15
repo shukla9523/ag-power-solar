@@ -12,14 +12,19 @@ export const metadata: Metadata = {
   },
 }
 
-export default function CalculatorPage({
+export default async function CalculatorPage({
   searchParams,
 }: {
   searchParams?: Promise<{ cat?: string; bill?: string }>
 }) {
+  const resolved = searchParams ? await searchParams : {}
+
   return (
     <main className="bg-ivory min-h-screen">
-      <CalculatorClient initialSearchParams={searchParams} />
+      <CalculatorClient
+        initialCat={resolved.cat}
+        initialBill={resolved.bill}
+      />
     </main>
   )
 }
