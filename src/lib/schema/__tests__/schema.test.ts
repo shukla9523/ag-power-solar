@@ -191,19 +191,15 @@ describe("End-to-End Schema Graph Generation", () => {
     expect(orgNode?.telephone).toBe(DEFAULT_ORGANIZATION_PROFILE.telephone)
     expect(orgNode?.email).toBe(DEFAULT_ORGANIZATION_PROFILE.email)
     expect(orgNode?.address?.["@type"]).toBe("PostalAddress")
-    expect(orgNode?.contactPoint.map((c: any) => c.telephone)).toEqual(["+919588973492", "+917742276031"])
+    expect(orgNode?.contactPoint.map((c: any) => c.telephone)).toEqual(["+919876543210"])
     expect(orgNode?.openingHoursSpecification?.[0]).toMatchObject({
       "@type": "OpeningHoursSpecification",
       opens: "09:00",
-      closes: "21:00",
+      closes: "19:00",
     })
     expect(orgNode?.areaServed).toEqual([
-      { "@type": "City", name: "Jaipur" },
       { "@type": "Country", name: "India" },
-      { "@type": "Place", name: "Worldwide" },
     ])
-    expect(orgNode?.sameAs).toContain("https://www.linkedin.com/company/mommantum-media/")
-    expect(orgNode?.sameAs).toContain("https://www.instagram.com/mommantumeditz/")
     expect(orgNode?.hasMap).toBeUndefined()
     expect(orgNode?.geo).toBeUndefined()
     expect(orgNode?.priceRange).toBeUndefined()

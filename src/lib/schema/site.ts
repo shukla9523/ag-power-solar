@@ -85,7 +85,7 @@ export const DEFAULT_ORGANIZATION_PROFILE: OrganizationProfile = {
   numberOfEmployees: {
     value: 30,
   },
-  taxID: "08CTJPA2104B1ZI",
+  taxID: "",
   email: "contact@agpower.in",
   telephone: "+919876543210",
   whatsapp: {
@@ -95,47 +95,29 @@ export const DEFAULT_ORGANIZATION_PROFILE: OrganizationProfile = {
   },
   contactPoints: [
     {
-      // Shown on /contact under "General Inquiries".
-      telephone: "+919588973492",
+      telephone: "+919876543210",
       contactType: "customer service",
-      email: "kuldeep@mommantum.com",
-      availableLanguage: ["English", "Hindi"],
-    },
-    {
-      // Shown in the contact / FAQ answers as the call and WhatsApp line.
-      telephone: "+917742276031",
-      contactType: "customer support",
+      email: "contact@agpower.in",
       availableLanguage: ["English", "Hindi"],
     },
   ],
   address: {
-    // Official Mommantum headquarters office address (as shown on /contact)
-    streetAddress: "B-147, Anand Vihar, Jagatpura",
+    streetAddress: "Electro Global, Corporate Office",
     addressLocality: "Jaipur",
     addressRegion: "Rajasthan",
-    postalCode: "302017",
+    postalCode: "302001",
     addressCountry: "IN",
   },
   clientsCanVisitOffice: true,
-  // "Open Monday to Saturday, 9:00 AM – 9:00 PM" on /contact.
   openingHours: [
     {
       days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       opens: "09:00",
-      closes: "21:00",
+      closes: "19:00",
     },
   ],
-  areaServed: ["Jaipur", "India", "Worldwide"],
-  // hasMap and geo are intentionally omitted: the old map shortlink resolved to Cochin, not
-  // the Jaipur office, and no verified coordinates exist.
-  // Social profiles actually linked in the site header, footer and /contact page.
-  sameAs: [
-    "https://www.instagram.com/mommantummedia/",
-    "https://www.instagram.com/mommantumeditz/",
-    "https://www.linkedin.com/company/mommantum-media/",
-    "https://www.facebook.com/profile.php?id=61594685770172",
-    "https://x.com/mommantum",
-  ],
+  areaServed: ["India"],
+  sameAs: [],
 }
 
 export interface SchemaSiteInfo {

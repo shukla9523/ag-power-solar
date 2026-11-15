@@ -64,12 +64,12 @@ describe("Roles and owner", () => {
   })
 
   it("recognises the owner email case-insensitively", () => {
-    expect(isOwnerEmail("SharmaSaurabh2604@gmail.com")).toBe(true)
+    expect(isOwnerEmail("AkashShukla9523@gmail.com")).toBe(true)
     expect(isOwnerEmail("admin@mommantum.com")).toBe(false)
   })
 
   it("nobody but the owner can modify the owner account", () => {
-    const owner = { id: "o", email: "sharmasaurabh2604@gmail.com", role: "owner", status: "approved" }
+    const owner = { id: "o", email: "akashshukla9523@gmail.com", role: "owner", status: "approved" }
     const admin = { userId: "a", email: "a@x.com", role: "admin" as const, isOwner: false, mfaEnabled: false }
     const self = { userId: "o", email: owner.email, role: "owner" as const, isOwner: true, mfaEnabled: false }
     expect(canModifyUser(admin, owner).allowed).toBe(false)

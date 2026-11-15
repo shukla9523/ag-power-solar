@@ -91,7 +91,7 @@ const COMPACT = ["Organization", "WebSite"]
 const EXPECTED: Record<string, { top: string[]; nested: string[] }> = {
   home: {
     top: ["WebSite", ...ORG_FULL, "Person", "WebPage"],
-    nested: ["Answer", "BreadcrumbList", "City", "ContactPoint", "Country", "FAQPage", "ImageObject", "ListItem", "OpeningHoursSpecification", "Place", "PostalAddress", "QuantitativeValue", "Question"],
+    nested: ["Answer", "BreadcrumbList", "ContactPoint", "Country", "FAQPage", "ImageObject", "ListItem", "OpeningHoursSpecification", "PostalAddress", "QuantitativeValue", "Question"],
   },
   about: { top: ["AboutPage", "Person", ...COMPACT], nested: ["Answer", "BreadcrumbList", "FAQPage", "ImageObject", "ListItem", "Question"] },
   contact: { top: ["ContactPage", ...COMPACT], nested: ["Answer", "BreadcrumbList", "FAQPage", "ImageObject", "ListItem", "Question"] },
@@ -155,9 +155,9 @@ describe("Schema inventory per page type", () => {
     const all = new Set<string>()
     for (const page of Object.values(EXPECTED)) [...page.top, ...page.nested].forEach((t) => all.add(t))
     expect(Array.from(all).sort()).toEqual([
-      "AboutPage", "Answer", "Article", "Blog", "BlogPosting", "BreadcrumbList", "City", "CollectionPage",
+      "AboutPage", "Answer", "Article", "Blog", "BlogPosting", "BreadcrumbList", "CollectionPage",
       "ContactPage", "ContactPoint", "Country", "FAQPage", "ImageObject", "ItemList", "ListItem", "Offer",
-      "OfferCatalog", "OpeningHoursSpecification", "Organization", "Person", "Place", "PostalAddress",
+      "OfferCatalog", "OpeningHoursSpecification", "Organization", "Person", "PostalAddress",
       "ProfessionalService", "QuantitativeValue", "Question", "Service", "WebPage", "WebSite",
     ])
     if (process.env.SCHEMA_INVENTORY_OUT) {

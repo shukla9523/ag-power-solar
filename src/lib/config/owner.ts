@@ -6,7 +6,7 @@
  * owner can never be locked out by a misconfigured deployment. Edge-safe.
  */
 
-export const DEFAULT_OWNER_EMAIL = "sharmasaurabh2604@gmail.com"
+export const DEFAULT_OWNER_EMAIL = "akashshukla9523@gmail.com"
 
 export function getOwnerEmail(): string {
   return (process.env.OWNER_EMAIL || DEFAULT_OWNER_EMAIL).trim().toLowerCase()
