@@ -32,12 +32,11 @@ export async function sendTelegramNotification(
   const chatId = process.env.TELEGRAM_CHAT_ID
 
   if (!botToken || !chatId) {
-    // If Telegram credentials are not yet configured in environment, log safely and return ok
     console.warn("TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is not configured in environment.")
     return { ok: false, error: "Telegram credentials not configured in env" }
   }
 
-  // Format message text nicely for Telegram Markdown / HTML
+  // Format message text with clear hierarchy
   const text = `
 ☀️ *NEW AG POWER SOLAR ENQUIRY*
 
@@ -75,8 +74,9 @@ ${escapeMarkdown(lead.message || "No message provided")}
     }
 
     return { ok: true }
-  } catch (err: any) {
-    return { ok: false, error: err?.message || "Telegram network error" }
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : "Telegram network error"
+    return { ok: false, error: msg }
   }
 }
 
