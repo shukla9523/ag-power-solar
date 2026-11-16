@@ -1,116 +1,116 @@
 /*
- * AG POWER Official Brand Design Tokens — SolarSquare Modern Clean Energy Palette
+ * AG POWER Official Brand Design Tokens
  * 
- * Crisp Modern Emerald: #064E3B (Primary brand: hero, footer, high-contrast areas)
- * Radiant Sun Gold:     #F59E0B (Primary accent and CTA: buttons, highlights, badges)
- * Pure Crisp White:     #FFFFFF (Main canvas & surface background - no yellow tint)
- * Soft Mint Tint:       #F0FDF4 (Subtle card backgrounds & section contrast)
- * Slate Charcoal:       #0F172A (Headings and high-contrast readable body text)
- * Slate Muted:          #475569 (Secondary supporting descriptions)
- * Crisp Slate Border:   #E2E8F0 (Subtle modern card borders)
+ * Deep Forest Green: #173F32 (Primary brand colour: hero, footer, primary areas)
+ * Solar Gold:        #E9B949 (Primary accent and CTA: buttons, highlights, icons)
+ * Warm Ivory:        #F7F6EF (Main background, large sections, premium whitespace)
+ * Sage Green:        #A8C5A0 (Secondary accent: supporting illustrations, small highlights)
+ * Charcoal:          #26332C (Headings and body text, labels, descriptions)
+ * Soft Sage Mist:    #E8EDE5 (Card backgrounds)
+ * Pure White:        #FFFFFF (Content surfaces, cards, forms)
  *
  * RGB values allow Tailwind opacity modifiers e.g. bg-brand/10
  */
 
 :root {
-  /* ── AG POWER Core Brand Tokens (SolarSquare Modern Clean Energy) ───── */
-  --color-forest: 6 78 59;
-  /* #064E3B  Crisp Modern Emerald Green (Primary) */
-  --color-forest-deep: 2 44 34;
-  /* #022C22  Deep Forest Midnight */
-  --color-forest-light: 5 150 105;
-  /* #059669  Vibrant Emerald Light */
-  --color-gold: 245 158 11;
-  /* #F59E0B  Radiant Sun Gold (Accent & CTA) */
-  --color-gold-hover: 217 119 6;
-  /* #D97706  Gold Hover / Pressed */
-  --color-gold-tint: 254 243 199;
-  /* #FEF3C7  Gold soft glow tint */
-  --color-ivory: 255 255 255;
-  /* #FFFFFF  Pure Crisp White (Main Background - Clean & Bright) */
-  --color-sage: 52 211 153;
-  /* #34D399  Fresh Mint Green (Secondary Accent) */
-  --color-sage-mist: 240 253 244;
-  /* #F0FDF4  Soft Mint Card Background */
-  --color-charcoal: 15 23 42;
-  /* #0F172A  Slate Charcoal (Text & Headings) */
-  --color-charcoal-muted: 71 85 105;
-  /* #475569  Slate Muted Secondary Text */
+  /* ── AG POWER Core Brand Tokens ────────────────────────────────────── */
+  --color-forest: 23 63 50;
+  /* #173F32  Deep Forest Green (Primary) */
+  --color-forest-deep: 17 48 38;
+  /* #113026  Forest Deep */
+  --color-forest-light: 34 89 71;
+  /* #225947  Forest Light */
+  --color-gold: 233 185 73;
+  /* #E9B949  Solar Gold (Accent & CTA) */
+  --color-gold-hover: 217 168 53;
+  /* #D9A835  Gold Hover / Pressed */
+  --color-gold-tint: 253 247 232;
+  /* #FDF7E8  Gold light tint */
+  --color-ivory: 247 246 239;
+  /* #F7F6EF  Warm Ivory (Main BG) */
+  --color-sage: 168 197 160;
+  /* #A8C5A0  Sage Green (Secondary Accent) */
+  --color-sage-mist: 232 237 229;
+  /* #E8EDE5  Soft Sage Mist (Cards) */
+  --color-charcoal: 38 51 44;
+  /* #26332C  Charcoal (Text & Headings) */
+  --color-charcoal-muted: 80 97 88;
+  /* #506158  Charcoal Muted Text */
   --color-surface-white: 255 255 255;
   /* #FFFFFF  Pure White (Surfaces) */
 
   /* ── Legacy Mappings for existing component compatibility ──────────── */
-  --color-brand: 6 78 59;
-  /* #064E3B  Primary brand matches Modern Emerald */
-  --color-brand-hover: 4 120 87;
-  /* #047857  Vibrant Emerald hover */
-  --color-brand-deep: 2 44 34;
-  --color-brand-bright: 245 158 11;
-  /* #F59E0B  Bright accent is Sun Gold */
-  --color-brand-soft: 52 211 153;
-  /* #34D399  Fresh Mint Green */
-  --color-brand-pale: 240 253 244;
-  /* #F0FDF4  Soft Mint Mist */
-  --color-brand-blush: 255 255 255;
-  /* #FFFFFF  Pure White */
-  --color-brand-tint: 240 253 244;
-  /* #F0FDF4  Soft Mint */
-  --color-brand-tint-2: 248 250 252;
-  --color-navy: 6 78 59;
-  /* #064E3B  Headings & Dark Sections */
-  --color-navy-light: 5 150 105;
-  /* #059669 */
-  --color-navy-mid: 4 120 87;
-  /* #047857 */
-  --color-navy-bright: 6 78 59;
-  /* #064E3B */
+  --color-brand: 23 63 50;
+  /* #173F32  Primary brand matches Forest Green */
+  --color-brand-hover: 17 48 38;
+  /* #113026  Deep Forest hover */
+  --color-brand-deep: 17 48 38;
+  --color-brand-bright: 233 185 73;
+  /* #E9B949  Bright accent is Gold */
+  --color-brand-soft: 168 197 160;
+  /* #A8C5A0  Sage Green */
+  --color-brand-pale: 232 237 229;
+  /* #E8EDE5  Soft Sage Mist */
+  --color-brand-blush: 247 246 239;
+  /* #F7F6EF  Warm Ivory */
+  --color-brand-tint: 247 246 239;
+  /* #F7F6EF  Warm Ivory */
+  --color-brand-tint-2: 241 245 239;
+  --color-navy: 23 63 50;
+  /* #173F32  Headings & Dark Sections */
+  --color-navy-light: 34 89 71;
+  /* #225947 */
+  --color-navy-mid: 28 73 58;
+  /* #1C493A */
+  --color-navy-bright: 23 63 50;
+  /* #173F32 */
 
-  --color-accent-gold: 245 158 11;
-  /* #F59E0B  Sun Gold */
-  --color-accent-purple: 5 150 105;
-  /* Map purple to Emerald */
-  --color-accent-sky: 52 211 153;
-  /* Mint */
-  --color-accent-mint: 52 211 153;
-  /* Mint */
-  --color-accent-blue: 6 78 59;
-  --color-accent-orange: 245 158 11;
-  /* Sun Gold */
+  --color-accent-gold: 233 185 73;
+  /* #E9B949  Solar Gold */
+  --color-accent-purple: 34 89 71;
+  /* Map purple to Forest Green */
+  --color-accent-sky: 168 197 160;
+  /* Sage Green */
+  --color-accent-mint: 168 197 160;
+  /* Sage Green */
+  --color-accent-blue: 23 63 50;
+  --color-accent-orange: 233 185 73;
+  /* Solar Gold */
 
   /* ── Neutrals ──────────────────────────────────────────────────────── */
-  --color-ink: 15 23 42;
-  /* #0F172A  Darkest text */
-  --color-graphite: 71 85 105;
-  /* #475569  Secondary text */
-  --color-ash: 100 116 139;
-  --color-ash-light: 148 163 184;
-  --color-line: 226 232 240;
-  /* #E2E8F0  Subtle modern slate border */
-  --color-line-cool: 241 245 249;
-  --color-cloud: 248 250 252;
-  /* #F8FAFC  Ice Slate */
+  --color-ink: 38 51 44;
+  /* #26332C  Darkest text */
+  --color-graphite: 80 97 88;
+  /* #506158  Secondary text */
+  --color-ash: 105 120 112;
+  --color-ash-light: 140 155 146;
+  --color-line: 220 228 222;
+  /* Subtle sage border */
+  --color-line-cool: 225 231 226;
+  --color-cloud: 247 246 239;
+  /* #F7F6EF  Warm Ivory */
   --color-field: 255 255 255;
   /* Pure white form fields */
-  --color-snow: 248 250 252;
-  --color-paper: 255 255 255;
-  --color-smoke: 241 245 249;
-  --color-smoke-2: 248 250 252;
-  --color-smoke-3: 241 245 249;
-  --color-ink-soft: 30 41 59;
-  --color-surface-ice: 248 250 252;
+  --color-snow: 250 250 247;
+  --color-paper: 247 246 239;
+  --color-smoke: 240 244 239;
+  --color-smoke-2: 244 246 242;
+  --color-smoke-3: 235 240 234;
+  --color-ink-soft: 45 60 52;
+  --color-surface-ice: 247 246 239;
   --color-surface-frost: 255 255 255;
-  --color-surface-cool: 248 250 252;
-  --color-surface-chip: 240 253 244;
-  --color-surface-media: 240 253 244;
-  --color-surface-slate: 241 245 249;
-  --color-surface-haze: 248 250 252;
-  --color-surface-mist: 240 253 244;
-  --color-surface-fog: 248 250 252;
-  --color-glow-1: 245 158 11;
-  /* Sun Gold glow */
-  --color-glow-2: 52 211 153;
-  /* Mint glow */
-  --color-glow-3: 240 253 244;
+  --color-surface-cool: 245 248 244;
+  --color-surface-chip: 232 237 229;
+  --color-surface-media: 232 237 229;
+  --color-surface-slate: 240 244 239;
+  --color-surface-haze: 247 246 239;
+  --color-surface-mist: 232 237 229;
+  --color-surface-fog: 247 246 239;
+  --color-glow-1: 233 185 73;
+  /* Gold glow */
+  --color-glow-2: 168 197 160;
+  /* Sage glow */
+  --color-glow-3: 247 246 239;
 
   /* ── Social ────────────────────────────────────────────────────────── */
   --color-social-facebook: 24 119 242;
