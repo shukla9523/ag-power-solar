@@ -10,7 +10,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
 import { supabaseAdmin } from "@lib/supabase-admin"
-import { resolveSession } from "@lib/auth/resolve-role"
+import { resolveSession, invalidateResolvedRole } from "@lib/auth/resolve-role"
 import { AUTH_COOKIE, REFRESH_COOKIE_MAX_AGE, authCookieOptions } from "@lib/auth/verify-token"
 import { canAccessAdmin } from "@lib/config/roles"
 import { isOwnerEmail } from "@lib/config/owner"
@@ -57,28 +57,41 @@ export async function GET(req: NextRequest) {
     const email = data.user.email.toLowerCase()
     const owner = isOwnerEmail(email)
 
-    const { data: profile } = await supabaseAdmin
-      .from("profiles")
-      .select("id, status")
-      .eq("id", data.user.id)
-      .maybeSingle()
+    try {
+      const { data: profile } = await supabaseAdmin
+        .from("profiles")
+        .select("id, status, role")
+        .eq("id", data.user.id)
+        .maybeSingle()
 
-    if (!profile) {
-      await supabaseAdmin.from("profiles").insert({
-        id: data.user.id,
-        email,
-        role: owner ? "owner" : "customer",
-        status: owner ? "approved" : "pending",
-      })
-      if (!owner) {
-        await notifyAdmins({
-          type: "access_request",
-          title: "New admin access request",
-          body: `${email} signed in with Google and is waiting for approval.`,
-          link: "/admin/users",
-          email: true,
+      if (!profile) {
+        await supabaseAdmin.from("profiles").insert({
+          id: data.user.id,
+          email,
+          role: owner ? "owner" : "customer",
+          status: owner ? "approved" : "pending",
         })
+        if (!owner) {
+          await notifyAdmins({
+            type: "access_request",
+            title: "New admin access request",
+            body: `${email} signed in with Google and is waiting for approval.`,
+            link: "/admin/users",
+            email: true,
+          })
+        }
+      } else if (owner && (profile.status !== "approved" || profile.role !== "owner")) {
+        await supabaseAdmin.from("profiles").update({
+          role: "owner",
+          status: "approved",
+        }).eq("id", data.user.id)
       }
+    } catch {
+      // Non-blocking: database table will be initialized or syncs on next run
+    }
+
+    if (owner) {
+      invalidateResolvedRole(data.user.id)
     }
 
     const session = await resolveSession({

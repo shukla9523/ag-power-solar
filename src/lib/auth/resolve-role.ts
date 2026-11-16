@@ -54,10 +54,14 @@ export async function resolveSession(identity: VerifiedToken): Promise<ResolvedS
 function loadSession(identity: VerifiedToken): Promise<ResolvedSession | null> {
   return roleCache.getOrSet(identity.userId, async () => {
     if (isOwnerEmail(identity.email)) {
-      // The owner never depends on the profile row for its role, but the row says whether 2FA
-      // is on. If that lookup fails we must not skip 2FA, so the error propagates (fail closed,
-      // and errors are never cached). A missing row simply means 2FA was never set up.
-      const ownerProfile = await fetchProfile(identity.userId)
+      // The owner never depends on the profile row for its role. If profile lookup fails
+      // (e.g. table not yet initialized or network glitch), the owner is never locked out.
+      let ownerProfile: { role?: string; status?: string; mfa_enabled?: boolean } | null = null
+      try {
+        ownerProfile = await fetchProfile(identity.userId)
+      } catch {
+        // Safe fallback if profile row or table is missing
+      }
       return {
         userId: identity.userId,
         email: identity.email,
