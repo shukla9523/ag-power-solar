@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { SunMedium, ArrowRight, ShieldCheck, Zap, Award, Sparkles, CheckCircle2 } from "lucide-react"
 
@@ -106,28 +107,33 @@ export default function Hero() {
               {/* Glass Card Visual Wrapper */}
               <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-forest to-forest-deep p-6 shadow-2xl backdrop-blur-md">
                 
-                {/* Solar Installation Graphic Representation */}
-                <div className="relative h-72 w-full overflow-hidden rounded-2xl bg-forest-deep p-5 border border-white/10">
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-transparent to-transparent z-10" />
-                  
-                  {/* Solar Panel Cells Pattern Illustration */}
-                  <div className="grid grid-cols-4 gap-2 h-full opacity-80">
-                    {[...Array(12)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="rounded-lg border border-gold/30 bg-gradient-to-br from-forest to-forest-deep p-2 flex flex-col justify-between"
-                      >
-                        <div className="h-1 w-full bg-gold/40 rounded-full" />
-                        <div className="flex justify-between items-center text-[10px] text-sage">
-                          <Zap className="h-3 w-3 text-gold" />
-                          <span>550W</span>
-                        </div>
-                      </div>
-                    ))}
+                {/* Real Happy Customer Photo with Floating Badges */}
+                <div className="relative h-80 w-full overflow-hidden rounded-2xl border border-white/10 group shadow-lg">
+                  <Image
+                    src="/images/hero-solar-customer.webp"
+                    alt="Happy AG POWER Solar Homeowner with Rooftop Solar Panels"
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 450px"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/20 to-transparent pointer-events-none" />
+
+                  {/* Top-Left Floating Badge: Zero Electricity Bill */}
+                  <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-2 rounded-full border border-gold/40 bg-forest/90 px-3 py-1 shadow-md backdrop-blur-md">
+                    <span className="h-2 w-2 rounded-full bg-gold animate-pulse" />
+                    <span className="text-[11px] font-bold text-white tracking-wide">
+                      Zero Power Bill!
+                    </span>
                   </div>
 
-                  {/* Overlay Live Metric Pill */}
-                  <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between rounded-xl bg-forest/95 border border-gold/30 p-3.5 backdrop-blur-md">
+                  {/* Top-Right Floating Badge: Subsidy Credited */}
+                  <div className="absolute top-3.5 right-3.5 z-20 rounded-full border border-white/20 bg-forest-deep/90 px-3 py-1 text-[11px] font-bold text-gold shadow-md backdrop-blur-md">
+                    ₹78,000 Subsidy Credited
+                  </div>
+
+                  {/* Bottom Overlay Live Metric Pill */}
+                  <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between rounded-xl bg-forest/95 border border-gold/30 p-3.5 backdrop-blur-md shadow-xl">
                     <div>
                       <p className="text-[11px] font-semibold uppercase tracking-wider text-sage">
                         Daily Solar Generation
@@ -136,7 +142,7 @@ export default function Hero() {
                         24.5 kWh <span className="text-[12px] font-normal text-gold">/ Day avg</span>
                       </p>
                     </div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gold text-forest">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gold text-forest shadow-sm">
                       <Zap className="h-5 w-5 fill-current" />
                     </div>
                   </div>
