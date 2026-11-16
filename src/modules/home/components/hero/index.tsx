@@ -6,19 +6,30 @@ import { SunMedium, ArrowRight, ShieldCheck, Zap, Award, Sparkles, CheckCircle2 
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/60 via-white to-white text-charcoal">
-      {/* Background glow effects */}
-      <div className="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-gold/15 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-10 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl" />
+    <section className="relative min-h-[660px] lg:min-h-[740px] overflow-hidden flex items-center bg-white text-charcoal">
+      {/* Full-Bleed Background Image of Standing Smiling Solar Engineer with Solar Panels */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero-engineer.webp"
+          alt="AG POWER Certified Solar Engineer Standing with Rooftop Solar Panels"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[75%_25%] md:object-[center_20%] filter brightness-[0.97]"
+        />
+        {/* Soft, crisp white directional gradient overlay for flawless SolarSquare text readability while keeping engineer visible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/92 md:via-white/75 via-45% to-white/20 md:to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/40 z-10" />
+      </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div className="relative z-20 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24 w-full">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
           
           {/* Left Column: Messaging */}
           <div className="lg:col-span-7">
             
             {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-forest/20 bg-emerald-50 px-4 py-1.5 shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full border border-forest/20 bg-emerald-50/90 px-4 py-1.5 shadow-sm backdrop-blur-sm">
               <SunMedium className="h-4 w-4 text-forest" />
               <span className="text-[12px] font-bold uppercase tracking-wider text-forest">
                 India&apos;s Trusted Solar EPC Partner
@@ -80,7 +91,7 @@ export default function Hero() {
 
               <LocalizedClientLink
                 href="/contact"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-xl border-2 border-forest/20 bg-white px-6 font-inter text-[16px] font-bold text-forest shadow-sm transition-all hover:bg-emerald-50 hover:border-forest/40 active:scale-95"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl border-2 border-forest/20 bg-white/90 px-6 font-inter text-[16px] font-bold text-forest shadow-sm backdrop-blur-sm transition-all hover:bg-emerald-50 hover:border-forest/40 active:scale-95"
               >
                 Get Free Consultation
               </LocalizedClientLink>
@@ -100,49 +111,44 @@ export default function Hero() {
 
           </div>
 
-          {/* Right Column: Hero Visual Showcase */}
+          {/* Right Column: Hero Visual Showcase (Solar Panel Array + Stats Card, Female Photo Removed) */}
           <div className="lg:col-span-5">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
               {/* Glass Card Visual Wrapper */}
-              <div className="relative overflow-hidden rounded-3xl border border-charcoal/10 bg-white p-6 shadow-2xl">
+              <div className="relative overflow-hidden rounded-3xl border border-charcoal/10 bg-white/95 p-6 shadow-2xl backdrop-blur-md">
                 
-                {/* Real Happy Customer Photo with Floating Badges */}
-                <div className="relative h-80 w-full overflow-hidden rounded-2xl border border-charcoal/10 group shadow-lg">
-                  <Image
-                    src="/images/hero-solar-customer.webp"
-                    alt="Happy AG POWER Solar Homeowner with Rooftop Solar Panels"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 450px"
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
-
-                  {/* Top-Left Floating Badge: Zero Electricity Bill */}
-                  <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-2 rounded-full border border-emerald-400/50 bg-emerald-900/90 px-3 py-1 shadow-md backdrop-blur-md">
-                    <span className="h-2 w-2 rounded-full bg-gold animate-pulse" />
-                    <span className="text-[11px] font-bold text-white tracking-wide">
-                      Zero Power Bill!
-                    </span>
+                {/* Solar Installation Graphic Representation (8 Solar Cells + 550W + Live Generation) */}
+                <div className="relative h-72 w-full overflow-hidden rounded-2xl bg-forest-deep p-5 border border-forest/20 shadow-inner">
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-transparent to-transparent z-10" />
+                  
+                  {/* Solar Panel Cells Pattern Illustration */}
+                  <div className="grid grid-cols-4 gap-2.5 h-full opacity-85">
+                    {[...Array(8)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="rounded-lg border border-gold/40 bg-gradient-to-br from-forest to-forest-deep p-2 flex flex-col justify-between shadow-inner"
+                      >
+                        <div className="h-1 w-full bg-gold/50 rounded-full" />
+                        <div className="flex justify-between items-center text-[10px] text-sage">
+                          <Zap className="h-3 w-3 text-gold" />
+                          <span className="font-semibold text-white/90">550W</span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
 
-                  {/* Top-Right Floating Badge: Subsidy Credited */}
-                  <div className="absolute top-3.5 right-3.5 z-20 rounded-full border border-white/20 bg-slate-900/90 px-3 py-1 text-[11px] font-bold text-gold shadow-md backdrop-blur-md">
-                    ₹78,000 Subsidy Credited
-                  </div>
-
-                  {/* Bottom Overlay Live Metric Pill */}
-                  <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between rounded-xl bg-slate-900/95 border border-gold/40 p-3.5 backdrop-blur-md shadow-xl">
+                  {/* Overlay Live Metric Pill */}
+                  <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between rounded-xl bg-forest/95 border border-gold/40 p-3.5 backdrop-blur-md shadow-lg">
                     <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-wider text-emerald-400">
-                        Daily Solar Generation
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-sage">
+                        DAILY SOLAR GENERATION
                       </p>
                       <p className="font-manrope text-[20px] font-bold text-white">
                         24.5 kWh <span className="text-[12px] font-normal text-gold">/ Day avg</span>
                       </p>
                     </div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold text-forest shadow-sm">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold text-forest shadow-md font-bold">
                       <Zap className="h-5 w-5 fill-current" />
                     </div>
                   </div>
