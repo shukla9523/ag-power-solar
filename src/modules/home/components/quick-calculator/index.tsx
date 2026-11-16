@@ -11,6 +11,15 @@ export default function QuickCalculator() {
   const [monthlyBill, setMonthlyBill] = useState<number>(5000)
   const [location, setLocation] = useState<string>("")
 
+  const handleCategoryChange = (newCat: CustomerCategory) => {
+    setCategory(newCat)
+    if (newCat === "commercial" && monthlyBill < 10000) {
+      setMonthlyBill(25000)
+    } else if (newCat !== "commercial" && monthlyBill > 35000) {
+      setMonthlyBill(6000)
+    }
+  }
+
   // Calculation estimates
   const estimates = useMemo(() => {
     // Tariff assumptions per category
@@ -88,7 +97,7 @@ export default function QuickCalculator() {
               <div className="mt-3 grid grid-cols-3 gap-2 sm:gap-3">
                 <button
                   type="button"
-                  onClick={() => setCategory("residential")}
+                  onClick={() => handleCategoryChange("residential")}
                   className={`min-h-[44px] rounded-xl border px-3 py-2.5 text-center text-[13px] font-bold transition-all ${
                     category === "residential"
                       ? "border-forest bg-forest text-white shadow-sm"
@@ -99,7 +108,7 @@ export default function QuickCalculator() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setCategory("commercial")}
+                  onClick={() => handleCategoryChange("commercial")}
                   className={`min-h-[44px] rounded-xl border px-3 py-2.5 text-center text-[13px] font-bold transition-all ${
                     category === "commercial"
                       ? "border-forest bg-forest text-white shadow-sm"
@@ -110,7 +119,7 @@ export default function QuickCalculator() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setCategory("society")}
+                  onClick={() => handleCategoryChange("society")}
                   className={`min-h-[44px] rounded-xl border px-3 py-2.5 text-center text-[13px] font-bold transition-all ${
                     category === "society"
                       ? "border-forest bg-forest text-white shadow-sm"
