@@ -83,25 +83,25 @@ export default function QuickCalculator() {
           </p>
         </div>
 
-        {/* Calculator Main Box */}
-        <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-2xl lg:grid lg:grid-cols-12">
+        {/* Calculator Main Box (Compact & Sleek) */}
+        <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xl lg:grid lg:grid-cols-12">
           
           {/* Inputs Section */}
-          <div className="p-8 sm:p-10 lg:col-span-7 bg-white">
+          <div className="p-6 sm:p-8 lg:col-span-7 bg-white">
             
             {/* Category Selector */}
             <div>
-              <label className="text-[14px] font-bold text-slate-900">
+              <label className="text-[13px] font-bold text-slate-900 uppercase tracking-wide">
                 1. Select Property Type
               </label>
-              <div className="mt-3 grid grid-cols-3 gap-2 sm:gap-3">
+              <div className="mt-2.5 grid grid-cols-3 gap-2">
                 <button
                   type="button"
                   onClick={() => handleCategoryChange("residential")}
-                  className={`min-h-[44px] rounded-xl border px-3 py-2.5 text-center text-[13px] font-bold transition-all ${
+                  className={`min-h-[38px] rounded-lg border px-3 py-2 text-center text-[12px] font-bold transition-all ${
                     category === "residential"
-                      ? "border-slate-900 bg-slate-900 text-white shadow-md"
-                      : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
+                      ? "border-slate-900 bg-slate-900 text-white shadow-sm"
+                      : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
                   }`}
                 >
                   Residential
@@ -109,10 +109,10 @@ export default function QuickCalculator() {
                 <button
                   type="button"
                   onClick={() => handleCategoryChange("commercial")}
-                  className={`min-h-[44px] rounded-xl border px-3 py-2.5 text-center text-[13px] font-bold transition-all ${
+                  className={`min-h-[38px] rounded-lg border px-3 py-2 text-center text-[12px] font-bold transition-all ${
                     category === "commercial"
                       ? "border-slate-900 bg-slate-900 text-white shadow-md"
-                      : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
+                      : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
                   }`}
                 >
                   Commercial
@@ -120,24 +120,24 @@ export default function QuickCalculator() {
                 <button
                   type="button"
                   onClick={() => handleCategoryChange("society")}
-                  className={`min-h-[44px] rounded-xl border px-3 py-2.5 text-center text-[13px] font-bold transition-all ${
+                  className={`min-h-[38px] rounded-lg border px-3 py-2 text-center text-[12px] font-bold transition-all ${
                     category === "society"
                       ? "border-slate-900 bg-slate-900 text-white shadow-md"
-                      : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
+                      : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
                   }`}
                 >
-                  Housing Society
+                  Society
                 </button>
               </div>
             </div>
 
             {/* Monthly Bill Input & Slider */}
-            <div className="mt-8">
+            <div className="mt-6">
               <div className="flex items-center justify-between">
-                <label htmlFor="bill-slider" className="text-[14px] font-bold text-slate-900">
+                <label htmlFor="bill-slider" className="text-[13px] font-bold text-slate-900 uppercase tracking-wide">
                   2. Monthly Electricity Bill
                 </label>
-                <div className="flex items-center rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-1 font-manrope text-[18px] font-extrabold text-slate-900 shadow-sm">
+                <div className="flex items-center rounded-lg border border-slate-200 bg-slate-50 px-3 py-1 font-manrope text-[16px] font-extrabold text-slate-900 shadow-sm">
                   ₹ {monthlyBill.toLocaleString("en-IN")}
                 </div>
               </div>
@@ -150,18 +150,18 @@ export default function QuickCalculator() {
                 step={category === "commercial" ? 5000 : 500}
                 value={monthlyBill}
                 onChange={(e) => setMonthlyBill(Number(e.target.value))}
-                className="mt-4 h-2.5 w-full cursor-pointer appearance-none rounded-lg bg-slate-100 accent-amber-500"
+                className="mt-3 h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-100 accent-amber-500"
               />
 
-              <div className="mt-2 flex justify-between text-[11px] font-medium text-slate-500">
+              <div className="mt-1.5 flex justify-between text-[11px] font-medium text-slate-500">
                 <span>₹ {category === "commercial" ? "10,000" : "1,500"}</span>
                 <span>₹ {category === "commercial" ? "2,00,000+" : "35,000+"}</span>
               </div>
             </div>
 
             {/* City / Location Input */}
-            <div className="mt-8">
-              <label htmlFor="pincode-input" className="text-[14px] font-bold text-slate-900">
+            <div className="mt-6">
+              <label htmlFor="pincode-input" className="text-[13px] font-bold text-slate-900 uppercase tracking-wide">
                 3. Your City or Pincode (Optional)
               </label>
               <input
@@ -170,57 +170,56 @@ export default function QuickCalculator() {
                 placeholder="e.g. Jaipur, Delhi, Mumbai, or 302020"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-[14px] text-slate-900 placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500"
+                className="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[13px] text-slate-900 placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500"
               />
             </div>
 
             {/* Disclaimer */}
-            <p className="mt-6 text-[12px] leading-relaxed text-slate-500">
-              *Indicative estimates based on standard irradiance and applicable state tariffs. Actual capacity depends on shadow-free rooftop area and DISCOM net-metering sanctions.
+            <p className="mt-4 text-[11px] leading-relaxed text-slate-500">
+              *Indicative estimates based on standard irradiance. Actual capacity depends on shadow-free rooftop area and DISCOM net-metering sanctions.
             </p>
 
           </div>
 
-          {/* Result Panel (Ultra-Premium Frosted Glassmorphism in Midnight Blue) */}
-          <div className="relative flex flex-col justify-between overflow-hidden bg-gradient-to-br from-slate-900/95 via-slate-950/95 to-slate-900/95 p-8 text-white sm:p-10 lg:col-span-5 backdrop-blur-2xl border-t lg:border-t-0 lg:border-l border-white/10 before:absolute before:inset-0 before:bg-gradient-to-br before:from-sky-400/10 before:via-transparent before:to-transparent before:pointer-events-none">
+          {/* Result Panel (Compact Frosted Glassmorphism in Midnight Blue) */}
+          <div className="relative flex flex-col justify-between overflow-hidden bg-gradient-to-br from-slate-900/95 via-slate-950/95 to-slate-900/95 p-6 sm:p-7 text-white lg:col-span-5 backdrop-blur-2xl border-t lg:border-t-0 lg:border-l border-white/10 before:absolute before:inset-0 before:bg-gradient-to-br before:from-sky-400/10 before:via-transparent before:to-transparent before:pointer-events-none">
             {/* Ambient solar blur */}
-            <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-amber-500/15 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-sky-500/15 blur-3xl" />
+            <div className="pointer-events-none absolute -top-12 -right-12 h-36 w-36 rounded-full bg-amber-500/15 blur-2xl" />
 
             <div className="relative z-10">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <span className="text-[12px] font-bold uppercase tracking-wider text-sky-400">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-sky-400">
                   Indicative Assessment
                 </span>
-                <span className="rounded-full bg-amber-500/20 border border-amber-500/30 px-3 py-1 text-[11px] font-bold text-amber-400 backdrop-blur-sm">
+                <span className="rounded-full bg-amber-500/20 border border-amber-500/30 px-2.5 py-0.5 text-[10px] font-bold text-amber-400 backdrop-blur-sm">
                   {category.toUpperCase()}
                 </span>
               </div>
 
-              {/* Recommended Capacity */}
-              <div className="mt-6">
-                <p className="text-[13px] text-sky-300 font-medium">Recommended Capacity</p>
-                <div className="mt-1 flex items-baseline gap-2">
-                  <span className="font-manrope text-[46px] font-black text-amber-400 tracking-tight">
+              {/* Recommended Capacity (Compact) */}
+              <div className="mt-4">
+                <p className="text-[12px] text-slate-300 font-medium">Recommended Capacity</p>
+                <div className="mt-0.5 flex items-baseline gap-2">
+                  <span className="font-manrope text-[34px] sm:text-[38px] font-black text-amber-400 tracking-tight leading-none">
                     {estimates.recommendedKw}
                   </span>
-                  <span className="font-manrope text-[20px] font-bold text-white">kW System</span>
+                  <span className="font-manrope text-[16px] sm:text-[18px] font-bold text-white">kW System</span>
                 </div>
-                <p className="text-[12px] text-slate-300">
-                  Approx. {Math.round(estimates.recommendedKw * 2)} solar panels (~{Math.round(estimates.recommendedKw * 85)} sq.ft roof required)
+                <p className="text-[11px] text-slate-300 mt-1">
+                  Approx. {Math.round(estimates.recommendedKw * 2)} panels (~{Math.round(estimates.recommendedKw * 85)} sq.ft roof required)
                 </p>
               </div>
 
-              {/* Savings Breakdown */}
-              <div className="mt-6 space-y-3.5 border-t border-white/10 pt-6">
-                <div className="flex items-center justify-between text-[14px]">
+              {/* Savings Breakdown (Compact Rows) */}
+              <div className="mt-4 space-y-2 border-t border-white/10 pt-3.5 text-[13px]">
+                <div className="flex items-center justify-between">
                   <span className="text-slate-300">Estimated Monthly Savings:</span>
                   <span className="font-manrope font-bold text-white">
                     ₹ {estimates.monthlySavings.toLocaleString("en-IN")} / mo
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between text-[14px]">
+                <div className="flex items-center justify-between">
                   <span className="text-slate-300">Estimated Annual Savings:</span>
                   <span className="font-manrope font-bold text-amber-400">
                     ₹ {estimates.annualSavings.toLocaleString("en-IN")} / yr
@@ -228,7 +227,7 @@ export default function QuickCalculator() {
                 </div>
 
                 {estimates.subsidy > 0 && (
-                  <div className="flex items-center justify-between text-[14px]">
+                  <div className="flex items-center justify-between">
                     <span className="text-slate-300">PM Surya Ghar Subsidy:</span>
                     <span className="font-manrope font-bold text-emerald-400">
                       - ₹ {estimates.subsidy.toLocaleString("en-IN")}
@@ -236,14 +235,14 @@ export default function QuickCalculator() {
                   </div>
                 )}
 
-                <div className="flex items-center justify-between text-[14px] border-t border-white/10 pt-3">
+                <div className="flex items-center justify-between border-t border-white/10 pt-2">
                   <span className="text-slate-300">Approx. Net Investment:</span>
-                  <span className="font-manrope font-extrabold text-white text-[16px]">
+                  <span className="font-manrope font-extrabold text-white text-[15px]">
                     ₹ {estimates.netInvestment.toLocaleString("en-IN")}*
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between text-[13px]">
+                <div className="flex items-center justify-between text-[12px]">
                   <span className="text-slate-300">Est. Payback Period:</span>
                   <span className="font-semibold text-sky-400">
                     {estimates.paybackYears} Years
@@ -252,19 +251,19 @@ export default function QuickCalculator() {
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="relative z-10 mt-8 space-y-3 pt-6 border-t border-white/10">
+            {/* CTAs (Compact) */}
+            <div className="relative z-10 mt-5 space-y-2.5 pt-3.5 border-t border-white/10">
               <LocalizedClientLink
                 href={`/calculator?cat=${category}&bill=${monthlyBill}`}
-                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-amber-500 px-5 font-inter text-[14px] font-bold text-slate-950 shadow-lg transition-all hover:bg-amber-400 hover:scale-[1.02] active:scale-95"
+                className="inline-flex min-h-[42px] w-full items-center justify-center rounded-lg bg-amber-500 px-4 font-inter text-[13px] font-bold text-slate-950 shadow-md transition-all hover:bg-amber-400 active:scale-95"
               >
                 <span>Use Detailed Calculator</span>
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </LocalizedClientLink>
 
               <LocalizedClientLink
                 href={`/contact?cat=${category}&bill=${monthlyBill}`}
-                className="inline-flex min-h-[44px] w-full items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 font-inter text-[13px] font-semibold text-white backdrop-blur-xl transition-all hover:bg-white/20 hover:border-white/40 active:scale-95"
+                className="inline-flex min-h-[38px] w-full items-center justify-center rounded-lg border border-white/20 bg-white/10 px-4 font-inter text-[12px] font-semibold text-white backdrop-blur-xl transition-all hover:bg-white/20 active:scale-95"
               >
                 Get Verified Site Feasibility Quote
               </LocalizedClientLink>
