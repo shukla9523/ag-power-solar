@@ -110,7 +110,7 @@ export default function Hero() {
                 {/* Real Happy Customer Photo with Floating Badges */}
                 <div className="relative h-80 w-full overflow-hidden rounded-2xl border border-charcoal/10 group shadow-lg">
                   <Image
-                    src="/images/hero-solar-customer.webp"
+                    src="/images/hero-engineer.webp"
                     alt="AG POWER Certified Solar Engineer Inspecting Rooftop Solar Installation"
                     fill
                     priority
