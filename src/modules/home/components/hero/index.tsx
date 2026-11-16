@@ -111,11 +111,11 @@ export default function Hero() {
                 <div className="relative h-80 w-full overflow-hidden rounded-2xl border border-charcoal/10 group shadow-lg">
                   <Image
                     src="/images/hero-solar-customer.webp"
-                    alt="Happy AG POWER Solar Homeowner with Rooftop Solar Panels"
+                    alt="AG POWER Certified Solar Engineer Inspecting Rooftop Solar Installation"
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 450px"
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
 
