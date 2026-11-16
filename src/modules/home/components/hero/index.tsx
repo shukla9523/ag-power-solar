@@ -17,9 +17,9 @@ export default function Hero() {
           sizes="100vw"
           className="object-cover object-[center_right] md:object-center filter brightness-[0.98]"
         />
-        {/* Directional Cinematic Gradient: Darker on left 55% for razor-sharp text readability, transparent on right so the smiling ambassador & rooftop pergola are completely clear */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 md:via-slate-950/40 via-50% to-transparent z-10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/20 z-10" />
+        {/* Directional Cinematic Gradient: Midnight Blue-Black on left for razor-sharp text contrast, transparent on right so ambassador & pergola are 100% visible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/70 md:via-slate-950/40 via-50% to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/30 z-10" />
       </div>
 
       <div className="relative z-20 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24 w-full">
@@ -85,12 +85,12 @@ export default function Hero() {
                 className="inline-flex min-h-[54px] items-center justify-center rounded-xl bg-white px-8 font-inter text-[16px] font-bold text-slate-950 shadow-2xl transition-all hover:bg-gold hover:scale-105 active:scale-95"
               >
                 <span>Calculate Your Solar Savings</span>
-                <ArrowRight className="ml-2 h-5 w-5 text-forest" />
+                <ArrowRight className="ml-2 h-5 w-5 text-slate-900" />
               </LocalizedClientLink>
 
               <LocalizedClientLink
                 href="/contact"
-                className="inline-flex min-h-[54px] items-center justify-center rounded-xl border-2 border-white/40 bg-slate-900/40 px-7 font-inter text-[16px] font-bold text-white backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 shadow-lg"
+                className="inline-flex min-h-[54px] items-center justify-center rounded-xl border-2 border-white/40 bg-slate-900/60 px-7 font-inter text-[16px] font-bold text-white backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 shadow-lg"
               >
                 Get Free Consultation
               </LocalizedClientLink>
@@ -110,12 +110,12 @@ export default function Hero() {
 
           </div>
 
-          {/* Right Column: Interactive Floating Live Metric Cards (Unobtrusive so the smiling man is 100% visible) */}
+          {/* Right Column: Interactive Floating Live Metric Cards (Blue/Black & Gold Accents) */}
           <div className="lg:col-span-5 flex flex-col justify-end gap-4 lg:pl-8">
             
             {/* Top Floating Badge */}
-            <div className="self-end inline-flex items-center gap-2 bg-slate-950/80 border border-emerald-400/40 backdrop-blur-md rounded-full px-4 py-2 shadow-2xl">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="self-end inline-flex items-center gap-2 bg-slate-950/80 border border-blue-400/40 backdrop-blur-md rounded-full px-4 py-2 shadow-2xl">
+              <span className="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse" />
               <span className="text-xs font-bold text-white">⚡ Zero Electricity Bill</span>
               <span className="bg-gold text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-full uppercase">Verified</span>
             </div>
@@ -123,14 +123,14 @@ export default function Hero() {
             {/* Floating Glass Live Metric Pill */}
             <div className="bg-slate-950/75 backdrop-blur-xl border border-gold/30 rounded-2xl p-4 shadow-2xl flex justify-between items-center max-w-sm ml-auto w-full">
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-400">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-sky-400">
                   Daily Solar Generation
                 </p>
                 <p className="font-manrope text-[24px] font-extrabold text-white">
                   24.5 kWh <span className="text-xs font-normal text-gold">/ Day avg</span>
                 </p>
               </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold text-forest shadow-md font-bold text-xl">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold text-slate-950 shadow-md font-bold text-xl">
                 <Zap className="h-5 w-5 fill-current" />
               </div>
             </div>
@@ -138,19 +138,19 @@ export default function Hero() {
             {/* Two Compact Stats Glass Cards */}
             <div className="grid grid-cols-2 gap-3 max-w-sm ml-auto w-full">
               <div className="bg-slate-950/75 backdrop-blur-lg border border-white/20 rounded-xl p-3.5 shadow-xl">
-                <p className="text-xs text-emerald-300 font-medium">Estimated Savings</p>
+                <p className="text-xs text-sky-300 font-medium">Estimated Savings</p>
                 <p className="font-manrope font-extrabold text-gold text-xl mt-0.5">80 - 90%</p>
                 <p className="text-[10px] text-slate-300">on monthly power bills</p>
               </div>
               <div className="bg-slate-950/75 backdrop-blur-lg border border-white/20 rounded-xl p-3.5 shadow-xl">
-                <p className="text-xs text-emerald-300 font-medium">System Payback</p>
+                <p className="text-xs text-sky-300 font-medium">System Payback</p>
                 <p className="font-manrope font-extrabold text-white text-xl mt-0.5">3 - 4 Yrs</p>
                 <p className="text-[10px] text-slate-300">free solar for 25+ yrs</p>
               </div>
             </div>
 
             {/* PM Surya Ghar Central Subsidy Banner */}
-            <div className="bg-emerald-950/80 border border-emerald-400/30 backdrop-blur-md rounded-xl p-3 flex items-center justify-between text-xs max-w-sm ml-auto w-full shadow-xl">
+            <div className="bg-slate-900/90 border border-blue-500/30 backdrop-blur-md rounded-xl p-3 flex items-center justify-between text-xs max-w-sm ml-auto w-full shadow-xl">
               <div className="flex items-center gap-2 text-slate-200">
                 <Sparkles className="h-4 w-4 text-gold" />
                 <span>Get up to <strong className="text-gold">₹78,000</strong> Central Subsidy</span>
