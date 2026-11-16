@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "name": "Nilesh Kumar",
+    "company": "Nilesh Kumar's Brand",
+    "email": "akashshukla9523@gmail.com",
+    "phone": "09523467849",
+    "service": "AG POWER Enquiry: Calculator",
+    "status": "lead",
+    "retainer": "In Discussion",
+    "notes": "Inquiry received: \"Calculator Enquiry: Recommended 3.2 kW System. Est. Net Investment: ₹1,07,600. Est. Monthly Savings: ₹2,700.\"",
+    "startDate": "2026-11-16",
+    "id": "cl_1794812680190_8t4vy",
+    "createdAt": "2026-11-16T07:04:40.191Z",
+    "updatedAt": "2026-11-16T07:04:40.191Z"
+  },
+  {
+    "name": "Nilesh",
+    "company": "Nilesh's Brand",
+    "email": "akashshukla95233@gmail.com",
+    "phone": "09523467849",
+    "service": "AG POWER Enquiry: Calculator",
+    "status": "lead",
+    "retainer": "In Discussion",
+    "notes": "Inquiry received: \"Calculator Enquiry: Recommended 6.4 kW System. Est. Net Investment: ₹2,93,200. Est. Monthly Savings: ₹5,400.\"",
+    "startDate": "2026-11-16",
+    "id": "cl_1794812083993_7enkn",
+    "createdAt": "2026-11-16T06:54:43.993Z",
+    "updatedAt": "2026-11-16T06:54:43.993Z"
+  },
+  {
+    "name": "Nilesh Kumar",
+    "company": "Nilesh Kumar's Brand",
+    "email": "akashshukla9523@gmail.com",
+    "phone": "09523467849",
+    "service": "AG POWER Enquiry: Calculator",
+    "status": "lead",
+    "retainer": "In Discussion",
+    "notes": "Inquiry received: \"Calculator Enquiry: Recommended 1.6 kW System. Est. Net Investment: ₹62,800. Est. Monthly Savings: ₹1,350.\"",
+    "startDate": "2026-11-16",
+    "id": "cl_1794812038150_34h75",
+    "createdAt": "2026-11-16T06:53:58.150Z",
+    "updatedAt": "2026-11-16T06:53:58.150Z"
+  },
+  {
+    "name": "Nilesh Kumar",
+    "company": "Nilesh Kumar's Brand",
+    "email": "akashshukla9523@gmail.com",
+    "phone": "09523467849",
+    "service": "AG POWER Enquiry: Calculator",
+    "status": "lead",
+    "retainer": "In Discussion",
+    "notes": "Inquiry received: \"Calculator Enquiry: Recommended 6.4 kW System. Est. Net Investment: ₹2,93,200. Est. Monthly Savings: ₹5,400.\"",
+    "startDate": "2026-11-16",
+    "id": "cl_1794811901518_7k4li",
+    "createdAt": "2026-11-16T06:51:41.519Z",
+    "updatedAt": "2026-11-16T06:51:41.519Z"
+  }
+]
