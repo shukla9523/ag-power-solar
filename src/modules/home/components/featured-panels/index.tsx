@@ -8,7 +8,7 @@ import { Zap, ArrowRight, ShieldCheck, SunMedium, Layers, CheckCircle2 } from "l
 const featuredPanels = [
   {
     id: "topcon-bifacial-550w",
-    brand: "Tier-1 Partner",
+    brand: "Waaree Solar",
     model: "N-Type TOPCon Dual-Glass Bifacial",
     wattage: "550W - 580W",
     technology: "N-Type TOPCon Bifacial",
@@ -20,7 +20,7 @@ const featuredPanels = [
   },
   {
     id: "mono-perc-540w",
-    brand: "Tier-1 Partner",
+    brand: "Adani Solar",
     model: "Mono PERC Half-Cut MBB Module",
     wattage: "540W - 550W",
     technology: "Mono PERC Monofacial",
@@ -32,7 +32,7 @@ const featuredPanels = [
   },
   {
     id: "all-black-450w",
-    brand: "Tier-1 Partner",
+    brand: "Tata Power Solar",
     model: "Architectural All-Black Premium Series",
     wattage: "440W - 460W",
     technology: "N-Type Monocrystalline",

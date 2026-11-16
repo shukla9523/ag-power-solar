@@ -42,30 +42,30 @@ export function resolveCollectionData(options: {
 
   const sectionConfig = {
     services: {
-      title: defaultMeta?.title || "Marketing, SEO, Web and AI Services | Mommantum Jaipur",
+      title: defaultMeta?.title || "Rooftop Solar Solutions & EPC Services | AG POWER",
       description:
         defaultMeta?.description ||
-        "Explore Mommantum services: performance marketing, SEO, social media, branding, web and app development, AI automation, AI agents and video production.",
+        "Turnkey solar EPC services by AG POWER: residential rooftop plants, commercial solar, housing society common systems, DISCOM liaison, and solar AMC.",
       path: "/services",
       name: "Services",
       collectionType: "CollectionPage" as const,
       prefix: "/services/",
     },
     work: {
-      title: defaultMeta?.title || "Case Studies | Mommantum Client Work and Growth Results",
+      title: defaultMeta?.title || "Solar Engineering Projects & Case Studies | AG POWER",
       description:
         defaultMeta?.description ||
-        "See how Mommantum helps brands grow. Browse case studies across ecommerce, SEO, web development and creative systems, with real strategy and results.",
+        "Explore rooftop solar installations, commercial engineering case studies, and customer savings results delivered by AG POWER.",
       path: "/work",
       name: "Case Studies",
       collectionType: "CollectionPage" as const,
       prefix: "/work/",
     },
     blog: {
-      title: defaultMeta?.title || "Mommantum Blog | SEO, Marketing and AI Growth Playbooks",
+      title: defaultMeta?.title || "Solar Knowledge & Technology Insights | AG POWER Blog",
       description:
         defaultMeta?.description ||
-        "Read practical guides from the Mommantum team on SEO, performance marketing, AI automation and scaling D2C brands, written for founders and marketers.",
+        "Authoritative solar engineering guides on rooftop solar sizing, PM Surya Ghar subsidy, net metering, and solar panel ROI.",
       path: "/blog",
       name: "Blog",
       collectionType: "Blog" as const,

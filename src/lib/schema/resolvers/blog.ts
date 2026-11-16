@@ -40,24 +40,24 @@ function computeWordCount(text?: string | null): number {
 }
 
 function buildBlogFallbackTitle(title: string): string {
-  const candidate = `${title} | Mommantum Blog`
+  const candidate = `${title} | AG POWER Solar Blog`
   if (candidate.length >= 50 && candidate.length <= 60) return candidate
   if (candidate.length < 50) {
-    const ext = `${title} | Mommantum Marketing Blog`
+    const ext = `${title} | AG POWER Solar Engineering Blog`
     if (ext.length >= 50 && ext.length <= 60) return ext
-    const ext2 = `${title} | Mommantum Strategy Blog`
+    const ext2 = `${title} | AG POWER Solar Insights`
     if (ext2.length <= 60) return ext2
     return ext.length <= 60 ? ext : candidate
   }
-  const maxTitleLen = 60 - " | Mommantum".length
-  return `${title.slice(0, maxTitleLen).trim()} | Mommantum`
+  const maxTitleLen = 60 - " | AG POWER".length
+  return `${title.slice(0, maxTitleLen).trim()} | AG POWER`
 }
 
 function buildBlogFallbackDescription(post: BlogPost): string {
   if (post.excerpt && post.excerpt.length >= 140 && post.excerpt.length <= 160) {
     return post.excerpt
   }
-  const base = `Read ${post.title} on the Mommantum blog. Explore practical frameworks, proven playbooks, and modern insights to scale digital marketing and brand growth.`
+  const base = `Read ${post.title} on the AG POWER blog. Explore authoritative solar engineering frameworks, net-metering guides, and solar ROI insights.`
   if (base.length >= 140 && base.length <= 160) {
     return base
   }
@@ -131,7 +131,7 @@ export function resolveBlogData(
     isPartOf: {
       "@type": "Blog",
       "@id": `${DEFAULT_BASE_URL}/blog#blog`,
-      name: "Mommantum Blog",
+      name: "AG POWER Solar Blog",
       url: `${DEFAULT_BASE_URL}/blog`,
     },
   }

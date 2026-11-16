@@ -102,7 +102,7 @@ export function buildMetadataFromResolved(resolved: ResolvedData): Metadata {
     metadataBase: new URL(DEFAULT_BASE_URL),
     title: resolved.title,
     description: resolved.description,
-    applicationName: "Mommantum",
+    applicationName: "AG POWER",
     keywords: resolved.keywords && resolved.keywords.length ? resolved.keywords : undefined,
     alternates: { canonical },
     robots: {
@@ -120,7 +120,7 @@ export function buildMetadataFromResolved(resolved: ResolvedData): Metadata {
       title: ogTitle,
       description: ogDescription,
       url: absolute(seo?.og_url) || canonical,
-      siteName: "Mommantum",
+      siteName: "AG POWER",
       locale: "en_IN",
       type: isArticle ? "article" : "website",
       ...(resolved.contentType === "blog"
