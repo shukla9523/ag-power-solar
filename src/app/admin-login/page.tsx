@@ -3,6 +3,8 @@ import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { supabase } from "@lib/supabase"
 import MfaStep from "./MfaStep"
+import { SunMedium, ArrowRight, ShieldCheck } from "lucide-react"
+import { manrope, inter } from "@lib/fonts"
 
 function AdminLoginForm() {
   const [email, setEmail] = useState("")
@@ -95,25 +97,25 @@ function AdminLoginForm() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-cloud">
-      <div className="w-full max-w-[420px] rounded-[24px] bg-white p-8 shadow-[0_18px_50px_rgba(0,0,0,0.08)]">
+    <main className={`flex min-h-screen items-center justify-center bg-ivory ${inter.className}`}>
+      <div className="w-full max-w-[420px] rounded-[24px] border border-charcoal/10 bg-white p-8 shadow-[0_18px_50px_rgba(23,63,50,0.08)]">
 
         {/* Logo */}
         <div className="mb-8 flex items-center gap-3">
-          <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-navy">
-            <span className="text-[20px] font-extrabold text-white">M</span>
+          <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-forest shadow-sm">
+            <SunMedium className="h-6 w-6 text-gold" />
           </div>
           <div>
-            <p className="text-[16px] font-extrabold text-forest">AG POWER Admin</p>
-            <p className="text-[12px] text-slate-400">Admin Panel</p>
+            <p className={`${manrope.className} text-[18px] font-extrabold text-forest`}>AG POWER</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-forest/70">Administration Portal</p>
           </div>
         </div>
 
-        <h1 className="text-[26px] font-extrabold tracking-[-0.04em] text-navy">
-          Welcome back
+        <h1 className={`${manrope.className} text-[26px] font-extrabold tracking-[-0.04em] text-forest`}>
+          Administrator Sign In
         </h1>
-        <p className="mt-1 text-[14px] text-slate-600">
-          Sign in with your credentials or Google account
+        <p className="mt-1 text-[14px] text-charcoal/80">
+          Sign in with your verified administrative credentials
         </p>
 
         {mfaStep ? (
@@ -127,21 +129,21 @@ function AdminLoginForm() {
         ) : (
         <div className="mt-8 space-y-4">
           <div>
-            <label className="mb-2 block text-[12px] font-bold uppercase tracking-[0.05em] text-navy">
+            <label className="mb-2 block text-[12px] font-bold uppercase tracking-[0.05em] text-forest">
               Admin Email
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="name@example.com"
+              placeholder="akashshukla9523@gmail.com"
               suppressHydrationWarning={true}
-              className="h-[52px] w-full rounded-[14px] border border-slate-200 bg-field px-4 text-[14px] text-slate-700 outline-none transition-all placeholder:text-slate-400 focus:border-navy focus:ring-2 focus:ring-navy/10"
+              className="h-[52px] w-full rounded-[14px] border border-charcoal/15 bg-ivory/50 px-4 text-[14px] text-charcoal outline-none transition-all placeholder:text-charcoal/40 focus:border-forest focus:ring-2 focus:ring-forest/10"
             />
           </div>
 
           <div>
-            <label className="mb-2 block text-[12px] font-bold uppercase tracking-[0.05em] text-navy">
+            <label className="mb-2 block text-[12px] font-bold uppercase tracking-[0.05em] text-forest">
               Password
             </label>
             <input
@@ -151,11 +153,11 @@ function AdminLoginForm() {
               onKeyDown={(e) => e.key === "Enter" && !loading && handleLogin()}
               placeholder="Enter your password"
               suppressHydrationWarning={true}
-              className="h-[52px] w-full rounded-[14px] border border-slate-200 bg-field px-4 text-[14px] text-slate-700 outline-none transition-all placeholder:text-slate-400 focus:border-navy focus:ring-2 focus:ring-navy/10"
+              className="h-[52px] w-full rounded-[14px] border border-charcoal/15 bg-ivory/50 px-4 text-[14px] text-charcoal outline-none transition-all placeholder:text-charcoal/40 focus:border-forest focus:ring-2 focus:ring-forest/10"
             />
             {error && (
-              <p className="mt-2 flex items-center gap-1.5 text-[13px] text-red-500">
-                <span>⚠</span> {error}
+              <p className="mt-2 flex items-center gap-1.5 text-[13px] text-red-600 font-medium">
+                <span>⚠️</span> {error}
               </p>
             )}
           </div>
@@ -164,14 +166,14 @@ function AdminLoginForm() {
             onClick={handleLogin}
             disabled={loading || oauthLoading}
             suppressHydrationWarning={true}
-            className="h-[52px] w-full rounded-[14px] bg-navy text-[14px] font-extrabold uppercase tracking-[0.03em] text-white transition-all hover:opacity-90 disabled:opacity-50"
+            className={`${manrope.className} flex h-[52px] w-full items-center justify-center rounded-[14px] bg-forest text-[14px] font-extrabold uppercase tracking-[0.04em] text-white transition-all hover:bg-forest-deep disabled:opacity-50 cursor-pointer shadow-sm`}
           >
             {loading ? "Signing in..." : "Sign In →"}
           </button>
 
           <div className="relative my-6 flex items-center justify-center">
-            <div className="absolute w-full border-t border-slate-100"></div>
-            <span className="relative bg-white px-3 text-[12px] font-semibold uppercase tracking-[0.05em] text-slate-400">
+            <div className="absolute w-full border-t border-charcoal/10"></div>
+            <span className="relative bg-white px-3 text-[12px] font-semibold uppercase tracking-[0.05em] text-charcoal/50">
               Or
             </span>
           </div>
@@ -180,7 +182,7 @@ function AdminLoginForm() {
             onClick={handleGoogleLogin}
             disabled={loading || oauthLoading}
             suppressHydrationWarning={true}
-            className="flex h-[52px] w-full items-center justify-center gap-3 rounded-[14px] border border-slate-200 bg-white text-[14px] font-bold text-slate-700 transition-all hover:bg-slate-50 disabled:opacity-50"
+            className="flex h-[52px] w-full items-center justify-center gap-3 rounded-[14px] border border-charcoal/15 bg-white text-[14px] font-bold text-charcoal transition-all hover:bg-ivory disabled:opacity-50 cursor-pointer"
           >
             <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24">
               <path
@@ -205,8 +207,8 @@ function AdminLoginForm() {
         </div>
         )}
 
-        <p className="mt-6 text-center text-[12px] text-slate-400">
-          This panel is for site administrators only.
+        <p className="mt-6 text-center text-[12px] text-charcoal/60">
+          This panel is for verified AG POWER administrators only.
         </p>
       </div>
 
