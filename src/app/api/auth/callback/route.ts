@@ -42,15 +42,29 @@ export async function GET(req: NextRequest) {
           persistSession: false,
           storage: {
             getItem: (key: string) => {
+              const projectRef = (process.env.NEXT_PUBLIC_SUPABASE_URL || "").match(/https:\/\/([a-z0-9]+)\.supabase/)?.[1]
+              const expectedKey = projectRef ? `sb-${projectRef}-auth-token-code-verifier` : null
+
+              console.log("[Storage getItem Call]", {
+                requestedKey: key,
+                expectedKey,
+                hasExactCookie: req.cookies.has(key),
+                hasExpectedCookie: expectedKey ? req.cookies.has(expectedKey) : false,
+                exactVal: req.cookies.get(key)?.value,
+                expectedVal: expectedKey ? req.cookies.get(expectedKey)?.value : null,
+              })
+
+              // 1. Try exact key requested
               const direct = req.cookies.get(key)?.value
-              if (direct) {
-                try { return decodeURIComponent(direct) } catch { return direct }
-              }
+              if (direct) return direct
+
+              // 2. If it's a code verifier, prioritize this project's verifier cookie
               if (key.includes("code-verifier")) {
-                const found = req.cookies.getAll().find((c) => c.name.includes("code-verifier"))
-                if (found) {
-                  try { return decodeURIComponent(found.value) } catch { return found.value }
+                if (expectedKey && req.cookies.has(expectedKey)) {
+                  return req.cookies.get(expectedKey)?.value || null
                 }
+                const found = req.cookies.getAll().find((c) => c.name.endsWith("-code-verifier") && projectRef && c.name.includes(projectRef))
+                if (found) return found.value
               }
               return null
             },

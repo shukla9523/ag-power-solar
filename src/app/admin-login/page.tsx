@@ -83,6 +83,16 @@ function AdminLoginForm() {
     setError("")
     
     try {
+      // Clear stale legacy project cookies so they don't interfere with the new Supabase project
+      if (typeof document !== "undefined") {
+        document.cookie.split(";").forEach((c) => {
+          const name = c.trim().split("=")[0]
+          if (name && name.startsWith("sb-") && !name.includes("cjrkmrxpwlvhbujxzajn")) {
+            document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`
+          }
+        })
+      }
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
