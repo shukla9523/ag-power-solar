@@ -6,28 +6,28 @@ import { SunMedium, ArrowRight, Calculator, PhoneCall, ShieldCheck } from "lucid
 
 export default function FinalCta() {
   return (
-    <section className="relative overflow-hidden bg-forest py-16 text-white sm:py-20 lg:py-24">
-      {/* Decorative solar glow */}
-      <div className="pointer-events-none absolute -bottom-20 -right-20 h-80 w-80 rounded-full bg-gold/20 blur-3xl" />
-      <div className="pointer-events-none absolute top-0 left-0 h-60 w-60 rounded-full bg-sage/10 blur-3xl" />
+    <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 py-20 text-white sm:py-24 border-t border-white/10">
+      {/* Decorative ambient glass light orbs */}
+      <div className="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-sky-500/15 blur-3xl" />
+      <div className="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-amber-500/15 blur-3xl" />
 
-      <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-forest-deep px-4 py-1.5 shadow-sm">
-          <SunMedium className="h-4 w-4 text-gold" />
-          <span className="text-[12px] font-bold uppercase tracking-wider text-gold">
+        <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-slate-900/60 px-4 py-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-xl">
+          <SunMedium className="h-4 w-4 text-amber-400" />
+          <span className="text-[12px] font-bold uppercase tracking-wider text-amber-400">
             Zero-Cost Feasibility Consultation
           </span>
         </div>
 
         {/* Heading */}
-        <h2 className="mt-6 font-manrope text-[34px] font-extrabold tracking-tight text-white sm:text-[46px] lg:text-[52px]">
+        <h2 className="mt-6 font-manrope text-[34px] font-black tracking-tight text-white sm:text-[46px] lg:text-[54px] drop-shadow-md">
           Your Solar Journey Starts Here.
         </h2>
 
         {/* Supporting Copy */}
-        <p className="mx-auto mt-4 max-w-2xl font-inter text-[16px] leading-relaxed text-sage-mist/90 sm:text-[18px]">
+        <p className="mx-auto mt-4 max-w-2xl font-inter text-[16px] leading-relaxed text-slate-300 sm:text-[19px]">
           Make the shift to clean, reliable solar energy today. Reduce your electricity expenses by up to 90% and secure your energy future with AG POWER.
         </p>
 
@@ -35,7 +35,7 @@ export default function FinalCta() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <LocalizedClientLink
             href="/contact"
-            className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-gold px-8 font-inter text-[16px] font-bold text-forest shadow-md transition-all hover:bg-gold-hover hover:shadow-lg active:scale-95"
+            className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-amber-500 px-8 font-inter text-[16px] font-bold text-slate-950 shadow-xl transition-all hover:bg-amber-400 hover:scale-105 active:scale-95"
           >
             <span>Get Your Free Solar Consultation</span>
             <ArrowRight className="ml-2 h-5 w-5" />
@@ -43,23 +43,23 @@ export default function FinalCta() {
 
           <LocalizedClientLink
             href="/calculator"
-            className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 font-inter text-[16px] font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20 active:scale-95"
+            className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/20 bg-white/10 px-7 font-inter text-[16px] font-semibold text-white backdrop-blur-xl transition-all hover:bg-white/20 hover:border-white/40 shadow-lg active:scale-95"
           >
-            <Calculator className="mr-2 h-5 w-5 text-gold" />
+            <Calculator className="mr-2 h-5 w-5 text-amber-400" />
             <span>Calculate Savings First</span>
           </LocalizedClientLink>
         </div>
 
         {/* Quick Contacts Bar */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 border-t border-white/10 pt-8 text-[14px] text-sage">
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 border-t border-white/10 pt-8 text-[14px] text-slate-300">
           <div className="flex items-center gap-2">
-            <PhoneCall className="h-4 w-4 text-gold" />
-            <span>Direct Call: <strong>+91 95234 67849</strong></span>
+            <PhoneCall className="h-4 w-4 text-amber-400" />
+            <span>Direct Call: <strong className="text-white">+91 95234 67849</strong></span>
           </div>
           <span className="hidden text-white/20 sm:inline">|</span>
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-gold" />
-            <span>No Obligation Rooftop Assessment</span>
+            <ShieldCheck className="h-4 w-4 text-amber-400" />
+            <span className="text-white">No Obligation Rooftop Assessment</span>
           </div>
         </div>
 

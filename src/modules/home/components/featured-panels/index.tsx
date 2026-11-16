@@ -46,27 +46,27 @@ const featuredPanels = [
 
 export default function FeaturedSolarPanels() {
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-24">
+    <section className="bg-slate-50/70 py-16 sm:py-20 lg:py-24 border-y border-slate-200/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-sage-mist px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-forest">
-              <Layers className="h-4 w-4 text-forest" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-50 px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-slate-800 shadow-sm">
+              <Layers className="h-4 w-4 text-amber-500" />
               <span>Technology Showcase</span>
             </div>
-            <h2 className="mt-4 font-manrope text-[32px] font-extrabold tracking-tight text-forest sm:text-[40px]">
+            <h2 className="mt-4 font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[40px]">
               High-Efficiency Tier-1 Solar Panels
             </h2>
-            <p className="mt-3 text-[16px] text-charcoal/80">
+            <p className="mt-3 text-[16px] text-slate-600">
               We deploy certified, high-yield photovoltaic modules with superior temperature coefficients and industry-leading linear warranties.
             </p>
           </div>
 
           <LocalizedClientLink
             href="/solar-panels"
-            className="inline-flex min-h-[46px] items-center gap-2 rounded-xl border border-forest px-5 font-inter text-[14px] font-bold text-forest transition-colors hover:bg-forest hover:text-white"
+            className="inline-flex min-h-[46px] items-center gap-2 rounded-xl border border-slate-900 px-5 font-inter text-[14px] font-bold text-slate-900 transition-all hover:bg-slate-900 hover:text-white"
           >
             <span>View Full Catalogue</span>
             <ArrowRight className="h-4 w-4" />
@@ -78,56 +78,56 @@ export default function FeaturedSolarPanels() {
           {featuredPanels.map((panel) => (
             <div
               key={panel.id}
-              className="group flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-ivory p-7 shadow-sm transition-all duration-300 hover:border-forest/30 hover:shadow-xl"
+              className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:border-sky-400/50 hover:shadow-2xl hover:-translate-y-1.5"
             >
               <div>
-                {/* Visual Panel Header */}
-                <div className="relative flex h-48 w-full items-center justify-center rounded-xl bg-forest p-4 text-white overflow-hidden">
+                {/* Visual Panel Header (High-Tech PV Module Simulation) */}
+                <div className="relative flex h-48 w-full items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 p-4 text-white overflow-hidden border border-white/10 shadow-inner">
                   {/* Decorative grid representing PV cells */}
-                  <div className="absolute inset-0 grid grid-cols-6 grid-rows-3 gap-1 p-2 opacity-25">
+                  <div className="absolute inset-0 grid grid-cols-6 grid-rows-3 gap-1.5 p-3 opacity-30">
                     {[...Array(18)].map((_, i) => (
-                      <div key={i} className="rounded border border-white/40 bg-white/10" />
+                      <div key={i} className="rounded border border-sky-400/30 bg-sky-950/20" />
                     ))}
                   </div>
 
                   <div className="relative z-10 text-center">
-                    <span className="rounded-full bg-gold px-3 py-1 text-[11px] font-bold text-forest">
+                    <span className="rounded-full bg-amber-500 px-3 py-1 text-[11px] font-black text-slate-950 uppercase shadow-sm">
                       {panel.badge}
                     </span>
-                    <p className="mt-3 font-manrope text-[32px] font-extrabold text-white">
+                    <p className="mt-3 font-manrope text-[32px] font-black text-white">
                       {panel.wattage}
                     </p>
-                    <p className="text-[12px] text-sage">{panel.technology}</p>
+                    <p className="text-[12px] text-sky-300 font-medium">{panel.technology}</p>
                   </div>
                 </div>
 
                 {/* Model Details */}
                 <div className="mt-6">
-                  <span className="text-[12px] font-bold uppercase tracking-wider text-charcoal-muted">
+                  <span className="text-[12px] font-bold uppercase tracking-wider text-slate-500">
                     {panel.brand}
                   </span>
-                  <h3 className="mt-1 font-manrope text-[20px] font-bold text-forest">
+                  <h3 className="mt-1 font-manrope text-[20px] font-bold text-slate-900">
                     {panel.model}
                   </h3>
                 </div>
 
                 {/* Specs List */}
-                <div className="mt-6 space-y-2.5 border-t border-charcoal/10 pt-5 text-[13px]">
+                <div className="mt-6 space-y-2.5 border-t border-slate-100 pt-5 text-[13px]">
                   <div className="flex items-center justify-between">
-                    <span className="text-charcoal-muted">Module Efficiency:</span>
-                    <span className="font-bold text-forest">{panel.efficiency}</span>
+                    <span className="text-slate-500">Module Efficiency:</span>
+                    <span className="font-bold text-slate-900">{panel.efficiency}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-charcoal-muted">Bifacial Advantage:</span>
-                    <span className="font-medium text-charcoal">{panel.bifaciality}</span>
+                    <span className="text-slate-500">Bifacial Advantage:</span>
+                    <span className="font-medium text-slate-700">{panel.bifaciality}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-charcoal-muted">Warranty Protection:</span>
-                    <span className="font-medium text-charcoal">{panel.warranty}</span>
+                    <span className="text-slate-500">Warranty Protection:</span>
+                    <span className="font-medium text-slate-700">{panel.warranty}</span>
                   </div>
-                  <div className="flex items-center justify-between border-t border-charcoal/8 pt-2">
-                    <span className="text-charcoal-muted">Ideal Application:</span>
-                    <span className="text-right font-medium text-forest">{panel.idealFor}</span>
+                  <div className="flex items-center justify-between border-t border-slate-100 pt-2">
+                    <span className="text-slate-500">Ideal Application:</span>
+                    <span className="text-right font-medium text-slate-900">{panel.idealFor}</span>
                   </div>
                 </div>
               </div>
@@ -136,10 +136,10 @@ export default function FeaturedSolarPanels() {
               <div className="mt-8 pt-4">
                 <LocalizedClientLink
                   href={`/contact?panel=${panel.id}`}
-                  className="inline-flex min-h-[44px] w-full items-center justify-center rounded-xl bg-forest px-4 font-inter text-[13px] font-bold text-white transition-all hover:bg-forest-deep"
+                  className="inline-flex min-h-[44px] w-full items-center justify-center rounded-xl bg-slate-900 px-4 font-inter text-[13px] font-bold text-white transition-all hover:bg-slate-950 group-hover:bg-slate-900 group-hover:shadow-md"
                 >
                   <span>Enquire About This Panel</span>
-                  <ArrowRight className="ml-1.5 h-4 w-4 text-gold" />
+                  <ArrowRight className="ml-1.5 h-4 w-4 text-amber-400" />
                 </LocalizedClientLink>
               </div>
 

@@ -40,18 +40,19 @@ const differentiators = [
 
 export default function WhyAgPower() {
   return (
-    <section className="bg-ivory py-16 sm:py-20 lg:py-24">
+    <section className="bg-slate-50/70 py-16 sm:py-20 lg:py-24 border-y border-slate-200/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-sage-mist px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-forest">
-            The AG POWER Advantage
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-50 px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-slate-800 shadow-sm">
+            <ShieldCheck className="h-4 w-4 text-amber-500" />
+            <span>The AG POWER Advantage</span>
           </div>
-          <h2 className="mt-4 font-manrope text-[32px] font-extrabold tracking-tight text-forest sm:text-[42px]">
+          <h2 className="mt-4 font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[42px]">
             Why Property Owners Trust AG POWER
           </h2>
-          <p className="mt-4 text-[16px] leading-relaxed text-charcoal/80 sm:text-[18px]">
+          <p className="mt-4 text-[16px] leading-relaxed text-slate-600 sm:text-[18px]">
             Solar is a 25-year commitment. We approach every installation with uncompromised engineering precision, certified components, and transparent execution.
           </p>
         </div>
@@ -63,15 +64,15 @@ export default function WhyAgPower() {
             return (
               <div
                 key={i}
-                className="group flex flex-col rounded-2xl border border-charcoal/10 bg-white p-7 shadow-sm transition-all duration-300 hover:border-forest/30 hover:shadow-md"
+                className="group flex flex-col rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:border-sky-400/50 hover:shadow-xl hover:-translate-y-1"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sage-mist text-forest transition-colors group-hover:bg-forest group-hover:text-gold">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-800 transition-colors group-hover:bg-slate-900 group-hover:text-amber-400 group-hover:shadow-md">
                   <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-5 font-manrope text-[19px] font-bold text-forest">
+                <h3 className="mt-5 font-manrope text-[19px] font-bold text-slate-900">
                   {diff.title}
                 </h3>
-                <p className="mt-2.5 text-[14px] leading-relaxed text-charcoal/80">
+                <p className="mt-2.5 text-[14px] leading-relaxed text-slate-600">
                   {diff.description}
                 </p>
               </div>
@@ -79,31 +80,31 @@ export default function WhyAgPower() {
           })}
         </div>
 
-        {/* Stats Strip */}
-        <div className="mt-16 grid grid-cols-2 gap-4 rounded-2xl bg-forest p-8 text-white sm:grid-cols-4 sm:p-10">
-          <div className="text-center">
-            <p className="font-manrope text-[32px] font-extrabold text-gold sm:text-[40px]">
+        {/* Stats Strip (Frosted Glassmorphic Tech Blue Container) */}
+        <div className="relative overflow-hidden mt-16 grid grid-cols-2 gap-4 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 p-8 text-white sm:grid-cols-4 sm:p-10 border border-white/10 shadow-2xl backdrop-blur-2xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-sky-400/10 before:via-transparent before:to-amber-500/10 before:pointer-events-none">
+          <div className="relative z-10 text-center">
+            <p className="font-manrope text-[34px] font-black text-amber-400 sm:text-[44px] tracking-tight">
               25+
             </p>
-            <p className="mt-1 text-[13px] text-sage">Years Warranty</p>
+            <p className="mt-1 text-[13px] font-medium text-sky-300">Years Warranty</p>
           </div>
-          <div className="text-center">
-            <p className="font-manrope text-[32px] font-extrabold text-white sm:text-[40px]">
+          <div className="relative z-10 text-center">
+            <p className="font-manrope text-[34px] font-black text-white sm:text-[44px] tracking-tight">
               90%
             </p>
-            <p className="mt-1 text-[13px] text-sage">Bill Reduction</p>
+            <p className="mt-1 text-[13px] font-medium text-sky-300">Bill Reduction</p>
           </div>
-          <div className="text-center">
-            <p className="font-manrope text-[32px] font-extrabold text-gold sm:text-[40px]">
+          <div className="relative z-10 text-center">
+            <p className="font-manrope text-[34px] font-black text-amber-400 sm:text-[44px] tracking-tight">
               100%
             </p>
-            <p className="mt-1 text-[13px] text-sage">Tier-1 Hardware</p>
+            <p className="mt-1 text-[13px] font-medium text-sky-300">Tier-1 Hardware</p>
           </div>
-          <div className="text-center">
-            <p className="font-manrope text-[32px] font-extrabold text-white sm:text-[40px]">
+          <div className="relative z-10 text-center">
+            <p className="font-manrope text-[34px] font-black text-white sm:text-[44px] tracking-tight">
               3-4 Yrs
             </p>
-            <p className="mt-1 text-[13px] text-sage">Typical Payback</p>
+            <p className="mt-1 text-[13px] font-medium text-sky-300">Typical Payback</p>
           </div>
         </div>
 

@@ -44,20 +44,20 @@ export default function HomeFaqs() {
         
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-sage-mist px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-forest">
-            <HelpCircle className="h-4 w-4 text-forest" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-50 px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-slate-800 shadow-sm">
+            <HelpCircle className="h-4 w-4 text-amber-500" />
             <span>Frequently Asked Questions</span>
           </div>
-          <h2 className="mt-4 font-manrope text-[32px] font-extrabold tracking-tight text-forest sm:text-[42px]">
+          <h2 className="mt-4 font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[42px]">
             Everything You Need to Know About Solar
           </h2>
-          <p className="mt-4 text-[16px] text-charcoal/80 sm:text-[18px]">
+          <p className="mt-4 text-[16px] text-slate-600 sm:text-[18px]">
             Clear, straightforward answers about rooftop solar investment, net-metering, and installation.
           </p>
         </div>
 
         {/* Accordion List */}
-        <div className="mt-12 divide-y divide-charcoal/10 rounded-2xl border border-charcoal/10 bg-ivory p-4 sm:p-6">
+        <div className="mt-12 divide-y divide-slate-100 rounded-2xl border border-slate-200/80 bg-slate-50/50 p-4 sm:p-6 shadow-sm">
           {defaultFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx
             return (
@@ -65,20 +65,20 @@ export default function HomeFaqs() {
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="flex w-full items-center justify-between text-left focus:outline-none"
+                  className="flex w-full items-center justify-between text-left focus:outline-none group"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-manrope text-[16px] font-bold text-forest sm:text-[18px]">
+                  <span className="font-manrope text-[16px] font-bold text-slate-900 sm:text-[18px] group-hover:text-amber-600 transition-colors">
                     {faq.q}
                   </span>
-                  <span className="ml-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white text-forest shadow-sm">
+                  <span className="ml-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm transition-all group-hover:bg-slate-900 group-hover:text-white">
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180 text-gold" : ""}`}
+                      className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180 text-amber-500" : ""}`}
                     />
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="mt-3 text-[14px] leading-relaxed text-charcoal/85 sm:text-[15px]">
+                  <div className="mt-3 text-[14px] leading-relaxed text-slate-600 sm:text-[15px] pr-8">
                     {faq.a}
                   </div>
                 )}
@@ -91,7 +91,7 @@ export default function HomeFaqs() {
         <div className="mt-10 text-center">
           <LocalizedClientLink
             href="/faq"
-            className="inline-flex items-center gap-1.5 font-inter text-[15px] font-bold text-forest hover:text-gold hover:underline"
+            className="inline-flex items-center gap-1.5 font-inter text-[15px] font-bold text-slate-900 hover:text-amber-500 transition-colors"
           >
             <span>Have more questions? Browse all FAQs</span>
             <ArrowRight className="h-4 w-4" />

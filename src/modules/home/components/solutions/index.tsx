@@ -55,18 +55,19 @@ const solutions = [
 
 export default function SolarSolutions() {
   return (
-    <section className="bg-ivory py-16 sm:py-20 lg:py-24">
+    <section className="bg-slate-50/70 py-16 sm:py-20 lg:py-24 border-y border-slate-200/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-sage-mist px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-forest">
-            Tailored Energy Systems
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-50 px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-slate-800 shadow-sm">
+            <Sparkles className="h-4 w-4 text-amber-500" />
+            <span>Tailored Energy Systems</span>
           </div>
-          <h2 className="mt-4 font-manrope text-[32px] font-extrabold tracking-tight text-forest sm:text-[42px]">
+          <h2 className="mt-4 font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[42px]">
             Engineered Solar Solutions for Every Need
           </h2>
-          <p className="mt-4 text-[16px] leading-relaxed text-charcoal/80 sm:text-[18px]">
+          <p className="mt-4 text-[16px] leading-relaxed text-slate-600 sm:text-[18px]">
             From individual rooftops to massive industrial sheds, AG POWER provides precision-engineered solar installations designed for maximum generational output.
           </p>
         </div>
@@ -78,41 +79,41 @@ export default function SolarSolutions() {
             return (
               <div
                 key={sol.id}
-                className="group flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-forest/30 hover:shadow-xl"
+                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-sky-400/50 hover:shadow-[0_20px_40px_-15px_rgba(2,6,23,0.12)]"
               >
                 <div>
                   {/* Top Bar with Icon & Badge */}
                   <div className="flex items-center justify-between">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-forest text-gold shadow-sm transition-transform group-hover:scale-105">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-amber-400 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-sky-500/20">
                       <Icon className="h-7 w-7" />
                     </div>
-                    <span className="rounded-full bg-sage-mist px-3 py-1 text-[11px] font-bold text-forest">
+                    <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[11px] font-bold text-slate-800">
                       {sol.badge}
                     </span>
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="mt-6 font-manrope text-[24px] font-bold text-forest">
+                  <h3 className="mt-6 font-manrope text-[24px] font-bold text-slate-900">
                     {sol.title}
                   </h3>
-                  <p className="text-[13px] font-semibold text-charcoal-muted">
+                  <p className="text-[13px] font-semibold text-slate-500">
                     {sol.subtitle}
                   </p>
 
                   {/* Description */}
-                  <p className="mt-3 text-[14px] leading-relaxed text-charcoal/80">
+                  <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
                     {sol.description}
                   </p>
 
                   {/* Benefit Points */}
-                  <div className="mt-6 border-t border-charcoal/8 pt-5">
-                    <p className="text-[12px] font-bold uppercase tracking-wider text-forest">
+                  <div className="mt-6 border-t border-slate-100 pt-5">
+                    <p className="text-[12px] font-bold uppercase tracking-wider text-slate-900">
                       Key Highlights:
                     </p>
                     <ul className="mt-3 flex flex-col gap-2.5">
                       {sol.benefits.map((benefit, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-[13px] text-charcoal">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-forest" />
+                        <li key={i} className="flex items-start gap-2.5 text-[13px] text-slate-700">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-sky-600" />
                           <span>{benefit}</span>
                         </li>
                       ))}
@@ -124,10 +125,10 @@ export default function SolarSolutions() {
                 <div className="mt-8 pt-4">
                   <LocalizedClientLink
                     href={sol.href}
-                    className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-forest px-5 font-inter text-[14px] font-bold text-white shadow-sm transition-all hover:bg-forest-deep group-hover:bg-forest"
+                    className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-slate-900 px-5 font-inter text-[14px] font-bold text-white shadow-sm transition-all hover:bg-slate-950 group-hover:bg-slate-900 group-hover:shadow-md"
                   >
                     <span>{sol.ctaText}</span>
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 text-gold" />
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 text-amber-400" />
                   </LocalizedClientLink>
                 </div>
 
