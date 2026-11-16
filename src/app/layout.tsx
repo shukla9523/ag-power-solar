@@ -16,6 +16,15 @@ export const metadata: Metadata = {
   description:
     "Power your home and business with smarter solar energy. Make the switch to cleaner energy, reduce electricity expenses and take control of your energy future with AG POWER.",
   applicationName: "AG POWER",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   formatDetection: { telephone: false },
   ...(process.env.GOOGLE_SITE_VERIFICATION
     ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }

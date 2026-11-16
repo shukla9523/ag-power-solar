@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A4A3B"/>
+      <stop offset="100%" stop-color="#0E2820"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#E9B949"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded Squircle Background -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Inner Border -->
+  <rect x="12" y="12" width="488" height="488" rx="116" fill="none" stroke="#E9B949" stroke-width="6" stroke-opacity="0.25"/>
+
+  <!-- Sun Center Core -->
+  <circle cx="256" cy="256" r="92" fill="url(#goldGrad)" />
+  <circle cx="256" cy="256" r="68" fill="#173F32" />
+  <circle cx="256" cy="256" r="44" fill="url(#goldGrad)" />
+
+  <!-- 8 Solar Rays (Sharp & Elegant) -->
+  <!-- Top Ray -->
+  <path d="M256 70 L272 135 L240 135 Z" fill="url(#goldGrad)"/>
+  <!-- Bottom Ray -->
+  <path d="M256 442 L272 377 L240 377 Z" fill="url(#goldGrad)"/>
+  <!-- Left Ray -->
+  <path d="M70 256 L135 240 L135 272 Z" fill="url(#goldGrad)"/>
+  <!-- Right Ray -->
+  <path d="M442 256 L377 240 L377 272 Z" fill="url(#goldGrad)"/>
+
+  <!-- Diagonal Rays -->
+  <!-- Top-Right -->
+  <path d="M388 124 L350 178 L328 156 Z" fill="url(#goldGrad)"/>
+  <!-- Bottom-Left -->
+  <path d="M124 388 L162 334 L184 356 Z" fill="url(#goldGrad)"/>
+  <!-- Top-Left -->
+  <path d="M124 124 L178 162 L156 184 Z" fill="url(#goldGrad)"/>
+  <!-- Bottom-Right -->
+  <path d="M388 388 L334 350 L356 328 Z" fill="url(#goldGrad)"/>
+</svg>

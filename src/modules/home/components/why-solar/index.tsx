@@ -8,39 +8,33 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 const benefits = [
   {
     icon: TrendingDown,
-    title: "Cut Electricity Bills up to 90%",
-    description:
-      "Generate clean solar units directly on your roof to offset grid consumption. Drastically reduce or virtually eliminate high recurring electricity bills.",
+    title: "Cut Bills up to 90%",
+    description: "Generate your own power on-site to drastically reduce high recurring electricity bills.",
   },
   {
     icon: ShieldAlert,
-    title: "Hedge Against Rising Grid Tariffs",
-    description:
-      "Commercial and domestic electricity rates consistently increase year-on-year. Solar locks in your energy generation cost for the next 25 years.",
+    title: "Hedge Against Tariffs",
+    description: "Lock in your energy costs for 25 years with zero exposure to rising grid utility tariffs.",
   },
   {
     icon: LineChart,
-    title: "Compelling ROI & Rapid Payback",
-    description:
-      "Most rooftop solar installations achieve complete capital payback within 3 to 5 years, followed by 20+ years of virtually free solar power.",
-  },
-  {
-    icon: Leaf,
-    title: "Eco-Friendly Clean Energy",
-    description:
-      "Every 5 kW solar plant eliminates approximately 6 to 8 tonnes of carbon emissions annually, equivalent to planting over 100 mature trees.",
-  },
-  {
-    icon: Building,
-    title: "Turn Empty Roofs Into Generating Assets",
-    description:
-      "Transform idle rooftop space into a high-yielding infrastructure asset that increases property valuation and promotes green building standards.",
+    title: "3 to 4 Year Payback",
+    description: "Achieve fast capital recovery followed by 20+ years of virtually free solar power.",
   },
   {
     icon: SunMedium,
-    title: "Government Incentives & Subsidies",
-    description:
-      "Benefit from nationwide incentives including PM Surya Ghar Muft Bijli Yojana subsidies for homes, and 40% accelerated depreciation for businesses.",
+    title: "Govt Subsidies Available",
+    description: "Get up to ₹78,000 direct PM Surya Ghar subsidy for homes and 40% depreciation for businesses.",
+  },
+  {
+    icon: Building,
+    title: "Value-Generating Asset",
+    description: "Turn idle roof space into clean infrastructure that enhances total property valuation.",
+  },
+  {
+    icon: Leaf,
+    title: "Clean & Eco-Friendly",
+    description: "Eliminate tonnes of carbon emissions every year and foster sustainable green living.",
   },
 ]
 

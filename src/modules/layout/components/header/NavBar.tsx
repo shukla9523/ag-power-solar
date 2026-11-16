@@ -47,30 +47,28 @@ export default function NavBar() {
 
   return (
     <>
-      <div className={`w-full transition-all duration-300 ${scrolled ? "bg-ivory/98 shadow-sm" : "bg-ivory"}`}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+      <div className={`w-full transition-all duration-300 ${scrolled ? "bg-white shadow-sm" : "bg-white"}`}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           
           {/* Logo */}
           <LocalizedClientLink href="/" className="group flex items-center gap-2.5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest shadow-sm transition-transform group-hover:scale-105">
-              <SunMedium className="h-6 w-6 text-gold" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-gold shadow-sm transition-transform duration-200 group-hover:scale-105">
+              <SunMedium className="h-5 w-5" />
             </div>
-            <div className="flex flex-col">
-              <span className="font-manrope text-[20px] font-extrabold tracking-tight text-forest">
+            <div className="flex items-center">
+              <span className="font-manrope text-[21px] font-extrabold tracking-tight text-forest">
                 AG POWER
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-forest/70">
-                Solar Solutions
-              </span>
+              <span className="ml-0.5 inline-block h-2 w-2 rounded-full bg-gold" />
             </div>
           </LocalizedClientLink>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-7 lg:gap-8 lg:flex">
             <LocalizedClientLink
               href="/"
-              className={`text-[15px] font-semibold transition-colors ${
-                pathname === "/" ? "text-forest font-bold" : "text-charcoal/85 hover:text-forest"
+              className={`text-[15px] transition-colors ${
+                pathname === "/" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
               }`}
             >
               Home
@@ -78,20 +76,22 @@ export default function NavBar() {
 
             <LocalizedClientLink
               href="/about"
-              className={`text-[15px] font-semibold transition-colors ${
-                pathname === "/about" ? "text-forest font-bold" : "text-charcoal/85 hover:text-forest"
+              className={`text-[15px] transition-colors ${
+                pathname === "/about" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
               }`}
             >
-              About Us
+              About
             </LocalizedClientLink>
 
             {/* Solar Solutions Megamenu */}
             <div className="group relative">
               <button
                 type="button"
-                className="flex items-center gap-1 text-[15px] font-semibold text-charcoal/85 transition-colors hover:text-forest focus:outline-none"
+                className={`flex items-center gap-1 text-[15px] transition-colors hover:text-forest focus:outline-none ${
+                  pathname?.startsWith("/services") ? "font-bold text-forest" : "font-medium text-slate-700"
+                }`}
               >
-                <span>Solar Solutions</span>
+                <span>Services</span>
                 <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
               </button>
               <ServicesDropdown />
@@ -99,58 +99,49 @@ export default function NavBar() {
 
             <LocalizedClientLink
               href="/calculator"
-              className={`flex items-center gap-1.5 text-[15px] font-semibold transition-colors ${
-                pathname === "/calculator" ? "text-forest font-bold" : "text-charcoal/85 hover:text-forest"
+              className={`flex items-center gap-1.5 text-[15px] transition-colors ${
+                pathname === "/calculator" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
               }`}
             >
               <Calculator className="h-4 w-4 text-gold" />
-              <span>Solar Calculator</span>
+              <span>Calculator</span>
             </LocalizedClientLink>
 
             <LocalizedClientLink
               href="/solar-panels"
-              className={`text-[15px] font-semibold transition-colors ${
-                pathname === "/solar-panels" ? "text-forest font-bold" : "text-charcoal/85 hover:text-forest"
+              className={`text-[15px] transition-colors ${
+                pathname === "/solar-panels" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
               }`}
             >
               Solar Panels
             </LocalizedClientLink>
 
             <LocalizedClientLink
-              href="/customer-services"
-              className={`text-[15px] font-semibold transition-colors ${
-                pathname === "/customer-services" ? "text-forest font-bold" : "text-charcoal/85 hover:text-forest"
-              }`}
-            >
-              Services
-            </LocalizedClientLink>
-
-            <LocalizedClientLink
               href="/blog"
-              className={`text-[15px] font-semibold transition-colors ${
-                pathname === "/blog" || pathname?.startsWith("/blog/") ? "text-forest font-bold" : "text-charcoal/85 hover:text-forest"
+              className={`text-[15px] transition-colors ${
+                pathname === "/blog" || pathname?.startsWith("/blog/") ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
               }`}
             >
-              Blogs
+              Blog
             </LocalizedClientLink>
 
             <LocalizedClientLink
               href="/contact"
-              className={`text-[15px] font-semibold transition-colors ${
-                pathname === "/contact" ? "text-forest font-bold" : "text-charcoal/85 hover:text-forest"
+              className={`text-[15px] transition-colors ${
+                pathname === "/contact" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
               }`}
             >
               Contact
             </LocalizedClientLink>
           </nav>
 
-          {/* Right Action CTA */}
+          {/* Right Action CTA (Pill Button, exact Momentum style) */}
           <div className="hidden items-center gap-3 lg:flex">
             <LocalizedClientLink
               href="/contact"
-              className="inline-flex items-center justify-center rounded-xl bg-gold px-5 py-2.5 font-inter text-[14px] font-bold text-forest shadow-sm transition-all hover:bg-gold-hover hover:shadow-md active:translate-y-0.5"
+              className="inline-flex items-center justify-center rounded-full bg-forest px-6 py-2.5 font-inter text-[14px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-forest-deep hover:shadow-md active:scale-95"
             >
-              <span>Get Free Consultation</span>
+              <span>Get Free Quote</span>
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </LocalizedClientLink>
           </div>
@@ -159,7 +150,7 @@ export default function NavBar() {
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="flex h-11 w-11 items-center justify-center rounded-lg text-forest hover:bg-sage-mist lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-forest hover:bg-gray-100 lg:hidden"
             aria-label="Toggle Navigation Menu"
           >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -174,7 +165,7 @@ export default function NavBar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="border-b border-charcoal/10 bg-ivory px-5 py-6 lg:hidden"
+            className="border-b border-gray-100 bg-white px-5 py-6 lg:hidden shadow-lg"
           >
             <div className="flex flex-col gap-3">
               <LocalizedClientLink
@@ -188,9 +179,9 @@ export default function NavBar() {
               <LocalizedClientLink
                 href="/about"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[44px] items-center text-[16px] font-semibold text-charcoal"
+                className="flex min-h-[44px] items-center text-[16px] font-semibold text-slate-800"
               >
-                About Us
+                About
               </LocalizedClientLink>
 
               {/* Mobile Solutions Accordion */}
@@ -198,9 +189,9 @@ export default function NavBar() {
                 <button
                   type="button"
                   onClick={() => setSolutionsOpen(!solutionsOpen)}
-                  className="flex min-h-[44px] w-full items-center justify-between text-[16px] font-semibold text-charcoal"
+                  className="flex min-h-[44px] w-full items-center justify-between text-[16px] font-semibold text-slate-800"
                 >
-                  <span>Solar Solutions</span>
+                  <span>Services & Solutions</span>
                   <ChevronDown className={`h-4 w-4 transition-transform ${solutionsOpen ? "rotate-180" : ""}`} />
                 </button>
                 {solutionsOpen && (
@@ -231,42 +222,35 @@ export default function NavBar() {
               <LocalizedClientLink
                 href="/solar-panels"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[44px] items-center text-[16px] font-semibold text-charcoal"
+                className="flex min-h-[44px] items-center text-[16px] font-semibold text-slate-800"
               >
                 Solar Panels
               </LocalizedClientLink>
 
               <LocalizedClientLink
-                href="/customer-services"
-                onClick={() => setMenuOpen(false)}
-                className="flex min-h-[44px] items-center text-[16px] font-semibold text-charcoal"
-              >
-                Customer Services
-              </LocalizedClientLink>
-
-              <LocalizedClientLink
                 href="/blog"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[44px] items-center text-[16px] font-semibold text-charcoal"
+                className="flex min-h-[44px] items-center text-[16px] font-semibold text-slate-800"
               >
-                Blogs
+                Blog
               </LocalizedClientLink>
 
               <LocalizedClientLink
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[44px] items-center text-[16px] font-semibold text-charcoal"
+                className="flex min-h-[44px] items-center text-[16px] font-semibold text-slate-800"
               >
-                Contact Us
+                Contact
               </LocalizedClientLink>
 
-              <div className="mt-4 pt-3 border-t border-charcoal/10">
+              <div className="mt-4 pt-3 border-t border-gray-100">
                 <LocalizedClientLink
                   href="/contact"
                   onClick={() => setMenuOpen(false)}
-                  className="flex min-h-[48px] w-full items-center justify-center rounded-xl bg-gold text-center font-bold text-forest shadow-sm"
+                  className="flex min-h-[48px] w-full items-center justify-center rounded-full bg-forest text-center font-bold text-white shadow-sm hover:bg-forest-deep"
                 >
-                  Get Free Consultation
+                  <span>Get Free Quote</span>
+                  <ArrowRight className="ml-1.5 h-4 w-4" />
                 </LocalizedClientLink>
               </div>
             </div>

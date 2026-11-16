@@ -8,39 +8,33 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 const differentiators = [
   {
     icon: Compass,
-    title: "Precision Shadow & Solar Mapping",
-    description:
-      "We perform 3D shadow analysis and seasonal solar path modeling to orient panels for peak irradiance and year-round maximum energy generation.",
+    title: "Precision Shadow Analysis",
+    description: "3D rooftop simulation to eliminate shadow loss and maximize annual unit generation.",
   },
   {
     icon: Cpu,
-    title: "Tier-1 Tested Components",
-    description:
-      "We exclusively deploy high-efficiency Mono PERC and TOPCon modules paired with top-rated grid-tie inverters designed for Indian climatic conditions.",
+    title: "Tier-1 Tested Modules",
+    description: "High-efficiency Mono PERC & TOPCon panels engineered for harsh Indian weather.",
   },
   {
     icon: Wrench,
-    title: "Engineered Heavy-Duty Structures",
-    description:
-      "Galvanized iron and anodized aluminum mounting structures engineered to withstand wind speeds up to 150 km/h without roof penetration or leakage.",
+    title: "Wind-Rated Structures",
+    description: "Corrosion-resistant galvanized structures certified for wind speeds up to 150 km/h.",
   },
   {
     icon: FileCheck2,
-    title: "Hassle-Free Approvals & Subsidies",
-    description:
-      "From state DISCOM net-metering approvals to national PM Surya Ghar subsidy application processing, our dedicated liaison team manages everything.",
+    title: "Complete Liaison & Subsidies",
+    description: "End-to-end DISCOM net-metering approvals and PM Surya Ghar subsidy handling.",
   },
   {
     icon: ShieldCheck,
     title: "25-Year Performance Assurance",
-    description:
-      "Backed by a 25-year linear power warranty from Tier-1 manufacturers plus AG POWER's 5-year workmanship guarantee.",
+    description: "Backed by 25-year linear power output guarantee and 5-year workmanship warranty.",
   },
   {
     icon: HeadphonesIcon,
-    title: "Local On-Ground Service & Support",
-    description:
-      "Prompt service response with proactive remote generation monitoring so your solar system stays at peak operational health.",
+    title: "Local On-Ground Support",
+    description: "Rapid service response paired with remote app monitoring for peak system health.",
   },
 ]
 

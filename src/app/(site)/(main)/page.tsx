@@ -43,8 +43,11 @@ export default async function Home() {
     <>
       <JsonLd type="homepage" seoSetting={seoSetting} />
       <main className="bg-ivory">
-        {/* Section 2: Hero Banner */}
+        {/* Section 1: Hero Banner */}
         <Hero />
+
+        {/* Section 2: Quick Solar Calculator (Priority Elevated) */}
+        <QuickCalculator />
 
         {/* Section 3: Solar Solutions (Residential, Commercial, Society) */}
         <SolarSolutions />
@@ -55,19 +58,16 @@ export default async function Home() {
         {/* Section 5: Why AG POWER? */}
         <WhyAgPower />
 
-        {/* Section 6: Quick Solar Calculator */}
-        <QuickCalculator />
-
-        {/* Section 7: Installation Process */}
+        {/* Section 6: Installation Process */}
         <InstallationProcess />
 
-        {/* Section 8: Featured Solar Panels */}
+        {/* Section 7: Featured Solar Panels */}
         <FeaturedSolarPanels />
 
-        {/* Section 9: FAQs */}
+        {/* Section 8: FAQs */}
         <HomeFaqs />
 
-        {/* Section 11: Final Consultation CTA */}
+        {/* Section 9: Final Consultation CTA */}
         <FinalCta />
       </main>
     </>
