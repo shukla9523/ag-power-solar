@@ -233,14 +233,20 @@ function AdminLoginForm() {
 
             {/* Title */}
             <h3 className="text-[20px] font-extrabold text-navy tracking-tight">
-              {error.includes("rejected") ? "Access Request Rejected" : "Access Request Pending"}
+              {error.includes("rejected")
+                ? "Access Request Rejected"
+                : error.includes("pending") || error.includes("awaiting")
+                ? "Access Request Pending"
+                : "Sign In Notice"}
             </h3>
 
             {/* Description */}
             <p className="mt-3 text-[14px] text-slate-500 leading-relaxed">
               {error.includes("rejected") 
                 ? "Your access request to the administrator panel was reviewed and rejected. Please contact an owner or support administrator if you believe this is an error."
-                : "Your account is awaiting approval by an administrator. After an admin or owner approves your request, you will be able to log in to your dashboard."
+                : error.includes("pending") || error.includes("awaiting")
+                ? "Your account is awaiting approval by an administrator. After an admin or owner approves your request, you will be able to log in to your dashboard."
+                : error
               }
             </p>
 

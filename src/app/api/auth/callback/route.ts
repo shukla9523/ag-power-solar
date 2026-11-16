@@ -41,7 +41,19 @@ export async function GET(req: NextRequest) {
           flowType: "pkce",
           persistSession: false,
           storage: {
-            getItem: (key: string) => req.cookies.get(key)?.value || null,
+            getItem: (key: string) => {
+              const direct = req.cookies.get(key)?.value
+              if (direct) {
+                try { return decodeURIComponent(direct) } catch { return direct }
+              }
+              if (key.includes("code-verifier")) {
+                const found = req.cookies.getAll().find((c) => c.name.includes("code-verifier"))
+                if (found) {
+                  try { return decodeURIComponent(found.value) } catch { return found.value }
+                }
+              }
+              return null
+            },
             setItem: () => undefined,
             removeItem: () => undefined,
           },
@@ -51,7 +63,16 @@ export async function GET(req: NextRequest) {
 
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
     if (error || !data.session || !data.user?.email) {
-      return NextResponse.redirect(loginUrl(req, "Google sign-in failed. Please try again."))
+      console.error("[Auth Callback Error]", {
+        error: error?.message,
+        code: error?.code,
+        status: error?.status,
+        hasSession: !!data?.session,
+        hasUser: !!data?.user,
+        email: data?.user?.email,
+        cookies: req.cookies.getAll().map((c) => c.name),
+      })
+      return NextResponse.redirect(loginUrl(req, error?.message || "Google sign-in failed. Please try again."))
     }
 
     const email = data.user.email.toLowerCase()
