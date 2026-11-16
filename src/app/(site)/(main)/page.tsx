@@ -9,7 +9,6 @@ import WhyAgPower from "@modules/home/components/why-ag-power"
 import QuickCalculator from "@modules/home/components/quick-calculator"
 import InstallationProcess from "@modules/home/components/installation-process"
 import FeaturedSolarPanels from "@modules/home/components/featured-panels"
-import Testimonials from "@modules/home/components/testimonials"
 import HomeFaqs from "@modules/home/components/home-faqs"
 import FinalCta from "@modules/home/components/final-cta"
 
@@ -65,10 +64,7 @@ export default async function Home() {
         {/* Section 8: Featured Solar Panels */}
         <FeaturedSolarPanels />
 
-        {/* Section 9: Customer Testimonials */}
-        <Testimonials />
-
-        {/* Section 10: FAQs */}
+        {/* Section 9: FAQs */}
         <HomeFaqs />
 
         {/* Section 11: Final Consultation CTA */}
