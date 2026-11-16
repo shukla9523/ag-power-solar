@@ -39,6 +39,15 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false)
   const [tariff, setTariff] = useState<number | undefined>(undefined)
 
+  const handleCategoryChange = (newCat: "residential" | "commercial" | "society") => {
+    setCategory(newCat)
+    if (newCat === "commercial" && monthlyBill < 15000) {
+      setMonthlyBill(30000)
+    } else if (newCat !== "commercial" && monthlyBill > 40000) {
+      setMonthlyBill(8000)
+    }
+  }
+
   // Enquiry modal state
   const [enquirySent, setEnquirySent] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -132,7 +141,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
               <div className="mt-3 grid grid-cols-3 gap-3">
                 <button
                   type="button"
-                  onClick={() => setCategory("residential")}
+                  onClick={() => handleCategoryChange("residential")}
                   className={`flex flex-col items-center justify-center rounded-2xl border p-4 text-center transition-all ${
                     category === "residential"
                       ? "border-forest bg-forest text-white shadow-md"
@@ -146,7 +155,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
 
                 <button
                   type="button"
-                  onClick={() => setCategory("commercial")}
+                  onClick={() => handleCategoryChange("commercial")}
                   className={`flex flex-col items-center justify-center rounded-2xl border p-4 text-center transition-all ${
                     category === "commercial"
                       ? "border-forest bg-forest text-white shadow-md"
@@ -160,7 +169,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
 
                 <button
                   type="button"
-                  onClick={() => setCategory("society")}
+                  onClick={() => handleCategoryChange("society")}
                   className={`flex flex-col items-center justify-center rounded-2xl border p-4 text-center transition-all ${
                     category === "society"
                       ? "border-forest bg-forest text-white shadow-md"
