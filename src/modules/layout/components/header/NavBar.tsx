@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "motion/react"
 import ServicesDropdown from "./ServicesDropdown"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import AgPowerLogoIcon from "@modules/common/components/brand/AgPowerLogoIcon"
 import { SunMedium, ChevronDown, Phone, Calculator, ArrowRight, Menu, X, Shield, Award } from "lucide-react"
 
 const MOBILE_BREAKPOINT = 1024
@@ -52,9 +53,7 @@ export default function NavBar() {
           
           {/* Logo */}
           <LocalizedClientLink href="/" className="group flex items-center gap-2.5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-gold shadow-sm transition-transform duration-200 group-hover:scale-105">
-              <SunMedium className="h-5 w-5" />
-            </div>
+            <AgPowerLogoIcon className="h-10 w-10 shadow-sm transition-transform duration-200 group-hover:scale-105" />
             <div className="flex items-center">
               <span className="font-manrope text-[21px] font-extrabold tracking-tight text-forest">
                 AG POWER
