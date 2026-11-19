@@ -42,7 +42,7 @@ export default function WhyAgPower() {
   return (
     <section className="bg-slate-50/70 py-16 sm:py-20 lg:py-24 border-y border-slate-200/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-50 px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-slate-800 shadow-sm">

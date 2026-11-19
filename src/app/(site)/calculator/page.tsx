@@ -20,7 +20,7 @@ export default async function CalculatorPage({
   const resolved = searchParams ? await searchParams : {}
 
   return (
-    <main className="bg-ivory min-h-screen">
+    <main className="bg-slate-50 min-h-screen">
       <CalculatorClient
         initialCat={resolved.cat}
         initialBill={resolved.bill}

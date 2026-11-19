@@ -188,17 +188,17 @@ export default function QuickCalculator() {
 
             <div className="relative z-10">
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-sky-400">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-sky-300">
                   Indicative Assessment
                 </span>
-                <span className="rounded-full bg-amber-500/20 border border-amber-500/30 px-2.5 py-0.5 text-[10px] font-bold text-amber-400 backdrop-blur-sm">
+                <span className="rounded-full bg-amber-500/20 border border-amber-500/30 px-2.5 py-0.5 text-[10px] font-bold text-amber-300 backdrop-blur-sm">
                   {category.toUpperCase()}
                 </span>
               </div>
 
               {/* Recommended Capacity (Compact) */}
               <div className="mt-4">
-                <p className="text-[12px] text-slate-300 font-medium">Recommended Capacity</p>
+                <p className="text-[12px] text-slate-200 font-medium">Recommended Capacity</p>
                 <div className="mt-0.5 flex items-baseline gap-2">
                   <span className="font-manrope text-[34px] sm:text-[38px] font-black text-amber-400 tracking-tight leading-none">
                     {estimates.recommendedKw}
@@ -210,17 +210,17 @@ export default function QuickCalculator() {
                 </p>
               </div>
 
-              {/* Savings Breakdown (Compact Rows) */}
+              {/* Savings Breakdown (Compact Rows with High Contrast) */}
               <div className="mt-4 space-y-2 border-t border-white/10 pt-3.5 text-[13px]">
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-300">Estimated Monthly Savings:</span>
+                  <span className="text-slate-200 font-medium">Estimated Monthly Savings:</span>
                   <span className="font-manrope font-bold text-white">
                     ₹ {estimates.monthlySavings.toLocaleString("en-IN")} / mo
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-300">Estimated Annual Savings:</span>
+                  <span className="text-slate-200 font-medium">Estimated Annual Savings:</span>
                   <span className="font-manrope font-bold text-amber-400">
                     ₹ {estimates.annualSavings.toLocaleString("en-IN")} / yr
                   </span>
@@ -228,7 +228,7 @@ export default function QuickCalculator() {
 
                 {estimates.subsidy > 0 && (
                   <div className="flex items-center justify-between">
-                    <span className="text-slate-300">PM Surya Ghar Subsidy:</span>
+                    <span className="text-slate-200 font-medium">PM Surya Ghar Subsidy:</span>
                     <span className="font-manrope font-bold text-emerald-400">
                       - ₹ {estimates.subsidy.toLocaleString("en-IN")}
                     </span>
@@ -236,15 +236,15 @@ export default function QuickCalculator() {
                 )}
 
                 <div className="flex items-center justify-between border-t border-white/10 pt-2">
-                  <span className="text-slate-300">Approx. Net Investment:</span>
+                  <span className="text-slate-200 font-medium">Approx. Net Investment:</span>
                   <span className="font-manrope font-extrabold text-white text-[15px]">
                     ₹ {estimates.netInvestment.toLocaleString("en-IN")}*
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between text-[12px]">
-                  <span className="text-slate-300">Est. Payback Period:</span>
-                  <span className="font-semibold text-sky-400">
+                  <span className="text-slate-200 font-medium">Est. Payback Period:</span>
+                  <span className="font-semibold text-amber-300">
                     {estimates.paybackYears} Years
                   </span>
                 </div>
