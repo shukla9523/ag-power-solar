@@ -1,6 +1,6 @@
 {
-  "name": "Mommantum",
-  "short_name": "Mommantum",
+  "name": "AG POWER Solar",
+  "short_name": "AG POWER",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#064E3B",
+  "background_color": "#FFFFFF",
   "display": "standalone"
 }

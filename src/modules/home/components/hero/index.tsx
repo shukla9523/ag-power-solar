@@ -10,7 +10,7 @@ export default function Hero() {
       {/* Full-Bleed Background Image: Smiling Solar Engineer with Engineering Hard Hat & Elevated Pergola */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-solar-engineer.webp"
+          src="/images/hero-solar-engineer-v2.webp"
           alt="AG POWER Certified Solar Engineer with Yellow Safety Helmet at Elevated Rooftop Solar Pergola Structure"
           fill
           priority
