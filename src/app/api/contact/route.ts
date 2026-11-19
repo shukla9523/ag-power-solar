@@ -120,9 +120,11 @@ export async function POST(req: NextRequest) {
 
     // Schedule background asynchronous jobs without blocking response
     after(async () => {
+      let sheetSent = false
+
       // 1. Google Sheets Append (with 13-field AG POWER structure)
       try {
-        await appendLeadToSheet({
+        const sheetRes = await appendLeadToSheet({
           id: lead.id,
           createdAt: lead.created_at,
           name: parsed.data.name,
@@ -137,6 +139,7 @@ export async function POST(req: NextRequest) {
           message: derivedMessage,
           status: "New",
         })
+        sheetSent = sheetRes.ok
       } catch (sheetErr) {
         console.error("Google Sheets append failed:", sheetErr)
       }
@@ -160,9 +163,12 @@ export async function POST(req: NextRequest) {
         console.error("Telegram notification failed:", tgErr)
       }
 
-      // 3. Fallback MailX / Admin Notifications
+      // 3. Fallback MailX / Admin Notifications (Pass sheet_status='sent' to prevent duplicate sheet row)
       try {
-        await deliverLead(lead).catch(() => null)
+        await deliverLead({
+          ...lead,
+          sheet_status: sheetSent ? "sent" : lead.sheet_status,
+        }).catch(() => null)
         await notifyAdmins({
           type: "lead",
           title: "New AG POWER Enquiry",
