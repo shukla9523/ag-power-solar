@@ -146,7 +146,7 @@ function AdminLoginForm() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="akashshukla9523@gmail.com"
+              placeholder="admin@agpowersolar.in"
               suppressHydrationWarning={true}
               className="h-[52px] w-full rounded-[14px] border border-charcoal/15 bg-ivory/50 px-4 text-[14px] text-charcoal outline-none transition-all placeholder:text-charcoal/40 focus:border-forest focus:ring-2 focus:ring-forest/10"
             />
