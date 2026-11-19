@@ -9,16 +9,18 @@
 // - REPORT-ONLY: the full allowlist (GTM / Google Analytics, Cloudflare Turnstile, Supabase,
 //   Google Maps embed, video hosts). Browsers only log violations, so nothing breaks; after a
 //   week with a clean console it can be switched to enforced (see docs/setup-guide.md).
-const CSP_ENFORCED = ["object-src 'none'", "base-uri 'self'", "frame-ancestors 'self'"].join("; ")
+const CSP_ENFORCED = ["object-src 'none'", "base-uri 'self'", "frame-ancestors 'self'", "upgrade-insecure-requests"].join("; ")
 const SUPABASE_HOSTS = "https://*.supabase.co wss://*.supabase.co"
 const GOOGLE_HOSTS = "https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com"
+const CLARITY_HOSTS = "https://*.clarity.ms https://c.bing.com"
+const AD_HOSTS = "https://*.doubleclick.net https://googleads.g.doubleclick.net"
 const CSP_REPORT_ONLY = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' ${GOOGLE_HOSTS} https://challenges.cloudflare.com`,
+  `script-src 'self' 'unsafe-inline' ${GOOGLE_HOSTS} ${CLARITY_HOSTS} ${AD_HOSTS} https://challenges.cloudflare.com`,
   "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' data: blob: ${SUPABASE_HOSTS} https://images.unsplash.com ${GOOGLE_HOSTS} https://*.gstatic.com`,
+  `img-src 'self' data: blob: ${SUPABASE_HOSTS} https://images.unsplash.com ${GOOGLE_HOSTS} ${CLARITY_HOSTS} ${AD_HOSTS} https://*.gstatic.com`,
   "font-src 'self' data:",
-  `connect-src 'self' ${SUPABASE_HOSTS} ${GOOGLE_HOSTS} https://challenges.cloudflare.com`,
+  `connect-src 'self' ${SUPABASE_HOSTS} ${GOOGLE_HOSTS} ${CLARITY_HOSTS} ${AD_HOSTS} https://challenges.cloudflare.com`,
   "frame-src 'self' https://challenges.cloudflare.com https://www.google.com https://www.googletagmanager.com https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.loom.com",
   "media-src 'self' blob: https://*.supabase.co",
   "worker-src 'self' blob:",
@@ -26,7 +28,6 @@ const CSP_REPORT_ONLY = [
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'self'",
-  "upgrade-insecure-requests",
 ].join("; ")
 
 // Applied to every response.
