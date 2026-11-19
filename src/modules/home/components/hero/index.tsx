@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-solar-ambassador.webp"
-          alt="AG POWER Certified Solar Ambassador Standing with Elevated Rooftop Solar Pergola Structure"
+          alt="AG POWER Certified Solar Engineer with White Hard Hat at Elevated Rooftop Solar Pergola Structure"
           fill
           priority
           sizes="100vw"
@@ -27,10 +27,10 @@ export default function Hero() {
           {/* Left Column: Bold, Ultra-Clean Headline & Actions (SolarSquare Inspired) */}
           <div className="lg:col-span-8 max-w-2xl">
             
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/50 bg-slate-950/70 px-4 py-1.5 shadow-md backdrop-blur-md">
+            {/* Pill Badge (30% Green Structure + 10% Gold Accent) */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-950/70 px-4 py-1.5 shadow-md backdrop-blur-md">
               <SunMedium className="h-4 w-4 text-amber-400" />
-              <span className="text-[12px] font-bold uppercase tracking-wider text-amber-400">
+              <span className="text-[12px] font-bold uppercase tracking-wider text-emerald-300">
                 India&apos;s Trusted Solar EPC Partner
               </span>
             </div>
@@ -61,27 +61,27 @@ export default function Hero() {
               Guaranteed savings. Tier-1 solar modules. End-to-end MNRE subsidy care.
             </p>
 
-            {/* Value Highlights */}
+            {/* Value Highlights (30% Green Trust Checks) */}
             <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
               <div className="flex items-center gap-2 text-[14px] font-bold text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
-                <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
                 <span>Up to 90% Bill Savings</span>
               </div>
               <div className="flex items-center gap-2 text-[14px] font-bold text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
-                <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
                 <span>25-Yr Performance Warranty</span>
               </div>
               <div className="flex items-center gap-2 text-[14px] font-bold text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
-                <CheckCircle2 className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
                 <span>Govt Subsidy Support</span>
               </div>
             </div>
 
-            {/* Call to Actions (Clean SolarSquare Style) */}
+            {/* Call to Actions (10% Gold Primary + Crisp Translucent Secondary) */}
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <LocalizedClientLink
                 href="/calculator"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-white px-8 font-inter text-[16px] font-black text-slate-950 shadow-2xl transition-all hover:bg-amber-400 hover:scale-105 active:scale-95"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-amber-400 px-8 font-inter text-[16px] font-black text-slate-950 shadow-2xl transition-all hover:bg-amber-300 hover:scale-105 active:scale-95"
               >
                 <span>Calculate Your Solar Savings</span>
                 <ArrowRight className="ml-2 h-5 w-5 text-slate-950" />

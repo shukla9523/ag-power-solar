@@ -6,17 +6,17 @@ import { SunMedium, ArrowRight, Calculator, PhoneCall, ShieldCheck } from "lucid
 
 export default function FinalCta() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 py-20 text-white sm:py-24 border-t border-white/10">
+    <section className="relative overflow-hidden bg-gradient-to-b from-emerald-950 via-slate-950 to-emerald-950 py-20 text-white sm:py-24 border-t border-emerald-500/20">
       {/* Decorative ambient glass light orbs */}
-      <div className="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-sky-500/15 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-emerald-500/15 blur-3xl" />
       <div className="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-amber-500/15 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-slate-900/60 px-4 py-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-xl">
+        {/* Badge (30% Green + 10% Gold) */}
+        <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/70 px-4 py-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-xl">
           <SunMedium className="h-4 w-4 text-amber-400" />
-          <span className="text-[12px] font-bold uppercase tracking-wider text-amber-400">
+          <span className="text-[12px] font-bold uppercase tracking-wider text-emerald-300">
             Zero-Cost Feasibility Consultation
           </span>
         </div>
@@ -27,15 +27,15 @@ export default function FinalCta() {
         </h2>
 
         {/* Supporting Copy */}
-        <p className="mx-auto mt-4 max-w-2xl font-inter text-[16px] leading-relaxed text-slate-300 sm:text-[19px]">
+        <p className="mx-auto mt-4 max-w-2xl font-inter text-[16px] leading-relaxed text-slate-200 sm:text-[19px]">
           Make the shift to clean, reliable solar energy today. Reduce your electricity expenses by up to 90% and secure your energy future with AG POWER.
         </p>
 
-        {/* Action Buttons */}
+        {/* Action Buttons (10% Gold CTA) */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <LocalizedClientLink
             href="/contact"
-            className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-amber-500 px-8 font-inter text-[16px] font-bold text-slate-950 shadow-xl transition-all hover:bg-amber-400 hover:scale-105 active:scale-95"
+            className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-amber-400 px-8 font-inter text-[16px] font-black text-slate-950 shadow-xl transition-all hover:bg-amber-300 hover:scale-105 active:scale-95"
           >
             <span>Get Your Free Solar Consultation</span>
             <ArrowRight className="ml-2 h-5 w-5" />

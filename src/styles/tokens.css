@@ -1,84 +1,78 @@
 /*
- * AG POWER Official Brand Design Tokens — Modern High-Tech Solar Blue & Obsidian Black Palette
+ * AG POWER Official Brand Design Tokens — 60% White | 30% Green | 10% Yellow Palette
  * 
- * Deep Tech Blue / Slate: #0F172A (Primary brand: headers, dark hero/footer areas, premium dark sections)
- * Obsidian Black:         #020617 (Deepest contrast: hero overlays, cards, footer baseline)
- * Royal Solar Blue:       #1E3A8A (High-tech vibrant blue for badges, links, hover states)
- * Radiant Sun Gold:       #F59E0B (Primary accent & CTA: sunshine buttons, highlights, badges)
- * Sky Cyan / Blue:        #38BDF8 (Secondary accent: energy metrics, pill highlights)
- * Pure Crisp White:       #FFFFFF (Main surface & card background)
- * Ice Slate Tint:         #F1F5F9 (Subtle clean section contrast - zero green tint)
- * Slate Charcoal Text:    #0F172A (Headings and ultra-crisp readable body text)
- * Slate Muted:            #475569 (Secondary supporting descriptions)
- * Crisp Slate Border:     #E2E8F0 (Subtle modern borders)
+ * 60% White (Dominant):   #FFFFFF Pure Crisp White & Clean Off-White Backgrounds, Generous Whitespace
+ * 30% Green (Structure):  #047857 Deep Solar Emerald Green & #064E3B Forest (Brand, Headers, Structural Cards)
+ * 10% Yellow (Accent):    #F59E0B Radiant Sun Gold (Primary CTA Buttons, Solar Highlights, Key Metrics)
+ * Text & Readability:     #0F172A Obsidian Charcoal (High Contrast Headings) & #475569 (Body Text)
  *
  * RGB values allow Tailwind opacity modifiers e.g. bg-brand/10
  */
 
 :root {
-  /* ── AG POWER Core Brand Tokens (Modern Tech Blue & Obsidian Black) ── */
-  --color-forest: 15 23 42;
-  /* #0F172A  Deep Tech Blue / Slate 900 (Replaces Green with Sleek Midnight Blue) */
-  --color-forest-deep: 2 6 23;
-  /* #020617  Obsidian Black / Slate 950 */
-  --color-forest-light: 30 58 138;
-  /* #1E3A8A  Royal Solar Tech Blue */
+  /* ── AG POWER 60-30-10 Brand Tokens ── */
+  --color-forest: 4 120 87;
+  /* #047857  Deep Solar Emerald Green (30% Green Brand Secondary) */
+  --color-forest-deep: 6 78 59;
+  /* #064E3B  Deep Forest Green Baseline */
+  --color-forest-light: 5 150 105;
+  /* #059669  Vibrant Emerald Green */
   --color-gold: 245 158 11;
-  /* #F59E0B  Radiant Sun Gold (Accent & CTA) */
+  /* #F59E0B  Radiant Sun Gold (10% Accent & Key CTA Buttons) */
   --color-gold-hover: 217 119 6;
   /* #D97706  Gold Hover / Pressed */
   --color-gold-tint: 254 243 199;
   /* #FEF3C7  Gold soft glow tint */
   --color-ivory: 255 255 255;
-  /* #FFFFFF  Pure Crisp White (Main Canvas - Clean & Bright) */
-  --color-sage: 56 189 248;
-  /* #38BDF8  Sky Tech Blue (Secondary Accent - Replaces Green) */
-  --color-sage-mist: 241 245 249;
-  /* #F1F5F9  Crisp Ice Slate (Zero Green) */
+  /* #FFFFFF  Pure Crisp White (60% White Main Canvas & Whitespace) */
+  --color-sage: 16 185 129;
+  /* #10B981  Fresh Emerald Green Accent */
+  --color-sage-mist: 240 253 244;
+  /* #F0FDF4  Clean Emerald 50 Soft Tint */
   --color-charcoal: 15 23 42;
-  /* #0F172A  Slate Charcoal (Text & Headings) */
+  /* #0F172A  Obsidian Charcoal (High Contrast Readable Text) */
   --color-charcoal-muted: 71 85 105;
   /* #475569  Slate Muted Secondary Text */
   --color-surface-white: 255 255 255;
   /* #FFFFFF  Pure White (Surfaces) */
 
   /* ── Legacy Mappings for existing component compatibility ──────────── */
-  --color-brand: 15 23 42;
-  /* #0F172A  Primary brand matches Deep Tech Blue */
-  --color-brand-hover: 30 58 138;
-  /* #1E3A8A  Royal Blue hover */
-  --color-brand-deep: 2 6 23;
-  /* #020617  Obsidian Black */
+  --color-brand: 4 120 87;
+  /* #047857  Primary brand matches Deep Solar Emerald */
+  --color-brand-hover: 6 95 70;
+  /* #065F46  Dark Emerald hover */
+  --color-brand-deep: 6 78 59;
+  /* #064E3B  Deep Forest */
   --color-brand-bright: 245 158 11;
   /* #F59E0B  Bright accent is Sun Gold */
-  --color-brand-soft: 56 189 248;
-  /* #38BDF8  Sky Tech Blue */
-  --color-brand-pale: 241 245 249;
-  /* #F1F5F9  Clean Slate Mist */
+  --color-brand-soft: 16 185 129;
+  /* #10B981  Fresh Emerald */
+  --color-brand-pale: 240 253 244;
+  /* #F0FDF4  Soft Emerald Mist */
   --color-brand-blush: 255 255 255;
   /* #FFFFFF  Pure White */
-  --color-brand-tint: 241 245 249;
-  /* #F1F5F9  Clean Slate */
+  --color-brand-tint: 240 253 244;
+  /* #F0FDF4  Clean Emerald */
   --color-brand-tint-2: 248 250 252;
   --color-navy: 15 23 42;
   /* #0F172A  Headings & Dark Sections */
-  --color-navy-light: 30 58 138;
-  /* #1E3A8A */
-  --color-navy-mid: 23 37 84;
-  /* #172554 */
+  --color-navy-light: 4 120 87;
+  /* #047857 */
+  --color-navy-mid: 6 78 59;
+  /* #064E3B */
   --color-navy-bright: 15 23 42;
   /* #0F172A */
 
   --color-accent-gold: 245 158 11;
   /* #F59E0B  Sun Gold */
-  --color-accent-purple: 30 58 138;
-  /* Royal Blue */
-  --color-accent-sky: 56 189 248;
-  /* Sky Blue */
-  --color-accent-mint: 56 189 248;
-  /* Sky Blue */
-  --color-accent-blue: 30 58 138;
-  /* Royal Blue */
+  --color-accent-purple: 4 120 87;
+  /* Emerald */
+  --color-accent-sky: 16 185 129;
+  /* Emerald */
+  --color-accent-mint: 16 185 129;
+  /* Emerald */
+  --color-accent-blue: 4 120 87;
+  /* Emerald */
   --color-accent-orange: 245 158 11;
   /* Sun Gold */
 

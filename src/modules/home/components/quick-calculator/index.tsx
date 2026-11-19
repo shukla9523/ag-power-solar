@@ -100,7 +100,7 @@ export default function QuickCalculator() {
                   onClick={() => handleCategoryChange("residential")}
                   className={`min-h-[38px] rounded-lg border px-3 py-2 text-center text-[12px] font-bold transition-all ${
                     category === "residential"
-                      ? "border-slate-900 bg-slate-900 text-white shadow-sm"
+                      ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
                       : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
                   }`}
                 >
@@ -111,7 +111,7 @@ export default function QuickCalculator() {
                   onClick={() => handleCategoryChange("commercial")}
                   className={`min-h-[38px] rounded-lg border px-3 py-2 text-center text-[12px] font-bold transition-all ${
                     category === "commercial"
-                      ? "border-slate-900 bg-slate-900 text-white shadow-md"
+                      ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
                       : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
                   }`}
                 >
@@ -122,7 +122,7 @@ export default function QuickCalculator() {
                   onClick={() => handleCategoryChange("society")}
                   className={`min-h-[38px] rounded-lg border px-3 py-2 text-center text-[12px] font-bold transition-all ${
                     category === "society"
-                      ? "border-slate-900 bg-slate-900 text-white shadow-md"
+                      ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
                       : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
                   }`}
                 >
@@ -137,7 +137,7 @@ export default function QuickCalculator() {
                 <label htmlFor="bill-slider" className="text-[13px] font-bold text-slate-900 uppercase tracking-wide">
                   2. Monthly Electricity Bill
                 </label>
-                <div className="flex items-center rounded-lg border border-slate-200 bg-slate-50 px-3 py-1 font-manrope text-[16px] font-extrabold text-slate-900 shadow-sm">
+                <div className="flex items-center rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-1 font-manrope text-[16px] font-extrabold text-emerald-900 shadow-sm">
                   ₹ {monthlyBill.toLocaleString("en-IN")}
                 </div>
               </div>
@@ -181,8 +181,8 @@ export default function QuickCalculator() {
 
           </div>
 
-          {/* Result Panel (Compact Frosted Glassmorphism in Midnight Blue) */}
-          <div className="relative flex flex-col justify-between overflow-hidden bg-gradient-to-br from-slate-900/95 via-slate-950/95 to-slate-900/95 p-6 sm:p-7 text-white lg:col-span-5 backdrop-blur-2xl border-t lg:border-t-0 lg:border-l border-white/10 before:absolute before:inset-0 before:bg-gradient-to-br before:from-sky-400/10 before:via-transparent before:to-transparent before:pointer-events-none">
+          {/* Result Panel (Compact Frosted Glassmorphism in Solar Emerald & Midnight) */}
+          <div className="relative flex flex-col justify-between overflow-hidden bg-gradient-to-br from-emerald-950 via-slate-950 to-emerald-950 p-6 sm:p-7 text-white lg:col-span-5 backdrop-blur-2xl border-t lg:border-t-0 lg:border-l border-white/10 before:absolute before:inset-0 before:bg-gradient-to-br before:from-emerald-400/10 before:via-transparent before:to-transparent before:pointer-events-none">
             {/* Ambient solar blur */}
             <div className="pointer-events-none absolute -top-12 -right-12 h-36 w-36 rounded-full bg-amber-500/15 blur-2xl" />
 
@@ -255,7 +255,7 @@ export default function QuickCalculator() {
             <div className="relative z-10 mt-5 space-y-2.5 pt-3.5 border-t border-white/10">
               <LocalizedClientLink
                 href={`/calculator?cat=${category}&bill=${monthlyBill}`}
-                className="inline-flex min-h-[42px] w-full items-center justify-center rounded-lg bg-amber-500 px-4 font-inter text-[13px] font-bold text-slate-950 shadow-md transition-all hover:bg-amber-400 active:scale-95"
+                className="inline-flex min-h-[42px] w-full items-center justify-center rounded-lg bg-amber-400 px-4 font-inter text-[13px] font-bold text-slate-950 shadow-md transition-all hover:bg-amber-300 active:scale-95"
               >
                 <span>Use Detailed Calculator</span>
                 <ArrowRight className="ml-1.5 h-3.5 w-3.5" />

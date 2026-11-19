@@ -115,8 +115,8 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
         
         {/* Page Hero Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-50 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-slate-800 shadow-sm">
-            <Calculator className="h-4 w-4 text-amber-500" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-emerald-800 shadow-sm">
+            <Calculator className="h-4 w-4 text-emerald-700" />
             <span>Solar Feasibility Engine</span>
           </div>
           <h1 className="mt-3.5 font-manrope text-[32px] font-black tracking-tight text-slate-900 sm:text-[42px]">
@@ -144,7 +144,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
                   onClick={() => handleCategoryChange("residential")}
                   className={`flex flex-col items-center justify-center rounded-xl border p-3.5 text-center transition-all ${
                     category === "residential"
-                      ? "border-slate-900 bg-slate-900 text-white shadow-md"
+                      ? "border-emerald-700 bg-emerald-700 text-white shadow-md"
                       : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
                   }`}
                 >
@@ -158,7 +158,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
                   onClick={() => handleCategoryChange("commercial")}
                   className={`flex flex-col items-center justify-center rounded-xl border p-3.5 text-center transition-all ${
                     category === "commercial"
-                      ? "border-slate-900 bg-slate-900 text-white shadow-md"
+                      ? "border-emerald-700 bg-emerald-700 text-white shadow-md"
                       : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
                   }`}
                 >
@@ -172,7 +172,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
                   onClick={() => handleCategoryChange("society")}
                   className={`flex flex-col items-center justify-center rounded-xl border p-3.5 text-center transition-all ${
                     category === "society"
-                      ? "border-slate-900 bg-slate-900 text-white shadow-md"
+                      ? "border-emerald-700 bg-emerald-700 text-white shadow-md"
                       : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
                   }`}
                 >
@@ -338,7 +338,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full rounded-xl bg-slate-900 hover:bg-slate-950 py-2.5 text-[14px] font-bold text-white shadow-md transition-all active:scale-95 disabled:opacity-50"
+                    className="w-full rounded-xl bg-amber-400 hover:bg-amber-300 py-3 text-[14px] font-black text-slate-950 shadow-md transition-all active:scale-95 disabled:opacity-50"
                   >
                     {loading ? "Submitting Request..." : "Request Verified Rooftop Quote →"}
                   </button>
@@ -348,8 +348,8 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
 
           </div>
 
-          {/* Right Column: Calculated Results Panel (Ultra-Premium Midnight Glassmorphism) */}
-          <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 p-6 sm:p-7 text-white shadow-2xl lg:col-span-5 backdrop-blur-2xl border border-white/10 before:absolute before:inset-0 before:bg-gradient-to-br before:from-sky-400/10 before:via-transparent before:to-transparent before:pointer-events-none sticky top-24">
+          {/* Right Column: Calculated Results Panel (Ultra-Premium Emerald & Midnight Glassmorphism) */}
+          <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-950 to-emerald-950 p-6 sm:p-7 text-white shadow-2xl lg:col-span-5 backdrop-blur-2xl border border-white/10 before:absolute before:inset-0 before:bg-gradient-to-br before:from-emerald-400/10 before:via-transparent before:to-transparent before:pointer-events-none sticky top-24">
             {/* Ambient solar blur */}
             <div className="pointer-events-none absolute -top-12 -right-12 h-36 w-36 rounded-full bg-amber-500/15 blur-2xl" />
 
