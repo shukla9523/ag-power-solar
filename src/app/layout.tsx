@@ -39,28 +39,28 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   // Admin → Settings → Theme overrides (validated hex → CSS variables); empty when unchanged.
   const site = await getSiteSetting().catch(() => null)
   const themeCss = buildThemeCss((site as { theme_tokens?: unknown } | null)?.theme_tokens)
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID
 
   return (
     <html lang="en-IN" className={fontVariables}>
       <head>
         {themeCss && <style id="theme-tokens" dangerouslySetInnerHTML={{ __html: themeCss }} />}
         {/*
-          Google Tag Manager. lazyOnload: GTM is fetched after the window load event, during idle
-          time, so it never competes with the LCP image, fonts or hydration. Nothing in the app
-          pushes to dataLayer before then; the only cost is that a visitor who leaves before the
-          page finishes loading is not counted.
+          Google Tag Manager. Loaded only when NEXT_PUBLIC_GTM_ID is explicitly configured.
         */}
-        <Script
-          id="gtm-script"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        {gtmId && (
+          <Script
+            id="gtm-script"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T375Z2FR');`,
-          }}
-        />
+})(window,document,'script','dataLayer','${gtmId}');`,
+            }}
+          />
+        )}
         {/* End Google Tag Manager */}
 
         {/* Development mode cache busting: unregister stale service workers and wipe CacheStorage */}
@@ -91,14 +91,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </head>
       <body className={bodyFont.className}>
         {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-T375Z2FR"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
+        {gtmId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        )}
         {/* End Google Tag Manager (noscript) */}
 
         {/* Plain wrapper: each page renders its own <main> landmark. */}
