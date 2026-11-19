@@ -7,11 +7,11 @@ import { SunMedium, ArrowRight, ShieldCheck, Award, CheckCircle2 } from "lucide-
 export default function Hero() {
   return (
     <section className="relative min-h-[600px] lg:min-h-[700px] overflow-hidden flex items-center bg-slate-950 text-white">
-      {/* Full-Bleed Background Image: Smiling Solar Ambassador with Elevated Pergola */}
+      {/* Full-Bleed Background Image: Smiling Solar Engineer with Engineering Hard Hat & Elevated Pergola */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-solar-ambassador.webp"
-          alt="AG POWER Certified Solar Engineer with White Hard Hat at Elevated Rooftop Solar Pergola Structure"
+          src="/images/hero-solar-engineer.webp"
+          alt="AG POWER Certified Solar Engineer with Yellow Safety Helmet at Elevated Rooftop Solar Pergola Structure"
           fill
           priority
           sizes="100vw"
