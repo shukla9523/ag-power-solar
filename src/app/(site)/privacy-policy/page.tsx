@@ -40,12 +40,20 @@ export default async function PrivacyPolicyPage() {
       <div className="content-container relative px-4 sm:px-6 lg:px-10">
         <div className="mx-auto max-w-[880px]">
 
-          <LocalizedClientLink
-            href="/"
-            className="inline-flex items-center gap-2 text-[14px] font-semibold text-charcoal/60 transition-colors hover:text-forest"
-          >
-            ← Back to Home
-          </LocalizedClientLink>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <LocalizedClientLink
+              href="/"
+              className="inline-flex items-center gap-2 text-[14px] font-semibold text-charcoal/60 transition-colors hover:text-forest"
+            >
+              ← Back to Home
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              href="/terms-and-conditions"
+              className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
+            >
+              Terms of Service →
+            </LocalizedClientLink>
+          </div>
 
           <div className="mt-6 border-b border-charcoal/10 pb-8">
             <h1 className={`${manrope.className} text-[34px] font-extrabold tracking-[-0.03em] text-forest sm:text-[44px]`}>
@@ -133,7 +141,7 @@ export default async function PrivacyPolicyPage() {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <LocalizedClientLink
                 href="/contact"
-                className={`${manrope.className} inline-flex h-[46px] items-center justify-center rounded-[12px] bg-emerald-500 hover:bg-emerald-400 px-7 text-[13px] font-extrabold text-slate-950 transition-all active:scale-95`}
+                className={`${manrope.className} inline-flex h-[46px] items-center justify-center rounded-[12px] bg-emerald-600 hover:bg-emerald-500 px-7 text-[13px] font-bold text-white transition-all active:scale-95 shadow-md`}
               >
                 Contact Privacy Desk →
               </LocalizedClientLink>
