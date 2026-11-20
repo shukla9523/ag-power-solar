@@ -2,7 +2,7 @@
  * Purpose: AG POWER main site footer (Deep Forest Green theme).
  */
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import AgPowerLogoIcon from "@modules/common/components/brand/AgPowerLogoIcon"
+import AgPowerLogo from "@modules/common/components/brand/AgPowerLogo"
 import { SunMedium, Phone, Mail, MapPin, ArrowRight, ShieldCheck } from "lucide-react"
 import {
   solarSolutionsLinks,
@@ -59,16 +59,8 @@ export default function MainFooter({
 
           {/* Brand Col */}
           <div className="lg:col-span-2">
-            <LocalizedClientLink href="/" className="inline-flex items-center gap-2.5">
-              <AgPowerLogoIcon className="h-10 w-10 shadow-sm" />
-              <div className="flex flex-col">
-                <span className="font-manrope text-[22px] font-extrabold tracking-tight text-white">
-                  AG POWER
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-sage">
-                  Clean Energy. Smarter Living.
-                </span>
-              </div>
+            <LocalizedClientLink href="/" className="inline-flex items-center">
+              <AgPowerLogo variant="dark" size="lg" />
             </LocalizedClientLink>
 
             <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-sage-mist/80">

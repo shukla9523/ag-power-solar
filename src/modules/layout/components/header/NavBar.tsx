@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "motion/react"
 import ServicesDropdown from "./ServicesDropdown"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import AgPowerLogoIcon from "@modules/common/components/brand/AgPowerLogoIcon"
+import AgPowerLogo from "@modules/common/components/brand/AgPowerLogo"
 import { SunMedium, ChevronDown, Phone, Calculator, ArrowRight, Menu, X, Shield, Award } from "lucide-react"
 
 const MOBILE_BREAKPOINT = 1024
@@ -57,15 +57,9 @@ export default function NavBar() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
           
-          {/* Logo */}
-          <LocalizedClientLink href="/" className="group flex items-center gap-2.5">
-            <AgPowerLogoIcon className="h-10 w-10 shadow-sm transition-transform duration-200 group-hover:scale-105" />
-            <div className="flex items-center">
-              <span className="font-manrope text-[21px] font-extrabold tracking-tight text-forest">
-                AG POWER
-              </span>
-              <span className="ml-0.5 inline-block h-2 w-2 rounded-full bg-gold" />
-            </div>
+          {/* Unified Brand Logo */}
+          <LocalizedClientLink href="/" className="inline-flex items-center">
+            <AgPowerLogo size="md" />
           </LocalizedClientLink>
 
           {/* Desktop Navigation */}
