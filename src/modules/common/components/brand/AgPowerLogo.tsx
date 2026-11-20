@@ -60,15 +60,15 @@ export default function AgPowerLogo({
   const iconDim = iconDimensions[size]
 
   return (
-    <div className={`group inline-flex items-center gap-2.5 sm:gap-3 select-none whitespace-nowrap ${className}`}>
-      {/* ── Official AG POWER Globe & Solar Panel Emblem ── */}
-      <div className={`relative ${iconDim.class} flex-shrink-0 transition-transform duration-300 group-hover:scale-105`}>
+    <div className={`group inline-flex items-center gap-2 sm:gap-2.5 select-none whitespace-nowrap cursor-pointer transition-all ${className}`}>
+      {/* ── Official AG POWER Globe & Solar Panel Emblem with Interactive Hover ── */}
+      <div className={`relative ${iconDim.class} flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 drop-shadow-[0_2px_8px_rgba(16,185,129,0.25)]`}>
         <Image
           src="/images/brand/ag-power-emblem.webp"
           alt="AG POWER Official Brandmark"
           width={iconDim.width}
           height={iconDim.height}
-          className="h-full w-full object-contain drop-shadow-xs"
+          className="h-full w-full object-contain"
           priority
         />
       </div>
@@ -78,20 +78,24 @@ export default function AgPowerLogo({
         <div className="flex flex-col justify-center leading-none">
           <div className="flex items-center">
             <span
-              className={`font-manrope ${textSizes[size]} font-black tracking-[-0.035em] ${
-                isDark ? "text-white" : "text-slate-900"
+              className={`font-manrope ${textSizes[size]} font-black tracking-[-0.035em] transition-colors duration-200 ${
+                isDark ? "text-white group-hover:text-emerald-300" : "text-slate-900 group-hover:text-emerald-950"
               }`}
             >
               AG
             </span>
-            <span className={`font-manrope ${textSizes[size]} font-black tracking-[-0.035em] text-emerald-600 ml-1.5`}>
+            <span className={`font-manrope ${textSizes[size]} font-black tracking-[-0.035em] text-emerald-600 group-hover:text-emerald-500 ml-1.5 transition-colors duration-200`}>
               POWER
             </span>
-            <span className="ml-1 h-2 w-2 rounded-full bg-emerald-500 shadow-xs" />
+            {/* Interactive Live Indicator Dot */}
+            <span className="relative flex h-2 w-2 ml-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
           </div>
           <span
-            className={`font-manrope ${subSizes[size]} font-extrabold uppercase mt-1 ${
-              isDark ? "text-emerald-400/90" : "text-emerald-800"
+            className={`font-manrope ${subSizes[size]} font-extrabold uppercase mt-1 transition-colors duration-200 ${
+              isDark ? "text-emerald-400/90" : "text-emerald-800 group-hover:text-emerald-700"
             }`}
           >
             Solar Systems

@@ -63,7 +63,7 @@ export default function NavBar() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-3.5 py-3 sm:px-6 sm:py-3.5 lg:px-8">
           
           {/* Unified Brand Logo */}
-          <LocalizedClientLink href="/" className="inline-flex items-center">
+          <LocalizedClientLink href="/" className="inline-flex items-center transition-transform active:scale-95">
             <AgPowerLogo size="md" />
           </LocalizedClientLink>
 
