@@ -159,11 +159,7 @@ export default function CatalogueClient({ initialPanels }: Props) {
         
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-sage-mist px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-forest">
-            <Layers className="h-4 w-4 text-gold" />
-            <span>Product Information & Discovery</span>
-          </div>
-          <h1 className="mt-4 font-manrope text-[36px] font-extrabold tracking-tight text-forest sm:text-[48px]">
+          <h1 className="font-manrope text-[36px] font-extrabold tracking-tight text-forest sm:text-[48px]">
             Tier-1 Solar Panels Catalogue
           </h1>
           <p className="mt-4 text-[16px] leading-relaxed text-charcoal/80 sm:text-[18px]">

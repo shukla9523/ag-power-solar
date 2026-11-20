@@ -140,15 +140,9 @@ export default async function ServiceDetailPage({
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
               
               <div className="lg:col-span-7">
-                <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-forest-deep px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-gold">
-                  <SunMedium className="h-4 w-4" />
-                  <span>AG POWER Dedicated Solution</span>
-                </span>
-
-                <h1 className="mt-4 font-manrope text-[38px] font-extrabold leading-[1.15] tracking-tight text-white sm:text-[48px] lg:text-[54px]">
+                <h1 className="font-manrope text-[38px] font-extrabold leading-[1.15] tracking-tight text-white sm:text-[48px] lg:text-[54px]">
                   {service.title}
                 </h1>
-
                 <p className="mt-6 text-[17px] leading-relaxed text-sage-mist/90 sm:text-[19px]">
                   {service.intro || service.description}
                 </p>

@@ -115,11 +115,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
         
         {/* Page Hero Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-emerald-800 shadow-sm">
-            <Calculator className="h-4 w-4 text-emerald-700" />
-            <span>Solar Feasibility Engine</span>
-          </div>
-          <h1 className="mt-3.5 font-manrope text-[32px] font-black tracking-tight text-slate-900 sm:text-[42px]">
+          <h1 className="font-manrope text-[32px] font-black tracking-tight text-slate-900 sm:text-[42px]">
             Solar Savings &amp; ROI Calculator
           </h1>
           <p className="mt-3 text-[15px] leading-relaxed text-slate-600 sm:text-[17px]">

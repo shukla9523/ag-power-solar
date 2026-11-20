@@ -132,11 +132,7 @@ export default function CustomerServicesClient() {
         
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-sage-mist px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-forest">
-            <HeadphonesIcon className="h-4 w-4 text-gold" />
-            <span>Dedicated Engineering Support</span>
-          </div>
-          <h1 className="mt-4 font-manrope text-[36px] font-extrabold tracking-tight text-forest sm:text-[48px]">
+          <h1 className="font-manrope text-[36px] font-extrabold tracking-tight text-forest sm:text-[48px]">
             Comprehensive Solar Customer Services
           </h1>
           <p className="mt-4 text-[16px] leading-relaxed text-charcoal/80 sm:text-[18px]">
@@ -315,11 +311,7 @@ export default function CustomerServicesClient() {
         {/* Section: Contextual FAQs */}
         <div className="mt-20">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-sage-mist px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-forest">
-              <HelpCircle className="h-4 w-4 text-gold" />
-              <span>Customer Helpdesk</span>
-            </div>
-            <h2 className="mt-3 font-manrope text-[30px] font-extrabold text-forest sm:text-[38px]">
+            <h2 className="font-manrope text-[30px] font-extrabold text-forest sm:text-[38px]">
               Frequently Asked Questions About Solar Services
             </h2>
             <p className="mt-3 text-[15px] text-charcoal/80">

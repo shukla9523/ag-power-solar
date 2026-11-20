@@ -67,10 +67,7 @@ export default async function BlogPage() {
         <div className="mx-auto max-w-[1320px]">
 
           <div className="max-w-[760px]">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-forest/10 px-3.5 py-1 text-[12px] font-bold uppercase tracking-[0.08em] text-forest">
-              Solar Knowledge & Insights
-            </span>
-            <h1 className={`${manrope.className} mt-3 text-[32px] font-extrabold leading-[1.05] tracking-[-0.03em] text-forest sm:text-[42px] lg:text-[54px]`}>
+            <h1 className={`${manrope.className} text-[32px] font-extrabold leading-[1.05] tracking-[-0.03em] text-forest sm:text-[42px] lg:text-[54px]`}>
               Solar Insights & Engineering Guides
             </h1>
             <p className="mt-4 max-w-[620px] text-[15px] leading-relaxed text-charcoal/80 sm:text-[16px]">

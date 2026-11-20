@@ -103,11 +103,7 @@ export default function FaqPageClient({ categories }: { categories?: FAQCategory
           
           {/* ── Page Hero Header ── */}
           <div className="mb-12 text-center sm:mb-16">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-forest/10 px-4 py-1 text-[12px] font-bold uppercase tracking-[0.08em] text-forest">
-              <span>Solar Knowledge & Help Center</span>
-            </span>
-
-            <h1 className={`${manrope.className} mt-4 text-[32px] font-extrabold tracking-[-0.03em] text-forest sm:text-[44px] lg:text-[50px]`}>
+            <h1 className={`${manrope.className} font-extrabold tracking-[-0.03em] text-forest text-[32px] sm:text-[44px] lg:text-[50px]`}>
               Frequently Asked Questions
             </h1>
 

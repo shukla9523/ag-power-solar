@@ -32,10 +32,7 @@ export default function FooterFaqSection({ customFaqs }: { customFaqs?: Array<{ 
 
           {/* ── Section Header ── */}
           <div className="mb-8 text-center sm:mb-10">
-            <span className="inline-flex items-center rounded-full bg-forest/10 px-3.5 py-1 text-[11.5px] font-bold uppercase tracking-[0.08em] text-forest">
-              Rooftop Solar Questions
-            </span>
-            <h2 className={`${manrope.className} mt-3 text-[24px] font-extrabold tracking-[-0.03em] text-forest sm:text-[30px] lg:text-[34px]`}>
+            <h2 className={`${manrope.className} text-[24px] font-extrabold tracking-[-0.03em] text-forest sm:text-[30px] lg:text-[34px]`}>
               Frequently Asked Questions
             </h2>
             <p className="mx-auto mt-2 max-w-xl text-[14px] leading-relaxed text-charcoal/70 sm:text-[15px]">

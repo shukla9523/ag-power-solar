@@ -71,11 +71,7 @@ export default function ServicesClient({ services }: Props) {
         <div className="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-gold/15 blur-3xl" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-forest-deep px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-gold">
-              <SunMedium className="h-4 w-4" />
-              <span>Engineered EPC Solutions</span>
-            </span>
-            <h1 className="mt-5 font-manrope text-[36px] font-extrabold tracking-tight sm:text-[50px] lg:text-[56px]">
+            <h1 className="font-manrope text-[36px] font-extrabold tracking-tight sm:text-[50px] lg:text-[56px]">
               Turnkey Solar Energy Solutions
             </h1>
             <p className="mt-5 text-[17px] leading-relaxed text-sage-mist/90 sm:text-[19px]">

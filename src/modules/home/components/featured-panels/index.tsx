@@ -48,15 +48,11 @@ export default function FeaturedSolarPanels() {
   return (
     <section className="bg-slate-50/70 py-16 sm:py-20 lg:py-24 border-y border-slate-200/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-50 px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-slate-800 shadow-sm">
-              <Layers className="h-4 w-4 text-amber-500" />
-              <span>Technology Showcase</span>
-            </div>
-            <h2 className="mt-4 font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[40px]">
+            <h2 className="font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[40px]">
               High-Efficiency Tier-1 Solar Panels
             </h2>
             <p className="mt-3 text-[16px] text-slate-600">

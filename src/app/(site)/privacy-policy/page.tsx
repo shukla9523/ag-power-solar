@@ -48,10 +48,7 @@ export default async function PrivacyPolicyPage() {
           </LocalizedClientLink>
 
           <div className="mt-6 border-b border-charcoal/10 pb-8">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-forest/10 px-3.5 py-1 text-[11.5px] font-bold uppercase tracking-[0.08em] text-forest">
-              Data Privacy & Protection
-            </span>
-            <h1 className={`${manrope.className} mt-3 text-[34px] font-extrabold tracking-[-0.03em] text-forest sm:text-[44px]`}>
+            <h1 className={`${manrope.className} text-[34px] font-extrabold tracking-[-0.03em] text-forest sm:text-[44px]`}>
               Privacy Policy
             </h1>
             <p className="mt-2 text-[14px] text-charcoal/70">

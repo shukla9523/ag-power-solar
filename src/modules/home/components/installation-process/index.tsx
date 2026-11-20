@@ -49,11 +49,7 @@ export default function InstallationProcess() {
         
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-50 px-4 py-1 text-[13px] font-bold uppercase tracking-wider text-slate-800 shadow-sm">
-            <CheckCheck className="h-4 w-4 text-amber-500" />
-            <span>Turnkey Execution</span>
-          </div>
-          <h2 className="mt-4 font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[42px]">
+          <h2 className="font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[42px]">
             Your Seamless Solar Journey in 6 Steps
           </h2>
           <p className="mt-4 text-[16px] leading-relaxed text-slate-600 sm:text-[18px]">

@@ -44,12 +44,9 @@ export default function PageFaqSection({
         <div className="mx-auto max-w-[960px]">
           {/* Header */}
           <div className="mb-8 text-center sm:mb-12">
-            <span className="inline-flex items-center rounded-full bg-forest/10 px-3.5 py-1 text-[12px] font-bold uppercase tracking-[0.08em] text-forest">
-              {badge}
-            </span>
             <h2
               id="page-faqs-heading"
-              className={`${manrope.className} mt-3 text-[26px] font-extrabold tracking-[-0.03em] text-forest sm:text-[32px] lg:text-[36px]`}
+              className={`${manrope.className} text-[26px] font-extrabold tracking-[-0.03em] text-forest sm:text-[32px] lg:text-[36px]`}
             >
               {displayHeading}
             </h2>

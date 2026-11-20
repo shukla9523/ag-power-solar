@@ -102,13 +102,8 @@ export default function Hero() {
 
           </div>
 
-          {/* Right Column: Kept Clear & Open so Ambassador and Elevated Rooftop Pergola are 100% visible, with subtle floating pill at bottom */}
-          <div className="hidden lg:flex lg:col-span-4 flex-col justify-end items-end h-full pt-48">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-slate-950/50 px-4 py-2 backdrop-blur-xl shadow-xl">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-xs font-bold text-white tracking-wide">Elevated Rooftop Pergola</span>
-            </div>
-          </div>
+          {/* Right Column: Kept Clear & Open so Ambassador and Elevated Rooftop Pergola are 100% visible */}
+          <div className="hidden lg:flex lg:col-span-4 flex-col justify-end items-end h-full pt-48" />
 
         </div>
       </div>
