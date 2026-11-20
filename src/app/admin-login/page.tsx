@@ -81,7 +81,7 @@ function AdminLoginForm() {
   async function handleGoogleLogin() {
     setOauthLoading(true)
     setError("")
-    
+
     try {
       // Clear stale legacy project cookies so they don't interfere with the new Supabase project
       if (typeof document !== "undefined") {
@@ -137,84 +137,84 @@ function AdminLoginForm() {
             }}
           />
         ) : (
-        <div className="mt-8 space-y-4">
-          <div>
-            <label className="mb-2 block text-[12px] font-bold uppercase tracking-[0.05em] text-forest">
-              Admin Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@agpowersolar.in"
+          <div className="mt-8 space-y-4">
+            <div>
+              <label className="mb-2 block text-[12px] font-bold uppercase tracking-[0.05em] text-forest">
+                Admin Email
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="akashshukla9523@gmail.com"
+                suppressHydrationWarning={true}
+                className="h-[52px] w-full rounded-[14px] border border-charcoal/15 bg-ivory/50 px-4 text-[14px] text-charcoal outline-none transition-all placeholder:text-charcoal/40 focus:border-forest focus:ring-2 focus:ring-forest/10"
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block text-[12px] font-bold uppercase tracking-[0.05em] text-forest">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && !loading && handleLogin()}
+                placeholder="Enter your password"
+                suppressHydrationWarning={true}
+                className="h-[52px] w-full rounded-[14px] border border-charcoal/15 bg-ivory/50 px-4 text-[14px] text-charcoal outline-none transition-all placeholder:text-charcoal/40 focus:border-forest focus:ring-2 focus:ring-forest/10"
+              />
+              {error && (
+                <p className="mt-2 flex items-center gap-1.5 text-[13px] text-red-600 font-medium">
+                  <span>⚠️</span> {error}
+                </p>
+              )}
+            </div>
+
+            <button
+              onClick={handleLogin}
+              disabled={loading || oauthLoading}
               suppressHydrationWarning={true}
-              className="h-[52px] w-full rounded-[14px] border border-charcoal/15 bg-ivory/50 px-4 text-[14px] text-charcoal outline-none transition-all placeholder:text-charcoal/40 focus:border-forest focus:ring-2 focus:ring-forest/10"
-            />
-          </div>
+              className={`${manrope.className} flex h-[52px] w-full items-center justify-center rounded-[14px] bg-forest text-[14px] font-extrabold uppercase tracking-[0.04em] text-white transition-all hover:bg-forest-deep disabled:opacity-50 cursor-pointer shadow-sm`}
+            >
+              {loading ? "Signing in..." : "Sign In →"}
+            </button>
 
-          <div>
-            <label className="mb-2 block text-[12px] font-bold uppercase tracking-[0.05em] text-forest">
-              Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && !loading && handleLogin()}
-              placeholder="Enter your password"
+            <div className="relative my-6 flex items-center justify-center">
+              <div className="absolute w-full border-t border-charcoal/10"></div>
+              <span className="relative bg-white px-3 text-[12px] font-semibold uppercase tracking-[0.05em] text-charcoal/50">
+                Or
+              </span>
+            </div>
+
+            <button
+              onClick={handleGoogleLogin}
+              disabled={loading || oauthLoading}
               suppressHydrationWarning={true}
-              className="h-[52px] w-full rounded-[14px] border border-charcoal/15 bg-ivory/50 px-4 text-[14px] text-charcoal outline-none transition-all placeholder:text-charcoal/40 focus:border-forest focus:ring-2 focus:ring-forest/10"
-            />
-            {error && (
-              <p className="mt-2 flex items-center gap-1.5 text-[13px] text-red-600 font-medium">
-                <span>⚠️</span> {error}
-              </p>
-            )}
+              className="flex h-[52px] w-full items-center justify-center gap-3 rounded-[14px] border border-charcoal/15 bg-white text-[14px] font-bold text-charcoal transition-all hover:bg-ivory disabled:opacity-50 cursor-pointer"
+            >
+              <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24">
+                <path
+                  fill="#4285F4"
+                  d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.69c-.29 1.5-.1.14-.1.14 1.13 2.1-1.28 3.52-2.73 4.47l4.22 3.28c2.47-2.28 3.86-5.63 3.86-9.74z"
+                />
+                <path
+                  fill="#34A853"
+                  d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-4.22-3.28c-1.17.78-2.67 1.25-4.47 1.25-3.44 0-6.35-2.32-7.39-5.46L1.51 16.96C3.54 21.01 7.62 24 12 24z"
+                />
+                <path
+                  fill="#FBBC05"
+                  d="M4.61 13.6c-.26-.78-.41-1.61-.41-2.48s.15-1.7.41-2.48L1.51 5.37C.54 7.3.01 9.47.01 11.72s.53 4.42 1.5 6.35l3.1-2.47z"
+                />
+                <path
+                  fill="#EA4335"
+                  d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.62 0 3.54 2.99 1.51 7.04l3.1 2.47c1.04-3.14 3.95-5.46 7.39-5.46z"
+                />
+              </svg>
+              {oauthLoading ? "Connecting..." : "Continue with Google"}
+            </button>
           </div>
-
-          <button
-            onClick={handleLogin}
-            disabled={loading || oauthLoading}
-            suppressHydrationWarning={true}
-            className={`${manrope.className} flex h-[52px] w-full items-center justify-center rounded-[14px] bg-forest text-[14px] font-extrabold uppercase tracking-[0.04em] text-white transition-all hover:bg-forest-deep disabled:opacity-50 cursor-pointer shadow-sm`}
-          >
-            {loading ? "Signing in..." : "Sign In →"}
-          </button>
-
-          <div className="relative my-6 flex items-center justify-center">
-            <div className="absolute w-full border-t border-charcoal/10"></div>
-            <span className="relative bg-white px-3 text-[12px] font-semibold uppercase tracking-[0.05em] text-charcoal/50">
-              Or
-            </span>
-          </div>
-
-          <button
-            onClick={handleGoogleLogin}
-            disabled={loading || oauthLoading}
-            suppressHydrationWarning={true}
-            className="flex h-[52px] w-full items-center justify-center gap-3 rounded-[14px] border border-charcoal/15 bg-white text-[14px] font-bold text-charcoal transition-all hover:bg-ivory disabled:opacity-50 cursor-pointer"
-          >
-            <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24">
-              <path
-                fill="#4285F4"
-                d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.69c-.29 1.5-.1.14-.1.14 1.13 2.1-1.28 3.52-2.73 4.47l4.22 3.28c2.47-2.28 3.86-5.63 3.86-9.74z"
-              />
-              <path
-                fill="#34A853"
-                d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-4.22-3.28c-1.17.78-2.67 1.25-4.47 1.25-3.44 0-6.35-2.32-7.39-5.46L1.51 16.96C3.54 21.01 7.62 24 12 24z"
-              />
-              <path
-                fill="#FBBC05"
-                d="M4.61 13.6c-.26-.78-.41-1.61-.41-2.48s.15-1.7.41-2.48L1.51 5.37C.54 7.3.01 9.47.01 11.72s.53 4.42 1.5 6.35l3.1-2.47z"
-              />
-              <path
-                fill="#EA4335"
-                d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.62 0 3.54 2.99 1.51 7.04l3.1 2.47c1.04-3.14 3.95-5.46 7.39-5.46z"
-              />
-            </svg>
-            {oauthLoading ? "Connecting..." : "Continue with Google"}
-          </button>
-        </div>
         )}
 
         <p className="mt-6 text-center text-[12px] text-charcoal/60">
@@ -246,17 +246,17 @@ function AdminLoginForm() {
               {error.includes("rejected")
                 ? "Access Request Rejected"
                 : error.includes("pending") || error.includes("awaiting")
-                ? "Access Request Pending"
-                : "Sign In Notice"}
+                  ? "Access Request Pending"
+                  : "Sign In Notice"}
             </h3>
 
             {/* Description */}
             <p className="mt-3 text-[14px] text-slate-500 leading-relaxed">
-              {error.includes("rejected") 
+              {error.includes("rejected")
                 ? "Your access request to the administrator panel was reviewed and rejected. Please contact an owner or support administrator if you believe this is an error."
                 : error.includes("pending") || error.includes("awaiting")
-                ? "Your account is awaiting approval by an administrator. After an admin or owner approves your request, you will be able to log in to your dashboard."
-                : error
+                  ? "Your account is awaiting approval by an administrator. After an admin or owner approves your request, you will be able to log in to your dashboard."
+                  : error
               }
             </p>
 
