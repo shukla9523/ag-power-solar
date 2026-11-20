@@ -46,62 +46,45 @@ export default function NavBar() {
     return () => { document.body.style.overflow = "" }
   }, [menuOpen])
 
-  const isHomePage = pathname === "/"
-  const isTransparent = isHomePage && !scrolled && !menuOpen
-
-  const getNavLinkClass = (href: string) => {
-    const isActive = href === "/" ? pathname === "/" : pathname?.startsWith(href)
-    if (isTransparent) {
-      return isActive
-        ? "font-bold text-emerald-400"
-        : "font-medium text-white/90 hover:text-emerald-300"
-    }
-    return isActive
-      ? "font-bold text-forest"
-      : "font-medium text-slate-700 hover:text-forest"
-  }
-
   return (
     <>
       <div
         style={{
           backgroundColor: menuOpen
             ? "#ffffff"
-            : isTransparent
-            ? "rgba(2, 6, 23, 0.28)"
             : scrolled
-            ? "rgba(255, 255, 255, 0.98)"
-            : "rgba(255, 255, 255, 0.94)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
+            ? "rgba(255, 255, 255, 0.96)"
+            : "rgba(255, 255, 255, 0.86)",
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
         }}
         className={`w-full transition-all duration-300 border-b ${
-          isTransparent
-            ? "border-white/12 shadow-[0_4px_24px_rgba(0,0,0,0.2)]"
-            : menuOpen
-            ? "border-slate-200"
-            : "border-slate-200/80 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)]"
+          menuOpen ? "border-slate-200" : "border-slate-200/60 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)]"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-3.5 py-3 sm:px-6 sm:py-3.5 lg:px-8">
           
-          {/* Unified Brand Logo */}
+          {/* Unified Brand Logo (Official Green & Charcoal AG POWER Brandmark) */}
           <LocalizedClientLink href="/" className="inline-flex items-center transition-transform active:scale-95">
-            <AgPowerLogo variant={isTransparent ? "dark" : "default"} size="md" />
+            <AgPowerLogo variant="default" size="md" />
           </LocalizedClientLink>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation (Brand Forest Green & Slate Palette) */}
           <nav className="hidden items-center gap-7 lg:gap-8 lg:flex">
             <LocalizedClientLink
               href="/"
-              className={`text-[15px] transition-colors ${getNavLinkClass("/")}`}
+              className={`text-[15px] transition-colors ${
+                pathname === "/" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              }`}
             >
               Home
             </LocalizedClientLink>
 
             <LocalizedClientLink
               href="/about"
-              className={`text-[15px] transition-colors ${getNavLinkClass("/about")}`}
+              className={`text-[15px] transition-colors ${
+                pathname === "/about" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              }`}
             >
               About
             </LocalizedClientLink>
@@ -110,7 +93,9 @@ export default function NavBar() {
             <div className="group relative">
               <button
                 type="button"
-                className={`flex items-center gap-1 text-[15px] transition-colors focus:outline-none ${getNavLinkClass("/services")}`}
+                className={`flex items-center gap-1 text-[15px] transition-colors hover:text-forest focus:outline-none ${
+                  pathname?.startsWith("/services") ? "font-bold text-forest" : "font-medium text-slate-700"
+                }`}
               >
                 <span>Services</span>
                 <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
@@ -120,35 +105,43 @@ export default function NavBar() {
 
             <LocalizedClientLink
               href="/calculator"
-              className={`flex items-center gap-1.5 text-[15px] transition-colors ${getNavLinkClass("/calculator")}`}
+              className={`flex items-center gap-1.5 text-[15px] transition-colors ${
+                pathname === "/calculator" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              }`}
             >
-              <Calculator className="h-4 w-4 text-amber-400" />
+              <Calculator className="h-4 w-4 text-amber-500" />
               <span>Calculator</span>
             </LocalizedClientLink>
 
             <LocalizedClientLink
               href="/solar-panels"
-              className={`text-[15px] transition-colors ${getNavLinkClass("/solar-panels")}`}
+              className={`text-[15px] transition-colors ${
+                pathname === "/solar-panels" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              }`}
             >
               Solar Panels
             </LocalizedClientLink>
 
             <LocalizedClientLink
               href="/blog"
-              className={`text-[15px] transition-colors ${getNavLinkClass("/blog")}`}
+              className={`text-[15px] transition-colors ${
+                pathname === "/blog" || pathname?.startsWith("/blog/") ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              }`}
             >
               Blog
             </LocalizedClientLink>
 
             <LocalizedClientLink
               href="/contact"
-              className={`text-[15px] transition-colors ${getNavLinkClass("/contact")}`}
+              className={`text-[15px] transition-colors ${
+                pathname === "/contact" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              }`}
             >
               Contact
             </LocalizedClientLink>
           </nav>
 
-          {/* Right Action CTA (Pill Button, exact Momentum style) */}
+          {/* Right Action CTA: Main Button Green */}
           <div className="hidden items-center gap-3 lg:flex">
             <LocalizedClientLink
               href="/contact"
@@ -159,22 +152,14 @@ export default function NavBar() {
             </LocalizedClientLink>
           </div>
 
-          {/* Mobile Menu Hamburger (High-Contrast, Touch-Friendly) */}
+          {/* Mobile Menu Hamburger (Touch-Friendly) */}
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`flex h-11 w-11 items-center justify-center rounded-xl transition-colors lg:hidden active:scale-95 ${
-              isTransparent
-                ? "border border-white/20 bg-white/10 backdrop-blur-md text-white hover:bg-white/20"
-                : "border border-slate-200 bg-slate-50 text-slate-800 shadow-xs hover:bg-slate-100 hover:text-emerald-700"
-            }`}
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white/90 backdrop-blur-md text-slate-900 shadow-xs hover:bg-white hover:text-emerald-700 transition-colors lg:hidden active:scale-95"
             aria-label="Toggle Navigation Menu"
           >
-            {menuOpen ? (
-              <X className="h-6 w-6 text-slate-900" />
-            ) : (
-              <Menu className={`h-6 w-6 ${isTransparent ? "text-white" : "text-slate-900"}`} />
-            )}
+            {menuOpen ? <X className="h-6 w-6 text-slate-900" /> : <Menu className="h-6 w-6 text-slate-900" />}
           </button>
         </div>
       </div>
