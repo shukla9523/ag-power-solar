@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
+import Image from "next/image"
 import { SolarPanel } from "@lib/data/solar-panels"
 import {
   Layers,
@@ -19,6 +20,21 @@ import {
 
 interface Props {
   initialPanels: SolarPanel[]
+}
+
+function getPanelImage(brand: string, model: string): string {
+  const b = (brand || "").toLowerCase()
+  const m = (model || "").toLowerCase()
+  if (b.includes("waaree") || m.includes("topcon") || m.includes("bifacial")) {
+    return "/images/panels/waaree-topcon-bifacial.webp"
+  }
+  if (b.includes("adani") || m.includes("perc")) {
+    return "/images/panels/adani-mono-perc.webp"
+  }
+  if (b.includes("tata") || m.includes("black")) {
+    return "/images/panels/tata-power-all-black.webp"
+  }
+  return "/images/panels/waaree-topcon-bifacial.webp"
 }
 
 export default function CatalogueClient({ initialPanels }: Props) {
@@ -312,36 +328,38 @@ export default function CatalogueClient({ initialPanels }: Props) {
                 }`}
               >
                 <div>
-                  {/* Visual Solar Panel Schematic Head */}
-                  <div className="relative flex h-52 w-full flex-col justify-between rounded-2xl bg-forest p-5 text-white overflow-hidden shadow-inner">
-                    {/* Photovoltaic Cell Grid Schematic */}
-                    <div className="absolute inset-0 grid grid-cols-6 grid-rows-3 gap-1.5 p-3 opacity-25 pointer-events-none">
-                      {[...Array(18)].map((_, i) => (
-                        <div key={i} className="rounded border border-white/60 bg-white/20" />
-                      ))}
-                    </div>
+                  {/* Real Solar Panel Photo with Spec Overlay */}
+                  <div className="relative flex h-52 w-full flex-col justify-between rounded-2xl bg-slate-900 p-4 text-white overflow-hidden shadow-inner">
+                    <Image
+                      src={getPanelImage(panel.brand, panel.modelName)}
+                      alt={`${panel.brand} ${panel.modelName}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/60" />
 
                     <div className="relative z-10 flex items-center justify-between">
-                      <span className="rounded-full bg-gold px-3 py-0.5 text-[11px] font-extrabold text-forest">
+                      <span className="rounded-full bg-emerald-600/90 backdrop-blur-md px-3 py-0.5 text-[11px] font-extrabold text-white border border-white/20 shadow-sm">
                         {panel.badge || "Tier-1 ALMM"}
                       </span>
                       {panel.dcrCompliant && (
-                        <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-bold text-white">
+                        <span className="rounded-full bg-slate-900/80 backdrop-blur-md px-2.5 py-0.5 text-[10px] font-bold text-amber-300 border border-amber-400/30">
                           DCR Approved
                         </span>
                       )}
                     </div>
 
                     <div className="relative z-10 text-center">
-                      <p className="font-manrope text-[38px] font-black tracking-tight text-white drop-shadow-sm">
+                      <p className="font-manrope text-[38px] font-black tracking-tight text-white drop-shadow-md">
                         {panel.wattage}W
                       </p>
-                      <p className="text-[12px] font-semibold text-sage">{panel.moduleType}</p>
+                      <p className="text-[12px] font-bold text-amber-300">{panel.moduleType}</p>
                     </div>
 
-                    <div className="relative z-10 flex items-center justify-between border-t border-white/15 pt-2 text-[11px] text-sage">
+                    <div className="relative z-10 flex items-center justify-between border-t border-white/20 pt-2 text-[11px] text-slate-200">
                       <span>Efficiency: <strong className="text-white">{panel.efficiency}%</strong></span>
-                      <span>{panel.cellTechnology}</span>
+                      <span className="font-medium text-emerald-300">{panel.cellTechnology}</span>
                     </div>
                   </div>
 
