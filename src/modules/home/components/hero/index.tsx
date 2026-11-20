@@ -7,8 +7,8 @@ import { SunMedium, ArrowRight, ShieldCheck, Award, CheckCircle2 } from "lucide-
 export default function Hero() {
   return (
     <section className="relative min-h-[560px] sm:min-h-[660px] lg:min-h-[760px] -mt-[68px] sm:-mt-[72px] lg:-mt-[76px] pt-[84px] sm:pt-[104px] lg:pt-[124px] pb-10 sm:pb-20 lg:pb-28 overflow-hidden flex items-center bg-slate-950 text-white">
-      {/* ── Desktop Full-Bleed Background Image (Clear, unshaded right half for Engineer & Solar Pergola) ── */}
-      <div className="hidden lg:block absolute inset-0 z-0">
+      {/* ── Full-Bleed Background Image (Extends behind transparent navbar on all devices) ── */}
+      <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-solar-engineer-v2.webp"
           alt="AG POWER Certified Solar Engineer with Yellow Safety Helmet at Elevated Rooftop Solar Pergola Structure"
@@ -18,16 +18,19 @@ export default function Hero() {
           className="object-cover object-[80%_center] filter brightness-[1.03] contrast-[1.02]"
         />
         {/* Desktop Left Directional Scrim — Right side remains completely bright & unobstructed */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 via-45% md:via-slate-950/45 md:via-58% to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-transparent to-slate-950/50 z-10 pointer-events-none" />
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 via-45% md:via-slate-950/45 md:via-58% to-transparent z-10 pointer-events-none" />
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-b from-slate-950/45 via-transparent to-slate-950/50 z-10 pointer-events-none" />
+
+        {/* Mobile Scrim — Soft ambient top/bottom so photo is visible behind navbar while text stays crisp */}
+        <div className="lg:hidden absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/50 to-slate-950/85 z-10 pointer-events-none" />
       </div>
 
       <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 items-center gap-6 sm:gap-10 lg:gap-12 lg:grid-cols-12">
-          
+
           {/* Main Column: Punchy Headline, Spotlight Visual & Compact CTAs */}
           <div className="lg:col-span-8 max-w-2xl">
-            
+
             {/* 1. Glassmorphic Eyebrow Badge (12px radius) */}
             <div
               style={{
