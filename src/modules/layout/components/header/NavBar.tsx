@@ -49,10 +49,15 @@ export default function NavBar() {
   return (
     <>
       <div
-        className={`w-full transition-all duration-300 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-md border-b border-slate-200/90"
-            : "bg-white/92 backdrop-blur-md shadow-xs border-b border-slate-200/70 lg:bg-white/80"
+        style={{
+          backgroundColor: menuOpen
+            ? "#ffffff"
+            : scrolled
+            ? "rgba(255, 255, 255, 0.98)"
+            : "rgba(255, 255, 255, 0.94)",
+        }}
+        className={`w-full transition-all duration-300 backdrop-blur-md shadow-xs border-b ${
+          menuOpen ? "border-slate-200" : "border-slate-200/80"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-3.5 py-3 sm:px-6 sm:py-3.5 lg:px-8">
@@ -149,7 +154,7 @@ export default function NavBar() {
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white/90 text-slate-800 shadow-xs hover:bg-slate-100 hover:text-emerald-700 transition-colors lg:hidden active:scale-95"
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-800 shadow-xs hover:bg-slate-100 hover:text-emerald-700 transition-colors lg:hidden active:scale-95"
             aria-label="Toggle Navigation Menu"
           >
             {menuOpen ? <X className="h-6 w-6 text-slate-900" /> : <Menu className="h-6 w-6 text-slate-900" />}
@@ -157,20 +162,24 @@ export default function NavBar() {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu (Full Height, Touch-Optimized, Scrollable) */}
+      {/* Mobile Drawer Menu (Pure Solid Crisp White, Never Transparent) */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed inset-x-0 top-[60px] sm:top-[65px] max-h-[calc(100dvh-60px)] sm:max-h-[calc(100dvh-65px)] overflow-y-auto border-b border-slate-200 bg-white/98 backdrop-blur-2xl px-5 py-6 lg:hidden shadow-2xl z-50"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            style={{ backgroundColor: "#ffffff" }}
+            className="fixed inset-x-0 top-[58px] sm:top-[64px] bottom-0 z-50 bg-white overflow-y-auto px-5 py-6 lg:hidden shadow-2xl border-t border-slate-100 flex flex-col justify-between"
           >
             <div className="flex flex-col gap-2">
               <LocalizedClientLink
                 href="/"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[46px] items-center rounded-xl px-3 text-[16px] font-bold text-emerald-800 hover:bg-emerald-50 transition-colors"
+                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${
+                  pathname === "/" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                }`}
               >
                 Home
               </LocalizedClientLink>
@@ -178,32 +187,34 @@ export default function NavBar() {
               <LocalizedClientLink
                 href="/about"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[46px] items-center rounded-xl px-3 text-[16px] font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${
+                  pathname === "/about" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                }`}
               >
-                About
+                About AG POWER
               </LocalizedClientLink>
 
               {/* Mobile Solutions Accordion */}
-              <div className="rounded-xl border border-slate-100 bg-slate-50/60 p-2">
+              <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-2.5">
                 <button
                   type="button"
                   onClick={() => setSolutionsOpen(!solutionsOpen)}
-                  className="flex min-h-[42px] w-full items-center justify-between px-2 text-[16px] font-semibold text-slate-800"
+                  className="flex min-h-[42px] w-full items-center justify-between px-2 text-[16px] font-bold text-slate-900"
                 >
                   <span>Services & Solutions</span>
                   <ChevronDown className={`h-4 w-4 text-emerald-700 transition-transform ${solutionsOpen ? "rotate-180" : ""}`} />
                 </button>
                 {solutionsOpen && (
-                  <div className="mt-2 flex flex-col gap-1.5 border-t border-slate-200/60 pt-2">
+                  <div className="mt-2 flex flex-col gap-1.5 border-t border-slate-200 pt-2">
                     {solarSolutions.map((sol) => (
                       <LocalizedClientLink
                         key={sol.link}
                         href={sol.link}
                         onClick={() => setMenuOpen(false)}
-                        className="rounded-lg px-2.5 py-2 text-[14px] font-medium text-emerald-900 hover:bg-emerald-100/60 transition-colors"
+                        className="rounded-lg px-2.5 py-2 text-[14px] text-slate-900 hover:bg-emerald-100/60 transition-colors"
                       >
-                        <p className="font-bold">{sol.name}</p>
-                        <p className="text-[12px] text-slate-500">{sol.desc}</p>
+                        <p className="font-extrabold text-emerald-800">{sol.name}</p>
+                        <p className="text-[12px] text-slate-600">{sol.desc}</p>
                       </LocalizedClientLink>
                     ))}
                   </div>
@@ -213,13 +224,13 @@ export default function NavBar() {
               <LocalizedClientLink
                 href="/calculator"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[46px] items-center justify-between rounded-xl px-3 text-[16px] font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                className="flex min-h-[46px] items-center justify-between rounded-xl px-3.5 text-[16px] font-bold text-slate-900 hover:bg-slate-50 transition-colors"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2.5">
                   <Calculator className="h-5 w-5 text-amber-500" />
-                  <span>Solar Calculator</span>
+                  <span className="text-slate-900">Solar Calculator</span>
                 </div>
-                <span className="rounded-md bg-amber-100 px-2 py-0.5 text-[11px] font-extrabold text-amber-900">
+                <span className="rounded-md bg-amber-100 border border-amber-300 px-2 py-0.5 text-[11px] font-extrabold text-amber-900">
                   Interactive
                 </span>
               </LocalizedClientLink>
@@ -227,15 +238,19 @@ export default function NavBar() {
               <LocalizedClientLink
                 href="/solar-panels"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[46px] items-center rounded-xl px-3 text-[16px] font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${
+                  pathname === "/solar-panels" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                }`}
               >
-                Solar Panels
+                Tier-1 Solar Panels
               </LocalizedClientLink>
 
               <LocalizedClientLink
                 href="/blog"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[46px] items-center rounded-xl px-3 text-[16px] font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${
+                  pathname?.startsWith("/blog") ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                }`}
               >
                 Solar Guides & Blog
               </LocalizedClientLink>
@@ -243,30 +258,32 @@ export default function NavBar() {
               <LocalizedClientLink
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[46px] items-center rounded-xl px-3 text-[16px] font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${
+                  pathname === "/contact" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                }`}
               >
                 Contact & Support
               </LocalizedClientLink>
+            </div>
 
-              {/* Mobile Action CTAs */}
-              <div className="mt-4 pt-4 border-t border-slate-100 flex flex-col gap-2.5">
-                <LocalizedClientLink
-                  href="/contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex min-h-[50px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 text-center font-bold text-white shadow-md active:scale-95 transition-all"
-                >
-                  <span>Get Free Solar Quote</span>
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </LocalizedClientLink>
+            {/* Mobile Action CTAs at bottom of screen */}
+            <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col gap-3 pb-4">
+              <LocalizedClientLink
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                className="flex min-h-[50px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 text-center font-inter text-[15px] font-extrabold text-white shadow-md active:scale-95 transition-all"
+              >
+                <span>Get Free Solar Quote</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </LocalizedClientLink>
 
-                <a
-                  href="tel:+919523467849"
-                  className="flex min-h-[46px] w-full items-center justify-center rounded-xl bg-white border border-slate-200 text-center font-bold text-slate-900 shadow-xs hover:bg-slate-50 active:scale-95 transition-all"
-                >
-                  <Phone className="mr-2 h-4 w-4 text-emerald-600" />
-                  <span>Call: +91 95234 67849</span>
-                </a>
-              </div>
+              <a
+                href="tel:+919523467849"
+                className="flex min-h-[46px] w-full items-center justify-center rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-300 text-center font-inter text-[14px] font-bold text-slate-900 shadow-xs active:scale-95 transition-all"
+              >
+                <Phone className="mr-2 h-4 w-4 text-emerald-700" />
+                <span>Call Us: +91 95234 67849</span>
+              </a>
             </div>
           </motion.div>
         )}
