@@ -120,7 +120,7 @@ export default function FooterFaqSection({ customFaqs }: { customFaqs?: Array<{ 
           <div className="mt-8 text-center sm:mt-10">
             <Link
               href="/faq"
-              className={`${manrope.className} inline-flex items-center gap-2 rounded-[12px] bg-forest px-6 py-3 text-[13px] font-bold text-gold transition-all duration-200 hover:bg-forest/90 hover:shadow-md active:scale-95`}
+              className={`${manrope.className} inline-flex items-center gap-2 rounded-[12px] bg-forest px-6 py-3 text-[13px] font-bold text-white transition-all duration-200 hover:bg-forest-deep hover:shadow-md active:scale-95`}
             >
               <span>View All Solar FAQs</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">

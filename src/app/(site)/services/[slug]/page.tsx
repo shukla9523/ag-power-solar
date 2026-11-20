@@ -169,11 +169,11 @@ export default async function ServiceDetailPage({
                   </span>
                 </div>
 
-                {/* CTAs */}
+                {/* CTAs: Main Green + Secondary White */}
                 <div className="mt-10 flex flex-wrap items-center gap-4">
                   <LocalizedClientLink
                     href={primaryCta.href}
-                    className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-gold px-7 font-inter text-[15px] font-bold text-forest shadow-md transition-all hover:bg-gold-hover active:scale-95"
+                    className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-emerald-500 hover:bg-emerald-400 px-7 font-inter text-[15px] font-extrabold text-slate-950 shadow-md transition-all active:scale-95"
                   >
                     <span>{primaryCta.text}</span>
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -181,7 +181,7 @@ export default async function ServiceDetailPage({
 
                   <LocalizedClientLink
                     href={secondaryCta.href}
-                    className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 font-inter text-[15px] font-semibold text-white transition-all hover:bg-white/20 active:scale-95"
+                    className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 font-inter text-[15px] font-bold text-slate-950 shadow-md transition-all active:scale-95"
                   >
                     {secondaryCta.text}
                   </LocalizedClientLink>
@@ -371,16 +371,16 @@ export default async function ServiceDetailPage({
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <LocalizedClientLink
                 href={`/contact?service=${slug}`}
-                className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-gold px-8 font-inter text-[15px] font-bold text-forest shadow-md transition-all hover:bg-gold-hover"
+                className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-emerald-500 hover:bg-emerald-400 px-8 font-inter text-[15px] font-extrabold text-slate-950 shadow-md transition-all"
               >
                 <span>Request Feasibility Assessment</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </LocalizedClientLink>
               <LocalizedClientLink
                 href="/calculator"
-                className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 font-inter text-[15px] font-semibold text-white hover:bg-white/20"
+                className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 font-inter text-[15px] font-bold text-slate-950 shadow-md"
               >
-                <Calculator className="mr-2 h-4 w-4 text-gold" />
+                <Calculator className="mr-2 h-4 w-4 text-emerald-600" />
                 <span>Calculate Savings</span>
               </LocalizedClientLink>
             </div>

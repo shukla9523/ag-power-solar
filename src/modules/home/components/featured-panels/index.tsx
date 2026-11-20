@@ -136,10 +136,10 @@ export default function FeaturedSolarPanels() {
               <div className="mt-8 pt-4">
                 <LocalizedClientLink
                   href={`/contact?panel=${panel.id}`}
-                  className="inline-flex min-h-[44px] w-full items-center justify-center rounded-xl bg-slate-900 px-4 font-inter text-[13px] font-bold text-white transition-all hover:bg-slate-950 group-hover:bg-slate-900 group-hover:shadow-md"
+                  className="inline-flex min-h-[44px] w-full items-center justify-center rounded-xl bg-emerald-700 hover:bg-emerald-800 px-4 font-inter text-[13px] font-bold text-white transition-all group-hover:shadow-md"
                 >
                   <span>Enquire About This Panel</span>
-                  <ArrowRight className="ml-1.5 h-4 w-4 text-amber-400" />
+                  <ArrowRight className="ml-1.5 h-4 w-4 text-white" />
                 </LocalizedClientLink>
               </div>
 

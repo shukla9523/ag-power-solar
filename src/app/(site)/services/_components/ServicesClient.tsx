@@ -85,14 +85,14 @@ export default function ServicesClient({ services }: Props) {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <LocalizedClientLink
                 href="/calculator"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-gold px-7 font-inter text-[15px] font-bold text-forest shadow-md transition-all hover:bg-gold-hover"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-emerald-500 hover:bg-emerald-400 px-7 font-inter text-[15px] font-extrabold text-slate-950 shadow-md transition-all"
               >
                 <span>Calculate Solar Potential</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </LocalizedClientLink>
               <LocalizedClientLink
                 href="/contact"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 font-inter text-[15px] font-semibold text-white hover:bg-white/20"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 font-inter text-[15px] font-bold text-slate-950 shadow-md transition-all"
               >
                 Get Free Consultation
               </LocalizedClientLink>
@@ -153,9 +153,9 @@ export default function ServicesClient({ services }: Props) {
 
                       <LocalizedClientLink
                         href={cat.calcUrl}
-                        className="inline-flex min-h-[46px] items-center justify-center rounded-xl border border-forest/25 bg-ivory px-5 font-inter text-[14px] font-semibold text-forest hover:bg-sage-mist"
+                        className="inline-flex min-h-[46px] items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-5 font-inter text-[14px] font-bold text-slate-800 shadow-sm"
                       >
-                        <Calculator className="mr-2 h-4 w-4 text-gold" />
+                        <Calculator className="mr-2 h-4 w-4 text-emerald-600" />
                         <span>{cat.calcCta}</span>
                       </LocalizedClientLink>
                     </div>

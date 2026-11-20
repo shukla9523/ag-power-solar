@@ -125,10 +125,10 @@ export default function SolarSolutions() {
                 <div className="mt-8 pt-4">
                   <LocalizedClientLink
                     href={sol.href}
-                    className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-slate-900 px-5 font-inter text-[14px] font-bold text-white shadow-sm transition-all hover:bg-slate-950 group-hover:bg-slate-900 group-hover:shadow-md"
+                    className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-emerald-700 hover:bg-emerald-800 px-5 font-inter text-[14px] font-bold text-white shadow-sm transition-all group-hover:shadow-md"
                   >
                     <span>{sol.ctaText}</span>
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 text-amber-400" />
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 text-white" />
                   </LocalizedClientLink>
                 </div>
 

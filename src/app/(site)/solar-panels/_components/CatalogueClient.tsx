@@ -288,7 +288,7 @@ export default function CatalogueClient({ initialPanels }: Props) {
               <button
                 type="button"
                 onClick={() => setShowCompareModal(true)}
-                className="rounded-xl bg-gold px-4 py-1.5 text-[12px] font-extrabold text-forest transition-transform hover:scale-105"
+                className="rounded-xl bg-white hover:bg-slate-100 px-4 py-1.5 text-[12px] font-extrabold text-slate-900 border border-slate-200 transition-transform hover:scale-105 shadow-sm"
               >
                 Compare Now ({compareIds.length})
               </button>
@@ -758,7 +758,7 @@ export default function CatalogueClient({ initialPanels }: Props) {
                 <button
                   type="button"
                   onClick={() => setEnquiryPanel(null)}
-                  className="mt-6 rounded-xl bg-gold px-6 py-2.5 text-[14px] font-bold text-forest"
+                  className="mt-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 py-2.5 text-[14px] font-bold text-white shadow-md transition-all active:scale-95"
                 >
                   Done
                 </button>

@@ -35,17 +35,17 @@ export default function FinalCta() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <LocalizedClientLink
             href="/contact"
-            className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-amber-400 px-8 font-inter text-[16px] font-black text-slate-950 shadow-xl transition-all hover:bg-amber-300 hover:scale-105 active:scale-95"
+            className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-8 font-inter text-[16px] font-extrabold text-white shadow-xl transition-all hover:scale-105 active:scale-95"
           >
             <span>Get Your Free Solar Consultation</span>
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <ArrowRight className="ml-2 h-5 w-5 text-white" />
           </LocalizedClientLink>
 
           <LocalizedClientLink
             href="/calculator"
-            className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/20 bg-white/10 px-7 font-inter text-[16px] font-semibold text-white backdrop-blur-xl transition-all hover:bg-white/20 hover:border-white/40 shadow-lg active:scale-95"
+            className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-7 font-inter text-[16px] font-bold text-slate-950 shadow-lg transition-all hover:scale-105 active:scale-95"
           >
-            <Calculator className="mr-2 h-5 w-5 text-amber-400" />
+            <Calculator className="mr-2 h-5 w-5 text-emerald-700" />
             <span>Calculate Savings First</span>
           </LocalizedClientLink>
         </div>

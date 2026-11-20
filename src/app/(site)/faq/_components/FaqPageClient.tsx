@@ -332,14 +332,14 @@ export default function FaqPageClient({ categories }: { categories?: FAQCategory
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/calculator"
-                className={`${manrope.className} inline-flex items-center gap-2 rounded-[12px] bg-gold px-6 py-3.5 text-[14px] font-bold text-forest transition-all hover:bg-gold-light hover:shadow-md active:scale-95`}
+                className={`${manrope.className} inline-flex items-center gap-2 rounded-[12px] bg-emerald-600 hover:bg-emerald-500 px-6 py-3.5 text-[14px] font-bold text-white shadow-md transition-all active:scale-95`}
               >
                 <span>Calculate Your Solar Savings</span>
                 <span>→</span>
               </Link>
               <Link
                 href="/contact"
-                className={`${manrope.className} inline-flex items-center gap-2 rounded-[12px] border border-white/20 bg-white/10 px-6 py-3.5 text-[14px] font-bold text-white transition-all hover:bg-white/20`}
+                className={`${manrope.className} inline-flex items-center gap-2 rounded-[12px] bg-white hover:bg-slate-100 px-6 py-3.5 text-[14px] font-bold text-slate-900 shadow-md transition-all active:scale-95`}
               >
                 <span>Schedule Free Site Survey</span>
               </Link>

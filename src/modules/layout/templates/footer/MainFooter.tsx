@@ -39,16 +39,16 @@ export default function MainFooter({
           <div className="flex flex-wrap items-center gap-3">
             <LocalizedClientLink
               href="/calculator"
-              className="inline-flex items-center justify-center rounded-xl border border-gold px-5 py-2.5 font-inter text-[14px] font-semibold text-gold transition-colors hover:bg-gold hover:text-forest"
+              className="inline-flex items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-5 py-2.5 font-inter text-[14px] font-bold text-slate-900 shadow-sm transition-all"
             >
               Calculate Savings
             </LocalizedClientLink>
             <LocalizedClientLink
               href="/contact"
-              className="inline-flex items-center justify-center rounded-xl bg-gold px-5 py-2.5 font-inter text-[14px] font-bold text-forest shadow-sm transition-all hover:bg-gold-hover"
+              className="inline-flex items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 py-2.5 font-inter text-[14px] font-bold text-white shadow-sm transition-all"
             >
               Get Free Consultation
-              <ArrowRight className="ml-1.5 h-4 w-4" />
+              <ArrowRight className="ml-1.5 h-4 w-4 text-white" />
             </LocalizedClientLink>
           </div>
         </div>

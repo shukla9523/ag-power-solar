@@ -338,7 +338,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full rounded-xl bg-amber-400 hover:bg-amber-300 py-3 text-[14px] font-black text-slate-950 shadow-md transition-all active:scale-95 disabled:opacity-50"
+                    className="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 py-3 text-[14px] font-bold text-white shadow-md transition-all active:scale-95 disabled:opacity-50"
                   >
                     {loading ? "Submitting Request..." : "Request Verified Rooftop Quote →"}
                   </button>

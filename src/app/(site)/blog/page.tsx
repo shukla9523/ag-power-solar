@@ -231,13 +231,13 @@ export default async function BlogPage() {
                 <div className="mt-5 space-y-2.5">
                   <LocalizedClientLink
                     href="/calculator"
-                    className={`${manrope.className} flex h-[44px] w-full items-center justify-center rounded-[10px] bg-gold px-4 text-[13px] font-bold text-forest transition-all hover:bg-gold-light active:scale-95`}
+                    className={`${manrope.className} flex h-[44px] w-full items-center justify-center rounded-[10px] bg-emerald-600 hover:bg-emerald-500 px-4 text-[13px] font-bold text-white shadow-md transition-all active:scale-95`}
                   >
                     Calculate Solar Savings →
                   </LocalizedClientLink>
                   <LocalizedClientLink
                     href="/contact"
-                    className={`${manrope.className} flex h-[44px] w-full items-center justify-center rounded-[10px] border border-white/20 bg-white/10 px-4 text-[13px] font-bold text-white transition-all hover:bg-white/20`}
+                    className={`${manrope.className} flex h-[44px] w-full items-center justify-center rounded-[10px] bg-white hover:bg-slate-100 px-4 text-[13px] font-bold text-slate-900 shadow-md transition-all active:scale-95`}
                   >
                     Request Free Site Audit
                   </LocalizedClientLink>

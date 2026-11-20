@@ -140,7 +140,7 @@ export default async function TermsAndConditionsPage() {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <LocalizedClientLink
                 href="/contact"
-                className={`${manrope.className} inline-flex h-[46px] items-center justify-center rounded-[12px] bg-gold px-7 text-[13px] font-bold text-forest transition-all hover:bg-gold-light active:scale-95`}
+                className={`${manrope.className} inline-flex h-[46px] items-center justify-center rounded-[12px] bg-emerald-500 hover:bg-emerald-400 px-7 text-[13px] font-extrabold text-slate-950 transition-all active:scale-95`}
               >
                 Speak with an Advisor →
               </LocalizedClientLink>

@@ -281,13 +281,13 @@ export default async function BlogPostDetailPage({
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <LocalizedClientLink
                 href="/calculator"
-                className={`${manrope.className} rounded-xl bg-gold px-7 py-3.5 text-sm font-bold text-forest transition-all hover:bg-gold-light active:scale-95`}
+                className={`${manrope.className} rounded-xl bg-emerald-600 hover:bg-emerald-500 px-7 py-3.5 text-sm font-bold text-white shadow-md transition-all active:scale-95`}
               >
                 Calculate Solar Savings →
               </LocalizedClientLink>
               <LocalizedClientLink
                 href="/contact"
-                className={`${manrope.className} rounded-xl border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/20`}
+                className={`${manrope.className} rounded-xl bg-white hover:bg-slate-100 px-6 py-3.5 text-sm font-bold text-slate-900 shadow-md transition-all active:scale-95`}
               >
                 Request Free Site Survey
               </LocalizedClientLink>

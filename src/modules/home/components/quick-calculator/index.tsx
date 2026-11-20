@@ -251,19 +251,19 @@ export default function QuickCalculator() {
               </div>
             </div>
 
-            {/* CTAs (Compact) */}
+            {/* CTAs (Compact: Main Green + Secondary White) */}
             <div className="relative z-10 mt-5 space-y-2.5 pt-3.5 border-t border-white/10">
               <LocalizedClientLink
                 href={`/calculator?cat=${category}&bill=${monthlyBill}`}
-                className="inline-flex min-h-[42px] w-full items-center justify-center rounded-lg bg-amber-400 px-4 font-inter text-[13px] font-bold text-slate-950 shadow-md transition-all hover:bg-amber-300 active:scale-95"
+                className="inline-flex min-h-[42px] w-full items-center justify-center rounded-lg bg-emerald-600 hover:bg-emerald-500 px-4 font-inter text-[13px] font-bold text-white shadow-md transition-all active:scale-95"
               >
                 <span>Use Detailed Calculator</span>
-                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5 text-white" />
               </LocalizedClientLink>
 
               <LocalizedClientLink
                 href={`/contact?cat=${category}&bill=${monthlyBill}`}
-                className="inline-flex min-h-[38px] w-full items-center justify-center rounded-lg border border-white/20 bg-white/10 px-4 font-inter text-[12px] font-semibold text-white backdrop-blur-xl transition-all hover:bg-white/20 active:scale-95"
+                className="inline-flex min-h-[38px] w-full items-center justify-center rounded-lg bg-white hover:bg-slate-100 px-4 font-inter text-[12px] font-bold text-slate-950 shadow-sm transition-all active:scale-95"
               >
                 Get Verified Site Feasibility Quote
               </LocalizedClientLink>

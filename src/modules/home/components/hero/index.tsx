@@ -70,19 +70,19 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Call to Actions (Solar Gold Primary + Frosted Glass Secondary) */}
+            {/* Call to Actions: Main Button Green + Secondary Button White */}
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <LocalizedClientLink
                 href="/calculator"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-amber-400 px-8 font-inter text-[16px] font-black text-slate-950 shadow-2xl transition-all hover:bg-amber-300 hover:scale-105 active:scale-95"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-8 font-inter text-[16px] font-extrabold text-white shadow-2xl transition-all hover:scale-105 active:scale-95"
               >
                 <span>Calculate Your Solar Savings</span>
-                <ArrowRight className="ml-2 h-5 w-5 text-slate-950" />
+                <ArrowRight className="ml-2 h-5 w-5 text-white" />
               </LocalizedClientLink>
 
               <LocalizedClientLink
                 href="/contact"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/70 bg-slate-950/50 px-7 font-inter text-[16px] font-bold text-white backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 shadow-xl"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-7 font-inter text-[16px] font-bold text-slate-950 shadow-xl transition-all hover:scale-105 active:scale-95"
               >
                 Get Free Consultation
               </LocalizedClientLink>

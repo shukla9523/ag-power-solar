@@ -92,10 +92,10 @@ export default function WhySolar() {
           </div>
           <LocalizedClientLink
             href="/calculator"
-            className="relative z-10 inline-flex min-h-[48px] flex-shrink-0 items-center justify-center rounded-xl bg-amber-500 px-6 font-inter text-[15px] font-bold text-slate-950 shadow-lg transition-all hover:bg-amber-400 hover:scale-105 active:scale-95"
+            className="relative z-10 inline-flex min-h-[48px] flex-shrink-0 items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 font-inter text-[15px] font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95"
           >
             <span>Open Solar Calculator</span>
-            <ArrowUpRight className="ml-1.5 h-4 w-4" />
+            <ArrowUpRight className="ml-1.5 h-4 w-4 text-white" />
           </LocalizedClientLink>
         </div>
 
