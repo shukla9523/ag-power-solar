@@ -77,27 +77,27 @@ export default function WhyAgPower() {
         </div>
 
         {/* Stats Strip (Frosted Glassmorphic Emerald & Midnight Container) */}
-        <div className="relative overflow-hidden mt-16 grid grid-cols-2 gap-4 rounded-3xl bg-gradient-to-br from-emerald-950 via-slate-950 to-emerald-950 p-8 text-white sm:grid-cols-4 sm:p-10 border border-emerald-500/20 shadow-2xl backdrop-blur-2xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-emerald-400/10 before:via-transparent before:to-amber-500/10 before:pointer-events-none">
+        <div className="relative overflow-hidden mt-12 sm:mt-16 grid grid-cols-2 gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-emerald-950 via-slate-950 to-emerald-950 p-5 sm:p-8 lg:p-10 text-white sm:grid-cols-4 border border-emerald-500/20 shadow-2xl backdrop-blur-2xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-emerald-400/10 before:via-transparent before:to-amber-500/10 before:pointer-events-none">
           <div className="relative z-10 text-center">
-            <p className="font-manrope text-[34px] font-black text-amber-400 sm:text-[44px] tracking-tight">
+            <p className="font-manrope text-[28px] sm:text-[38px] lg:text-[44px] font-black text-amber-400 tracking-tight">
               25+
             </p>
-            <p className="mt-1 text-[13px] font-medium text-emerald-300">Years Warranty</p>
+            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-300">Years Warranty</p>
           </div>
           <div className="relative z-10 text-center">
-            <p className="font-manrope text-[34px] font-black text-white sm:text-[44px] tracking-tight">
+            <p className="font-manrope text-[28px] sm:text-[38px] lg:text-[44px] font-black text-white tracking-tight">
               90%
             </p>
-            <p className="mt-1 text-[13px] font-medium text-emerald-300">Bill Reduction</p>
+            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-300">Bill Reduction</p>
           </div>
           <div className="relative z-10 text-center">
-            <p className="font-manrope text-[34px] font-black text-amber-400 sm:text-[44px] tracking-tight">
+            <p className="font-manrope text-[28px] sm:text-[38px] lg:text-[44px] font-black text-amber-400 tracking-tight">
               100%
             </p>
-            <p className="mt-1 text-[13px] font-medium text-emerald-300">Tier-1 Hardware</p>
+            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-300">Tier-1 Hardware</p>
           </div>
           <div className="relative z-10 text-center">
-            <p className="font-manrope text-[34px] font-black text-white sm:text-[44px] tracking-tight">
+            <p className="font-manrope text-[28px] sm:text-[38px] lg:text-[44px] font-black text-white tracking-tight">
               3-4 Yrs
             </p>
             <p className="mt-1 text-[13px] font-medium text-emerald-300">Typical Payback</p>

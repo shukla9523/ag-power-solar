@@ -93,7 +93,7 @@ export default function FeaturedSolarPanels() {
 
           <LocalizedClientLink
             href="/solar-panels"
-            className="inline-flex min-h-[46px] items-center gap-2 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 px-5 font-inter text-[14px] font-bold text-slate-900 transition-all shadow-sm active:scale-95"
+            className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 px-5 font-inter text-[14px] font-bold text-slate-900 transition-all shadow-sm active:scale-95 text-center"
           >
             <span>View Full Catalogue</span>
             <ArrowRight className="h-4 w-4 text-emerald-700" />

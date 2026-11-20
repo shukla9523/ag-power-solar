@@ -32,7 +32,7 @@ export default function AgPowerLogo({
   }
 
   return (
-    <div className={`group inline-flex items-center gap-3 select-none ${className}`}>
+    <div className={`group inline-flex items-center gap-2.5 sm:gap-3 select-none whitespace-nowrap ${className}`}>
       {/* ── Precision Solar Energy Emblem ── */}
       <svg
         viewBox="0 0 56 56"

@@ -32,20 +32,20 @@ export default function FinalCta() {
         </p>
 
         {/* Action Buttons (10% Gold CTA) */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
           <LocalizedClientLink
             href="/contact"
-            className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-8 font-inter text-[16px] font-extrabold text-white shadow-xl transition-all hover:scale-105 active:scale-95"
+            className="inline-flex min-h-[50px] sm:min-h-[52px] w-full sm:w-auto items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 sm:px-8 font-inter text-[15px] sm:text-[16px] font-extrabold text-white shadow-xl transition-all hover:scale-105 active:scale-95 text-center"
           >
             <span>Get Your Free Solar Consultation</span>
-            <ArrowRight className="ml-2 h-5 w-5 text-white" />
+            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 text-white" />
           </LocalizedClientLink>
 
           <LocalizedClientLink
             href="/calculator"
-            className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-7 font-inter text-[16px] font-bold text-slate-950 shadow-lg transition-all hover:scale-105 active:scale-95"
+            className="inline-flex min-h-[50px] sm:min-h-[52px] w-full sm:w-auto items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 sm:px-7 font-inter text-[15px] sm:text-[16px] font-bold text-slate-950 shadow-lg transition-all hover:scale-105 active:scale-95 text-center"
           >
-            <Calculator className="mr-2 h-5 w-5 text-emerald-700" />
+            <Calculator className="mr-2 h-4 w-4 sm:h-5 sm:w-5 text-emerald-700" />
             <span>Calculate Savings First</span>
           </LocalizedClientLink>
         </div>

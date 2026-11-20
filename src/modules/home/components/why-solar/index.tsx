@@ -77,18 +77,18 @@ export default function WhySolar() {
         </div>
 
         {/* Bottom Banner (Frosted Midnight Blue Glassmorphic Banner) */}
-        <div className="relative overflow-hidden mt-12 flex flex-col items-center justify-between gap-6 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 p-8 text-white sm:flex-row sm:p-10 border border-white/10 shadow-2xl backdrop-blur-2xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-sky-500/10 before:via-transparent before:to-amber-500/10 before:pointer-events-none">
-          <div className="relative z-10">
-            <h4 className="font-manrope text-[22px] font-bold text-white sm:text-[24px]">
+        <div className="relative overflow-hidden mt-12 flex flex-col items-center justify-between gap-6 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 p-6 sm:p-8 lg:p-10 text-white sm:flex-row border border-white/10 shadow-2xl backdrop-blur-2xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-sky-500/10 before:via-transparent before:to-amber-500/10 before:pointer-events-none">
+          <div className="relative z-10 text-center sm:text-left">
+            <h4 className="font-manrope text-[20px] font-bold text-white sm:text-[24px]">
               Want to see how much your rooftop can generate?
             </h4>
-            <p className="mt-1 text-[14px] text-sky-300">
+            <p className="mt-1.5 text-[13.5px] sm:text-[14px] text-sky-300">
               Use our quick calculator to estimate your system capacity, savings, and investment.
             </p>
           </div>
           <LocalizedClientLink
             href="/calculator"
-            className="relative z-10 inline-flex min-h-[48px] flex-shrink-0 items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 font-inter text-[15px] font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+            className="relative z-10 inline-flex min-h-[48px] w-full sm:w-auto flex-shrink-0 items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 font-inter text-[15px] font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95 text-center"
           >
             <span>Open Solar Calculator</span>
             <ArrowUpRight className="ml-1.5 h-4 w-4 text-white" />

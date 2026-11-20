@@ -90,11 +90,11 @@ export default function QuickCalculator() {
               <label className="text-[13px] font-bold text-slate-900 uppercase tracking-wide">
                 1. Select Property Type
               </label>
-              <div className="mt-2.5 grid grid-cols-3 gap-2">
+              <div className="mt-2.5 grid grid-cols-3 gap-1.5 sm:gap-2">
                 <button
                   type="button"
                   onClick={() => handleCategoryChange("residential")}
-                  className={`min-h-[38px] rounded-lg border px-3 py-2 text-center text-[12px] font-bold transition-all ${
+                  className={`min-h-[40px] rounded-xl border px-1.5 sm:px-3 py-2 text-center text-[11px] sm:text-[12.5px] font-bold transition-all ${
                     category === "residential"
                       ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
                       : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
@@ -105,7 +105,7 @@ export default function QuickCalculator() {
                 <button
                   type="button"
                   onClick={() => handleCategoryChange("commercial")}
-                  className={`min-h-[38px] rounded-lg border px-3 py-2 text-center text-[12px] font-bold transition-all ${
+                  className={`min-h-[40px] rounded-xl border px-1.5 sm:px-3 py-2 text-center text-[11px] sm:text-[12.5px] font-bold transition-all ${
                     category === "commercial"
                       ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
                       : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
@@ -116,7 +116,7 @@ export default function QuickCalculator() {
                 <button
                   type="button"
                   onClick={() => handleCategoryChange("society")}
-                  className={`min-h-[38px] rounded-lg border px-3 py-2 text-center text-[12px] font-bold transition-all ${
+                  className={`min-h-[40px] rounded-xl border px-1.5 sm:px-3 py-2 text-center text-[11px] sm:text-[12.5px] font-bold transition-all ${
                     category === "society"
                       ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
                       : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
