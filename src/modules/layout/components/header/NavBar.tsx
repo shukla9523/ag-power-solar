@@ -56,7 +56,7 @@ export default function NavBar() {
             ? "rgba(255, 255, 255, 0.98)"
             : "rgba(255, 255, 255, 0.94)",
         }}
-        className={`w-full transition-all duration-300 backdrop-blur-md shadow-xs border-b ${
+        className={`w-full transition-all duration-300 backdrop-blur-md shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)] border-b ${
           menuOpen ? "border-slate-200" : "border-slate-200/80"
         }`}
       >
@@ -143,7 +143,7 @@ export default function NavBar() {
           <div className="hidden items-center gap-3 lg:flex">
             <LocalizedClientLink
               href="/contact"
-              className="inline-flex items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 py-2.5 font-inter text-[14px] font-bold text-white shadow-sm transition-all duration-200 hover:shadow-md active:scale-95"
+              className="inline-flex items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 hover:shadow-[0_0_24px_rgba(16,185,129,0.45)] px-6 py-2.5 font-inter text-[14px] font-bold text-white shadow-[0_0_16px_rgba(16,185,129,0.25)] transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
             >
               <span>Get Free Quote</span>
               <ArrowRight className="ml-1.5 h-4 w-4" />

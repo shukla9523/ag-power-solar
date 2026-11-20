@@ -75,15 +75,15 @@ export default function SolarSolutions() {
             return (
               <div
                 key={sol.id}
-                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-sky-400/50 hover:shadow-[0_20px_40px_-15px_rgba(2,6,23,0.12)]"
+                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-500/50 hover:shadow-[0_20px_40px_-10px_rgba(16,185,129,0.15)]"
               >
                 <div>
                   {/* Top Bar with Icon & Badge */}
                   <div className="flex items-center justify-between">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-amber-400 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-sky-500/20">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-amber-400 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-emerald-500/20">
                       <Icon className="h-7 w-7" />
                     </div>
-                    <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[11px] font-bold text-slate-800">
+                    <span className="rounded-xl border border-emerald-200/80 bg-emerald-50/80 px-3 py-1 text-[11px] font-bold text-emerald-900 shadow-xs">
                       {sol.badge}
                     </span>
                   </div>
@@ -121,7 +121,7 @@ export default function SolarSolutions() {
                 <div className="mt-8 pt-4">
                   <LocalizedClientLink
                     href={sol.href}
-                    className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-emerald-700 hover:bg-emerald-800 px-5 font-inter text-[14px] font-bold text-white shadow-sm transition-all group-hover:shadow-md"
+                    className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 font-inter text-[14px] font-bold text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all duration-200 hover:shadow-[0_0_28px_rgba(16,185,129,0.5)] hover:-translate-y-0.5 active:scale-95"
                   >
                     <span>{sol.ctaText}</span>
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 text-white" />

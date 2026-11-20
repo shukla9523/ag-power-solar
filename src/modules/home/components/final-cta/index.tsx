@@ -13,8 +13,16 @@ export default function FinalCta() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         
-        {/* Badge (30% Green + 10% Gold) */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/70 px-4 py-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-xl">
+        {/* Badge (Glassmorphic, consistent 12px radius) */}
+        <div
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.08)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            border: "1px solid rgba(255, 255, 255, 0.15)",
+          }}
+          className="inline-flex items-center gap-2 rounded-xl px-4 py-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.25)]"
+        >
           <SunMedium className="h-4 w-4 text-amber-400" />
           <span className="text-[12px] font-bold uppercase tracking-wider text-emerald-300">
             Zero-Cost Feasibility Consultation
@@ -31,19 +39,22 @@ export default function FinalCta() {
           Make the shift to clean, reliable solar energy today. Reduce your electricity expenses by up to 90% and secure your energy future with AG POWER.
         </p>
 
-        {/* Action Buttons (10% Gold CTA) */}
+        {/* Action Buttons with Soft Glow & Depth */}
         <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
           <LocalizedClientLink
             href="/contact"
-            className="inline-flex min-h-[50px] sm:min-h-[52px] w-full sm:w-auto items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 sm:px-8 font-inter text-[15px] sm:text-[16px] font-extrabold text-white shadow-xl transition-all hover:scale-105 active:scale-95 text-center"
+            style={{
+              boxShadow: "0 0 30px rgba(16, 185, 129, 0.4)",
+            }}
+            className="group inline-flex min-h-[50px] sm:min-h-[52px] w-full sm:w-auto items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 hover:shadow-[0_0_38px_rgba(16,185,129,0.6)] px-6 sm:px-8 font-inter text-[15px] sm:text-[16px] font-extrabold text-white transition-all duration-300 hover:-translate-y-0.5 active:scale-95 text-center"
           >
             <span>Get Your Free Solar Consultation</span>
-            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 text-white" />
+            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 text-white transition-transform duration-200 group-hover:translate-x-1" />
           </LocalizedClientLink>
 
           <LocalizedClientLink
             href="/calculator"
-            className="inline-flex min-h-[50px] sm:min-h-[52px] w-full sm:w-auto items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 sm:px-7 font-inter text-[15px] sm:text-[16px] font-bold text-slate-950 shadow-lg transition-all hover:scale-105 active:scale-95 text-center"
+            className="inline-flex min-h-[50px] sm:min-h-[52px] w-full sm:w-auto items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 sm:px-7 font-inter text-[15px] sm:text-[16px] font-bold text-slate-950 shadow-[0_4px_16px_rgba(0,0,0,0.15),0_1px_3px_rgba(0,0,0,0.08)] border border-slate-200/90 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 text-center"
           >
             <Calculator className="mr-2 h-4 w-4 sm:h-5 sm:w-5 text-emerald-700" />
             <span>Calculate Savings First</span>
