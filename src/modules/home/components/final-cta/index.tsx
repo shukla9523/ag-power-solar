@@ -14,7 +14,7 @@ export default function FinalCta() {
         
         {/* Badge */}
         <div
-          className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-900/60 px-4 py-1.5 shadow-sm"
+          className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-900/60 px-4 py-1.5 shadow-sm mb-3"
         >
           <SunMedium className="h-4 w-4 text-amber-400" />
           <span className="text-[12px] font-bold uppercase tracking-wider text-emerald-100">
@@ -22,12 +22,12 @@ export default function FinalCta() {
           </span>
         </div>
 
-        {/* Heading */}
-        <h2 className="mt-6 font-manrope text-[clamp(30px,3.2vw,42px)] font-black tracking-tight text-white leading-[1.2]">
+        {/* Heading: clamp(30px, 3.2vw, 42px), line-height 1.2 */}
+        <h2 className="mt-4 font-manrope text-[clamp(30px,3.2vw,42px)] font-black tracking-tight text-white leading-[1.2]">
           Your Solar Journey Starts Here.
         </h2>
 
-        {/* Supporting Copy */}
+        {/* Supporting Copy: 17px, max-width 680px */}
         <p className="mx-auto mt-4 max-w-[680px] font-inter text-[17px] leading-relaxed text-emerald-100">
           Make the shift to clean, reliable solar energy today. Reduce your electricity expenses by up to 90% and secure your energy future with AG POWER.
         </p>

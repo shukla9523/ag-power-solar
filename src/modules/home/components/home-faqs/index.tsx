@@ -61,7 +61,7 @@ export default function HomeFaqs() {
         </div>
 
         {/* Accordion List */}
-        <div className="mt-12 divide-y divide-emerald-100 rounded-2xl border border-emerald-200/80 border-t-[3px] border-t-transparent hover:border-t-amber-400 bg-white p-[28px] shadow-sm transition-all duration-300">
+        <div className="mt-12 divide-y divide-emerald-100 rounded-2xl border border-emerald-200/80 bg-white p-[28px] shadow-sm">
           {defaultFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx
             return (
@@ -72,7 +72,7 @@ export default function HomeFaqs() {
                   className="flex w-full items-center justify-between text-left focus:outline-none group"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-manrope text-[16px] sm:text-[18px] font-bold text-forest-deep group-hover:text-emerald-600 transition-colors">
+                  <span className="font-manrope text-[18px] font-bold text-forest-deep group-hover:text-emerald-600 transition-colors">
                     {faq.q}
                   </span>
                   <span className="ml-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-emerald-50 text-forest-deep shadow-xs transition-all group-hover:bg-emerald-600 group-hover:text-white">
@@ -82,7 +82,7 @@ export default function HomeFaqs() {
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="mt-3 text-[14px] sm:text-[15px] leading-relaxed text-slate-600 pr-8">
+                  <div className="mt-3 text-[16px] leading-relaxed text-slate-600 pr-8">
                     {faq.a}
                   </div>
                 )}

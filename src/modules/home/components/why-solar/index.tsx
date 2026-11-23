@@ -68,9 +68,12 @@ export default function WhySolar() {
             return (
               <div
                 key={index}
-                className="group relative rounded-2xl border border-emerald-200/80 border-t-[3px] border-t-transparent hover:border-t-amber-400 bg-white p-[28px] transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-2xl border border-emerald-200/80 bg-white p-[28px] transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
               >
-                <div className="flex h-[56px] w-[56px] items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                {/* 3px Yellow Top Border on Card Hover */}
+                <div className="absolute top-0 inset-x-0 h-[3px] bg-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl z-10 pointer-events-none" />
+
+                <div className="flex h-[56px] w-[56px] min-h-[56px] min-w-[56px] items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 shadow-sm transition-transform duration-300 group-hover:scale-105">
                   <Icon className="h-7 w-7" />
                 </div>
                 <h3 className="mt-6 font-manrope text-[24px] font-bold text-forest-deep">

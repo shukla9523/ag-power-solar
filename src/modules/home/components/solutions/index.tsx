@@ -79,12 +79,15 @@ export default function SolarSolutions() {
             return (
               <div
                 key={sol.id}
-                className="group relative flex flex-col justify-between rounded-2xl border border-emerald-200/80 border-t-[3px] border-t-transparent hover:border-t-amber-400 bg-white p-[28px] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)]"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-emerald-200/80 bg-white p-[28px] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)]"
               >
+                {/* 3px Yellow Top Border on Card Hover */}
+                <div className="absolute top-0 inset-x-0 h-[3px] bg-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl z-10 pointer-events-none" />
+
                 <div>
                   {/* Top Bar with Icon & Badge */}
                   <div className="flex items-center justify-between">
-                    <div className="flex h-[56px] w-[56px] items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 shadow-sm transition-all duration-300 group-hover:scale-105">
+                    <div className="flex h-[56px] w-[56px] min-h-[56px] min-w-[56px] items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 shadow-sm transition-all duration-300 group-hover:scale-105">
                       <Icon className="h-7 w-7" />
                     </div>
                     <span className="rounded-xl border border-emerald-200/80 bg-emerald-50/80 px-3 py-1 text-[11px] font-bold text-forest-deep shadow-xs">
@@ -100,12 +103,12 @@ export default function SolarSolutions() {
                     {sol.subtitle}
                   </p>
 
-                  {/* Description: 16px */}
+                  {/* Description: 16px text */}
                   <p className="mt-3 text-[16px] leading-relaxed text-slate-600">
                     {sol.description}
                   </p>
 
-                  {/* Benefit Points: 16px */}
+                  {/* Benefit Points: 16px text */}
                   <div className="mt-6 border-t border-slate-100 pt-5">
                     <p className="text-[12px] font-bold uppercase tracking-wider text-forest-deep">
                       Key Highlights:
@@ -113,7 +116,7 @@ export default function SolarSolutions() {
                     <ul className="mt-3 flex flex-col gap-2.5">
                       {sol.benefits.map((benefit, i) => (
                         <li key={i} className="flex items-start gap-2.5 text-[16px] text-slate-700">
-                          <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-600" />
                           <span>{benefit}</span>
                         </li>
                       ))}

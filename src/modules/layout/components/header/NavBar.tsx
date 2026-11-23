@@ -54,9 +54,10 @@ export default function NavBar() {
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
         }}
-        className={`w-full transition-all duration-300 border-b ${menuOpen
-          ? "border-slate-200"
-          : scrolled
+        className={`w-full transition-all duration-300 border-b ${
+          menuOpen
+            ? "border-slate-200"
+            : scrolled
             ? "border-slate-200/80 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)]"
             : "border-slate-200/70 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)]"
           }`}
@@ -68,7 +69,7 @@ export default function NavBar() {
             <AgPowerLogo variant="default" size="md" />
           </LocalizedClientLink>
 
-          {/* Desktop Navigation (Consistent Spacing, Forest Green Active & Slate Text, 16px) */}
+          {/* Desktop Navigation (Consistent Spacing, Forest Green Active & Slate Text, 16px Nav Links) */}
           <nav className="hidden items-center gap-6 lg:gap-7 lg:flex">
             <LocalizedClientLink
               href="/"

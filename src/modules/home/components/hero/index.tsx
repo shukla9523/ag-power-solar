@@ -6,7 +6,7 @@ import { SunMedium, ArrowRight, ShieldCheck, Award, CheckCircle2, Star } from "l
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[calc(100vh-64px)] lg:min-h-[calc(100vh-72px)] -mt-[64px] sm:-mt-[68px] lg:-mt-[72px] pt-[104px] sm:pt-[108px] lg:pt-[112px] pb-6 sm:pb-8 lg:pb-10 overflow-hidden flex items-start lg:items-center bg-white text-slate-900">
+    <section className="relative min-h-[calc(100vh-64px)] lg:min-h-[calc(100vh-72px)] -mt-[64px] sm:-mt-[68px] lg:-mt-[72px] pt-[88px] sm:pt-[92px] lg:pt-[96px] pb-6 sm:pb-8 lg:pb-10 overflow-hidden flex items-center bg-white text-slate-900">
       {/* ── Full-Bleed Background Image (Clear, Unfiltered, 75% Center Position for Full Engineer Visibility) ── */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -37,7 +37,7 @@ export default function Hero() {
       <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 items-center gap-6 sm:gap-8 lg:gap-10 lg:grid-cols-12">
 
-          {/* Main Column: Enclosed in Soft Translucent White Card with 40px top gap from header, max-width 740px, padding 28px */}
+          {/* Main Column: Enclosed in Soft Translucent White Card (rgba(255,255,255,0.70), blur 8px, 24px radius, max-width 570px) */}
           <div className="lg:col-span-8 flex justify-start">
             <div
               style={{
@@ -45,16 +45,14 @@ export default function Hero() {
                 backdropFilter: "blur(8px)",
                 WebkitBackdropFilter: "blur(8px)",
                 borderRadius: "24px",
-                maxWidth: "800px",
-                width: "fit-content",
+                maxWidth: "570px",
               }}
-              className="p-[28px] border border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.04)] w-full"
+              className="p-5 sm:p-6 lg:p-7 border border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.04)] w-full"
             >
-              {/* 1. Top Badge: Light Green Background and Dark Green Text with Yellow Icon */}
+              {/* 1. Top Badge: Light Green Background and Dark Green Text */}
               <div className="inline-flex items-center gap-2 rounded-xl bg-emerald-100 border border-emerald-200/90 px-3.5 py-1.5 text-[12px] sm:text-[13px] font-bold text-forest-deep mb-2.5 sm:mb-3 shadow-xs">
-                <SunMedium className="h-3.5 w-3.5 text-amber-500 flex-shrink-0" />
-                <span className="md:hidden">PM Surya Ghar Subsidy Approved</span>
-                <span className="hidden md:inline">PM Surya Ghar Subsidy • 25-Yr Performance Warranty</span>
+                <SunMedium className="h-3.5 w-3.5 text-emerald-600 flex-shrink-0" />
+                <span>PM Surya Ghar Subsidy • 25-Yr Performance Warranty</span>
               </div>
 
               {/* Exactly One Single H1 for SEO: "Power Your Home with" Dark Green (text-forest-deep) + "Smarter Solar." Bright Green (text-emerald-600) with Thick Yellow Underline */}
@@ -78,8 +76,8 @@ export default function Hero() {
                 </span>
               </h1>
 
-              {/* Supporting Copy (Dark Grey, Max-Width 560px, natural wrapping) */}
-              <p className="mt-2.5 sm:mt-3 max-w-[560px] font-inter text-[14px] sm:text-[15.5px] lg:text-[16.5px] leading-relaxed text-slate-700 font-medium">
+              {/* Supporting Copy (Dark Grey, Max-Width 480px) */}
+              <p className="mt-2.5 sm:mt-3 max-w-[480px] font-inter text-[14px] sm:text-[15.5px] lg:text-[16.5px] leading-relaxed text-slate-700 font-medium">
                 Guaranteed savings. Tier-1 solar modules. End-to-end MNRE subsidy care.
               </p>
 
@@ -127,14 +125,14 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* ── 5. Action Buttons: Auto width on desktop, same height, not stretched ── */}
-              <div className="mt-4 sm:mt-6 grid grid-cols-2 md:flex md:flex-row items-center gap-3 md:gap-4 w-full md:w-auto">
+              {/* ── 5. Action Buttons: Primary Green (#16A34A) + Secondary White with Green 1.5px Border ── */}
+              <div className="mt-4 sm:mt-6 grid grid-cols-2 sm:flex sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
                 <LocalizedClientLink
                   href="/calculator"
                   style={{
                     boxShadow: "0 4px 18px rgba(22, 163, 74, 0.35)",
                   }}
-                  className="group inline-flex min-h-[48px] sm:min-h-[52px] w-full md:w-auto items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 hover:shadow-[0_6px_26px_rgba(22,163,74,0.45)] px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-white transition-all duration-300 hover:-translate-y-0.5 active:scale-95 text-center leading-tight"
+                  className="group inline-flex min-h-[48px] sm:min-h-[52px] items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 hover:shadow-[0_6px_26px_rgba(22,163,74,0.45)] px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-white transition-all duration-300 hover:-translate-y-0.5 active:scale-95 text-center leading-tight"
                 >
                   <span>Calculate Savings</span>
                   <ArrowRight className="ml-1.5 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5 text-white flex-shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
@@ -142,14 +140,14 @@ export default function Hero() {
 
                 <LocalizedClientLink
                   href="/contact"
-                  className="inline-flex min-h-[48px] sm:min-h-[52px] w-full md:w-auto items-center justify-center rounded-xl bg-white hover:bg-emerald-50/70 border-[1.5px] border-emerald-600 px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-emerald-700 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700 active:scale-95 text-center leading-tight"
+                  className="inline-flex min-h-[48px] sm:min-h-[52px] items-center justify-center rounded-xl bg-white hover:bg-emerald-50/70 border-[1.5px] border-emerald-600 px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-emerald-700 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700 active:scale-95 text-center leading-tight"
                 >
                   Get Free Quote
                 </LocalizedClientLink>
               </div>
 
-              {/* ── Trust Footnote: Visible on Desktop (>=768px), Hidden on Mobile (<768px) ── */}
-              <div className="hidden md:flex flex-wrap items-center gap-2.5 sm:gap-3 border-t border-slate-200/80 pt-3 sm:pt-3.5 mt-4 sm:mt-6">
+              {/* ── Trust Footnote Streamlined ── */}
+              <div className="mt-4 sm:mt-6 flex flex-wrap items-center gap-2.5 sm:gap-3 border-t border-slate-200/80 pt-3 sm:pt-3.5">
                 <div className="inline-flex items-center gap-1.5 rounded-xl bg-white/90 border border-slate-200 px-3 py-1.5 text-[11.5px] sm:text-[12.5px] font-semibold text-slate-700 shadow-xs">
                   <ShieldCheck className="h-4 w-4 text-amber-500 flex-shrink-0" />
                   <span>MNRE Approved Partner</span>

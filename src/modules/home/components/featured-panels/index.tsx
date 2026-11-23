@@ -90,7 +90,7 @@ export default function FeaturedSolarPanels() {
             <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
               High-Efficiency <span className="text-emerald-600">Tier-1 Solar Panels</span>
             </h2>
-            <p className="mt-3 max-w-[680px] text-[17px] leading-relaxed text-slate-600">
+            <p className="mt-3 max-w-[680px] text-[17px] text-slate-600 leading-relaxed">
               Real high-efficiency photovoltaic modules engineered for maximum generation, harsh Indian weather durability, and guaranteed 25–30 year customer returns.
             </p>
           </div>
@@ -109,8 +109,11 @@ export default function FeaturedSolarPanels() {
           {featuredPanels.map((panel, idx) => (
             <div
               key={panel.id}
-              className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-emerald-200/80 border-t-[3px] border-t-transparent hover:border-t-amber-400 bg-white shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-emerald-200/80 bg-white shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
             >
+              {/* 3px Yellow Top Border on Card Hover */}
+              <div className="absolute top-0 inset-x-0 h-[3px] bg-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl z-20 pointer-events-none" />
+
               <div>
                 {/* ── Real Solar Panel Photo with Customer Benefits Overlay ── */}
                 <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900">
@@ -156,8 +159,8 @@ export default function FeaturedSolarPanels() {
                   </div>
                 </div>
 
-                {/* ── Card Content: Brand & Customer Advantages ── */}
-                <div className="p-6 sm:p-7">
+                {/* ── Card Content: 28px Padding, 24px Titles, 16px Body ── */}
+                <div className="p-[28px]">
                   {/* Brand & Model */}
                   <div className="flex items-center justify-between">
                     <span className="text-[12px] font-extrabold uppercase tracking-wider text-emerald-700">
@@ -169,22 +172,22 @@ export default function FeaturedSolarPanels() {
                     </span>
                   </div>
 
-                  <h3 className="mt-2 font-manrope text-[20px] font-extrabold leading-snug text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  <h3 className="mt-2 font-manrope text-[24px] font-extrabold leading-snug text-slate-900 group-hover:text-emerald-700 transition-colors">
                     {panel.model}
                   </h3>
 
-                  <p className="mt-1 text-[12.5px] font-semibold text-slate-500">
+                  <p className="mt-1 text-[13.5px] font-semibold text-slate-500">
                     {panel.technology}
                   </p>
 
                   {/* Customer Benefits Checklist */}
                   <div className="mt-5 rounded-2xl bg-emerald-50/50 border border-emerald-100 p-4">
-                    <p className="text-[11.5px] font-extrabold uppercase tracking-wider text-emerald-900">
+                    <p className="text-[12px] font-extrabold uppercase tracking-wider text-emerald-900">
                       Direct Customer Benefits:
                     </p>
                     <ul className="mt-2.5 space-y-2">
                       {panel.customerBenefit.points.map((pt, i) => (
-                        <li key={i} className="flex items-start gap-2 text-[12.5px] text-slate-700 font-medium">
+                        <li key={i} className="flex items-start gap-2 text-[16px] text-slate-700 font-medium">
                           <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
                           <span>{pt}</span>
                         </li>
@@ -193,7 +196,7 @@ export default function FeaturedSolarPanels() {
                   </div>
 
                   {/* Technical Specifications Grid */}
-                  <div className="mt-5 grid grid-cols-2 gap-3 border-t border-slate-100 pt-4 text-[12.5px]">
+                  <div className="mt-5 grid grid-cols-2 gap-3 border-t border-slate-100 pt-4 text-[13px]">
                     <div className="rounded-xl bg-slate-50 p-2.5">
                       <span className="text-slate-500 block text-[11px]">Efficiency</span>
                       <strong className="font-manrope font-extrabold text-slate-900 text-[14px]">
@@ -219,7 +222,7 @@ export default function FeaturedSolarPanels() {
               </div>
 
               {/* Action Button: Main Green Button */}
-              <div className="p-6 sm:p-7 pt-0">
+              <div className="p-[28px] pt-0">
                 <LocalizedClientLink
                   href={`/contact?panel=${panel.id}`}
                   className="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 font-inter text-[14px] font-extrabold text-white shadow-md transition-all active:scale-95"
