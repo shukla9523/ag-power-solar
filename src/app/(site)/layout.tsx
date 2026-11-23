@@ -4,6 +4,7 @@
  */
 import Header from "@modules/layout/components/header/Header"
 import Footer from "@modules/layout/templates/footer"
+import WhatsAppFloat from "@modules/common/components/whatsapp-float/WhatsAppFloat"
 import { getSeoSetting } from "@lib/data/seo"
 import { getPageFaqs } from "@lib/data/page-faqs"
 
@@ -16,6 +17,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <Header />
       {children}
       <Footer homeFaqs={homeFaqs} />
+      <WhatsAppFloat />
     </>
   )
 }

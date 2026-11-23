@@ -50,20 +50,20 @@ export default function NavBar() {
     <>
       <div
         style={{
-          backgroundColor: menuOpen
+          backgroundColor: isMobile || menuOpen
             ? "#ffffff"
             : scrolled
             ? "rgba(255, 255, 255, 0.95)"
-            : isMobile
-            ? "rgba(255, 255, 255, 0.94)"
             : "rgba(255, 255, 255, 0.85)",
-          backdropFilter: menuOpen ? "none" : scrolled || isMobile ? "blur(12px)" : "blur(8px)",
-          WebkitBackdropFilter: menuOpen ? "none" : scrolled || isMobile ? "blur(12px)" : "blur(8px)",
+          backdropFilter: isMobile || menuOpen ? "none" : scrolled ? "blur(12px)" : "blur(8px)",
+          WebkitBackdropFilter: isMobile || menuOpen ? "none" : scrolled ? "blur(12px)" : "blur(8px)",
         }}
         className={`w-full transition-all duration-300 border-b ${
           menuOpen
             ? "border-slate-200 shadow-sm"
-            : scrolled || isMobile
+            : isMobile
+            ? "border-green-light shadow-[0_2px_8px_rgba(11,79,60,0.03)]"
+            : scrolled
             ? "border-slate-200/80 shadow-[0_2px_14px_rgba(0,0,0,0.05)]"
             : "border-white/25 shadow-none"
           }`}
@@ -150,15 +150,27 @@ export default function NavBar() {
             </LocalizedClientLink>
           </div>
 
-          {/* Mobile Menu Hamburger (Touch-Friendly) */}
-          <button
-            type="button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white/90 backdrop-blur-md text-slate-900 shadow-xs hover:bg-white hover:text-emerald-700 transition-colors lg:hidden active:scale-95"
-            aria-label="Toggle Navigation Menu"
-          >
-            {menuOpen ? <X className="h-6 w-6 text-slate-900" /> : <Menu className="h-6 w-6 text-slate-900" />}
-          </button>
+          {/* Mobile Action Buttons: Call Icon Button (44x44 round) + Hamburger (44x44) */}
+          <div className="flex items-center gap-2 lg:hidden">
+            {/* Call button: bg #16A34A, white phone icon, 44x44px, round */}
+            <a
+              href="tel:+919523467849"
+              className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-green-main text-white shadow-xs transition-transform active:scale-95 hover:bg-emerald-600"
+              aria-label="Call AG POWER Solar"
+            >
+              <Phone className="h-5 w-5 text-white" />
+            </a>
+
+            {/* Hamburger button: border 1.5px solid #0B4F3C, icon #0B4F3C, size 44x44px */}
+            <button
+              type="button"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex h-[44px] w-[44px] items-center justify-center rounded-xl border-[1.5px] border-green-dark bg-white text-green-dark shadow-xs hover:bg-green-light transition-colors active:scale-95"
+              aria-label="Toggle Navigation Menu"
+            >
+              {menuOpen ? <X className="h-6 w-6 text-green-dark" /> : <Menu className="h-6 w-6 text-green-dark" />}
+            </button>
+          </div>
         </div>
       </div>
 
