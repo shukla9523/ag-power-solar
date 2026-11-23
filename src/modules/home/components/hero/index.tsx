@@ -45,14 +45,16 @@ export default function Hero() {
                 backdropFilter: "blur(8px)",
                 WebkitBackdropFilter: "blur(8px)",
                 borderRadius: "24px",
-                maxWidth: "740px",
+                maxWidth: "800px",
+                width: "fit-content",
               }}
               className="p-[28px] border border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.04)] w-full"
             >
               {/* 1. Top Badge: Light Green Background and Dark Green Text with Yellow Icon */}
               <div className="inline-flex items-center gap-2 rounded-xl bg-emerald-100 border border-emerald-200/90 px-3.5 py-1.5 text-[12px] sm:text-[13px] font-bold text-forest-deep mb-2.5 sm:mb-3 shadow-xs">
                 <SunMedium className="h-3.5 w-3.5 text-amber-500 flex-shrink-0" />
-                <span>PM Surya Ghar Subsidy • 25-Yr Performance Warranty</span>
+                <span className="md:hidden">PM Surya Ghar Subsidy Approved</span>
+                <span className="hidden md:inline">PM Surya Ghar Subsidy • 25-Yr Performance Warranty</span>
               </div>
 
               {/* Exactly One Single H1 for SEO: "Power Your Home with" Dark Green (text-forest-deep) + "Smarter Solar." Bright Green (text-emerald-600) with Thick Yellow Underline */}
@@ -76,8 +78,8 @@ export default function Hero() {
                 </span>
               </h1>
 
-              {/* Supporting Copy (Dark Grey, Max-Width 440px for two balanced lines) */}
-              <p className="mt-2.5 sm:mt-3 max-w-[440px] text-balance font-inter text-[14px] sm:text-[15.5px] lg:text-[16.5px] leading-relaxed text-slate-700 font-medium">
+              {/* Supporting Copy (Dark Grey, Max-Width 560px, natural wrapping) */}
+              <p className="mt-2.5 sm:mt-3 max-w-[560px] font-inter text-[14px] sm:text-[15.5px] lg:text-[16.5px] leading-relaxed text-slate-700 font-medium">
                 Guaranteed savings. Tier-1 solar modules. End-to-end MNRE subsidy care.
               </p>
 
@@ -125,14 +127,14 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* ── 5. Action Buttons: Primary Green (#16A34A) + Secondary White with Green 1.5px Border ── */}
-              <div className="mt-4 sm:mt-6 grid grid-cols-2 sm:flex sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
+              {/* ── 5. Action Buttons: Auto width on desktop, same height, not stretched ── */}
+              <div className="mt-4 sm:mt-6 grid grid-cols-2 md:flex md:flex-row items-center gap-3 md:gap-4 w-full md:w-auto">
                 <LocalizedClientLink
                   href="/calculator"
                   style={{
                     boxShadow: "0 4px 18px rgba(22, 163, 74, 0.35)",
                   }}
-                  className="group inline-flex min-h-[48px] sm:min-h-[52px] items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 hover:shadow-[0_6px_26px_rgba(22,163,74,0.45)] px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-white transition-all duration-300 hover:-translate-y-0.5 active:scale-95 text-center leading-tight"
+                  className="group inline-flex min-h-[48px] sm:min-h-[52px] w-full md:w-auto items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 hover:shadow-[0_6px_26px_rgba(22,163,74,0.45)] px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-white transition-all duration-300 hover:-translate-y-0.5 active:scale-95 text-center leading-tight"
                 >
                   <span>Calculate Savings</span>
                   <ArrowRight className="ml-1.5 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5 text-white flex-shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
@@ -140,10 +142,22 @@ export default function Hero() {
 
                 <LocalizedClientLink
                   href="/contact"
-                  className="inline-flex min-h-[48px] sm:min-h-[52px] items-center justify-center rounded-xl bg-white hover:bg-emerald-50/70 border-[1.5px] border-emerald-600 px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-emerald-700 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700 active:scale-95 text-center leading-tight"
+                  className="inline-flex min-h-[48px] sm:min-h-[52px] w-full md:w-auto items-center justify-center rounded-xl bg-white hover:bg-emerald-50/70 border-[1.5px] border-emerald-600 px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-emerald-700 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700 active:scale-95 text-center leading-tight"
                 >
                   Get Free Quote
                 </LocalizedClientLink>
+              </div>
+
+              {/* ── Trust Footnote: Visible on Desktop (>=768px), Hidden on Mobile (<768px) ── */}
+              <div className="hidden md:flex flex-wrap items-center gap-2.5 sm:gap-3 border-t border-slate-200/80 pt-3 sm:pt-3.5 mt-4 sm:mt-6">
+                <div className="inline-flex items-center gap-1.5 rounded-xl bg-white/90 border border-slate-200 px-3 py-1.5 text-[11.5px] sm:text-[12.5px] font-semibold text-slate-700 shadow-xs">
+                  <ShieldCheck className="h-4 w-4 text-amber-500 flex-shrink-0" />
+                  <span>MNRE Approved Partner</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 rounded-xl bg-white/90 border border-slate-200 px-3 py-1.5 text-[11.5px] sm:text-[12.5px] font-semibold text-slate-700 shadow-xs">
+                  <Award className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                  <span>500+ Verified Installations</span>
+                </div>
               </div>
 
             </div>
