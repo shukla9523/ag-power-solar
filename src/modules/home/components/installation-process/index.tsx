@@ -45,7 +45,7 @@ const steps = [
 export default function InstallationProcess() {
   return (
     <section
-      className="py-24 transition-colors"
+      className="py-[72px] transition-colors"
       style={{ backgroundColor: "#F0FDF4" }}
       id="process"
     >
@@ -54,13 +54,13 @@ export default function InstallationProcess() {
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
-            <CheckCheck className="h-3.5 w-3.5 text-emerald-600" />
+            <CheckCheck className="h-3.5 w-3.5 text-amber-500" />
             <span>Step-by-Step Process</span>
           </div>
-          <h2 className="font-manrope text-[32px] sm:text-[42px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+          <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
             Your Seamless Solar Journey in <span className="text-emerald-600">6 Steps</span>
           </h2>
-          <p className="mt-4 max-w-[700px] mx-auto text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
+          <p className="mt-4 max-w-[680px] mx-auto text-[17px] leading-relaxed text-slate-600">
             From initial enquiry to net-metering commissioning, AG POWER delivers a transparent, fully managed experience without DISCOM hassles.
           </p>
         </div>
@@ -72,22 +72,22 @@ export default function InstallationProcess() {
             return (
               <div
                 key={step.num}
-                className="group relative flex flex-col justify-between rounded-2xl border border-emerald-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
+                className="group relative flex flex-col justify-between rounded-2xl border border-emerald-200/80 border-t-[3px] border-t-transparent hover:border-t-amber-400 bg-white p-[28px] shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
               >
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="font-manrope text-[26px] font-black text-amber-500 tracking-tight transition-transform duration-300 group-hover:scale-110">
                       {step.num}
                     </span>
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 transition-all duration-300 group-hover:scale-105">
-                      <Icon className="h-5 w-5" />
+                    <div className="flex h-[56px] w-[56px] items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 transition-all duration-300 group-hover:scale-105">
+                      <Icon className="h-7 w-7" />
                     </div>
                   </div>
 
-                  <h3 className="mt-5 font-manrope text-[19px] font-bold text-forest-deep">
+                  <h3 className="mt-5 font-manrope text-[24px] font-bold text-forest-deep">
                     {step.title}
                   </h3>
-                  <p className="mt-2.5 text-[14px] leading-relaxed text-slate-600">
+                  <p className="mt-2.5 text-[16px] leading-relaxed text-slate-600">
                     {step.description}
                   </p>
                 </div>

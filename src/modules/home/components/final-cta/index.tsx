@@ -8,7 +8,7 @@ export default function FinalCta() {
   return (
     <section
       style={{ backgroundColor: "#14532D" }}
-      className="relative overflow-hidden py-24 text-white"
+      className="relative overflow-hidden py-[72px] text-white"
     >
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         
@@ -23,12 +23,12 @@ export default function FinalCta() {
         </div>
 
         {/* Heading */}
-        <h2 className="mt-6 font-manrope text-[34px] sm:text-[46px] lg:text-[54px] font-black tracking-tight text-white leading-[1.2]">
+        <h2 className="mt-6 font-manrope text-[clamp(30px,3.2vw,42px)] font-black tracking-tight text-white leading-[1.2]">
           Your Solar Journey Starts Here.
         </h2>
 
         {/* Supporting Copy */}
-        <p className="mx-auto mt-4 max-w-[700px] font-inter text-[16px] sm:text-[19px] leading-relaxed text-emerald-100">
+        <p className="mx-auto mt-4 max-w-[680px] font-inter text-[17px] leading-relaxed text-emerald-100">
           Make the shift to clean, reliable solar energy today. Reduce your electricity expenses by up to 90% and secure your energy future with AG POWER.
         </p>
 

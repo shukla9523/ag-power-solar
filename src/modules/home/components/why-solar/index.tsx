@@ -41,7 +41,7 @@ const benefits = [
 export default function WhySolar() {
   return (
     <section
-      className="py-24 transition-colors"
+      className="py-[72px] transition-colors"
       style={{ backgroundColor: "#F0FDF4" }}
       id="why-solar"
     >
@@ -50,13 +50,13 @@ export default function WhySolar() {
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
-            <SunMedium className="h-3.5 w-3.5 text-emerald-600" />
+            <SunMedium className="h-3.5 w-3.5 text-amber-500" />
             <span>Why Go Solar</span>
           </div>
-          <h2 className="font-manrope text-[32px] sm:text-[42px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+          <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
             Why Switch to <span className="text-emerald-600">Rooftop Solar</span> Energy?
           </h2>
-          <p className="mt-4 max-w-[700px] mx-auto text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
+          <p className="mt-4 max-w-[680px] mx-auto text-[17px] leading-relaxed text-slate-600">
             Solar energy isn&apos;t just an environmental statement — it is one of the most reliable, high-yield financial investments you can make for your home or business.
           </p>
         </div>
@@ -68,15 +68,15 @@ export default function WhySolar() {
             return (
               <div
                 key={index}
-                className="group relative rounded-2xl border border-emerald-200/80 bg-white p-8 transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
+                className="group relative rounded-2xl border border-emerald-200/80 border-t-[3px] border-t-transparent hover:border-t-amber-400 bg-white p-[28px] transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 shadow-sm transition-transform duration-300 group-hover:scale-110">
-                  <Icon className="h-6 w-6" />
+                <div className="flex h-[56px] w-[56px] items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="h-7 w-7" />
                 </div>
-                <h3 className="mt-6 font-manrope text-[20px] font-bold text-forest-deep">
+                <h3 className="mt-6 font-manrope text-[24px] font-bold text-forest-deep">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
+                <p className="mt-3 text-[16px] leading-relaxed text-slate-600">
                   {item.description}
                 </p>
               </div>

@@ -54,10 +54,9 @@ export default function NavBar() {
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
         }}
-        className={`w-full transition-all duration-300 border-b ${
-          menuOpen
-            ? "border-slate-200"
-            : scrolled
+        className={`w-full transition-all duration-300 border-b ${menuOpen
+          ? "border-slate-200"
+          : scrolled
             ? "border-slate-200/80 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)]"
             : "border-slate-200/70 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)]"
           }`}
@@ -69,11 +68,11 @@ export default function NavBar() {
             <AgPowerLogo variant="default" size="md" />
           </LocalizedClientLink>
 
-          {/* Desktop Navigation (Consistent Spacing, Forest Green Active & Slate Text) */}
+          {/* Desktop Navigation (Consistent Spacing, Forest Green Active & Slate Text, 16px) */}
           <nav className="hidden items-center gap-6 lg:gap-7 lg:flex">
             <LocalizedClientLink
               href="/"
-              className={`text-[15px] transition-colors ${pathname === "/" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              className={`text-[16px] transition-colors ${pathname === "/" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
                 }`}
             >
               Home
@@ -81,7 +80,7 @@ export default function NavBar() {
 
             <LocalizedClientLink
               href="/about"
-              className={`text-[15px] transition-colors ${pathname === "/about" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              className={`text-[16px] transition-colors ${pathname === "/about" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
                 }`}
             >
               About
@@ -91,7 +90,7 @@ export default function NavBar() {
             <div className="group relative">
               <button
                 type="button"
-                className={`flex items-center gap-1 text-[15px] transition-colors hover:text-forest focus:outline-none ${pathname?.startsWith("/services") ? "font-bold text-forest" : "font-medium text-slate-700"
+                className={`flex items-center gap-1 text-[16px] transition-colors hover:text-forest focus:outline-none ${pathname?.startsWith("/services") ? "font-bold text-forest" : "font-medium text-slate-700"
                   }`}
               >
                 <span>Services</span>
@@ -102,7 +101,7 @@ export default function NavBar() {
 
             <LocalizedClientLink
               href="/calculator"
-              className={`text-[15px] transition-colors ${pathname === "/calculator" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              className={`text-[16px] transition-colors ${pathname === "/calculator" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
                 }`}
             >
               Calculator
@@ -110,7 +109,7 @@ export default function NavBar() {
 
             <LocalizedClientLink
               href="/solar-panels"
-              className={`text-[15px] transition-colors ${pathname === "/solar-panels" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              className={`text-[16px] transition-colors ${pathname === "/solar-panels" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
                 }`}
             >
               Solar Panels
@@ -118,7 +117,7 @@ export default function NavBar() {
 
             <LocalizedClientLink
               href="/blog"
-              className={`text-[15px] transition-colors ${pathname === "/blog" || pathname?.startsWith("/blog/") ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              className={`text-[16px] transition-colors ${pathname === "/blog" || pathname?.startsWith("/blog/") ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
                 }`}
             >
               Blog
@@ -126,7 +125,7 @@ export default function NavBar() {
 
             <LocalizedClientLink
               href="/contact"
-              className={`text-[15px] transition-colors ${pathname === "/contact" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+              className={`text-[16px] transition-colors ${pathname === "/contact" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
                 }`}
             >
               Contact

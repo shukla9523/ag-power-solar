@@ -72,7 +72,7 @@ export default function QuickCalculator() {
 
   return (
     <section
-      className="py-24 transition-colors"
+      className="py-[72px] transition-colors"
       style={{ backgroundColor: "#F0FDF4" }}
       id="quick-calculator"
     >
@@ -81,140 +81,138 @@ export default function QuickCalculator() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
-            <Calculator className="h-3.5 w-3.5 text-emerald-600" />
+            <Calculator className="h-3.5 w-3.5 text-amber-500" />
             <span>Solar Estimator</span>
           </div>
-          <h2 className="font-manrope text-[32px] sm:text-[42px] font-extrabold tracking-tight text-forest-deep leading-[1.2] max-w-2xl mx-auto text-balance">
+          <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2] max-w-2xl mx-auto text-balance">
             Calculate Your <span className="text-emerald-600">Solar Potential</span> in Seconds
           </h2>
-          <p className="mt-4 max-w-[700px] mx-auto text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
+          <p className="mt-4 max-w-[680px] mx-auto text-[17px] leading-relaxed text-slate-600">
             Slide your average monthly electricity bill to see indicative solar system capacity, estimated savings, and approximate investment.
           </p>
         </div>
 
-        {/* Calculator Main Box */}
-        <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-2xl border border-emerald-200/80 bg-white shadow-xl transition-all duration-300 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] lg:grid lg:grid-cols-12">
+        {/* Calculator Main Box: Left & Right Equal Height + 3px Yellow Top Border on Hover */}
+        <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-2xl border border-emerald-200/80 border-t-[3px] border-t-transparent hover:border-t-amber-400 bg-white shadow-xl transition-all duration-300 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] lg:grid lg:grid-cols-12 items-stretch">
           
-          {/* Inputs Section */}
-          <div className="p-6 sm:p-8 lg:col-span-7 bg-white">
-            
-            {/* Category Selector */}
+          {/* Inputs Section: Equal Height */}
+          <div className="p-[28px] lg:col-span-7 bg-white flex flex-col justify-between h-full">
             <div>
-              <label className="text-[13px] font-bold text-forest-deep uppercase tracking-wide">
-                1. Select Property Type
-              </label>
-              <div className="mt-2.5 grid grid-cols-3 gap-1.5 sm:gap-2">
-                <button
-                  type="button"
-                  onClick={() => handleCategoryChange("residential")}
-                  className={`min-h-[40px] rounded-xl border px-1.5 sm:px-3 py-2 text-center text-[11px] sm:text-[12.5px] font-bold transition-all ${
-                    category === "residential"
-                      ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
-                      : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
-                  }`}
-                >
-                  Residential
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleCategoryChange("commercial")}
-                  className={`min-h-[40px] rounded-xl border px-1.5 sm:px-3 py-2 text-center text-[11px] sm:text-[12.5px] font-bold transition-all ${
-                    category === "commercial"
-                      ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
-                      : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
-                  }`}
-                >
-                  Commercial
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleCategoryChange("society")}
-                  className={`min-h-[40px] rounded-xl border px-1.5 sm:px-3 py-2 text-center text-[11px] sm:text-[12.5px] font-bold transition-all ${
-                    category === "society"
-                      ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
-                      : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
-                  }`}
-                >
-                  Society
-                </button>
-              </div>
-            </div>
-
-            {/* Monthly Bill Input & Slider */}
-            <div className="mt-6">
-              <div className="flex items-center justify-between">
-                <label htmlFor="bill-slider" className="text-[13px] font-bold text-forest-deep uppercase tracking-wide">
-                  2. Monthly Electricity Bill
+              {/* Category Selector */}
+              <div>
+                <label className="text-[13px] font-bold text-forest-deep uppercase tracking-wide">
+                  1. Select Property Type
                 </label>
-                <div className="flex items-center rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-1 font-manrope text-[16px] font-extrabold text-forest-deep shadow-sm">
-                  ₹ {monthlyBill.toLocaleString("en-IN")}
+                <div className="mt-2.5 grid grid-cols-3 gap-1.5 sm:gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handleCategoryChange("residential")}
+                    className={`min-h-[40px] rounded-xl border px-1.5 sm:px-3 py-2 text-center text-[11px] sm:text-[12.5px] font-bold transition-all ${
+                      category === "residential"
+                        ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
+                        : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
+                    }`}
+                  >
+                    Residential
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleCategoryChange("commercial")}
+                    className={`min-h-[40px] rounded-xl border px-1.5 sm:px-3 py-2 text-center text-[11px] sm:text-[12.5px] font-bold transition-all ${
+                      category === "commercial"
+                        ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
+                        : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
+                    }`}
+                  >
+                    Commercial
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleCategoryChange("society")}
+                    className={`min-h-[40px] rounded-xl border px-1.5 sm:px-3 py-2 text-center text-[11px] sm:text-[12.5px] font-bold transition-all ${
+                      category === "society"
+                        ? "border-emerald-700 bg-emerald-700 text-white shadow-sm"
+                        : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
+                    }`}
+                  >
+                    Society
+                  </button>
                 </div>
               </div>
 
-              <input
-                id="bill-slider"
-                type="range"
-                min={category === "commercial" ? 10000 : 1500}
-                max={category === "commercial" ? 200000 : 35000}
-                step={category === "commercial" ? 5000 : 500}
-                value={monthlyBill}
-                onChange={(e) => setMonthlyBill(Number(e.target.value))}
-                style={{
-                  background: `linear-gradient(to right, #16A34A ${estimates.sliderPercent}%, #E2E8F0 ${estimates.sliderPercent}%)`,
-                  accentColor: "#F59E0B",
-                }}
-                className="mt-3 h-2.5 w-full cursor-pointer appearance-none rounded-lg"
-              />
+              {/* Monthly Bill Input & Slider */}
+              <div className="mt-6">
+                <div className="flex items-center justify-between">
+                  <label htmlFor="bill-slider" className="text-[13px] font-bold text-forest-deep uppercase tracking-wide">
+                    2. Monthly Electricity Bill
+                  </label>
+                  <div className="flex items-center rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-1 font-manrope text-[16px] font-extrabold text-forest-deep shadow-sm">
+                    ₹ {monthlyBill.toLocaleString("en-IN")}
+                  </div>
+                </div>
 
-              <div className="mt-1.5 flex justify-between text-[11px] font-medium text-slate-500">
-                <span>₹ {category === "commercial" ? "10,000" : "1,500"}</span>
-                <span>₹ {category === "commercial" ? "2,00,000+" : "35,000+"}</span>
+                <input
+                  id="bill-slider"
+                  type="range"
+                  min={category === "commercial" ? 10000 : 1500}
+                  max={category === "commercial" ? 200000 : 35000}
+                  step={category === "commercial" ? 5000 : 500}
+                  value={monthlyBill}
+                  onChange={(e) => setMonthlyBill(Number(e.target.value))}
+                  style={{
+                    background: `linear-gradient(to right, #16A34A ${estimates.sliderPercent}%, #E2E8F0 ${estimates.sliderPercent}%)`,
+                    accentColor: "#F59E0B",
+                  }}
+                  className="mt-3 h-2.5 w-full cursor-pointer appearance-none rounded-lg"
+                />
+
+                <div className="mt-1.5 flex justify-between text-[11px] font-medium text-slate-500">
+                  <span>₹ {category === "commercial" ? "10,000" : "1,500"}</span>
+                  <span>₹ {category === "commercial" ? "2,00,000+" : "35,000+"}</span>
+                </div>
+              </div>
+
+              {/* City / Location Input */}
+              <div className="mt-6">
+                <label htmlFor="pincode-input" className="text-[13px] font-bold text-forest-deep uppercase tracking-wide">
+                  3. Your City or Pincode (Optional)
+                </label>
+                <input
+                  id="pincode-input"
+                  type="text"
+                  placeholder="e.g. Jaipur, Delhi, Mumbai, or 302020"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  className="mt-2 w-full rounded-lg border border-emerald-200 bg-slate-50 px-3.5 py-2.5 text-[13px] text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                />
               </div>
             </div>
 
-            {/* City / Location Input */}
-            <div className="mt-6">
-              <label htmlFor="pincode-input" className="text-[13px] font-bold text-forest-deep uppercase tracking-wide">
-                3. Your City or Pincode (Optional)
-              </label>
-              <input
-                id="pincode-input"
-                type="text"
-                placeholder="e.g. Jaipur, Delhi, Mumbai, or 302020"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                className="mt-2 w-full rounded-lg border border-emerald-200 bg-slate-50 px-3.5 py-2.5 text-[13px] text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
-              />
-            </div>
-
             {/* Disclaimer */}
-            <p className="mt-4 text-[11px] leading-relaxed text-slate-500">
+            <p className="mt-6 text-[11px] leading-relaxed text-slate-500 border-t border-slate-100 pt-3">
               *Indicative estimates based on standard irradiance. Actual capacity depends on shadow-free rooftop area and DISCOM net-metering sanctions.
             </p>
 
           </div>
 
-          {/* Result Panel: Deep Green Gradient (#14532D to #166534) */}
+          {/* Result Panel: Deep Green Gradient (#14532D to #166534), Equal Height */}
           <div
             style={{
               background: "linear-gradient(135deg, #14532D 0%, #166534 100%)",
             }}
-            className="relative flex flex-col justify-between overflow-hidden p-6 sm:p-7 text-white lg:col-span-5 border-t lg:border-t-0 lg:border-l border-emerald-500/20 shadow-inner"
+            className="relative flex flex-col justify-between overflow-hidden p-[28px] text-white lg:col-span-5 border-t lg:border-t-0 lg:border-l border-emerald-500/20 shadow-inner h-full"
           >
-            {/* Ambient solar blur */}
-            <div className="pointer-events-none absolute -top-12 -right-12 h-36 w-36 rounded-full bg-amber-400/15 blur-2xl" />
-
             <div className="relative z-10">
               <div className="flex items-center justify-between border-b border-white/20 pb-3">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-white">
                   Indicative Assessment
                 </span>
-                <span className="rounded-full bg-amber-400/25 border border-amber-400/40 px-2.5 py-0.5 text-[10px] font-bold text-amber-300 backdrop-blur-sm">
+                <span className="rounded-full bg-emerald-800/80 border border-emerald-600/60 px-2.5 py-0.5 text-[10px] font-bold text-white backdrop-blur-sm">
                   {category.toUpperCase()}
                 </span>
               </div>
 
-              {/* Recommended Capacity */}
+              {/* 1. Recommended Capacity: Yellow capacity number */}
               <div className="mt-4">
                 <p className="text-[12px] text-emerald-100 font-medium">Recommended Capacity</p>
                 <div className="mt-0.5 flex items-baseline gap-2">
@@ -228,7 +226,7 @@ export default function QuickCalculator() {
                 </p>
               </div>
 
-              {/* Savings Breakdown */}
+              {/* Savings Breakdown: Yellow only for annual savings & payback period */}
               <div className="mt-4 space-y-2 border-t border-white/20 pt-3.5 text-[13px]">
                 <div className="flex items-center justify-between">
                   <span className="text-white font-medium">Estimated Monthly Savings:</span>
@@ -237,6 +235,7 @@ export default function QuickCalculator() {
                   </span>
                 </div>
 
+                {/* 2. Annual Savings: Yellow */}
                 <div className="flex items-center justify-between">
                   <span className="text-white font-medium">Estimated Annual Savings:</span>
                   <span className="font-manrope font-bold text-amber-400">
@@ -260,9 +259,10 @@ export default function QuickCalculator() {
                   </span>
                 </div>
 
+                {/* 3. Payback Period: Yellow */}
                 <div className="flex items-center justify-between text-[12px]">
                   <span className="text-white font-medium">Est. Payback Period:</span>
-                  <span className="font-semibold text-amber-300">
+                  <span className="font-bold text-amber-400">
                     {estimates.paybackYears} Years
                   </span>
                 </div>

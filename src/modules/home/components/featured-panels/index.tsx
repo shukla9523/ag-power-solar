@@ -77,20 +77,20 @@ const featuredPanels = [
 
 export default function FeaturedSolarPanels() {
   return (
-    <section className="bg-white py-24" id="solar-panels">
+    <section className="bg-white py-[72px]" id="solar-panels">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
-              <Award className="h-3.5 w-3.5 text-emerald-600" />
+              <Award className="h-3.5 w-3.5 text-amber-500" />
               <span>Certified Hardware</span>
             </div>
-            <h2 className="font-manrope text-[32px] sm:text-[40px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+            <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
               High-Efficiency <span className="text-emerald-600">Tier-1 Solar Panels</span>
             </h2>
-            <p className="mt-3 max-w-[700px] text-[16px] text-slate-600">
+            <p className="mt-3 max-w-[680px] text-[17px] leading-relaxed text-slate-600">
               Real high-efficiency photovoltaic modules engineered for maximum generation, harsh Indian weather durability, and guaranteed 25–30 year customer returns.
             </p>
           </div>
@@ -109,7 +109,7 @@ export default function FeaturedSolarPanels() {
           {featuredPanels.map((panel, idx) => (
             <div
               key={panel.id}
-              className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-emerald-200/80 bg-white shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
+              className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-emerald-200/80 border-t-[3px] border-t-transparent hover:border-t-amber-400 bg-white shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
             >
               <div>
                 {/* ── Real Solar Panel Photo with Customer Benefits Overlay ── */}

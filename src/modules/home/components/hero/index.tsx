@@ -6,7 +6,7 @@ import { SunMedium, ArrowRight, ShieldCheck, Award, CheckCircle2, Star } from "l
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[calc(100vh-64px)] lg:min-h-[calc(100vh-72px)] -mt-[64px] sm:-mt-[68px] lg:-mt-[72px] pt-[80px] sm:pt-[88px] lg:pt-[94px] pb-6 sm:pb-8 lg:pb-10 overflow-hidden flex items-center bg-white text-slate-900">
+    <section className="relative min-h-[calc(100vh-64px)] lg:min-h-[calc(100vh-72px)] -mt-[64px] sm:-mt-[68px] lg:-mt-[72px] pt-[88px] sm:pt-[92px] lg:pt-[96px] pb-6 sm:pb-8 lg:pb-10 overflow-hidden flex items-center bg-white text-slate-900">
       {/* ── Full-Bleed Background Image (Clear, Unfiltered, 75% Center Position for Full Engineer Visibility) ── */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -37,8 +37,8 @@ export default function Hero() {
       <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 items-center gap-6 sm:gap-8 lg:gap-10 lg:grid-cols-12">
 
-          {/* Main Column: Enclosed in Soft Translucent White Card (rgba(255,255,255,0.70), blur 8px, 24px radius, max-width 570px) */}
-          <div className="lg:col-span-8 flex justify-start">
+          {/* Main Column: Enclosed in Soft Translucent White Card with 24px clearance from sticky header */}
+          <div className="lg:col-span-8 flex justify-start mt-6">
             <div
               style={{
                 backgroundColor: "rgba(255, 255, 255, 0.70)",
@@ -49,9 +49,9 @@ export default function Hero() {
               }}
               className="p-5 sm:p-6 lg:p-7 border border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.04)] w-full"
             >
-              {/* 1. Top Badge: Light Green Background and Dark Green Text */}
+              {/* 1. Top Badge: Light Green Background and Dark Green Text with Yellow Icon */}
               <div className="inline-flex items-center gap-2 rounded-xl bg-emerald-100 border border-emerald-200/90 px-3.5 py-1.5 text-[12px] sm:text-[13px] font-bold text-forest-deep mb-2.5 sm:mb-3 shadow-xs">
-                <SunMedium className="h-3.5 w-3.5 text-emerald-600 flex-shrink-0" />
+                <SunMedium className="h-3.5 w-3.5 text-amber-500 flex-shrink-0" />
                 <span>PM Surya Ghar Subsidy • 25-Yr Performance Warranty</span>
               </div>
 

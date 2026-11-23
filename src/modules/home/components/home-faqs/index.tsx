@@ -40,7 +40,7 @@ export default function HomeFaqs() {
 
   return (
     <section
-      className="py-24 transition-colors"
+      className="py-[72px] transition-colors"
       style={{ backgroundColor: "#F0FDF4" }}
       id="faqs"
     >
@@ -49,19 +49,19 @@ export default function HomeFaqs() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
-            <HelpCircle className="h-3.5 w-3.5 text-emerald-600" />
+            <HelpCircle className="h-3.5 w-3.5 text-amber-500" />
             <span>Frequently Asked Questions</span>
           </div>
-          <h2 className="font-manrope text-[32px] sm:text-[42px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+          <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
             Everything You Need to Know <span className="text-emerald-600">About Solar</span>
           </h2>
-          <p className="mt-4 max-w-[700px] mx-auto text-[16px] sm:text-[18px] text-slate-600 leading-relaxed">
+          <p className="mt-4 max-w-[680px] mx-auto text-[17px] text-slate-600 leading-relaxed">
             Clear, straightforward answers about rooftop solar investment, net-metering, and installation.
           </p>
         </div>
 
         {/* Accordion List */}
-        <div className="mt-12 divide-y divide-emerald-100 rounded-2xl border border-emerald-200/80 bg-white p-4 sm:p-6 shadow-sm">
+        <div className="mt-12 divide-y divide-emerald-100 rounded-2xl border border-emerald-200/80 border-t-[3px] border-t-transparent hover:border-t-amber-400 bg-white p-[28px] shadow-sm transition-all duration-300">
           {defaultFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx
             return (

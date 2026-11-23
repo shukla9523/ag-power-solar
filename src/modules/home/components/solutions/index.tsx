@@ -55,19 +55,19 @@ const solutions = [
 
 export default function SolarSolutions() {
   return (
-    <section className="bg-white py-24" id="solutions">
+    <section className="bg-white py-[72px]" id="solutions">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
-            <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+            <Sparkles className="h-3.5 w-3.5 text-amber-500" />
             <span>Our Capabilities</span>
           </div>
-          <h2 className="font-manrope text-[32px] sm:text-[42px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+          <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
             Engineered Solar Solutions for <span className="text-emerald-600">Every Need</span>
           </h2>
-          <p className="mt-4 max-w-[700px] mx-auto text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
+          <p className="mt-4 max-w-[680px] mx-auto text-[17px] leading-relaxed text-slate-600">
             From individual rooftops to massive industrial sheds, AG POWER provides precision-engineered solar installations designed for maximum generational output.
           </p>
         </div>
@@ -79,12 +79,12 @@ export default function SolarSolutions() {
             return (
               <div
                 key={sol.id}
-                className="group relative flex flex-col justify-between rounded-2xl border border-emerald-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)]"
+                className="group relative flex flex-col justify-between rounded-2xl border border-emerald-200/80 border-t-[3px] border-t-transparent hover:border-t-amber-400 bg-white p-[28px] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)]"
               >
                 <div>
                   {/* Top Bar with Icon & Badge */}
                   <div className="flex items-center justify-between">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 shadow-sm transition-all duration-300 group-hover:scale-105">
+                    <div className="flex h-[56px] w-[56px] items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 shadow-sm transition-all duration-300 group-hover:scale-105">
                       <Icon className="h-7 w-7" />
                     </div>
                     <span className="rounded-xl border border-emerald-200/80 bg-emerald-50/80 px-3 py-1 text-[11px] font-bold text-forest-deep shadow-xs">
@@ -100,20 +100,20 @@ export default function SolarSolutions() {
                     {sol.subtitle}
                   </p>
 
-                  {/* Description */}
-                  <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
+                  {/* Description: 16px */}
+                  <p className="mt-3 text-[16px] leading-relaxed text-slate-600">
                     {sol.description}
                   </p>
 
-                  {/* Benefit Points */}
+                  {/* Benefit Points: 16px */}
                   <div className="mt-6 border-t border-slate-100 pt-5">
                     <p className="text-[12px] font-bold uppercase tracking-wider text-forest-deep">
                       Key Highlights:
                     </p>
                     <ul className="mt-3 flex flex-col gap-2.5">
                       {sol.benefits.map((benefit, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-[13px] text-slate-700">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                        <li key={i} className="flex items-start gap-2.5 text-[16px] text-slate-700">
+                          <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
                           <span>{benefit}</span>
                         </li>
                       ))}
