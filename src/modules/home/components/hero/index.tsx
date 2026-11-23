@@ -38,26 +38,23 @@ export default function Hero() {
       <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 items-center gap-6 sm:gap-8 lg:gap-10 lg:grid-cols-12">
 
-          {/* Main Column: Enclosed in Soft Translucent White Card (rgba(255,255,255,0.70), blur 8px, 24px radius, max-width 570px) */}
-          <div className="lg:col-span-8 flex justify-start">
+          {/* Main Column: Enclosed in Soft Translucent White Card (Crisp on Mobile, Translucent on Desktop) */}
+          <div className="lg:col-span-8 flex justify-start w-full">
             <div
               style={{
-                backgroundColor: "rgba(255, 255, 255, 0.70)",
-                backdropFilter: "blur(8px)",
-                WebkitBackdropFilter: "blur(8px)",
                 borderRadius: "24px",
                 maxWidth: "570px",
               }}
-              className="p-5 sm:p-6 lg:p-7 border border-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.04)] w-full"
+              className="p-4 xs:p-5 sm:p-6 lg:p-7 border border-white/80 bg-white/92 lg:bg-white/70 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.04)] w-full"
             >
               {/* 1. Top Badge: Light Green Background and Dark Green Text */}
-              <div className="inline-flex items-center gap-2 rounded-xl bg-emerald-100 border border-emerald-200/90 px-3.5 py-1.5 text-[12px] sm:text-[13px] font-bold text-forest-deep mb-2.5 sm:mb-3 shadow-xs">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-xl bg-emerald-100 border border-emerald-200/90 px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-[11px] xs:text-[12px] sm:text-[13px] font-bold text-forest-deep mb-2 sm:mb-3 shadow-xs">
                 <SunMedium className="h-3.5 w-3.5 text-emerald-600 flex-shrink-0" />
-                <span>PM Surya Ghar Subsidy • 25-Yr Performance Warranty</span>
+                <span className="line-clamp-1">PM Surya Ghar Subsidy • 25-Yr Performance Warranty</span>
               </div>
 
               {/* Exactly One Single H1 for SEO: "Power Your Home with" Dark Green (text-forest-deep) + "Smarter Solar." Bright Green (text-emerald-600) with Thick Yellow Underline */}
-              <h1 className="font-manrope text-[26px] xs:text-[32px] sm:text-[40px] lg:text-[48px] font-black leading-[1.15] sm:leading-[1.12] tracking-tight text-forest-deep">
+              <h1 className="font-manrope text-[24px] xs:text-[28px] sm:text-[38px] lg:text-[48px] font-black leading-[1.18] sm:leading-[1.12] tracking-tight text-forest-deep">
                 Power Your Home with{" "}
                 <span className="relative inline-block text-emerald-600">
                   Smarter Solar.
@@ -78,12 +75,12 @@ export default function Hero() {
               </h1>
 
               {/* Supporting Copy (Dark Grey, Max-Width 440px on Desktop to prevent orphan word 'care.') */}
-              <p className="mt-2.5 sm:mt-3 max-w-[480px] lg:max-w-[440px] font-inter text-[14px] sm:text-[15.5px] lg:text-[16.5px] leading-relaxed text-slate-700 font-medium">
+              <p className="mt-2 sm:mt-3 max-w-[480px] lg:max-w-[440px] font-inter text-[13.5px] sm:text-[15.5px] lg:text-[16.5px] leading-relaxed text-slate-700 font-medium">
                 Guaranteed savings. Tier-1 solar modules. End-to-end MNRE subsidy care.
               </p>
 
               {/* ── Mobile Dedicated Engineer Spotlight Card (Ultra-Sharp Crystal-Clear Mobile v3) ── */}
-              <div className="lg:hidden relative w-full aspect-[4/3] xs:aspect-[16/11] rounded-2xl overflow-hidden border border-slate-200/90 shadow-md bg-slate-100 my-3.5 group">
+              <div className="lg:hidden relative w-full aspect-[16/9] xs:aspect-[16/10] max-h-[190px] rounded-xl overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 my-3 group">
                 <Image
                   src="/images/hero-solar-engineer-mobile-v3.webp"
                   alt="AG POWER Certified Solar Engineer with Yellow Safety Helmet at Rooftop Solar Installation"
@@ -94,47 +91,47 @@ export default function Hero() {
                   className="object-cover object-center"
                 />
                 {/* Floating Badges over mobile photo */}
-                <div className="absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-xl bg-white/90 backdrop-blur-md border border-white/60 px-2.5 py-1 text-[11px] font-extrabold text-slate-900 shadow-md">
-                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
+                <div className="absolute top-2 right-2 inline-flex items-center gap-1 rounded-lg bg-white/95 backdrop-blur-md border border-white/60 px-2 py-0.5 text-[10.5px] font-extrabold text-slate-900 shadow-xs">
+                  <ShieldCheck className="h-3 w-3 text-emerald-600" />
                   <span>Certified Engineer</span>
                 </div>
 
-                <div className="absolute bottom-2.5 inset-x-2.5 flex items-center justify-between rounded-xl bg-white/95 backdrop-blur-md border border-slate-200/80 px-3 py-2 text-slate-900 shadow-md">
-                  <div className="flex items-center gap-2">
+                <div className="absolute bottom-2 inset-x-2 flex items-center justify-between rounded-lg bg-white/95 backdrop-blur-md border border-slate-200/80 px-2.5 py-1.5 text-slate-900 shadow-xs">
+                  <div className="flex items-center gap-1.5">
                     <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[11.5px] font-bold text-slate-800">On-Site EPC Installation Team</span>
+                    <span className="text-[11px] font-bold text-slate-800">On-Site EPC Team</span>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-[11px] font-extrabold text-amber-600">
+                  <span className="inline-flex items-center gap-1 text-[10.5px] font-extrabold text-amber-600">
                     <Star className="h-3 w-3 fill-amber-500 text-amber-500" />
                     <span>4.9 Rating</span>
                   </span>
                 </div>
               </div>
 
-              {/* ── 4. Tick-Point Items: Compact Pills on Single Line (Font 15px, Nowrap) ── */}
-              <div className="mt-3.5 sm:mt-4 flex items-center gap-1.5 sm:gap-2 flex-nowrap overflow-x-auto sm:overflow-visible">
-                <div className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl bg-white/90 border border-emerald-200/90 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[13px] sm:text-[15px] font-semibold text-slate-800 shadow-xs whitespace-nowrap">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+              {/* ── 4. Tick-Point Items: Compact Pills on Mobile (Wrap gracefully without cut-off) ── */}
+              <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <div className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl bg-white/90 border border-emerald-200/90 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[12px] sm:text-[14.5px] font-semibold text-slate-800 shadow-xs">
+                  <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 flex-shrink-0" />
                   <span>Up to 90% Savings</span>
                 </div>
-                <div className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl bg-white/90 border border-emerald-200/90 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[13px] sm:text-[15px] font-semibold text-slate-800 shadow-xs whitespace-nowrap">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                <div className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl bg-white/90 border border-emerald-200/90 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[12px] sm:text-[14.5px] font-semibold text-slate-800 shadow-xs">
+                  <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 flex-shrink-0" />
                   <span>25-Yr Warranty</span>
                 </div>
-                <div className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl bg-white/90 border border-emerald-200/90 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[13px] sm:text-[15px] font-semibold text-slate-800 shadow-xs whitespace-nowrap">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                <div className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl bg-white/90 border border-emerald-200/90 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[12px] sm:text-[14.5px] font-semibold text-slate-800 shadow-xs">
+                  <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 flex-shrink-0" />
                   <span>Govt Subsidy</span>
                 </div>
               </div>
 
-              {/* ── 5. Action Buttons: Primary Green (#16A34A) + Secondary White with Green 1.5px Border ── */}
-              <div className="mt-4 sm:mt-6 grid grid-cols-2 sm:flex sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
+              {/* ── 5. Action Buttons: Touch-friendly on mobile, side-by-side on tablet/desktop ── */}
+              <div className="mt-3.5 sm:mt-6 flex flex-col xs:flex-row items-stretch xs:items-center gap-2.5 sm:gap-4 w-full sm:w-auto">
                 <LocalizedClientLink
                   href="/calculator"
                   style={{
                     boxShadow: "0 4px 18px rgba(22, 163, 74, 0.35)",
                   }}
-                  className="group inline-flex min-h-[48px] sm:min-h-[52px] items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 hover:shadow-[0_6px_26px_rgba(22,163,74,0.45)] px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-white transition-all duration-300 hover:-translate-y-0.5 active:scale-95 text-center leading-tight"
+                  className="group inline-flex min-h-[46px] sm:min-h-[52px] items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 hover:shadow-[0_6px_26px_rgba(22,163,74,0.45)] px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-white transition-all duration-300 hover:-translate-y-0.5 active:scale-95 text-center leading-tight flex-1 sm:flex-none"
                 >
                   <span>Calculate Savings</span>
                   <ArrowRight className="ml-1.5 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5 text-white flex-shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
@@ -142,7 +139,7 @@ export default function Hero() {
 
                 <LocalizedClientLink
                   href="/contact"
-                  className="inline-flex min-h-[48px] sm:min-h-[52px] items-center justify-center rounded-xl bg-white hover:bg-emerald-50/70 border-[1.5px] border-emerald-600 px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-emerald-700 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700 active:scale-95 text-center leading-tight"
+                  className="inline-flex min-h-[46px] sm:min-h-[52px] items-center justify-center rounded-xl bg-white hover:bg-emerald-50/70 border-[1.5px] border-emerald-600 px-4 sm:px-7 font-inter text-[14px] sm:text-[15.5px] font-extrabold text-emerald-700 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700 active:scale-95 text-center leading-tight flex-1 sm:flex-none"
                 >
                   Get Free Quote
                 </LocalizedClientLink>

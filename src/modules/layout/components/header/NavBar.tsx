@@ -53,18 +53,18 @@ export default function NavBar() {
           backgroundColor: menuOpen
             ? "#ffffff"
             : scrolled
-            ? "rgba(255, 255, 255, 0.94)"
+            ? "rgba(255, 255, 255, 0.95)"
             : isMobile
-            ? "rgba(255, 255, 255, 0.22)"
+            ? "rgba(255, 255, 255, 0.94)"
             : "rgba(255, 255, 255, 0.85)",
-          backdropFilter: menuOpen ? "none" : scrolled ? "blur(12px)" : "blur(8px)",
-          WebkitBackdropFilter: menuOpen ? "none" : scrolled ? "blur(12px)" : "blur(8px)",
+          backdropFilter: menuOpen ? "none" : scrolled || isMobile ? "blur(12px)" : "blur(8px)",
+          WebkitBackdropFilter: menuOpen ? "none" : scrolled || isMobile ? "blur(12px)" : "blur(8px)",
         }}
         className={`w-full transition-all duration-300 border-b ${
           menuOpen
             ? "border-slate-200 shadow-sm"
-            : scrolled
-            ? "border-slate-200/80 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)]"
+            : scrolled || isMobile
+            ? "border-slate-200/80 shadow-[0_2px_14px_rgba(0,0,0,0.05)]"
             : "border-white/25 shadow-none"
           }`}
       >
