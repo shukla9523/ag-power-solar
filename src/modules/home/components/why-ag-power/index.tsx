@@ -1,9 +1,60 @@
+"use client"
+
 /**
  * Section 5: Why AG POWER?
  * Clear, verifiable company differentiators and engineering standards.
  */
-import { Compass, Cpu, Wrench, FileCheck2, HeadphonesIcon, ShieldCheck } from "lucide-react"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { useEffect, useState, useRef } from "react"
+import { Compass, Cpu, Wrench, FileCheck2, HeadphonesIcon, ShieldCheck, Award } from "lucide-react"
+
+function StatCounter({
+  target,
+  suffix = "",
+  prefix = "",
+}: {
+  target: number
+  suffix?: string
+  prefix?: string
+}) {
+  const [count, setCount] = useState(0)
+  const ref = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    let started = false
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !started) {
+          started = true
+          let start = 0
+          const duration = 1500
+          const stepTime = 25
+          const totalSteps = duration / stepTime
+          const increment = target / totalSteps
+          const timer = setInterval(() => {
+            start += increment
+            if (start >= target) {
+              setCount(target)
+              clearInterval(timer)
+            } else {
+              setCount(Math.floor(start))
+            }
+          }, stepTime)
+        }
+      },
+      { threshold: 0.2 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [target])
+
+  return (
+    <span ref={ref}>
+      {prefix}
+      {count}
+      {suffix}
+    </span>
+  )
+}
 
 const differentiators = [
   {
@@ -40,15 +91,19 @@ const differentiators = [
 
 export default function WhyAgPower() {
   return (
-    <section className="bg-slate-50/70 py-16 sm:py-20 lg:py-24 border-y border-slate-200/60">
+    <section className="bg-white py-24" id="why-ag-power">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[42px]">
-            Why Property Owners Trust AG POWER
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
+            <Award className="h-3.5 w-3.5 text-emerald-600" />
+            <span>The AG Power Advantage</span>
+          </div>
+          <h2 className="font-manrope text-[32px] sm:text-[42px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+            Why Property Owners <span className="text-emerald-600">Trust AG POWER</span>
           </h2>
-          <p className="mt-4 text-[16px] leading-relaxed text-slate-600 sm:text-[18px]">
+          <p className="mt-4 max-w-[700px] mx-auto text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
             Solar is a 25-year commitment. We approach every installation with uncompromised engineering precision, certified components, and transparent execution.
           </p>
         </div>
@@ -60,12 +115,12 @@ export default function WhyAgPower() {
             return (
               <div
                 key={i}
-                className="group flex flex-col rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:border-emerald-500/50 hover:shadow-xl hover:-translate-y-1"
+                className="group flex flex-col rounded-2xl border border-emerald-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-800 transition-colors group-hover:bg-emerald-800 group-hover:text-amber-400 group-hover:shadow-md">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 shadow-sm transition-colors group-hover:scale-105">
                   <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-5 font-manrope text-[19px] font-bold text-slate-900">
+                <h3 className="mt-5 font-manrope text-[19px] font-bold text-forest-deep">
                   {diff.title}
                 </h3>
                 <p className="mt-2.5 text-[14px] leading-relaxed text-slate-600">
@@ -76,31 +131,36 @@ export default function WhyAgPower() {
           })}
         </div>
 
-        {/* Stats Strip (Frosted Glassmorphic Emerald & Midnight Container) */}
-        <div className="relative overflow-hidden mt-12 sm:mt-16 grid grid-cols-2 gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-emerald-950 via-slate-950 to-emerald-950 p-5 sm:p-8 lg:p-10 text-white sm:grid-cols-4 border border-emerald-500/20 shadow-2xl backdrop-blur-2xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-emerald-400/10 before:via-transparent before:to-amber-500/10 before:pointer-events-none">
+        {/* Stats Strip with Count-Up Animation in Deep Forest Gradient */}
+        <div
+          style={{
+            background: "linear-gradient(135deg, #14532D 0%, #166534 100%)",
+          }}
+          className="relative overflow-hidden mt-12 sm:mt-16 grid grid-cols-2 gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 text-white sm:grid-cols-4 border border-emerald-500/20 shadow-xl"
+        >
           <div className="relative z-10 text-center">
             <p className="font-manrope text-[28px] sm:text-[38px] lg:text-[44px] font-black text-amber-400 tracking-tight">
-              25+
+              <StatCounter target={25} suffix="+" />
             </p>
-            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-300">Years Warranty</p>
+            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-100">Years Warranty</p>
           </div>
           <div className="relative z-10 text-center">
             <p className="font-manrope text-[28px] sm:text-[38px] lg:text-[44px] font-black text-white tracking-tight">
-              90%
+              <StatCounter target={90} suffix="%" />
             </p>
-            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-300">Bill Reduction</p>
+            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-100">Bill Reduction</p>
           </div>
           <div className="relative z-10 text-center">
             <p className="font-manrope text-[28px] sm:text-[38px] lg:text-[44px] font-black text-amber-400 tracking-tight">
-              100%
+              <StatCounter target={100} suffix="%" />
             </p>
-            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-300">Tier-1 Hardware</p>
+            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-100">Tier-1 Hardware</p>
           </div>
           <div className="relative z-10 text-center">
             <p className="font-manrope text-[28px] sm:text-[38px] lg:text-[44px] font-black text-white tracking-tight">
               3-4 Yrs
             </p>
-            <p className="mt-1 text-[13px] font-medium text-emerald-300">Typical Payback</p>
+            <p className="mt-1 text-[13px] font-medium text-emerald-100">Typical Payback</p>
           </div>
         </div>
 

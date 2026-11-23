@@ -55,15 +55,19 @@ const solutions = [
 
 export default function SolarSolutions() {
   return (
-    <section className="bg-slate-50/70 py-16 sm:py-20 lg:py-24 border-y border-slate-200/60">
+    <section className="bg-white py-24" id="solutions">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[42px]">
-            Engineered Solar Solutions for Every Need
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
+            <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+            <span>Our Capabilities</span>
+          </div>
+          <h2 className="font-manrope text-[32px] sm:text-[42px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+            Engineered Solar Solutions for <span className="text-emerald-600">Every Need</span>
           </h2>
-          <p className="mt-4 text-[16px] leading-relaxed text-slate-600 sm:text-[18px]">
+          <p className="mt-4 max-w-[700px] mx-auto text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
             From individual rooftops to massive industrial sheds, AG POWER provides precision-engineered solar installations designed for maximum generational output.
           </p>
         </div>
@@ -75,21 +79,21 @@ export default function SolarSolutions() {
             return (
               <div
                 key={sol.id}
-                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-500/50 hover:shadow-[0_20px_40px_-10px_rgba(16,185,129,0.15)]"
+                className="group relative flex flex-col justify-between rounded-2xl border border-emerald-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)]"
               >
                 <div>
                   {/* Top Bar with Icon & Badge */}
                   <div className="flex items-center justify-between">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-amber-400 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-emerald-500/20">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 shadow-sm transition-all duration-300 group-hover:scale-105">
                       <Icon className="h-7 w-7" />
                     </div>
-                    <span className="rounded-xl border border-emerald-200/80 bg-emerald-50/80 px-3 py-1 text-[11px] font-bold text-emerald-900 shadow-xs">
+                    <span className="rounded-xl border border-emerald-200/80 bg-emerald-50/80 px-3 py-1 text-[11px] font-bold text-forest-deep shadow-xs">
                       {sol.badge}
                     </span>
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="mt-6 font-manrope text-[24px] font-bold text-slate-900">
+                  <h3 className="mt-6 font-manrope text-[24px] font-bold text-forest-deep">
                     {sol.title}
                   </h3>
                   <p className="text-[13px] font-semibold text-slate-500">
@@ -103,13 +107,13 @@ export default function SolarSolutions() {
 
                   {/* Benefit Points */}
                   <div className="mt-6 border-t border-slate-100 pt-5">
-                    <p className="text-[12px] font-bold uppercase tracking-wider text-slate-900">
+                    <p className="text-[12px] font-bold uppercase tracking-wider text-forest-deep">
                       Key Highlights:
                     </p>
                     <ul className="mt-3 flex flex-col gap-2.5">
                       {sol.benefits.map((benefit, i) => (
                         <li key={i} className="flex items-start gap-2.5 text-[13px] text-slate-700">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-sky-600" />
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-600" />
                           <span>{benefit}</span>
                         </li>
                       ))}
@@ -121,7 +125,7 @@ export default function SolarSolutions() {
                 <div className="mt-8 pt-4">
                   <LocalizedClientLink
                     href={sol.href}
-                    className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 font-inter text-[14px] font-bold text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all duration-200 hover:shadow-[0_0_28px_rgba(16,185,129,0.5)] hover:-translate-y-0.5 active:scale-95"
+                    className="inline-flex min-h-[46px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 font-inter text-[14px] font-bold text-white shadow-[0_4px_16px_rgba(22,163,74,0.3)] transition-all duration-200 hover:shadow-[0_6px_22px_rgba(22,163,74,0.45)] hover:-translate-y-0.5 active:scale-95"
                   >
                     <span>{sol.ctaText}</span>
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 text-white" />

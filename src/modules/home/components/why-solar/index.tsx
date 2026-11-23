@@ -40,15 +40,23 @@ const benefits = [
 
 export default function WhySolar() {
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-24">
+    <section
+      className="py-24 transition-colors"
+      style={{ backgroundColor: "#F0FDF4" }}
+      id="why-solar"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[42px]">
-            Why Switch to Rooftop Solar Energy?
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
+            <SunMedium className="h-3.5 w-3.5 text-emerald-600" />
+            <span>Why Go Solar</span>
+          </div>
+          <h2 className="font-manrope text-[32px] sm:text-[42px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+            Why Switch to <span className="text-emerald-600">Rooftop Solar</span> Energy?
           </h2>
-          <p className="mt-4 text-[16px] leading-relaxed text-slate-600 sm:text-[18px]">
+          <p className="mt-4 max-w-[700px] mx-auto text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
             Solar energy isn&apos;t just an environmental statement — it is one of the most reliable, high-yield financial investments you can make for your home or business.
           </p>
         </div>
@@ -60,12 +68,12 @@ export default function WhySolar() {
             return (
               <div
                 key={index}
-                className="group relative rounded-2xl border border-slate-200/80 bg-slate-50/60 p-8 transition-all duration-300 hover:border-sky-400/50 hover:bg-white hover:shadow-xl hover:-translate-y-1"
+                className="group relative rounded-2xl border border-emerald-200/80 bg-white p-8 transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 text-amber-400 shadow-md transition-transform group-hover:scale-110">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 shadow-sm transition-transform duration-300 group-hover:scale-110">
                   <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-6 font-manrope text-[20px] font-bold text-slate-900">
+                <h3 className="mt-6 font-manrope text-[20px] font-bold text-forest-deep">
                   {item.title}
                 </h3>
                 <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
@@ -76,22 +84,27 @@ export default function WhySolar() {
           })}
         </div>
 
-        {/* Bottom Banner (Frosted Midnight Blue Glassmorphic Banner) */}
-        <div className="relative overflow-hidden mt-12 flex flex-col items-center justify-between gap-6 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 p-6 sm:p-8 lg:p-10 text-white sm:flex-row border border-white/10 shadow-2xl backdrop-blur-2xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-sky-500/10 before:via-transparent before:to-amber-500/10 before:pointer-events-none">
+        {/* Bottom Banner in Deep Green Gradient */}
+        <div
+          style={{
+            background: "linear-gradient(135deg, #14532D 0%, #166534 100%)",
+          }}
+          className="relative overflow-hidden mt-12 flex flex-col items-center justify-between gap-6 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-white sm:flex-row border border-emerald-500/20 shadow-xl"
+        >
           <div className="relative z-10 text-center sm:text-left">
             <h4 className="font-manrope text-[20px] font-bold text-white sm:text-[24px]">
               Want to see how much your rooftop can generate?
             </h4>
-            <p className="mt-1.5 text-[13.5px] sm:text-[14px] text-sky-300">
+            <p className="mt-1.5 text-[13.5px] sm:text-[14px] text-emerald-100">
               Use our quick calculator to estimate your system capacity, savings, and investment.
             </p>
           </div>
           <LocalizedClientLink
             href="/calculator"
-            className="relative z-10 inline-flex min-h-[48px] w-full sm:w-auto flex-shrink-0 items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 font-inter text-[15px] font-bold text-white shadow-lg transition-all hover:scale-105 active:scale-95 text-center"
+            className="relative z-10 inline-flex min-h-[48px] w-full sm:w-auto flex-shrink-0 items-center justify-center rounded-xl bg-amber-400 hover:bg-amber-300 px-6 font-inter text-[15px] font-extrabold text-forest-deep shadow-md transition-all hover:-translate-y-0.5 active:scale-95 text-center"
           >
             <span>Open Solar Calculator</span>
-            <ArrowUpRight className="ml-1.5 h-4 w-4 text-white" />
+            <ArrowUpRight className="ml-1.5 h-4 w-4 text-forest-deep" />
           </LocalizedClientLink>
         </div>
 

@@ -77,23 +77,27 @@ const featuredPanels = [
 
 export default function FeaturedSolarPanels() {
   return (
-    <section className="bg-slate-50/70 py-16 sm:py-20 lg:py-24 border-y border-slate-200/60" id="solar-panels">
+    <section className="bg-white py-24" id="solar-panels">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div className="max-w-2xl">
-            <h2 className="font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[40px]">
-              High-Efficiency Tier-1 Solar Panels
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
+              <Award className="h-3.5 w-3.5 text-emerald-600" />
+              <span>Certified Hardware</span>
+            </div>
+            <h2 className="font-manrope text-[32px] sm:text-[40px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+              High-Efficiency <span className="text-emerald-600">Tier-1 Solar Panels</span>
             </h2>
-            <p className="mt-3 text-[16px] text-slate-600">
+            <p className="mt-3 max-w-[700px] text-[16px] text-slate-600">
               Real high-efficiency photovoltaic modules engineered for maximum generation, harsh Indian weather durability, and guaranteed 25–30 year customer returns.
             </p>
           </div>
 
           <LocalizedClientLink
             href="/solar-panels"
-            className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 px-5 font-inter text-[14px] font-bold text-slate-900 transition-all shadow-sm active:scale-95 text-center"
+            className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white hover:bg-emerald-50/50 border border-emerald-300 px-5 font-inter text-[14px] font-bold text-forest-deep transition-all shadow-sm active:scale-95 text-center"
           >
             <span>View Full Catalogue</span>
             <ArrowRight className="h-4 w-4 text-emerald-700" />
@@ -105,7 +109,7 @@ export default function FeaturedSolarPanels() {
           {featuredPanels.map((panel, idx) => (
             <div
               key={panel.id}
-              className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:border-emerald-500/50 hover:shadow-2xl hover:-translate-y-1.5"
+              className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-emerald-200/80 bg-white shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
             >
               <div>
                 {/* ── Real Solar Panel Photo with Customer Benefits Overlay ── */}

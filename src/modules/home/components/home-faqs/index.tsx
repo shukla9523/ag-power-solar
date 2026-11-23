@@ -39,21 +39,29 @@ export default function HomeFaqs() {
   }
 
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-24">
+    <section
+      className="py-24 transition-colors"
+      style={{ backgroundColor: "#F0FDF4" }}
+      id="faqs"
+    >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[42px]">
-            Everything You Need to Know About Solar
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
+            <HelpCircle className="h-3.5 w-3.5 text-emerald-600" />
+            <span>Frequently Asked Questions</span>
+          </div>
+          <h2 className="font-manrope text-[32px] sm:text-[42px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+            Everything You Need to Know <span className="text-emerald-600">About Solar</span>
           </h2>
-          <p className="mt-4 text-[16px] text-slate-600 sm:text-[18px]">
+          <p className="mt-4 max-w-[700px] mx-auto text-[16px] sm:text-[18px] text-slate-600 leading-relaxed">
             Clear, straightforward answers about rooftop solar investment, net-metering, and installation.
           </p>
         </div>
 
         {/* Accordion List */}
-        <div className="mt-12 divide-y divide-slate-100 rounded-2xl border border-slate-200/80 bg-slate-50/50 p-4 sm:p-6 shadow-sm">
+        <div className="mt-12 divide-y divide-emerald-100 rounded-2xl border border-emerald-200/80 bg-white p-4 sm:p-6 shadow-sm">
           {defaultFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx
             return (
@@ -64,17 +72,17 @@ export default function HomeFaqs() {
                   className="flex w-full items-center justify-between text-left focus:outline-none group"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-manrope text-[16px] font-bold text-slate-900 sm:text-[18px] group-hover:text-amber-600 transition-colors">
+                  <span className="font-manrope text-[16px] sm:text-[18px] font-bold text-forest-deep group-hover:text-emerald-600 transition-colors">
                     {faq.q}
                   </span>
-                  <span className="ml-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm transition-all group-hover:bg-slate-900 group-hover:text-white">
+                  <span className="ml-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-emerald-50 text-forest-deep shadow-xs transition-all group-hover:bg-emerald-600 group-hover:text-white">
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180 text-amber-500" : ""}`}
+                      className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180 text-emerald-600 group-hover:text-white" : ""}`}
                     />
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="mt-3 text-[14px] leading-relaxed text-slate-600 sm:text-[15px] pr-8">
+                  <div className="mt-3 text-[14px] sm:text-[15px] leading-relaxed text-slate-600 pr-8">
                     {faq.a}
                   </div>
                 )}
@@ -87,10 +95,10 @@ export default function HomeFaqs() {
         <div className="mt-10 text-center">
           <LocalizedClientLink
             href="/faq"
-            className="inline-flex items-center gap-1.5 font-inter text-[15px] font-bold text-slate-900 hover:text-amber-500 transition-colors"
+            className="inline-flex items-center gap-1.5 font-inter text-[15px] font-bold text-forest-deep hover:text-emerald-600 transition-colors"
           >
             <span>Have more questions? Browse all FAQs</span>
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4 text-emerald-600" />
           </LocalizedClientLink>
         </div>
 

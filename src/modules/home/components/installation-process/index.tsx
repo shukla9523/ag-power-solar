@@ -44,15 +44,23 @@ const steps = [
 
 export default function InstallationProcess() {
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-24">
+    <section
+      className="py-24 transition-colors"
+      style={{ backgroundColor: "#F0FDF4" }}
+      id="process"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-manrope text-[32px] font-extrabold tracking-tight text-slate-900 sm:text-[42px]">
-            Your Seamless Solar Journey in 6 Steps
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
+            <CheckCheck className="h-3.5 w-3.5 text-emerald-600" />
+            <span>Step-by-Step Process</span>
+          </div>
+          <h2 className="font-manrope text-[32px] sm:text-[42px] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+            Your Seamless Solar Journey in <span className="text-emerald-600">6 Steps</span>
           </h2>
-          <p className="mt-4 text-[16px] leading-relaxed text-slate-600 sm:text-[18px]">
+          <p className="mt-4 max-w-[700px] mx-auto text-[16px] sm:text-[18px] leading-relaxed text-slate-600">
             From initial enquiry to net-metering commissioning, AG POWER delivers a transparent, fully managed experience without DISCOM hassles.
           </p>
         </div>
@@ -64,19 +72,19 @@ export default function InstallationProcess() {
             return (
               <div
                 key={step.num}
-                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-slate-50/50 p-7 shadow-sm transition-all duration-300 hover:border-sky-400/50 hover:bg-white hover:shadow-xl hover:-translate-y-1"
+                className="group relative flex flex-col justify-between rounded-2xl border border-emerald-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
               >
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="font-manrope text-[26px] font-black text-amber-500 tracking-tight transition-transform duration-300 group-hover:scale-110">
                       {step.num}
                     </span>
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-800 transition-all duration-300 group-hover:bg-slate-900 group-hover:text-amber-400 group-hover:shadow-md">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 transition-all duration-300 group-hover:scale-105">
                       <Icon className="h-5 w-5" />
                     </div>
                   </div>
 
-                  <h3 className="mt-5 font-manrope text-[19px] font-bold text-slate-900">
+                  <h3 className="mt-5 font-manrope text-[19px] font-bold text-forest-deep">
                     {step.title}
                   </h3>
                   <p className="mt-2.5 text-[14px] leading-relaxed text-slate-600">
@@ -84,7 +92,7 @@ export default function InstallationProcess() {
                   </p>
                 </div>
 
-                <div className="mt-6 h-1 w-12 rounded-full bg-slate-200 transition-all duration-500 group-hover:w-full group-hover:bg-gradient-to-r group-hover:from-sky-400 group-hover:to-amber-500" />
+                <div className="mt-6 h-1 w-12 rounded-full bg-emerald-100 transition-all duration-500 group-hover:w-full group-hover:bg-emerald-600" />
               </div>
             )
           })}
