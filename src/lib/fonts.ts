@@ -1,11 +1,23 @@
 /**
  * @file fonts.ts
- * @description Self-hosted brand fonts for AG POWER: Manrope (headings, numbers) + Inter (body, UI).
+ * @description Self-hosted brand fonts for AG POWER: Assistant (body, UI) + Sans-Serif (headings).
  *
- * Uses @fontsource-variable packages loaded locally via next/font/local for zero external network requests.
- * Backward compatible exports preserve epilogue / outfit / dmSans aliases mapping to Manrope / Inter.
+ * Uses @fontsource/assistant for Assistant body font + local fallbacks for zero external network requests.
+ * Backward compatible exports preserve epilogue / outfit / dmSans / manrope / inter aliases.
  */
 import localFont from "next/font/local"
+
+const assistantLatin = localFont({
+  src: [
+    { path: "../../node_modules/@fontsource/assistant/files/assistant-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "../../node_modules/@fontsource/assistant/files/assistant-latin-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "../../node_modules/@fontsource/assistant/files/assistant-latin-700-normal.woff2", weight: "700", style: "normal" },
+  ],
+  display: "swap",
+  preload: true,
+  adjustFontFallback: "Arial",
+  variable: "--font-assistant-latin",
+})
 
 const manropeLatin = localFont({
   src: [
@@ -51,8 +63,9 @@ const interLatinExt = localFont({
   variable: "--font-inter-latin-ext",
 })
 
-/** Put on <html>: defines every --font-*-latin(-ext) variable used by the font tokens. */
+/** Put on <html>: defines every font variable used by the font tokens. */
 export const fontVariables = [
+  assistantLatin,
   manropeLatin,
   manropeLatinExt,
   interLatin,
@@ -65,11 +78,12 @@ export type FontClass = {
   className: string
 }
 
-export const manrope: FontClass = { className: "font-manrope" }
-export const inter: FontClass = { className: "font-inter" }
+export const assistant: FontClass = { className: "font-assistant" }
+export const manrope: FontClass = { className: "font-sans" }
+export const inter: FontClass = { className: "font-assistant" }
 
-// Aliases for backward-compatibility with existing Momentum code
-export const epilogue: FontClass = { className: "font-manrope" }
-export const outfit: FontClass = { className: "font-inter" }
-export const mansalva: FontClass = { className: "font-inter" }
-export const dmSans: FontClass = { className: "font-inter" }
+// Aliases for backward-compatibility with existing code
+export const epilogue: FontClass = { className: "font-sans" }
+export const outfit: FontClass = { className: "font-assistant" }
+export const mansalva: FontClass = { className: "font-sans" }
+export const dmSans: FontClass = { className: "font-assistant" }

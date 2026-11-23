@@ -50,16 +50,20 @@ export default function NavBar() {
     <>
       <div
         style={{
-          backgroundColor: menuOpen ? "#ffffff" : "rgba(255, 255, 255, 0.92)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
+          backgroundColor: menuOpen
+            ? "#ffffff"
+            : scrolled
+            ? "rgba(255, 255, 255, 0.94)"
+            : "rgba(255, 255, 255, 0.22)",
+          backdropFilter: menuOpen ? "none" : scrolled ? "blur(12px)" : "blur(8px)",
+          WebkitBackdropFilter: menuOpen ? "none" : scrolled ? "blur(12px)" : "blur(8px)",
         }}
         className={`w-full transition-all duration-300 border-b ${
           menuOpen
-            ? "border-slate-200"
+            ? "border-slate-200 shadow-sm"
             : scrolled
             ? "border-slate-200/80 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)]"
-            : "border-slate-200/70 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)]"
+            : "border-white/25 shadow-none"
           }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-3.5 py-3 sm:px-6 sm:py-3.5 lg:px-8">
