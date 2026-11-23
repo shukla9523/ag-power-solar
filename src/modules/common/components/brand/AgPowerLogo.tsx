@@ -31,9 +31,9 @@ export default function AgPowerLogo({
   }
 
   const subSizes = {
-    sm: "text-[8.5px] sm:text-[9px] tracking-[0.24em]",
-    md: "text-[9.5px] sm:text-[10.5px] tracking-[0.25em]",
-    lg: "text-[11px] sm:text-[12px] tracking-[0.26em]",
+    sm: "text-[8.5px] sm:text-[9px] tracking-[0.14em] sm:tracking-[0.24em]",
+    md: "text-[9.5px] sm:text-[10.5px] tracking-[0.14em] sm:tracking-[0.25em]",
+    lg: "text-[11px] sm:text-[12px] tracking-[0.16em] sm:tracking-[0.26em]",
   }
 
   const iconDim = iconDimensions[size]

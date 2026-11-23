@@ -1,10 +1,15 @@
-import { Metadata } from "next"
+import { Metadata, Viewport } from "next"
 import "styles/globals.css"
 import { dmSans as bodyFont, fontVariables } from "@lib/fonts"
 import Script from "next/script"
 import { DEFAULT_BASE_URL } from "@lib/schema/config"
 import { getSiteSetting } from "@lib/data/seo"
 import { buildThemeCss } from "@lib/theme/theme-tokens"
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+}
 
 /**
  * Site-wide defaults only. Canonical URLs and robots are set by each page from its own
@@ -44,6 +49,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en-IN" className={fontVariables}>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         {themeCss && <style id="theme-tokens" dangerouslySetInnerHTML={{ __html: themeCss }} />}
         {/*
           Google Tag Manager. Loaded only when NEXT_PUBLIC_GTM_ID is explicitly configured.
