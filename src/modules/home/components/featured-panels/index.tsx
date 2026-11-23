@@ -1,84 +1,15 @@
+"use client"
+
 import React from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { ArrowRight, CheckCircle2, ShieldCheck, Zap, Award, Sparkles, TrendingDown } from "lucide-react"
-
-const featuredPanels = [
-  {
-    id: "topcon-bifacial-550w",
-    slug: "n-type-topcon-bifacial",
-    brand: "Waaree Solar",
-    model: "N-Type TOPCon Dual-Glass Bifacial",
-    wattage: "550W - 580W",
-    technology: "N-Type TOPCon Bifacial",
-    efficiency: "22.6%",
-    bifaciality: "Up to 80% rear side gain",
-    warranty: "12-Yr Product / 30-Yr Linear Power",
-    idealFor: "Commercial rooftops & High-yield residences",
-    badge: "Highest Efficiency",
-    image: "/panels/n-type-topcon-bifacial/main.webp",
-    customerBenefit: {
-      tag: "Up to 90% Bill Savings",
-      highlight: "+25% Extra Generation from Rear Glass",
-      points: [
-        "Cuts monthly electricity bills by up to 90%",
-        "Direct PM Surya Ghar subsidy eligible (up to ₹78,000)",
-        "30-Year linear power warranty guarantees long-term output",
-        "Dual-glass structure survives 150 km/h wind & hailstorms",
-      ],
-    },
-  },
-  {
-    id: "mono-perc-540w",
-    slug: "mono-perc-half-cut-mbb",
-    brand: "Adani Solar",
-    model: "Mono PERC Half-Cut MBB Module",
-    wattage: "540W - 550W",
-    technology: "Mono PERC Monofacial",
-    efficiency: "21.3%",
-    bifaciality: "Front side optimized",
-    warranty: "12-Yr Product / 25-Yr Linear Power",
-    idealFor: "Standard residential rooftops & Villas",
-    badge: "Best Value & Fast Payback",
-    image: "/panels/mono-perc-half-cut-mbb/main.webp",
-    customerBenefit: {
-      tag: "3.2-Year Fast ROI",
-      highlight: "Lowest Capital Cost per Watt in India",
-      points: [
-        "Fastest payback period with immediate grid bill savings",
-        "Full DISCOM net-metering & ALMM Tier-1 compliance",
-        "Half-cut multi-busbar cells minimize tree & building shadow loss",
-        "25-Year performance warranty backed by Adani Solar",
-      ],
-    },
-  },
-  {
-    id: "all-black-450w",
-    slug: "architectural-all-black-premium",
-    brand: "Tata Power Solar",
-    model: "Architectural All-Black Premium Series",
-    wattage: "440W - 460W",
-    technology: "N-Type Monocrystalline",
-    efficiency: "22.1%",
-    bifaciality: "Full matte black aesthetic",
-    warranty: "15-Yr Product / 25-Yr Linear Power",
-    idealFor: "Modern luxury architectural residences",
-    badge: "Architectural Choice",
-    image: "/panels/architectural-all-black-premium/main.webp",
-    customerBenefit: {
-      tag: "Luxury Villa Aesthetics",
-      highlight: "Seamless Full Matte Black Finish",
-      points: [
-        "Blends seamlessly with modern rooftop architecture",
-        "Superior generation even during extreme 45°C+ summer heat",
-        "Backed by 25-Year Tata Power reliability & trust",
-        "Anti-dust hydrophobic coating reduces cleaning effort",
-      ],
-    },
-  },
-]
+import { SOLAR_PANELS } from "@data/panels"
+import { ArrowRight, CheckCircle2, Award, Sparkles, Zap } from "lucide-react"
 
 export default function FeaturedSolarPanels() {
+  const router = useRouter()
+
   return (
     <section className="bg-white py-[72px]" id="solar-panels">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -109,24 +40,24 @@ export default function FeaturedSolarPanels() {
 
         {/* 3 Featured Panel Cards with Real Photos & Customer Benefits */}
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {featuredPanels.map((panel, idx) => (
+          {SOLAR_PANELS.map((panel, idx) => (
             <div
               key={panel.slug}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-emerald-200/80 bg-white shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1"
+              onClick={() => router.push(`/solar-panels/${panel.slug}`)}
+              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-emerald-200/80 bg-white shadow-sm transition-all duration-300 hover:border-emerald-400 hover:shadow-[0_12px_32px_rgba(22,163,74,0.12)] hover:-translate-y-1 cursor-pointer"
             >
               {/* 3px Yellow Top Border on Card Hover */}
               <div className="absolute top-0 inset-x-0 h-[3px] bg-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl z-20 pointer-events-none" />
 
               <div>
                 {/* ── Real Solar Panel Photo with Customer Benefits Overlay (Clickable to Details Page) ── */}
-                <LocalizedClientLink
-                  href={`/solar-panels/${panel.slug}`}
+                <div
                   className="relative block h-64 sm:h-72 w-full overflow-hidden bg-slate-900 cursor-pointer"
-                  aria-label={`View detailed specifications for ${panel.brand} ${panel.model}`}
+                  aria-label={`View detailed specifications for ${panel.brand} ${panel.name}`}
                 >
                   <Image
-                    src={panel.image}
-                    alt={`${panel.brand} ${panel.model}`}
+                    src={panel.images[0]?.src || "/panels/n-type-topcon-bifacial/main.webp"}
+                    alt={panel.images[0]?.alt || `${panel.brand} ${panel.name}`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority={idx === 0}
@@ -144,7 +75,7 @@ export default function FeaturedSolarPanels() {
                     </span>
 
                     <span className="rounded-full bg-slate-950/85 px-3 py-1 font-manrope text-[13px] font-black text-amber-400 backdrop-blur-md shadow-md border border-white/20">
-                      {panel.wattage}
+                      {panel.wattageRange}
                     </span>
                   </div>
 
@@ -164,7 +95,7 @@ export default function FeaturedSolarPanels() {
                       </p>
                     </div>
                   </div>
-                </LocalizedClientLink>
+                </div>
 
                 {/* ── Card Content: 28px Padding, 24px Titles, 16px Body ── */}
                 <div className="p-[28px]">
@@ -180,12 +111,7 @@ export default function FeaturedSolarPanels() {
                   </div>
 
                   <h3 className="mt-2 font-manrope text-[24px] font-extrabold leading-snug text-slate-900 group-hover:text-emerald-700 transition-colors">
-                    <LocalizedClientLink
-                      href={`/solar-panels/${panel.slug}`}
-                      className="hover:underline"
-                    >
-                      {panel.model}
-                    </LocalizedClientLink>
+                    {panel.name}
                   </h3>
 
                   <p className="mt-1 text-[13.5px] font-semibold text-slate-500">
@@ -219,14 +145,14 @@ export default function FeaturedSolarPanels() {
                     <div className="rounded-xl bg-slate-50 p-2.5">
                       <span className="text-slate-500 block text-[11px]">Warranty</span>
                       <strong className="font-manrope font-extrabold text-slate-900 text-[13px]">
-                        {panel.warranty.split("/")[1] || panel.warranty}
+                        {panel.warranty.performance.split(" ")[0]} Linear Power
                       </strong>
                     </div>
 
                     <div className="rounded-xl bg-slate-50 p-2.5 col-span-2">
                       <span className="text-slate-500 block text-[11px]">Best Suited For</span>
                       <span className="font-medium text-slate-800 text-[12px]">
-                        {panel.idealFor}
+                        {panel.bestFor.title}
                       </span>
                     </div>
                   </div>
@@ -245,6 +171,9 @@ export default function FeaturedSolarPanels() {
 
                 <LocalizedClientLink
                   href={`/contact?panel=${panel.slug}`}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                  }}
                   className="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 font-inter text-[14px] font-extrabold text-white shadow-md transition-all active:scale-95"
                 >
                   <span>Enquire For This Panel</span>
