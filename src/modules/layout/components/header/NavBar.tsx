@@ -46,62 +46,49 @@ export default function NavBar() {
     return () => { document.body.style.overflow = "" }
   }, [menuOpen])
 
-  const isHome = pathname === "/"
-
   return (
     <>
       <div
         style={{
           backgroundColor: menuOpen
             ? "#ffffff"
-            : scrolled || !isHome
+            : scrolled
             ? "rgba(255, 255, 255, 0.94)"
-            : "rgba(255, 255, 255, 0.35)",
-          backgroundImage:
-            !scrolled && isHome && !menuOpen
-              ? "linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.20) 100%)"
-              : undefined,
-          backdropFilter: menuOpen ? "none" : scrolled || !isHome ? "blur(16px)" : "blur(14px)",
-          WebkitBackdropFilter: menuOpen ? "none" : scrolled || !isHome ? "blur(16px)" : "blur(14px)",
+            : isMobile
+            ? "rgba(255, 255, 255, 0.22)"
+            : "rgba(255, 255, 255, 0.85)",
+          backdropFilter: menuOpen ? "none" : scrolled ? "blur(12px)" : "blur(8px)",
+          WebkitBackdropFilter: menuOpen ? "none" : scrolled ? "blur(12px)" : "blur(8px)",
         }}
         className={`w-full transition-all duration-300 border-b ${
           menuOpen
             ? "border-slate-200 shadow-sm"
-            : scrolled || !isHome
+            : scrolled
             ? "border-slate-200/80 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)]"
-            : "border-white/40 shadow-none"
+            : "border-white/25 shadow-none"
           }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-3.5 py-2.5 sm:px-6 sm:py-3 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-3.5 py-3 sm:px-6 sm:py-3.5 lg:px-8">
 
-          {/* Unified Brand Logo with subtle glass backdrop for maximum clarity over photo */}
-          <LocalizedClientLink
-            href="/"
-            className="inline-flex items-center px-2.5 py-1 rounded-2xl bg-white/50 backdrop-blur-xs border border-white/60 shadow-2xs hover:bg-white/70 transition-all active:scale-95"
-          >
+          {/* Unified Brand Logo (Official Green & Charcoal AG POWER Brandmark) */}
+          <LocalizedClientLink href="/" className="inline-flex items-center transition-transform active:scale-95">
             <AgPowerLogo variant="default" size="md" />
           </LocalizedClientLink>
 
-          {/* Desktop Navigation (Floating Frosted Glass Capsule for 100% Crisp Visibility over Background Photo) */}
-          <nav className="hidden items-center gap-1 xl:gap-1.5 lg:flex rounded-full bg-white/70 backdrop-blur-md px-3 py-1 border border-white/85 shadow-[0_2px_14px_rgba(0,0,0,0.04)]">
+          {/* Desktop Navigation (Consistent Spacing, Font-weight 600 for sharp readability over photo) */}
+          <nav className="hidden items-center gap-6 lg:gap-7 lg:flex">
             <LocalizedClientLink
               href="/"
-              className={`px-3 py-1.5 rounded-full text-[15px] font-bold transition-all ${
-                pathname === "/"
-                  ? "bg-emerald-100 text-forest-deep shadow-2xs"
-                  : "text-slate-900 hover:text-forest-deep hover:bg-white/80"
-              }`}
+              className={`text-[16px] font-semibold transition-colors ${pathname === "/" ? "font-bold text-forest" : "text-slate-800 hover:text-forest"
+                }`}
             >
               Home
             </LocalizedClientLink>
 
             <LocalizedClientLink
               href="/about"
-              className={`px-3 py-1.5 rounded-full text-[15px] font-bold transition-all ${
-                pathname === "/about"
-                  ? "bg-emerald-100 text-forest-deep shadow-2xs"
-                  : "text-slate-900 hover:text-forest-deep hover:bg-white/80"
-              }`}
+              className={`text-[16px] font-semibold transition-colors ${pathname === "/about" ? "font-bold text-forest" : "text-slate-800 hover:text-forest"
+                }`}
             >
               About
             </LocalizedClientLink>
@@ -110,11 +97,8 @@ export default function NavBar() {
             <div className="group relative">
               <button
                 type="button"
-                className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-[15px] font-bold transition-all hover:text-forest-deep hover:bg-white/80 focus:outline-none ${
-                  pathname?.startsWith("/services")
-                    ? "bg-emerald-100 text-forest-deep shadow-2xs"
-                    : "text-slate-900"
-                }`}
+                className={`flex items-center gap-1 text-[16px] font-semibold transition-colors hover:text-forest focus:outline-none ${pathname?.startsWith("/services") ? "font-bold text-forest" : "text-slate-800"
+                  }`}
               >
                 <span>Services</span>
                 <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
@@ -124,44 +108,32 @@ export default function NavBar() {
 
             <LocalizedClientLink
               href="/calculator"
-              className={`px-3 py-1.5 rounded-full text-[15px] font-bold transition-all ${
-                pathname === "/calculator"
-                  ? "bg-emerald-100 text-forest-deep shadow-2xs"
-                  : "text-slate-900 hover:text-forest-deep hover:bg-white/80"
-              }`}
+              className={`text-[16px] font-semibold transition-colors ${pathname === "/calculator" ? "font-bold text-forest" : "text-slate-800 hover:text-forest"
+                }`}
             >
               Calculator
             </LocalizedClientLink>
 
             <LocalizedClientLink
               href="/solar-panels"
-              className={`px-3 py-1.5 rounded-full text-[15px] font-bold transition-all ${
-                pathname === "/solar-panels"
-                  ? "bg-emerald-100 text-forest-deep shadow-2xs"
-                  : "text-slate-900 hover:text-forest-deep hover:bg-white/80"
-              }`}
+              className={`text-[16px] font-semibold transition-colors ${pathname === "/solar-panels" ? "font-bold text-forest" : "text-slate-800 hover:text-forest"
+                }`}
             >
               Solar Panels
             </LocalizedClientLink>
 
             <LocalizedClientLink
               href="/blog"
-              className={`px-3 py-1.5 rounded-full text-[15px] font-bold transition-all ${
-                pathname === "/blog" || pathname?.startsWith("/blog/")
-                  ? "bg-emerald-100 text-forest-deep shadow-2xs"
-                  : "text-slate-900 hover:text-forest-deep hover:bg-white/80"
-              }`}
+              className={`text-[16px] font-semibold transition-colors ${pathname === "/blog" || pathname?.startsWith("/blog/") ? "font-bold text-forest" : "text-slate-800 hover:text-forest"
+                }`}
             >
               Blog
             </LocalizedClientLink>
 
             <LocalizedClientLink
               href="/contact"
-              className={`px-3 py-1.5 rounded-full text-[15px] font-bold transition-all ${
-                pathname === "/contact"
-                  ? "bg-emerald-100 text-forest-deep shadow-2xs"
-                  : "text-slate-900 hover:text-forest-deep hover:bg-white/80"
-              }`}
+              className={`text-[16px] font-semibold transition-colors ${pathname === "/contact" ? "font-bold text-forest" : "text-slate-800 hover:text-forest"
+                }`}
             >
               Contact
             </LocalizedClientLink>
