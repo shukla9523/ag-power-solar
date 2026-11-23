@@ -143,8 +143,8 @@ export default function QuickCalculator() {
               </div>
             </div>
 
-            {/* Monthly Bill Input & Slider */}
-            <div className="mt-6">
+            {/* Monthly Bill Input & Slider: 28px Gap */}
+            <div className="mt-6 lg:mt-[28px]">
               <div className="flex items-center justify-between">
                 <label htmlFor="bill-slider" className="text-[13px] font-bold text-forest-deep uppercase tracking-wide">
                   2. Monthly Electricity Bill
@@ -175,8 +175,8 @@ export default function QuickCalculator() {
               </div>
             </div>
 
-            {/* City / Location Input */}
-            <div className="mt-6">
+            {/* City / Location Input: 28px Gap */}
+            <div className="mt-6 lg:mt-[28px]">
               <label htmlFor="pincode-input" className="text-[13px] font-bold text-forest-deep uppercase tracking-wide">
                 3. Your City or Pincode (Optional)
               </label>

@@ -58,13 +58,13 @@ export default function SolarSolutions() {
     <section className="bg-white py-[72px]" id="solutions">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="mx-auto max-w-3xl text-center">
+        {/* Section Header: Max-width 800px so 'Every Need' wraps together */}
+        <div className="mx-auto max-w-3xl lg:max-w-[800px] text-center">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
             <Sparkles className="h-3.5 w-3.5 text-amber-500" />
             <span>Our Capabilities</span>
           </div>
-          <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
+          <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2] lg:max-w-[800px] mx-auto">
             Engineered Solar Solutions for <span className="text-emerald-600">Every Need</span>
           </h2>
           <p className="mt-4 max-w-[680px] mx-auto text-[17px] leading-relaxed text-slate-600">

@@ -76,8 +76,8 @@ export default function Hero() {
                 </span>
               </h1>
 
-              {/* Supporting Copy (Dark Grey, Max-Width 480px) */}
-              <p className="mt-2.5 sm:mt-3 max-w-[480px] font-inter text-[14px] sm:text-[15.5px] lg:text-[16.5px] leading-relaxed text-slate-700 font-medium">
+              {/* Supporting Copy (Dark Grey, Max-Width 440px on Desktop to prevent orphan word 'care.') */}
+              <p className="mt-2.5 sm:mt-3 max-w-[480px] lg:max-w-[440px] font-inter text-[14px] sm:text-[15.5px] lg:text-[16.5px] leading-relaxed text-slate-700 font-medium">
                 Guaranteed savings. Tier-1 solar modules. End-to-end MNRE subsidy care.
               </p>
 
