@@ -49,13 +49,18 @@ export default function NavBar() {
   return (
     <>
       <div
+        style={{
+          backgroundColor: menuOpen ? "#ffffff" : "rgba(255, 255, 255, 0.92)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+        }}
         className={`w-full transition-all duration-300 border-b ${
           menuOpen
-            ? "bg-white border-slate-200"
+            ? "border-slate-200"
             : scrolled
-            ? "bg-white/95 backdrop-blur-md border-slate-200/80 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)]"
-            : "bg-white border-slate-100 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.04)]"
-        }`}
+            ? "border-slate-200/80 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_2px_6px_-1px_rgba(0,0,0,0.03)]"
+            : "border-slate-200/70 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)]"
+          }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-3.5 py-3 sm:px-6 sm:py-3.5 lg:px-8">
 
@@ -97,9 +102,8 @@ export default function NavBar() {
 
             <LocalizedClientLink
               href="/calculator"
-              className={`text-[15px] transition-colors ${
-                pathname === "/calculator" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
-              }`}
+              className={`text-[15px] transition-colors ${pathname === "/calculator" ? "font-bold text-forest" : "font-medium text-slate-700 hover:text-forest"
+                }`}
             >
               Calculator
             </LocalizedClientLink>
@@ -129,14 +133,14 @@ export default function NavBar() {
             </LocalizedClientLink>
           </nav>
 
-          {/* Right Action CTA: Standout Solar Yellow Pill Button (Dark Green Text) */}
+          {/* Right Action CTA: Primary Green Button with Soft Shadow */}
           <div className="hidden items-center gap-3 lg:flex">
             <LocalizedClientLink
               href="/contact"
-              className="inline-flex items-center justify-center rounded-xl bg-amber-400 hover:bg-amber-300 hover:shadow-[0_4px_16px_rgba(245,158,11,0.35)] px-5 py-2.5 font-inter text-[14px] font-extrabold text-forest-deep shadow-xs border border-amber-300 transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
+              className="inline-flex items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 hover:shadow-[0_4px_20px_rgba(22,163,74,0.35)] px-5 py-2.5 font-inter text-[14px] font-bold text-white shadow-[0_2px_12px_rgba(22,163,74,0.25)] transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
             >
               <span>Get Free Quote</span>
-              <ArrowRight className="ml-1.5 h-4 w-4 text-forest-deep" />
+              <ArrowRight className="ml-1.5 h-4 w-4 text-white" />
             </LocalizedClientLink>
           </div>
 
@@ -155,124 +159,124 @@ export default function NavBar() {
       {/* Mobile Drawer Menu (Pure Solid Crisp White, Never Transparent) */}
       <AnimatePresence>
         {menuOpen && (
-      <motion.div
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.18 }}
-        style={{ backgroundColor: "#ffffff" }}
-        className="fixed inset-x-0 top-[58px] sm:top-[64px] bottom-0 z-50 bg-white overflow-y-auto px-5 py-6 lg:hidden shadow-2xl border-t border-slate-100 flex flex-col justify-between"
-      >
-        <div className="flex flex-col gap-2">
-          <LocalizedClientLink
-            href="/"
-            onClick={() => setMenuOpen(false)}
-            className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
-              }`}
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            style={{ backgroundColor: "#ffffff" }}
+            className="fixed inset-x-0 top-[58px] sm:top-[64px] bottom-0 z-50 bg-white overflow-y-auto px-5 py-6 lg:hidden shadow-2xl border-t border-slate-100 flex flex-col justify-between"
           >
-            Home
-          </LocalizedClientLink>
+            <div className="flex flex-col gap-2">
+              <LocalizedClientLink
+                href="/"
+                onClick={() => setMenuOpen(false)}
+                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                  }`}
+              >
+                Home
+              </LocalizedClientLink>
 
-          <LocalizedClientLink
-            href="/about"
-            onClick={() => setMenuOpen(false)}
-            className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/about" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
-              }`}
-          >
-            About AG POWER
-          </LocalizedClientLink>
+              <LocalizedClientLink
+                href="/about"
+                onClick={() => setMenuOpen(false)}
+                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/about" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                  }`}
+              >
+                About AG POWER
+              </LocalizedClientLink>
 
-          {/* Mobile Solutions Accordion */}
-          <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-2.5">
-            <button
-              type="button"
-              onClick={() => setSolutionsOpen(!solutionsOpen)}
-              className="flex min-h-[42px] w-full items-center justify-between px-2 text-[16px] font-bold text-slate-900"
-            >
-              <span>Services & Solutions</span>
-              <ChevronDown className={`h-4 w-4 text-emerald-700 transition-transform ${solutionsOpen ? "rotate-180" : ""}`} />
-            </button>
-            {solutionsOpen && (
-              <div className="mt-2 flex flex-col gap-1.5 border-t border-slate-200 pt-2">
-                {solarSolutions.map((sol) => (
-                  <LocalizedClientLink
-                    key={sol.link}
-                    href={sol.link}
-                    onClick={() => setMenuOpen(false)}
-                    className="rounded-lg px-2.5 py-2 text-[14px] text-slate-900 hover:bg-emerald-100/60 transition-colors"
-                  >
-                    <p className="font-extrabold text-emerald-800">{sol.name}</p>
-                    <p className="text-[12px] text-slate-600">{sol.desc}</p>
-                  </LocalizedClientLink>
-                ))}
+              {/* Mobile Solutions Accordion */}
+              <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-2.5">
+                <button
+                  type="button"
+                  onClick={() => setSolutionsOpen(!solutionsOpen)}
+                  className="flex min-h-[42px] w-full items-center justify-between px-2 text-[16px] font-bold text-slate-900"
+                >
+                  <span>Services & Solutions</span>
+                  <ChevronDown className={`h-4 w-4 text-emerald-700 transition-transform ${solutionsOpen ? "rotate-180" : ""}`} />
+                </button>
+                {solutionsOpen && (
+                  <div className="mt-2 flex flex-col gap-1.5 border-t border-slate-200 pt-2">
+                    {solarSolutions.map((sol) => (
+                      <LocalizedClientLink
+                        key={sol.link}
+                        href={sol.link}
+                        onClick={() => setMenuOpen(false)}
+                        className="rounded-lg px-2.5 py-2 text-[14px] text-slate-900 hover:bg-emerald-100/60 transition-colors"
+                      >
+                        <p className="font-extrabold text-emerald-800">{sol.name}</p>
+                        <p className="text-[12px] text-slate-600">{sol.desc}</p>
+                      </LocalizedClientLink>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
 
-          <LocalizedClientLink
-            href="/calculator"
-            onClick={() => setMenuOpen(false)}
-            className="flex min-h-[46px] items-center justify-between rounded-xl px-3.5 text-[16px] font-bold text-slate-900 hover:bg-slate-50 transition-colors"
-          >
-            <div className="flex items-center gap-2.5">
-              <Calculator className="h-5 w-5 text-amber-500" />
-              <span className="text-slate-900">Solar Calculator</span>
+              <LocalizedClientLink
+                href="/calculator"
+                onClick={() => setMenuOpen(false)}
+                className="flex min-h-[46px] items-center justify-between rounded-xl px-3.5 text-[16px] font-bold text-slate-900 hover:bg-slate-50 transition-colors"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Calculator className="h-5 w-5 text-amber-500" />
+                  <span className="text-slate-900">Solar Calculator</span>
+                </div>
+                <span className="rounded-md bg-amber-100 border border-amber-300 px-2 py-0.5 text-[11px] font-extrabold text-amber-900">
+                  Interactive
+                </span>
+              </LocalizedClientLink>
+
+              <LocalizedClientLink
+                href="/solar-panels"
+                onClick={() => setMenuOpen(false)}
+                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/solar-panels" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                  }`}
+              >
+                Tier-1 Solar Panels
+              </LocalizedClientLink>
+
+              <LocalizedClientLink
+                href="/blog"
+                onClick={() => setMenuOpen(false)}
+                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname?.startsWith("/blog") ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                  }`}
+              >
+                Solar Guides & Blog
+              </LocalizedClientLink>
+
+              <LocalizedClientLink
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/contact" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                  }`}
+              >
+                Contact & Support
+              </LocalizedClientLink>
             </div>
-            <span className="rounded-md bg-amber-100 border border-amber-300 px-2 py-0.5 text-[11px] font-extrabold text-amber-900">
-              Interactive
-            </span>
-          </LocalizedClientLink>
-
-          <LocalizedClientLink
-            href="/solar-panels"
-            onClick={() => setMenuOpen(false)}
-            className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/solar-panels" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
-              }`}
-          >
-            Tier-1 Solar Panels
-          </LocalizedClientLink>
-
-          <LocalizedClientLink
-            href="/blog"
-            onClick={() => setMenuOpen(false)}
-            className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname?.startsWith("/blog") ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
-              }`}
-          >
-            Solar Guides & Blog
-          </LocalizedClientLink>
-
-          <LocalizedClientLink
-            href="/contact"
-            onClick={() => setMenuOpen(false)}
-            className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/contact" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
-              }`}
-          >
-            Contact & Support
-          </LocalizedClientLink>
-        </div>
 
             {/* Mobile Action CTAs at bottom of screen */}
             <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col gap-3 pb-4">
               <LocalizedClientLink
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-[50px] w-full items-center justify-center rounded-xl bg-amber-400 hover:bg-amber-300 text-center font-inter text-[15px] font-extrabold text-forest-deep shadow-sm border border-amber-300 active:scale-95 transition-all"
+                className="flex min-h-[50px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 text-center font-inter text-[15px] font-extrabold text-white shadow-md active:scale-95 transition-all"
               >
                 <span>Get Free Solar Quote</span>
-                <ArrowRight className="ml-2 h-4 w-4 text-forest-deep" />
+                <ArrowRight className="ml-2 h-4 w-4" />
               </LocalizedClientLink>
 
-          <a
-            href="tel:+919523467849"
-            className="flex min-h-[46px] w-full items-center justify-center rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-300 text-center font-inter text-[14px] font-bold text-slate-900 shadow-xs active:scale-95 transition-all"
-          >
-            <Phone className="mr-2 h-4 w-4 text-emerald-700" />
-            <span>Call Us: +91 95234 67849</span>
-          </a>
-        </div>
-      </motion.div>
-    )
-  }
+              <a
+                href="tel:+919523467849"
+                className="flex min-h-[46px] w-full items-center justify-center rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-300 text-center font-inter text-[14px] font-bold text-slate-900 shadow-xs active:scale-95 transition-all"
+              >
+                <Phone className="mr-2 h-4 w-4 text-emerald-700" />
+                <span>Call Us: +91 95234 67849</span>
+              </a>
+            </div>
+          </motion.div>
+        )
+        }
       </AnimatePresence >
     </>
   )
