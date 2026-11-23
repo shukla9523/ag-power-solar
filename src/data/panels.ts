@@ -55,12 +55,6 @@ export interface PanelFaq {
   answer: string
 }
 
-export interface PanelCustomerBenefit {
-  tag: string
-  highlight: string
-  points: string[]
-}
-
 export interface SolarPanelDetail {
   slug: string
   name: string
@@ -70,7 +64,6 @@ export interface SolarPanelDetail {
   efficiency: string
   tagline: string
   badge: string
-  customerBenefit: PanelCustomerBenefit
   images: PanelImage[]
   benefits: PanelBenefit[]
   specs: PanelSpecs
@@ -96,16 +89,6 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     efficiency: "22.6%",
     tagline: "India's highest yielding dual-glass solar module engineered for up to 25% extra generation from rear reflection.",
     badge: "Highest Efficiency",
-    customerBenefit: {
-      tag: "Up to 90% Bill Savings",
-      highlight: "+25% Extra Generation from Rear Glass",
-      points: [
-        "Cuts monthly electricity bills by up to 90%",
-        "Direct PM Surya Ghar subsidy eligible (up to ₹78,000)",
-        "30-Year linear power warranty guarantees long-term output",
-        "Dual-glass structure survives 150 km/h wind & hailstorms",
-      ],
-    },
     images: [
       {
         src: "/panels/n-type-topcon-bifacial/main.webp",
@@ -190,55 +173,55 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     subsidyInfo: {
       maxSubsidy: "Up to ₹78,000 under PM Surya Ghar Muft Bijli Yojana",
-      note: "Subsidy eligibility aur amount government rules par depend karta hai. DCR compliance aur DISCOM net-metering approval zaroori hota hai.",
+      note: "Subsidy eligibility and disbursement amounts are subject to applicable central and state government policies, DISCOM guidelines, and DCR compliance standards.",
       steps: [
         {
           step: 1,
           title: "National Portal Application",
-          desc: "AG POWER team aapke DISCOM consumer account ke saath PM Surya Ghar portal par application submit karti hai.",
+          desc: "AG POWER handles your direct consumer registration and application on the national PM Surya Ghar portal.",
         },
         {
           step: 2,
           title: "Feasibility & Turnkey Installation",
-          desc: "DISCOM feasibility clearance ke baad 2–3 din me Waaree Tier-1 modules aur certified inverter install ho jate hain.",
+          desc: "Following DISCOM technical feasibility clearance, Tier-1 Waaree modules and certified inverters are installed within 2–3 days.",
         },
         {
           step: 3,
           title: "DISCOM Inspection & Net-Meter",
-          desc: "Bijli vibhag ke engineers site inspection karke bidirectional net-meter synchronize karte hain.",
+          desc: "Utility engineers inspect the on-site installation and synchronize the bi-directional net meter with the grid.",
         },
         {
           step: 4,
           title: "Direct Bank Subsidy Credit",
-          desc: "Commissioning certificate upload hone ke 30 din ke andar subsidy sidhe aapke bank account me transfer ho jati hai.",
+          desc: "Upon commissioning certificate issuance, the central subsidy is directly credited to your bank account via DBT.",
         },
       ],
     },
     datasheetUrl: "/datasheets/waaree-arka-topcon-550w.pdf",
     faqs: [
       {
-        question: "Is panel ki approx price kya hoti hai?",
-        answer: "Waaree N-Type TOPCon bifacial modules ka complete turnkey rooftop installation (panels, structure, inverter, earthing, net-metering) typically ₹48 se ₹54 per Watt ke range me aata hai. PM Surya Ghar subsidy ke baad 3kW system par ₹78,000 tak ki direct discount saving milti hai.",
+        question: "What is the approximate turnkey cost for this panel?",
+        answer: "Waaree N-Type TOPCon bifacial modules with complete turnkey rooftop installation (panels, structure, inverter, earthing, net-metering) typically range from ₹48 to ₹54 per Watt. Under PM Surya Ghar, eligible residential installations receive up to ₹78,000 in direct central subsidies.",
       },
       {
-        question: "Installation me kitna time lagta hai?",
-        answer: "Mechanical aur electrical installation hamari certified EPC team sirf 2 se 3 din me poora kar leti hai. DISCOM approval aur net-meter sync milakar complete end-to-end process 3 se 4 hafte me ready ho jata hai.",
+        question: "How long does the installation process take?",
+        answer: "Physical rooftop assembly is completed by our certified EPC engineers in 2–3 days. The complete cycle, including DISCOM approvals and net-meter synchronization, typically takes 3–4 weeks.",
       },
       {
-        question: "Maintenance kaise aur kitni karni padti hai?",
-        answer: "Dual-glass design hone ki wajah se ye dust-resistant hai. Har 15 din me saaf paani se terrace pipe ke zariye panel dhona kaafi hota hai. Isme koi moving mechanical parts nahi hote, isliye running maintenance lagbhag zero hoti hai.",
+        question: "What maintenance is required for bifacial dual-glass panels?",
+        answer: "Dual-glass modules feature anti-soiling glass that naturally repels dust. Rinsing panels with clean water twice a month is sufficient to maintain peak performance, with near-zero mechanical maintenance required.",
       },
       {
-        question: "PM Surya Ghar subsidy is panel par kaise milti hai?",
-        answer: "Waaree ke ye modules 100% ALMM approved aur DCR compliant hain, isliye ye PM Surya Ghar Muft Bijli Yojana ke liye poori tarah eligible hain. 1kW par ₹30,000, 2kW par ₹60,000 aur 3kW ya usse upar par maximum ₹78,000 direct bank subsidy milti hai.",
+        question: "How does the PM Surya Ghar subsidy work for these panels?",
+        answer: "These modules are 100% ALMM approved and DCR compliant, making them fully eligible for PM Surya Ghar Muft Bijli Yojana subsidies: ₹30,000 for 1kW, ₹60,000 for 2kW, and up to ₹78,000 for 3kW and above.",
       },
       {
-        question: "Warranty claim ka process kya hai?",
-        answer: "AG POWER provides single-window local support in Jaipur and Rajasthan. Warranty claim hone par hamare engineer 24 se 48 ghante me on-site aakar test karte hain aur manufacturer se direct replacement facilitate karate hain.",
+        question: "How does AG POWER handle warranty claims?",
+        answer: "AG POWER provides single-window local support across Rajasthan. In the rare event of a claim, our certified engineers perform on-site diagnostic testing within 24–48 hours and facilitate direct manufacturer replacement.",
       },
       {
-        question: "Bifacial ka kya fayda hai aur Rajasthan ki garmi me kaisa perform karega?",
-        answer: "Bifacial panel peeche ke glass se bhi reflected light capture karta hai, jisse 15% se 25% zyada units banti hain. Iska temperature coefficient -0.30%/°C hai, jo Rajasthan ki 45°C+ summer heat me bhi normal panels se kaafi behtar output deta hai.",
+        question: "What is the bifacial advantage and how does it perform in Rajasthan summer heat?",
+        answer: "The bifacial architecture captures reflected ambient light from the rear glass, delivering up to 25% higher total yield. With a low temperature coefficient of -0.30%/°C, it maintains industry-leading generation even during intense 45°C+ summer conditions.",
       },
     ],
     roiNote: "Estimated 3.4 to 3.8 years payback period with up to 90% monthly electricity bill reduction and 30-year operational life.",
@@ -252,16 +235,6 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     efficiency: "21.3%",
     tagline: "India's highest selling, most dependable solar panel offering the fastest ROI and lowest capital cost per watt.",
     badge: "Best Value & Fast Payback",
-    customerBenefit: {
-      tag: "3.2-Year Fast ROI",
-      highlight: "Lowest Capital Cost per Watt in India",
-      points: [
-        "Fastest payback period with immediate grid bill savings",
-        "Full DISCOM net-metering & ALMM Tier-1 compliance",
-        "Half-cut multi-busbar cells minimize tree & building shadow loss",
-        "25-Year performance warranty backed by Adani Solar",
-      ],
-    },
     images: [
       {
         src: "/panels/mono-perc-half-cut-mbb/main.webp",
@@ -345,55 +318,55 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     subsidyInfo: {
       maxSubsidy: "Up to ₹78,000 under PM Surya Ghar Muft Bijli Yojana",
-      note: "Subsidy eligibility aur amount government rules par depend karta hai. DCR modules hona zaroori hota hai.",
+      note: "Subsidy eligibility and disbursement amounts are subject to applicable central and state government policies, DISCOM guidelines, and DCR compliance standards.",
       steps: [
         {
           step: 1,
-          title: "Registration on Portal",
-          desc: "AG POWER customer support electricity bill ke basis par direct portal registration karti hai.",
+          title: "National Portal Registration",
+          desc: "AG POWER registers your consumer account on the national portal with complete electricity bill and DISCOM documentation.",
         },
         {
           step: 2,
-          title: "Turnkey Installation",
-          desc: "Adani Tier-1 modules standard RCC roof mounting brackets ke saath 2 din me install ho jate hain.",
+          title: "Turnkey EPC Installation",
+          desc: "Adani Tier-1 modules are mounted using precision-engineered RCC mounting structures within 2 days.",
         },
         {
           step: 3,
-          title: "Discom Net-Meter Sync",
-          desc: "Bijli Nigam site visit karke bi-directional net-meter sync karta hai.",
+          title: "DISCOM Net-Meter Synchronization",
+          desc: "DISCOM engineers perform safety inspections and install the bi-directional net meter for export credits.",
         },
         {
           step: 4,
-          title: "Bank Account Subsidy",
-          desc: "Centre ki taraf se approved subsidy direct DBT ke roop me aapke bank me jama ho jati hai.",
+          title: "Direct Bank Subsidy Credit",
+          desc: "The approved central financial assistance is credited directly into your Aadhaar-linked bank account via DBT.",
         },
       ],
     },
     datasheetUrl: "/datasheets/adani-shine-mono-perc-540w.pdf",
     faqs: [
       {
-        question: "Is panel ki approx price kya hoti hai?",
-        answer: "Adani Mono PERC modules sabse economical aur value-for-money hote hain. Complete turnkey installation approx ₹45 se ₹49 per Watt me ho jata hai. PM Surya Ghar subsidy ke baad 3kW plant par net customer cost kaafi kam padti hai.",
+        question: "What is the approximate price for Adani Mono PERC panels?",
+        answer: "Adani Mono PERC modules offer outstanding value, with turnkey rooftop installation averaging ₹45 to ₹49 per Watt. After applying PM Surya Ghar subsidies, the net consumer payback period is typically under 3.2 years.",
       },
       {
-        question: "Installation me kitna time lagta hai?",
-        answer: "Standard residential rooftop par installation sirf 2 din me complete ho jati hai. DISCOM paperwork aur meter installation ke saath poora system 3 hafte me chal padta hai.",
+        question: "How much time is required from order to power generation?",
+        answer: "Rooftop hardware installation requires only 2 days. The entire end-to-end commissioning, including DISCOM approvals and net-meter testing, takes approximately 3 weeks.",
       },
       {
-        question: "Maintenance me kya karna hota hai?",
-        answer: "Adani Mono PERC panels par anti-reflective tempered glass hota hai. Mahine me do baar subah ya shaam ke samay saaf paani se wash karna regular generation ke liye kaafi hai.",
+        question: "What maintenance is required?",
+        answer: "The modules feature high-transmission anti-reflective tempered glass. Light water washing once or twice a month during early morning or evening hours ensures optimal generation.",
       },
       {
-        question: "Kya is panel par PM Surya Ghar subsidy milti hai?",
-        answer: "Haan, bilkul. Adani Solar ke DCR certified Mono PERC panels PM Surya Ghar scheme ke under 100% approved hain. Up to ₹78,000 tak ki direct bank subsidy milti hai.",
+        question: "Are Adani Mono PERC modules eligible for PM Surya Ghar subsidy?",
+        answer: "Yes. Adani Solar's DCR-certified Mono PERC panels are 100% compliant with PM Surya Ghar regulations, providing direct DBT subsidies of up to ₹78,000 for residential consumers.",
       },
       {
-        question: "Warranty claim kaise hota hai?",
-        answer: "Adani Solar ka service network poore Bharat me faila hai. Kisi bhi issue ke liye AG POWER helpline par call karein, hamari team inspection aur replacement claim handle karti hai.",
+        question: "How are warranty claims processed?",
+        answer: "Backed by Adani Solar's nationwide service infrastructure, AG POWER manages all diagnostic testing, warranty claims, and module replacements directly for local clients.",
       },
       {
-        question: "Rajasthan ki garmi me iska performance kaisa rehta hai?",
-        answer: "Mono PERC technology Indian conditions ke liye time-tested hai. -0.35%/°C temperature coefficient ke sath ye 42°C-46°C summer heat me bhi consistent units generate karta hai.",
+        question: "How does it perform under Rajasthan's high summer temperatures?",
+        answer: "Mono PERC half-cut cells are engineered with optimized internal current paths and a -0.35%/°C temperature coefficient, delivering stable and reliable power yields in temperatures exceeding 45°C.",
       },
     ],
     roiNote: "Fastest 3.2-year return on investment with proven performance across over 10,000+ Indian installations.",
@@ -407,16 +380,6 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     efficiency: "22.1%",
     tagline: "Ultra-luxury full matte-black solar panels engineered to blend invisibly with premium modern villa architecture.",
     badge: "Architectural Choice",
-    customerBenefit: {
-      tag: "Luxury Villa Aesthetics",
-      highlight: "Seamless Full Matte Black Finish",
-      points: [
-        "Blends seamlessly with modern rooftop architecture",
-        "Superior generation even during extreme 45°C+ summer heat",
-        "Backed by 25-Year Tata Power reliability & trust",
-        "Anti-dust hydrophobic coating reduces cleaning effort",
-      ],
-    },
     images: [
       {
         src: "/panels/architectural-all-black-premium/main.webp",
@@ -500,55 +463,55 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     subsidyInfo: {
       maxSubsidy: "Up to ₹78,000 under PM Surya Ghar Muft Bijli Yojana",
-      note: "Subsidy eligibility aur amount government rules par depend karta hai. DCR compliance status verify karna hota hai.",
+      note: "Subsidy eligibility and disbursement amounts are subject to applicable central and state government policies, DISCOM guidelines, and DCR compliance standards.",
       steps: [
         {
           step: 1,
           title: "Site Survey & 3D Design",
-          desc: "Hamare senior solar architect terrace ka aesthetic 3D shadow layout design karte hain.",
+          desc: "Our senior solar engineers conduct a detailed site survey and generate an architectural 3D layout optimized for aesthetics and yield.",
         },
         {
           step: 2,
-          title: "Precision Installation",
-          desc: "Tata All-Black panels concealed wiring aur concealed structural clamps ke saath lagaye jate hain.",
+          title: "Precision Architectural Installation",
+          desc: "Tata All-Black panels are installed using concealed conduit wiring and low-profile black anodized mounting hardware.",
         },
         {
           step: 3,
-          title: "DISCOM Approval & Sync",
-          desc: "DISCOM inspection aur net-meter testing execute ki jaati hai.",
+          title: "DISCOM Inspection & Synchronization",
+          desc: "Utility engineers perform on-site safety inspections, net-meter testing, and grid synchronization.",
         },
         {
           step: 4,
-          title: "Subsidy Disbursement",
-          desc: "National portal ke direct clearance ke zariye subsidy direct bank account me transfer hoti hai.",
+          title: "Direct Subsidy Disbursement",
+          desc: "Approved central financial assistance is credited directly to your bank account via the national DBT portal.",
         },
       ],
     },
     datasheetUrl: "/datasheets/tata-power-all-black-450w.pdf",
     faqs: [
       {
-        question: "Is panel ki approx price kya hoti hai?",
-        answer: "Tata Power Architectural All-Black series premium architectural hardware hai. Iska complete turnkey installation approximately ₹52 se ₹58 per Watt aata hai, jisme aesthetic concealed mounting structure aur premium cabling shamil rehti hai.",
+        question: "What is the approximate price for Tata All-Black panels?",
+        answer: "Tata Power Architectural All-Black panels are premium architectural hardware. Complete turnkey installations range from ₹52 to ₹58 per Watt, including aesthetic concealed mounting hardware and premium wiring.",
       },
       {
-        question: "Installation me kitna time lagta hai?",
-        answer: "Aesthetic finish aur concealed conduit wiring ke karan installation me 3 se 4 din lagte hain. DISCOM approvals ke sath 3–4 hafte me plant live ho jata hai.",
+        question: "How long does installation take?",
+        answer: "Due to meticulous aesthetic alignment and concealed cabling, mechanical installation takes 3–4 days, with full grid synchronization completed in 3–4 weeks.",
       },
       {
-        question: "Kya black panel zyada garam hokar efficiency kam karta hai?",
-        answer: "Nahi. Isme latest N-Type silicon technology aur -0.29%/°C ka ultra-low temperature coefficient hai, jo normal panels ke muqable high heat me bhi behtar performance deta hai.",
+        question: "Do black panels absorb more heat and lose efficiency?",
+        answer: "No. Advanced N-Type silicon technology and an ultra-low -0.29%/°C temperature coefficient allow these modules to outperform conventional panels even during extreme desert heat.",
       },
       {
-        question: "Is panel par PM Surya Ghar subsidy milti hai?",
-        answer: "Haan, Tata Power ke DCR series panels par central PM Surya Ghar subsidy 100% applicable hai (up to ₹78,000 tak).",
+        question: "Are Tata All-Black panels eligible for government subsidies?",
+        answer: "Yes. DCR-compliant models within the Tata Power residential series are fully eligible for central PM Surya Ghar subsidies of up to ₹78,000.",
       },
       {
-        question: "Tata Power warranty claim kaise hota hai?",
-        answer: "Tata Power ka pan-India corporate support hai aur AG POWER direct authorized EPC partner hai. Direct local engineer visit aur swift resolution milta hai.",
+        question: "How is Tata Power warranty supported?",
+        answer: "As an authorized partner, AG POWER handles all local service requests directly. Backed by Tata Power's 25-year reliability commitment, warranty resolutions are handled promptly on-site.",
       },
       {
-        question: "Rajasthan ki garmi aur dhool me ye kaisa rahega?",
-        answer: "Iske tempered glass par hydrophobic anti-dust coating hai, jisse dhool chipakti nahi hai aur aasan paani ke spray se panel chamak jata hai.",
+        question: "How do these panels withstand dust and harsh desert environments?",
+        answer: "The surface features a hydrophobic anti-dust nanotech coating that prevents dust buildup and ensures easy self-cleaning during rainfall or regular water sprays.",
       },
     ],
     roiNote: "Premium luxury aesthetics with reliable 3.8 to 4.2 years payback and 25-year peace of mind backed by Tata.",
