@@ -7,28 +7,29 @@ import { SunMedium, ArrowRight, ShieldCheck, Award, CheckCircle2, Star } from "l
 export default function Hero() {
   return (
     <section className="relative min-h-[calc(100vh-64px)] lg:min-h-[calc(100vh-72px)] -mt-[64px] sm:-mt-[68px] lg:-mt-[72px] pt-[88px] sm:pt-[92px] lg:pt-[96px] pb-6 sm:pb-8 lg:pb-10 overflow-hidden flex items-center bg-white text-slate-900">
-      {/* ── Full-Bleed Background Image (Clear, Unfiltered, 75% Center Position for Full Engineer Visibility) ── */}
+      {/* ── Full-Bleed Background Image (Ultra-Sharp 2K Crystal-Clear WebP with Quality 95) ── */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-solar-engineer-v2.webp"
+          src="/images/hero-solar-engineer-v3.webp"
           alt="AG POWER Certified Solar Engineer with Yellow Safety Helmet at Elevated Rooftop Solar Pergola Structure"
           fill
           priority
+          quality={95}
           sizes="100vw"
           className="object-cover object-[75%_center]"
         />
-        {/* Desktop Left White Gradient — Fades from 95% white at 0% to fully transparent at 55% width, leaving right 45% (engineer) 100% clear with zero overlay */}
+        {/* Desktop Left White Gradient — Clean fade to 0% at 45% width, leaving the entire engineer side 100% clear with zero haze or blur */}
         <div
           style={{
-            background: "linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0) 55%)",
+            background: "linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.65) 25%, rgba(255, 255, 255, 0) 45%)",
           }}
           className="hidden lg:block absolute inset-0 z-10 pointer-events-none"
         />
 
-        {/* Mobile Scrim — Soft ambient top gradient for mobile text clarity */}
+        {/* Mobile Scrim — Subtle ambient gradient without washing out the photo */}
         <div
           style={{
-            background: "linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 80%)",
+            background: "linear-gradient(180deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0) 45%)",
           }}
           className="lg:hidden absolute inset-0 z-10 pointer-events-none"
         />
@@ -81,15 +82,16 @@ export default function Hero() {
                 Guaranteed savings. Tier-1 solar modules. End-to-end MNRE subsidy care.
               </p>
 
-              {/* ── Mobile Dedicated Engineer Spotlight Card (Bright Sunlight feel) ── */}
+              {/* ── Mobile Dedicated Engineer Spotlight Card (Ultra-Sharp Crystal-Clear Mobile v3) ── */}
               <div className="lg:hidden relative w-full aspect-[4/3] xs:aspect-[16/11] rounded-2xl overflow-hidden border border-slate-200/90 shadow-md bg-slate-100 my-3.5 group">
                 <Image
-                  src="/images/hero-solar-engineer-mobile.webp"
+                  src="/images/hero-solar-engineer-mobile-v3.webp"
                   alt="AG POWER Certified Solar Engineer with Yellow Safety Helmet at Rooftop Solar Installation"
                   fill
                   priority
+                  quality={95}
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-[center_15%]"
+                  className="object-cover object-center"
                 />
                 {/* Floating Badges over mobile photo */}
                 <div className="absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-xl bg-white/90 backdrop-blur-md border border-white/60 px-2.5 py-1 text-[11px] font-extrabold text-slate-900 shadow-md">
