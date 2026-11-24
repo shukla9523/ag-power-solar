@@ -45,17 +45,8 @@ export default async function BlogPage() {
 
   const popular = blogPosts.slice(0, 5)
 
-  function formatDate(dateStr: string | null | undefined) {
-    if (!dateStr) return ""
-    return new Date(dateStr).toLocaleDateString("en-IN", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
-  }
-
   return (
-    <main className={`relative overflow-hidden bg-ivory pt-12 pb-20 lg:pt-16 lg:pb-24 ${inter.className}`}>
+    <main className={`relative overflow-hidden bg-ivory pt-10 pb-20 lg:pt-14 lg:pb-24 ${inter.className}`}>
       <JsonLd
         type="collection"
         section="blog"
@@ -63,14 +54,15 @@ export default async function BlogPage() {
         seoSetting={seoSetting}
       />
 
-      <div className="content-container relative px-4 sm:px-6 lg:px-10">
-        <div className="mx-auto max-w-[1320px]">
+      <div className="content-container relative px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1200px]">
 
-          <div className="max-w-[760px]">
-            <h1 className={`${manrope.className} text-[32px] font-extrabold leading-[1.05] tracking-[-0.03em] text-forest sm:text-[42px] lg:text-[54px]`}>
+          {/* ── TOP HEADER (Centered) ── */}
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className={`${manrope.className} text-[32px] font-extrabold leading-[1.1] tracking-[-0.03em] text-forest sm:text-[42px] lg:text-[48px]`}>
               Solar Insights & Engineering Guides
             </h1>
-            <p className="mt-4 max-w-[620px] text-[15px] leading-relaxed text-charcoal/80 sm:text-[16px]">
+            <p className="mt-3.5 mx-auto max-w-[680px] text-[15px] leading-relaxed text-charcoal/80 sm:text-[16px]">
               Authoritative guides by AG POWER engineers covering rooftop solar system sizing, PM Surya Ghar subsidy procedures, TOPCon module technologies, DISCOM net-metering, and long-term financial payback in India.
             </p>
           </div>
@@ -79,54 +71,50 @@ export default async function BlogPage() {
 
             {/* LEFT: ARTICLES LIST */}
             <div>
-              {/* Featured Post */}
-              <article className="group">
+              {/* Featured Post Card (Centered Solar Photo, Clean Alignment, No Date) */}
+              <article className="group overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-xs transition-all duration-300 hover:shadow-md">
                 <LocalizedClientLink href={`/blog/${featured.slug}`} className="block">
-                  <div className="overflow-hidden rounded-[16px] bg-white shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-md lg:rounded-[18px]">
-                    <div className="relative h-[220px] sm:h-[300px] lg:h-[340px] max-h-[360px] w-full overflow-hidden rounded-[16px] lg:rounded-[18px]">
-                      {featured.featured_image ? (
-                        <Image
-                          src={featured.featured_image}
-                          alt={featured.title}
-                          fill
-                          priority
-                          fetchPriority="high"
-                          sizes="(max-width: 1024px) 100vw, 820px"
-                          className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                        />
-                      ) : (
-                        <div className="h-full w-full bg-forest" />
+                  <div className="relative aspect-[16/9] max-h-[360px] w-full overflow-hidden bg-slate-50 flex items-center justify-center">
+                    {featured.featured_image ? (
+                      <Image
+                        src={featured.featured_image}
+                        alt={featured.title}
+                        fill
+                        priority
+                        fetchPriority="high"
+                        sizes="(max-width: 1024px) 100vw, 820px"
+                        className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    ) : (
+                      <div className="h-full w-full bg-forest" />
+                    )}
+                    <div className="absolute left-3.5 top-3.5 sm:left-4 sm:top-4 z-10">
+                      {featured.category_id && (
+                        <span className="rounded-full bg-forest px-3.5 py-1 text-[12px] font-bold text-white shadow-sm">
+                          {featured.category_id}
+                        </span>
                       )}
-                      <div className="absolute left-3 top-3 sm:left-4 sm:top-4">
-                        {featured.category_id && (
-                          <span className="rounded-full bg-forest px-3 py-1 text-[12px] font-bold text-gold shadow-sm sm:px-3.5 sm:py-1.5">
-                            {featured.category_id}
-                          </span>
-                        )}
-                      </div>
                     </div>
                   </div>
                 </LocalizedClientLink>
-                <div className="mt-4 sm:mt-5">
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.04em] text-charcoal/60 sm:text-[13px]">
-                    {formatDate(featured.published_at)}
-                  </p>
-                  <h2 className={`${manrope.className} mt-2 text-xl sm:text-2xl lg:text-[26px] font-bold leading-snug tracking-tight text-forest transition-colors hover:text-gold`}>
-                    <LocalizedClientLink
-                      href={`/blog/${featured.slug}`}
-                    >
+
+                <div className="p-6 sm:p-7">
+                  <h2 className={`${manrope.className} text-xl sm:text-2xl lg:text-[24px] font-bold leading-snug tracking-tight text-forest transition-colors group-hover:text-gold`}>
+                    <LocalizedClientLink href={`/blog/${featured.slug}`}>
                       {featured.title}
                     </LocalizedClientLink>
                   </h2>
-                  <p className="mt-2.5 text-[14.5px] leading-[1.7] text-charcoal/80 sm:mt-3 sm:text-[15px]">
+                  <p className="mt-2.5 text-[14.5px] leading-[1.7] text-charcoal/80 sm:text-[15px]">
                     {featured.excerpt}
                   </p>
-                  <LocalizedClientLink
-                    href={`/blog/${featured.slug}`}
-                    className={`${manrope.className} mt-3.5 inline-flex items-center text-[13px] font-bold text-forest transition-colors hover:text-gold sm:mt-4`}
-                  >
-                    Read Complete Guide <span className="ml-1.5 text-[16px]">→</span>
-                  </LocalizedClientLink>
+                  <div className="mt-4 pt-3 border-t border-charcoal/10 flex items-center justify-between">
+                    <LocalizedClientLink
+                      href={`/blog/${featured.slug}`}
+                      className={`${manrope.className} inline-flex items-center text-[13.5px] font-bold text-forest transition-colors hover:text-gold`}
+                    >
+                      Read Complete Guide <span className="ml-1.5 text-[16px]">→</span>
+                    </LocalizedClientLink>
+                  </div>
                 </div>
               </article>
 
@@ -134,51 +122,55 @@ export default async function BlogPage() {
                 <div className="my-8 border-t border-charcoal/10 lg:my-10" />
               )}
 
-              {/* Other Posts */}
-              <div className="space-y-6 sm:space-y-8">
+              {/* Other Posts List (Centered Thumbnails, Clean Spacing, No Dates) */}
+              <div className="space-y-5 sm:space-y-6">
                 {rest.map((post) => (
-                  <article key={post.slug} className="group flex gap-4 sm:gap-5">
-                    <LocalizedClientLink href={`/blog/${post.slug}`} className="shrink-0">
-                      <div className="overflow-hidden rounded-[12px] shadow-xs sm:rounded-[14px]">
-                        <div className="relative h-[90px] w-[130px] sm:h-[110px] sm:w-[160px]">
-                          {post.featured_image ? (
-                            <Image
-                              src={post.featured_image}
-                              alt={post.title}
-                              fill
-                              sizes="(max-width: 640px) 130px, 160px"
-                              className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                            />
-                          ) : (
-                            <div className="h-full w-full bg-forest" />
-                          )}
-                        </div>
+                  <article
+                    key={post.slug}
+                    className="group flex flex-col sm:flex-row gap-4 sm:gap-5 rounded-2xl border border-charcoal/10 bg-white p-4 sm:p-5 shadow-xs transition-all hover:border-forest/30 hover:shadow-md"
+                  >
+                    <LocalizedClientLink href={`/blog/${post.slug}`} className="shrink-0 self-center sm:self-start">
+                      <div className="relative h-[150px] w-full sm:h-[120px] sm:w-[170px] overflow-hidden rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-center">
+                        {post.featured_image ? (
+                          <Image
+                            src={post.featured_image}
+                            alt={post.title}
+                            fill
+                            sizes="(max-width: 640px) 100vw, 170px"
+                            className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
+                          />
+                        ) : (
+                          <div className="h-full w-full bg-forest" />
+                        )}
                       </div>
                     </LocalizedClientLink>
-                    <div className="flex flex-col justify-center min-w-0">
-                      <div className="flex items-center gap-2 sm:gap-3">
+
+                    <div className="flex flex-col justify-between min-w-0 flex-1">
+                      <div>
                         {post.category_id && (
-                          <p className="text-[12px] font-bold text-forest sm:text-[13px]">
+                          <span className="inline-block text-[11.5px] font-bold uppercase tracking-wider text-forest">
                             {post.category_id}
-                          </p>
+                          </span>
                         )}
-                        {post.category_id && post.published_at && (
-                          <span className="h-1 w-1 rounded-full bg-charcoal/30" />
-                        )}
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.04em] text-charcoal/50 sm:text-[12px]">
-                          {formatDate(post.published_at)}
+                        <h3 className={`${manrope.className} mt-1 text-[16px] sm:text-[17.5px] font-bold leading-snug text-forest transition-colors group-hover:text-gold`}>
+                          <LocalizedClientLink href={`/blog/${post.slug}`}>
+                            {post.title}
+                          </LocalizedClientLink>
+                        </h3>
+                        <p className="mt-1.5 line-clamp-2 text-[13px] sm:text-[13.5px] leading-relaxed text-charcoal/70">
+                          {post.excerpt}
                         </p>
                       </div>
-                      <h3 className={`${manrope.className} mt-1 text-[16px] font-bold leading-[1.2] tracking-[-0.02em] text-forest transition-colors group-hover:text-gold sm:mt-1.5 sm:text-[18px]`}>
+
+                      <div className="mt-3 pt-2">
                         <LocalizedClientLink
                           href={`/blog/${post.slug}`}
+                          className="inline-flex items-center text-[12.5px] font-bold text-forest hover:text-gold"
                         >
-                          {post.title}
+                          <span>Read Guide</span>
+                          <span className="ml-1 text-[14px]">→</span>
                         </LocalizedClientLink>
-                      </h3>
-                      <p className="mt-1 line-clamp-2 text-[13px] leading-[1.6] text-charcoal/70 sm:mt-1.5 sm:text-[14px]">
-                        {post.excerpt}
-                      </p>
+                      </div>
                     </div>
                   </article>
                 ))}
@@ -188,26 +180,28 @@ export default async function BlogPage() {
             {/* RIGHT SIDEBAR */}
             <div className="space-y-6 lg:sticky lg:top-[100px] lg:space-y-7">
 
-              {/* Popular Articles */}
-              <div className="rounded-[16px] border border-charcoal/10 bg-white p-5 shadow-xs sm:rounded-[18px] sm:p-6">
+              {/* Featured Solar Guides (No Dates) */}
+              <div className="rounded-2xl border border-charcoal/10 bg-white p-5 shadow-xs sm:rounded-2xl sm:p-6">
                 <h3 className={`${manrope.className} mb-4 text-[17px] font-extrabold tracking-[-0.02em] text-forest sm:mb-5 sm:text-[18px]`}>
                   Featured Solar Guides
                 </h3>
-                <div className="space-y-4 sm:space-y-5">
+                <div className="space-y-3.5 sm:space-y-4">
                   {popular.map((post, i) => (
-                    <div key={post.slug} className="flex gap-2.5 sm:gap-3">
+                    <div key={post.slug} className="flex gap-3 pb-3 border-b border-charcoal/5 last:border-b-0 last:pb-0 items-start">
                       <span className={`${manrope.className} mt-0.5 shrink-0 text-[12px] font-extrabold text-gold sm:text-[13px]`}>
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <div className="min-w-0">
+                        {post.category_id && (
+                          <span className="text-[10.5px] font-bold text-forest uppercase tracking-wider block mb-0.5">
+                            {post.category_id}
+                          </span>
+                        )}
                         <LocalizedClientLink href={`/blog/${post.slug}`}>
-                          <h4 className={`${manrope.className} text-[13px] font-bold leading-[1.35] text-forest transition-colors hover:text-gold sm:text-[14px]`}>
+                          <h4 className={`${manrope.className} text-[13px] font-bold leading-[1.35] text-slate-800 transition-colors hover:text-forest sm:text-[13.5px]`}>
                             {post.title}
                           </h4>
                         </LocalizedClientLink>
-                        <p className="mt-0.5 text-[11px] text-charcoal/50 sm:mt-1 sm:text-[12px]">
-                          {formatDate(post.published_at)}
-                        </p>
                       </div>
                     </div>
                   ))}
@@ -215,7 +209,7 @@ export default async function BlogPage() {
               </div>
 
               {/* Solar Consultation Sidebar Card */}
-              <div className="rounded-[16px] bg-forest p-6 text-white shadow-sm sm:rounded-[18px] sm:p-7">
+              <div className="rounded-2xl bg-forest p-6 text-white shadow-sm sm:rounded-2xl sm:p-7">
                 <span className="inline-block rounded-full bg-gold/20 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-gold">
                   Free Feasibility
                 </span>
@@ -228,13 +222,13 @@ export default async function BlogPage() {
                 <div className="mt-5 space-y-2.5">
                   <LocalizedClientLink
                     href="/calculator"
-                    className={`${manrope.className} flex h-[44px] w-full items-center justify-center rounded-[10px] bg-emerald-600 hover:bg-emerald-500 px-4 text-[13px] font-bold text-white shadow-md transition-all active:scale-95`}
+                    className={`${manrope.className} flex h-[44px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-4 text-[13px] font-bold text-white shadow-md transition-all active:scale-95`}
                   >
                     Calculate Solar Savings →
                   </LocalizedClientLink>
                   <LocalizedClientLink
                     href="/contact"
-                    className={`${manrope.className} flex h-[44px] w-full items-center justify-center rounded-[10px] bg-white hover:bg-slate-100 px-4 text-[13px] font-bold text-slate-900 shadow-md transition-all active:scale-95`}
+                    className={`${manrope.className} flex h-[44px] w-full items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-4 text-[13px] font-bold text-slate-900 shadow-md transition-all active:scale-95`}
                   >
                     Request Free Site Audit
                   </LocalizedClientLink>

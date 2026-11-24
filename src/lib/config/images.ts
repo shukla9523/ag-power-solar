@@ -292,12 +292,16 @@ export function getPanelGallery(slug: string): ProductGalleryItem[] {
  * Central blog post cover images
  */
 export const BLOG_COVER_IMAGES: Record<string, string> = {
-  "pm-surya-ghar-muft-bijli-yojana-guide": "/images/blog/pm-surya-ghar.webp",
-  "topcon-vs-mono-perc-solar-panels": "/images/blog/topcon-vs-mono-perc.webp",
-  "residential-solar-roi-payback-india": "/images/blog/residential-solar-roi.webp",
-  "commercial-industrial-solar-benefits": "/images/blog/commercial-solar-benefits.webp",
-  "solar-net-metering-guide-india": "/images/blog/net-metering-guide.webp",
-  "solar-maintenance-cleaning-guide": "/images/blog/cleaning-maintenance.webp",
-  "on-grid-vs-hybrid-solar-systems": "/images/blog/on-grid-vs-hybrid.webp",
-  "rooftop-solar-installation-step-by-step": "/images/blog/installation-step-by-step.webp"
+  "pm-surya-ghar-muft-bijli-yojana-guide": "/images/blog/pm-surya-ghar.webp?v=5",
+  "topcon-vs-mono-perc-solar-panels": "/images/blog/topcon-vs-mono-perc.webp?v=5",
+  "residential-solar-roi-payback-india": "/images/blog/residential-solar-roi.webp?v=5",
+  "commercial-industrial-solar-benefits": "/images/blog/commercial-solar-benefits.webp?v=5",
+  "solar-for-housing-societies-slashing-maintenance": "/images/blog/on-grid-vs-hybrid.webp?v=5",
+  "how-grid-tie-solar-system-works": "/images/blog/net-metering-guide.webp?v=5",
+  "complete-solar-installation-process": "/images/blog/installation-step-by-step.webp?v=5",
+  "solar-panel-cleaning-maintenance-guide": "/images/blog/cleaning-maintenance.webp?v=5",
+  "solar-net-metering-guide-india": "/images/blog/net-metering-guide.webp?v=5",
+  "solar-maintenance-cleaning-guide": "/images/blog/cleaning-maintenance.webp?v=5",
+  "on-grid-vs-hybrid-solar-systems": "/images/blog/on-grid-vs-hybrid.webp?v=5",
+  "rooftop-solar-installation-step-by-step": "/images/blog/installation-step-by-step.webp?v=5"
 }

@@ -74,14 +74,6 @@ export default async function BlogPostDetailPage({
     notFound()
   }
 
-  const formattedDate = post.published_at
-    ? new Date(post.published_at).toLocaleDateString("en-IN", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : ""
-
   // Sanitised article HTML with keyword internal links to the pages that own each keyword.
   const cleanContent = sanitizeRichHtml(post.content)
   const articleHtml = await linkKeywords(
@@ -138,9 +130,9 @@ export default async function BlogPostDetailPage({
           </div>
         </div>
 
-        {/* ─── ARTICLE HEADER ─── */}
+        {/* ─── ARTICLE HEADER (Centered) ─── */}
         <article className="content-container mx-auto max-w-[1000px] px-4 pt-10 sm:px-6 lg:px-8">
-          <header className="mb-10 text-center sm:text-left">
+          <header className="mb-10 text-center mx-auto max-w-3xl">
             <span className="inline-block rounded-full bg-forest/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-forest border border-forest/15">
               {cleanCategoryName(post.category_id, "Solar Insights")}
             </span>
@@ -149,14 +141,8 @@ export default async function BlogPostDetailPage({
               {post.title}
             </h1>
 
-            <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-charcoal/70">
-              <span className="font-medium text-forest">By {post.author_name || "AG POWER Solar Engineering Team"}</span>
-              {formattedDate && (
-                <>
-                  <span>•</span>
-                  <time dateTime={post.published_at || undefined}>{formattedDate}</time>
-                </>
-              )}
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5 text-sm text-charcoal/70">
+              <span className="font-semibold text-forest">By {post.author_name || "AG POWER Solar Engineering Team"}</span>
               <span>•</span>
               <span className="font-medium text-slate-600">
                 {Math.max(1, Math.ceil((post.content || "").replace(/<[^>]+>/g, " ").trim().split(/\s+/).length / 200))} min read
@@ -164,22 +150,22 @@ export default async function BlogPostDetailPage({
             </div>
 
             {post.excerpt && (
-              <p className="mt-4 text-[15px] sm:text-[16px] leading-relaxed text-charcoal/80 border-l-4 border-gold pl-3.5 italic">
+              <p className="mt-4 text-[15px] sm:text-[16px] leading-relaxed text-charcoal/80 max-w-2xl mx-auto italic">
                 {post.excerpt}
               </p>
             )}
           </header>
 
-          {/* ─── FEATURED IMAGE (Max 360px height desktop, rounded corners) ─── */}
+          {/* ─── FEATURED IMAGE (Centered, 16:9 or max 400px height, rounded corners) ─── */}
           {post.featured_image && (
-            <div className="relative mb-8 h-[220px] sm:h-[300px] md:h-[350px] max-h-[360px] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-xs">
+            <div className="relative mb-10 mx-auto h-[240px] sm:h-[340px] md:h-[400px] max-h-[420px] w-full max-w-[960px] overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-xs flex items-center justify-center">
               <Image
                 src={post.featured_image}
                 alt={post.title}
                 fill
                 priority
                 sizes="(max-width: 1000px) 100vw, 1000px"
-                className="object-cover"
+                className="object-cover object-center"
               />
             </div>
           )}
@@ -199,10 +185,10 @@ export default async function BlogPostDetailPage({
                 PM Surya Ghar Muft Bijli Yojana
               </span>
               <h3 className={`${manrope.className} mt-1 text-xl sm:text-2xl font-bold text-white`}>
-                अपनी सोलर सब्सिडी और बचत चेक करें
+                Check Your Solar Subsidy &amp; Savings
               </h3>
               <p className="mt-1.5 text-[13px] text-emerald-100/90 max-w-lg leading-relaxed">
-                अपने बिजली बिल के आधार पर जानें कि आपको कितनी सरकारी सब्सिडी (₹78,000 तक) मिलेगी और हर महीने कितनी बिजली फ्री होगी।
+                Calculate your central government subsidy entitlement (up to ₹78,000) and estimate your monthly free electricity generation with AG POWER.
               </p>
             </div>
             <LocalizedClientLink
