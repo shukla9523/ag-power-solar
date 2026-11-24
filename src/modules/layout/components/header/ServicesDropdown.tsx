@@ -91,7 +91,7 @@ export default function ServicesDropdown() {
       <div className="mt-3 flex items-center justify-between rounded-lg bg-forest px-4 py-2.5 text-white">
         <div className="flex items-center gap-2 text-[12px]">
           <ShieldCheck className="h-4 w-4 text-gold" />
-          <span>Tier-1 Modules · 25-Year Performance Warranty · MNRE Approved</span>
+          <span>High-Efficiency Modules · 25-Year Performance Warranty · MNRE Approved</span>
         </div>
         <LocalizedClientLink
           href="/solar-panels"

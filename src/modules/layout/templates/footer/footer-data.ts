@@ -9,7 +9,7 @@ export const solarSolutionsLinks: FooterLink[] = [
   { name: "Commercial & Industrial Solar", href: "/services/commercial-solar" },
   { name: "Housing Society Solar", href: "/services/housing-society-solar" },
   { name: "Solar Savings Calculator", href: "/calculator" },
-  { name: "Tier-1 Solar Panels Catalogue", href: "/solar-panels" },
+  { name: "Solar Panels Catalogue", href: "/solar-panels" },
   { name: "Customer Services & Maintenance", href: "/customer-services" },
 ]
 

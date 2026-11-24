@@ -37,7 +37,7 @@ export const PAGE_META_DEFAULTS: Record<string, PageMetaDefault> = {
   "solar-panels": {
     title: "Solar Panel Catalogue | Tier-1 N-Type TOPCon & Bifacial",
     description:
-      "Explore Tier-1 ALMM solar panels from Waaree, Adani, Tata Power, and Vikram Solar. Compare N-Type TOPCon and Bifacial module specs with AG POWER.",
+      "Explore solar panels from Waaree, Adani, Tata Power, and Vikram Solar. Compare N-Type TOPCon and Bifacial module specs with AG POWER.",
   },
   calculator: {
     title: "Solar Savings Calculator | Estimate kW, Cost & Subsidy",

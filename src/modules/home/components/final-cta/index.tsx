@@ -12,18 +12,8 @@ export default function FinalCta() {
     >
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         
-        {/* Badge */}
-        <div
-          className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-900/60 px-4 py-1.5 shadow-sm mb-3"
-        >
-          <SunMedium className="h-4 w-4 text-amber-400" />
-          <span className="text-[12px] font-bold uppercase tracking-wider text-emerald-100">
-            Zero-Cost Feasibility Consultation
-          </span>
-        </div>
-
         {/* Heading: clamp(30px, 3.2vw, 42px), line-height 1.2 */}
-        <h2 className="mt-4 font-manrope text-[clamp(30px,3.2vw,42px)] font-black tracking-tight text-white leading-[1.2]">
+        <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-black tracking-tight text-white leading-[1.2]">
           Your Solar Journey Starts Here.
         </h2>
 

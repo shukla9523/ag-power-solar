@@ -53,12 +53,8 @@ export default function InstallationProcess() {
         
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
-            <CheckCheck className="h-3.5 w-3.5 text-amber-500" />
-            <span>Step-by-Step Process</span>
-          </div>
           <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
-            Your Seamless Solar Journey in <span className="text-emerald-600">6 Steps</span>
+            Your Solar Installation Journey in <span className="text-emerald-600">6 Steps</span>
           </h2>
           <p className="mt-4 max-w-[680px] mx-auto text-[17px] leading-relaxed text-slate-600">
             From initial enquiry to net-metering commissioning, AG POWER delivers a transparent, fully managed experience without DISCOM hassles.

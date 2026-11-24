@@ -323,7 +323,7 @@ export default function NavBar() {
                   className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/solar-panels" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
                     }`}
                 >
-                  Tier-1 Solar Panels
+                  Solar Panels
                 </LocalizedClientLink>
 
                 <LocalizedClientLink

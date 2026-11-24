@@ -59,7 +59,7 @@ export const PAGE_FAQS_MAP: Record<string, PageFAQ[]> = {
     },
     {
       question: "What is AG POWER's core engineering philosophy?",
-      answer: "We believe solar is a 25-year infrastructure investment rather than a disposable commodity. Our engineers prioritize uncompromising hardware standards, deploying only Tier-1 ALMM-listed solar modules, German-engineered string inverters, hot-dip galvanized mounting structures, and multi-tier electrical surge protections engineered to withstand extreme regional climates."
+      answer: "We believe solar is a 25-year infrastructure investment rather than a disposable commodity. Our engineers prioritize uncompromising hardware standards, deploying only ALMM-listed solar modules, German-engineered string inverters, hot-dip galvanized mounting structures, and multi-tier electrical surge protections engineered to withstand extreme regional climates."
     },
     {
       question: "Where is AG POWER located and what regions do you serve?",
@@ -127,7 +127,7 @@ export const PAGE_FAQS_MAP: Record<string, PageFAQ[]> = {
     },
     {
       question: "What does the AG POWER EPC process include?",
-      answer: "Our EPC scope covers every stage: on-site 3D shadow analysis, structural load engineering, procurement of Tier-1 ALMM panels and inverters, anodized structural fabrication, precision electrical wiring with multi-tier surge protection, government utility approvals, net-meter installation, and final grid commissioning."
+      answer: "Our EPC scope covers every stage: on-site 3D shadow analysis, structural load engineering, procurement of certified solar panels and inverters, anodized structural fabrication, precision electrical wiring with multi-tier surge protection, government utility approvals, net-meter installation, and final grid commissioning."
     },
     {
       question: "Do you handle government subsidy applications and net-meter approvals?",

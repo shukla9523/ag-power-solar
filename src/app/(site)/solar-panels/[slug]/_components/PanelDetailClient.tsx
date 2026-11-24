@@ -215,25 +215,16 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
             {/* RIGHT: Panel Details & Compact Specs (~45% width) */}
             <div className="lg:col-span-5 flex flex-col justify-start">
               <div>
-                {/* Brand & ALMM Chip */}
-                <div className="flex items-center gap-2 flex-wrap">
+                {/* Brand */}
+                <div className="flex items-center gap-2">
                   <span className="text-[13px] font-bold uppercase tracking-wider text-forest">
                     {panel.brand}
                   </span>
-                  {panel.almm_listed && (
-                    <>
-                      <span className="text-slate-300">•</span>
-                      <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[11px] font-semibold text-forest-deep">
-                        <Award className="h-3 w-3 text-emerald-600" />
-                        Tier-1 ALMM Certified
-                      </span>
-                    </>
-                  )}
-                  {panel.badge && (
+                  {panel.badge ? (
                     <span className="inline-flex items-center rounded-md bg-forest px-2 py-0.5 text-[11px] font-semibold text-white">
                       {panel.badge}
                     </span>
-                  )}
+                  ) : null}
                 </div>
 
                 {/* H1 Title: max text-3xl md:text-4xl, font-semibold */}
@@ -390,10 +381,7 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <span className="text-[12px] font-bold uppercase tracking-wider text-forest">
-                Datasheet Performance
-              </span>
-              <h2 className="mt-1 text-2xl sm:text-[28px] font-semibold text-slate-900">
+              <h2 className="text-2xl sm:text-[28px] font-semibold text-slate-900">
                 Technical Specifications
               </h2>
               <p className="mt-1 text-[14px] text-slate-600">
@@ -515,10 +503,7 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
       <section className="py-10 sm:py-14 border-b border-slate-200/80">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-[12px] font-bold uppercase tracking-wider text-forest">
-              Design & Architecture
-            </span>
-            <h2 className="mt-1 text-2xl sm:text-[28px] font-semibold text-slate-900">
+            <h2 className="text-2xl sm:text-[28px] font-semibold text-slate-900">
               Module Engineering Highlights
             </h2>
           </div>
@@ -550,10 +535,7 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
       <section className="py-10 sm:py-14 border-b border-slate-200/80">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-[12px] font-bold uppercase tracking-wider text-forest">
-              Assurance
-            </span>
-            <h2 className="mt-1 text-2xl sm:text-[28px] font-semibold text-slate-900">
+            <h2 className="text-2xl sm:text-[28px] font-semibold text-slate-900">
               Warranty Coverage
             </h2>
           </div>
@@ -597,10 +579,7 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
       <section className="py-10 sm:py-14 border-b border-slate-200/80">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-[12px] font-bold uppercase tracking-wider text-forest">
-              Applications
-            </span>
-            <h2 className="mt-1 text-2xl sm:text-[28px] font-semibold text-slate-900">
+            <h2 className="text-2xl sm:text-[28px] font-semibold text-slate-900">
               Recommended Use Cases
             </h2>
             <p className="mt-1 text-[14px] text-slate-600">
@@ -630,10 +609,7 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
       <section className="py-10 sm:py-14 bg-slate-50/60 border-b border-slate-200/80">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-[12px] font-bold uppercase tracking-wider text-forest">
-              FAQ
-            </span>
-            <h2 className="mt-1 text-2xl sm:text-[28px] font-semibold text-slate-900">
+            <h2 className="text-2xl sm:text-[28px] font-semibold text-slate-900">
               Frequently Asked Questions
             </h2>
           </div>
@@ -679,10 +655,7 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
           <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
-                <span className="text-[12px] font-bold uppercase tracking-wider text-forest">
-                  Alternatives
-                </span>
-                <h2 className="mt-1 text-2xl sm:text-[28px] font-semibold text-slate-900">
+                <h2 className="text-2xl sm:text-[28px] font-semibold text-slate-900">
                   Compare Other Panels
                 </h2>
               </div>

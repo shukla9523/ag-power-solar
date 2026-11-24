@@ -176,10 +176,10 @@ export default function CatalogueClient({ initialPanels }: Props) {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-manrope text-[36px] font-extrabold tracking-tight text-forest sm:text-[48px]">
-            Tier-1 Solar Panels Catalogue
+            Solar Panels Catalogue
           </h1>
           <p className="mt-4 text-[16px] leading-relaxed text-charcoal/80 sm:text-[18px]">
-            Explore verified Tier-1 solar modules from India&apos;s leading manufacturers. Compare N-Type TOPCon and Mono PERC technologies designed for maximum rooftop yield and 25 to 30 years durability.
+            Explore verified solar modules from leading Indian manufacturers. Compare N-Type TOPCon and Mono PERC technologies designed for maximum rooftop yield and 25 to 30 years durability.
           </p>
         </div>
 
@@ -340,9 +340,11 @@ export default function CatalogueClient({ initialPanels }: Props) {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/60" />
 
                     <div className="relative z-10 flex items-center justify-between">
-                      <span className="rounded-full bg-emerald-600/90 backdrop-blur-md px-3 py-0.5 text-[11px] font-extrabold text-white border border-white/20 shadow-sm">
-                        {panel.badge || "Tier-1 ALMM"}
-                      </span>
+                      {panel.badge ? (
+                        <span className="rounded-full bg-emerald-600/90 backdrop-blur-md px-3 py-0.5 text-[11px] font-extrabold text-white border border-white/20 shadow-sm">
+                          {panel.badge}
+                        </span>
+                      ) : <span />}
                       {panel.dcrCompliant && (
                         <span className="rounded-full bg-slate-900/80 backdrop-blur-md px-2.5 py-0.5 text-[10px] font-bold text-amber-300 border border-amber-400/30">
                           DCR Approved

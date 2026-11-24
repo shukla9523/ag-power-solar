@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = `${panel.brand} ${panel.name} (${panel.wattageRange}) | AG POWER`
-  const description = `${panel.tagline} Tier-1 ALMM certified specifications, warranty details, and turnkey installation by AG POWER.`
+  const description = `${panel.tagline} Verified manufacturer specifications, warranty details, and turnkey installation by AG POWER.`
   const canonicalUrl = `https://www.agpower.in/solar-panels/${panel.slug}`
 
   return {

@@ -80,10 +80,6 @@ export default function QuickCalculator() {
         
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
-            <Calculator className="h-3.5 w-3.5 text-amber-500" />
-            <span>Solar Estimator</span>
-          </div>
           <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2] max-w-2xl mx-auto text-balance">
             Calculate Your <span className="text-emerald-600">Solar Potential</span> in Seconds
           </h2>
