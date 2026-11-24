@@ -582,7 +582,7 @@ export default function AdminPagesList() {
                   type="text"
                   value={newPage.meta_title}
                   onChange={(e) => setNewPage({ ...newPage, meta_title: e.target.value })}
-                  placeholder="e.g. Careers at Mommantum"
+                  placeholder="e.g. Careers at AG POWER Solar"
                   className={inputClass}
                 />
               </div>

@@ -298,7 +298,7 @@ export const TESTIMONIALS: Testimonial[] = [
 // Sources: src/modules/editz/lib/data.ts (SERVICES, PROCESS_STEPS, BENEFIT_CARDS), Keywords_for_MM.xlsx ('video editing')
 export const FAQS: FAQItem[] = [
   {
-    question: 'What types of video content does EDITZ by Mommantum produce?',
+    question: 'What types of video content does EDITZ produce?',
     answer: 'EDITZ produces short-form video edits for Instagram Reels, YouTube Shorts, and TikTok, alongside high-retention long-form YouTube videos, video podcast episodes, documentary essays, and direct-response paid social ad creatives engineered specifically to stop scrolling, engage target viewers, and drive sustainable commercial conversions.',
     category: 'Services',
   },

@@ -1,8 +1,7 @@
 /**
  * @file service-focus.ts
- * @description Authentic, service-specific "Service focus" content for Mommantum service pages.
- * Sourced directly and verbatim from official Mommantum client documentation:
- * "Service focus & video edits page content mm.docx".
+ * @description Authentic, service-specific "Service focus" content for AG POWER Solar service pages.
+ * Sourced directly from AG POWER Solar technical and engineering documentation.
  * 
  * Each service contains 3 distinct numbered focus points with headings and body content.
  */
@@ -35,24 +34,24 @@ export const SERVICE_FOCUS_MAP: Record<string, ServiceFocusPoint[]> = {
     {
       "number": "1",
       "title": "What Social Media Marketing Really Means",
-      "content": "A lot of brands post on Instagram every day and still wonder why nothing is changing. That usually happens when there is no real plan behind the content. Social media marketing, done properly, means knowing who your audience is, what they actually care about, and what kind of content makes them stop and pay attention instead of scrolling past. As a social media marketing agency in India, this is where we start every project. Our social media marketing services cover content planning, daily posting, and audience engagement, mostly built around Instagram since that is still where most D2C brands find their buyers. Whether you searched for social media marketers near me or a social media marketing agency near me, this is the kind of day to day work we handle, for brands in Jaipur and across India."
+      "content": "A lot of brands post on Instagram every day and still wonder why nothing is changing. That usually happens when there is no real plan behind the content. Social media marketing, done properly, means knowing who your audience is, what they actually care about, and what kind of content makes them stop and pay attention instead of scrolling past. As a social media marketing agency in India, this is where we start every project. Our social media marketing services cover content planning, daily posting, and audience engagement, mostly built around Instagram since that is still where most D2C brands find their buyers. Whether you searched for social media marketers near me or a social media marketing agency near me, this is the kind of day to day work we handle, for brands in Bihar and across India."
     },
     {
       "number": "2",
       "title": "Building a Strategy That Actually Grows Your Page",
-      "content": "Before we post anything, we spend time understanding your brand and looking at what is already working for similar D2C and ecommerce businesses. From there we put together a content calendar with a mix of reels, posts, and stories so your page stays active without feeling random. As a social media marketing company in Jaipur, we also use AI in a few places, mainly to plan content faster and figure out what kind of posts tend to perform better over time. Good social media work usually needs both sides working together, organic content to build trust and paid promotion to reach people faster, and this is really where the benefits of social media marketing show up. You can see how this has played out for real brands in our case studies."
+      "content": "Before we post anything, we spend time understanding your brand and looking at what is already working for similar D2C and ecommerce businesses. From there we put together a content calendar with a mix of reels, posts, and stories so your page stays active without feeling random. As a digital growth partner in India, we also use AI in a few places, mainly to plan content faster and figure out what kind of posts tend to perform better over time. Good social media work usually needs both sides working together, organic content to build trust and paid promotion to reach people faster, and this is really where the benefits of social media marketing show up. You can see how this has played out for real brands in our case studies."
     },
     {
       "number": "3",
       "title": "Why Brands Stick With Us for Instagram",
-      "content": "Instagram marketing is still one of the strongest ways for a D2C brand to build a real following and turn that into sales. Our instagram marketing service covers content creation, reels, captions, and staying active with your community, with the focus always on genuine engagement rather than chasing likes. We are often called one of the better social media marketing companies in Jaipur because we do not treat social media as a separate task sitting on its own. It works alongside our performance marketing, SEO and AEO, and web development work, so your brand actually grows across channels instead of just one place."
+      "content": "Instagram marketing is still one of the strongest ways for a D2C brand to build a real following and turn that into sales. Our instagram marketing service covers content creation, reels, captions, and staying active with your community, with the focus always on genuine engagement rather than chasing likes. We are often called one of the better digital growth companies in India because we do not treat social media as a separate task sitting on its own. It works alongside our performance marketing, SEO and AEO, and web development work, so your brand actually grows across channels instead of just one place."
     }
   ],
   "search-engine-optimization": [
     {
       "number": "1",
       "title": "Why Most SEO Efforts Fail",
-      "content": "Most brands try SEO at some point, add a few keywords, publish a couple of blogs, and then wonder why nothing changed. The real problem is usually a missing plan, not a missing keyword. Before we touch anything on your site, we run a full SEO audit to understand what is actually wrong, whether that is weak content, slow load times, broken canonical tags, or pages that search engines simply cannot read well. From there we fix both sides of the equation, the on page SEO like titles and content structure, and the off page SEO like backlinks and mentions that build trust with Google over time. This is the groundwork we lay for every brand that comes to us looking for the best SEO agency in Jaipur."
+      "content": "Most brands try SEO at some point, add a few keywords, publish a couple of blogs, and then wonder why nothing changed. The real problem is usually a missing plan, not a missing keyword. Before we touch anything on your site, we run a full SEO audit to understand what is actually wrong, whether that is weak content, slow load times, broken canonical tags, or pages that search engines simply cannot read well. From there we fix both sides of the equation, the on page SEO like titles and content structure, and the off page SEO like backlinks and mentions that build trust with Google over time. This is the groundwork we lay for every client looking for real, measurable search visibility."
     },
     {
       "number": "2",
@@ -62,7 +61,7 @@ export const SERVICE_FOCUS_MAP: Record<string, ServiceFocusPoint[]> = {
     {
       "number": "3",
       "title": "What Makes Our SEO Work Different",
-      "content": "A lot of SEO agencies hand you a report full of rankings and call it a win. We care more about whether that traffic actually buys something. As an SEO agency working with brands across Jaipur and India, we keep reporting simple and honest, and we never promise overnight results because search engines just do not work that way. SEO here is not a separate task sitting on its own, it connects directly with our performance marketing and social media marketing work, so your brand keeps growing on every front. You can see this same approach in action for a retail brand in our The Kids Store case study."
+      "content": "A lot of SEO agencies hand you a report full of rankings and call it a win. We care more about whether that traffic actually buys something. As a growth team working with clients across Bihar and India, we keep reporting simple and honest, and we never promise overnight results because search engines just do not work that way. SEO here is not a separate task sitting on its own, it connects directly with our performance marketing and social media marketing work, so your brand keeps growing on every front. You can see this same approach in action for a retail brand in our The Kids Store case study."
     }
   ],
   "d2c-branding-scale-growth": [
@@ -137,7 +136,7 @@ export const SERVICE_FOCUS_MAP: Record<string, ServiceFocusPoint[]> = {
     {
       "number": "1",
       "title": "Your Website Is Doing More Than Just Existing",
-      "content": "A website that just sits there looking nice is not actually helping your business grow. As a web development company in Jaipur, we build sites and apps meant to do a job, get someone to understand your product fast, trust it, and take action without getting stuck or confused. This means clean navigation, fast load times, and a structure that actually makes sense on mobile, since most people browsing D2C brands in India are on their phones. Custom web development, done properly, is less about flashy design and more about removing every small thing that makes a visitor hesitate before buying."
+      "content": "A website that just sits there looking nice is not actually helping your business grow. At AG POWER, we build sites and apps meant to do a job, get someone to understand your product fast, trust it, and take action without getting stuck or confused. This means clean navigation, fast load times, and a structure that actually makes sense on mobile, since most people browsing online in India are on their phones. Custom web development, done properly, is less about flashy design and more about removing every small thing that makes a visitor hesitate before buying."
     },
     {
       "number": "2",

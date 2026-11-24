@@ -47,13 +47,13 @@ export async function notifyAdmins(input: NotifyInput): Promise<void> {
     if (extra.trim()) recipients.add(extra.trim().toLowerCase())
   }
 
-  const base = (process.env.NEXT_PUBLIC_BASE_URL || "https://www.mommantum.com").replace(/\/+$/, "")
+  const base = (process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_BASE_URL || "https://agpower.in").replace(/\/+$/, "")
   const adminBase = `${base}/${process.env.CUSTOM_ADMIN_PATH || "admin"}`
   const href = input.link ? `${adminBase}${input.link.replace(/^\/admin/, "")}` : adminBase
 
   await sendMail({
     to: Array.from(recipients),
-    subject: `[Mommantum] ${input.title}`,
+    subject: `[AG POWER Solar] ${input.title}`,
     text: `${input.body}\n\nOpen: ${href}`,
     html: brandedEmail(
       input.title,

@@ -49,19 +49,19 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* LOGO — CLICK REDIRECTS TO MOMMANTUM HOMEPAGE */}
+        {/* LOGO — CLICK REDIRECTS TO HOMEPAGE */}
         <LocalizedClientLink
           href="/"
           className="group flex items-center gap-2.5 transition-transform duration-200 hover:scale-[1.02]"
         >
           <div className="relative flex items-center justify-center">
             <Image
-              src="/mommantum_logo.webp"
-              alt="MOMMANTUM"
+              src="/logo.webp"
+              alt="AG POWER Solar"
               width={36}
               height={36}
               priority
-              className="w-9 h-9 rounded-full object-cover shadow-sm ring-2 ring-pink-500/20"
+              className="w-9 h-9 rounded-full object-cover shadow-sm ring-2 ring-brand/20"
             />
           </div>
           <span className="flex items-center font-extrabold text-[22px] tracking-[-0.03em] text-navy">

@@ -15,7 +15,7 @@ export type LeadStatus = (typeof LEAD_STATUSES)[number]
 
 export const CONSENT_TEXT_VERSION = "2026-11-08"
 export const CONSENT_TEXT =
-  "By sending this form you agree that Mommantum may store your details and contact you about your enquiry."
+  "By sending this form you agree that AG POWER Solar may store your details and contact you about your enquiry."
 
 /** Leads older than this are deleted automatically (DPDP Act 2023 retention). */
 export const LEAD_RETENTION_DAYS = 730

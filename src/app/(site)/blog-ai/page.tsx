@@ -80,7 +80,7 @@ export default async function BlogAiPage() {
           <PageFaqSection
             faqs={faqs}
             title="Blog AI FAQs"
-            subtitle="Everything you need to know about Mommantum AI blog automation, editorial pipelines, and LLM workflows."
+            subtitle="Everything you need to know about AG POWER Solar blog automation, editorial pipelines, and clean energy insights."
           />
         </div>
       )}

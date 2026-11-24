@@ -56,7 +56,7 @@ export default function LeadsTrendChart({ data }: LeadsTrendChartProps) {
             fontSize={11}
             tickLine={false}
             axisLine={{ stroke: "#475569" }}
-            interval="preserveStartEnd"
+            interval={4}
           />
           <YAxis
             stroke="#94A3B8"
@@ -66,13 +66,14 @@ export default function LeadsTrendChart({ data }: LeadsTrendChartProps) {
             allowDecimals={false}
           />
           <Tooltip
-            content={({ active, payload, label }) => {
+            content={({ active, payload }) => {
               if (active && payload && payload.length) {
+                const item = payload[0].payload as TrendItem
                 return (
                   <div className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 shadow-xl">
-                    <p className="text-[11px] font-medium text-slate-400">Date: {label}</p>
+                    <p className="text-[11px] font-medium text-slate-400">Date: {item.date}</p>
                     <p className="text-[13px] font-bold text-emerald-400">
-                      {payload[0].value} {Number(payload[0].value) === 1 ? "Lead" : "Leads"}
+                      {item.count} {item.count === 1 ? "Lead" : "Leads"}
                     </p>
                   </div>
                 )

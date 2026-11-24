@@ -1,6 +1,6 @@
 /**
  * @file home-faqs.ts
- * @description Curated homepage frequently asked questions for Mommantum.
+ * @description Curated homepage frequently asked questions for AG POWER Solar.
  * Re-exports the 8 verified homepage FAQs from page-faqs.ts.
  */
 

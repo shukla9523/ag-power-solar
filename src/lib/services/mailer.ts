@@ -79,8 +79,8 @@ export function brandedEmail(title: string, bodyHtml: string): string {
   return `<!doctype html><html><body style="margin:0;background:#f3f4f6;font-family:Arial,Helvetica,sans-serif;color:#1f2937">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px">
 <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden">
-<tr><td style="background:#0e2547;padding:20px 28px;color:#ffffff;font-size:18px;font-weight:bold">Mommantum</td></tr>
+<tr><td style="background:#0e2547;padding:20px 28px;color:#ffffff;font-size:18px;font-weight:bold">AG POWER Solar</td></tr>
 <tr><td style="padding:28px"><h1 style="margin:0 0 16px;font-size:20px;color:#0e2547">${escapeHtml(title)}</h1>${bodyHtml}</td></tr>
-<tr><td style="padding:16px 28px;background:#fff0f6;font-size:12px;color:#6b7280">Mommantum · Jaipur, India · www.mommantum.com</td></tr>
+<tr><td style="padding:16px 28px;background:#f0fdf4;font-size:12px;color:#6b7280">AG POWER Solar · Enterprise Solar EPC & Rooftop Solutions · https://agpower.in</td></tr>
 </table></td></tr></table></body></html>`
 }

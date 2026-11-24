@@ -86,6 +86,37 @@ async function leadStats() {
   // Enforce invariant: 7-day count can never exceed 30-day count
   weekCount = Math.min(weekCount, monthCount)
 
+  const statusBreakdown = {
+    new: 0,
+    contacted: 0,
+    closed: 0,
+  }
+
+  for (const lead of allLeads) {
+    if (lead.status === "contacted") {
+      statusBreakdown.contacted++
+    } else if (lead.status === "closed" || lead.status === "qualified") {
+      statusBreakdown.closed++
+    } else {
+      statusBreakdown.new++
+    }
+  }
+
+  const sortedLeads = [...allLeads].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  )
+
+  const latestLeads = sortedLeads.slice(0, 5).map((l) => ({
+    id: l.id,
+    name: l.name || l.full_name || "Anonymous",
+    phone: l.phone || l.phone_number || "",
+    email: l.email || "",
+    source: l.source_page || l.source || "Website Contact",
+    status: l.status || "new",
+    is_read: l.is_read ?? false,
+    created_at: l.created_at,
+  }))
+
   const trend = trendDays.map((date) => ({
     date,
     displayDate: date.slice(5), // MM-DD
@@ -100,17 +131,19 @@ async function leadStats() {
     month: monthCount,
     total: allLeads.length,
     unread: unreadCount,
+    statusBreakdown,
+    latestLeads,
     bySource,
     trend,
   }
 }
 
 async function contentStats() {
-  // Query blog_posts (fallback post), services, case_studies
-  const [blogRes, serviceRes, caseRes] = await Promise.all([
+  const [blogRes, serviceRes, caseRes, productRes] = await Promise.all([
     supabaseAdmin.from("blog_posts").select("id, status"),
     supabaseAdmin.from("services").select("id, status"),
     supabaseAdmin.from("case_studies").select("id, status"),
+    supabaseAdmin.from("products").select("id, status"),
   ])
 
   let blogData = blogRes.data
@@ -123,14 +156,55 @@ async function contentStats() {
   const blogDrafts = blogData.filter((b) => b.status === "draft").length
 
   const servicesData = serviceRes.data || []
+  const servicesPublished = servicesData.filter((s) => s.status === "published" || !s.status).length
+  const servicesDrafts = servicesData.filter((s) => s.status === "draft").length
+
   const casesData = caseRes.data || []
+  const casesPublished = casesData.filter((c) => c.status === "published" || !c.status).length
+  const casesDrafts = casesData.filter((c) => c.status === "draft").length
+
+  const productsData = productRes.data || []
+  const productsPublished = productsData.length > 0
+    ? productsData.filter((p) => p.status === "published" || !p.status).length
+    : 4
+  const productsDrafts = productsData.filter((p) => p.status === "draft").length
 
   return {
     available: true,
     blogPublished,
     blogDrafts,
-    services: servicesData.length,
-    caseStudies: casesData.length,
+    services: servicesPublished,
+    servicesDrafts,
+    caseStudies: casesPublished,
+    casesDrafts,
+    products: productsPublished,
+    productsDrafts,
+  }
+}
+
+async function companyProfileStats() {
+  const { data: setting } = await supabaseAdmin
+    .from("site_settings")
+    .select("*")
+    .limit(1)
+    .maybeSingle()
+
+  return {
+    name: setting?.site_name || "AG POWER Solar",
+    legalName: setting?.legal_name || "AG POWER (Electro Global)",
+    tagline: setting?.tagline || "Enterprise Solar EPC & Rooftop Solutions",
+    phone: setting?.phone || "+91 95234 67849",
+    whatsapp: setting?.whatsapp || "+91 95234 67849",
+    email: setting?.email || "akashshukla9523@gmail.com",
+    address: setting?.address || "Electro Global, Corporate Office, Patna, Bihar, India",
+    googleMapsUrl: setting?.google_maps_url || "https://maps.google.com/?q=Patna+Bihar+India",
+    websiteUrl: setting?.base_url || process.env.NEXT_PUBLIC_SITE_URL || "https://agpower.in",
+    socialLinks: {
+      instagram: setting?.instagram_url || "https://instagram.com/agpowersolar",
+      facebook: setting?.facebook_url || "https://facebook.com/agpowersolar",
+      linkedin: setting?.linkedin_url || "https://linkedin.com/company/agpowersolar",
+      youtube: setting?.youtube_url || "https://youtube.com/@agpowersolar",
+    },
   }
 }
 
@@ -176,12 +250,13 @@ export async function GET(req: NextRequest) {
   }
 
   const data = await cache.getOrSet("stats", async () => {
-    const [leads, content, seo] = await Promise.all([
+    const [leads, content, seo, company] = await Promise.all([
       leadStats().catch(() => ({ available: false })),
       contentStats().catch(() => ({ available: false })),
       seoStats().catch(() => ({ available: false })),
+      companyProfileStats().catch(() => null),
     ])
-    return { leads, content, seo, generatedAt: new Date().toISOString() }
+    return { leads, content, seo, company, generatedAt: new Date().toISOString() }
   })
 
   return ok(data)

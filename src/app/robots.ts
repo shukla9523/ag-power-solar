@@ -9,7 +9,7 @@ import { isNonProductionDeployment } from "@lib/schema/resolvers/types"
 
 const PRIVATE_PATHS = ["/api/", "/admin", "/admin-login", "/verify-email/", "/reset-password/", "/test-auth/"]
 
-// Answer engines that should be able to read and cite Mommantum (AEO / GEO).
+// Answer engines that should be able to read and cite AG POWER Solar (AEO / GEO).
 const AI_AGENTS = [
   "GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User",
   "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot-Extended", "Meta-ExternalAgent",

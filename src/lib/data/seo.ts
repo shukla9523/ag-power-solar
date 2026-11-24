@@ -44,6 +44,19 @@ export type SiteSetting = {
   brand_name?: string | null
   theme_tokens?: unknown
   organization_profile?: unknown
+  legal_name?: string | null
+  tagline?: string | null
+  phone?: string | null
+  whatsapp?: string | null
+  email?: string | null
+  address?: string | null
+  google_maps_url?: string | null
+  instagram_url?: string | null
+  facebook_url?: string | null
+  linkedin_url?: string | null
+  youtube_url?: string | null
+  default_og_image?: string | null
+  timezone?: string | null
 }
 
 type MetadataFallback = {

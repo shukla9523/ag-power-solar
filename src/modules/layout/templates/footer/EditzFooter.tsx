@@ -70,13 +70,13 @@ export default function EditzFooter() {
             <LocalizedClientLink href="/editz" className="inline-flex items-center gap-2.5">
               <Image
                 src="/logo.webp"
-                alt="Mommantum Editz Logo"
+                alt="AG POWER Solar Editz Logo"
                 width={36}
                 height={36}
                 className="h-[36px] w-[36px] flex-shrink-0 object-contain"
               />
               <span className={`${epilogue.className} flex items-center text-[18px] font-extrabold leading-none tracking-[-0.04em] text-navy`}>
-                Mommantum Editz
+                AG POWER Editz
                 <span
                   className="ml-[2px] inline-block rounded-full bg-brand"
                   style={{ width: 4, height: 4, verticalAlign: "super", flexShrink: 0 }}
@@ -170,13 +170,13 @@ export default function EditzFooter() {
               <LocalizedClientLink href="/editz" className="inline-flex items-center gap-2.5">
                 <Image
                   src="/logo.webp"
-                  alt="Mommantum Editz Logo"
+                  alt="AG POWER Solar Editz Logo"
                   width={38}
                   height={38}
                   className="h-[38px] w-[38px] flex-shrink-0 object-contain"
                 />
                 <span className={`${epilogue.className} flex items-center text-[19px] font-extrabold leading-none tracking-[-0.04em] text-navy`}>
-                  Mommantum Editz
+                  AG POWER Editz
                   <span
                     className="ml-[2px] inline-block rounded-full bg-brand"
                     style={{ width: 5, height: 5, verticalAlign: "super", flexShrink: 0 }}
@@ -313,7 +313,7 @@ export default function EditzFooter() {
         <div className="content-container px-4 sm:px-6 lg:px-10">
           <div className="mx-auto flex max-w-[1320px] flex-col gap-2.5 py-4 md:flex-row md:items-center md:justify-between">
             <p className={`${outfit.className} text-[12px] text-slate-400`}>
-              © 2026 Mommantum Editz. All rights reserved.
+              © 2026 AG POWER Solar. All rights reserved.
             </p>
             <div className="flex items-center gap-5">
               <LocalizedClientLink href="/privacy-policy" className={`${outfit.className} text-[12px] text-slate-400 hover:text-navy transition-colors`}>

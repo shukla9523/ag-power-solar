@@ -103,9 +103,9 @@ export const DEFAULT_ORGANIZATION_PROFILE: OrganizationProfile = {
   ],
   address: {
     streetAddress: "Electro Global, Corporate Office",
-    addressLocality: "Jaipur",
-    addressRegion: "Rajasthan",
-    postalCode: "302001",
+    addressLocality: "Patna",
+    addressRegion: "Bihar",
+    postalCode: "800001",
     addressCountry: "IN",
   },
   clientsCanVisitOffice: true,
@@ -128,7 +128,7 @@ export interface SchemaSiteInfo {
 
 /**
  * Returns canonical site information for schema generation.
- * Always returns production https://www.mommantum.com base URL.
+ * Always returns production https://agpower.in base URL (or env override).
  * Cached via getSiteSetting (tag 'site_setting').
  */
 export async function getSchemaSite(): Promise<SchemaSiteInfo> {
@@ -139,23 +139,42 @@ export async function getSchemaSite(): Promise<SchemaSiteInfo> {
   const dbProfile = (siteSetting as any)?.organization_profile
   const profile: OrganizationProfile = {
     ...DEFAULT_ORGANIZATION_PROFILE,
-    ...(dbProfile && typeof dbProfile === "object" ? dbProfile : {}),
+    legalName: siteSetting?.legal_name || siteSetting?.site_name || DEFAULT_ORGANIZATION_PROFILE.legalName,
+    name: siteSetting?.site_name || DEFAULT_ORGANIZATION_PROFILE.name,
+    alternateName: siteSetting?.site_name ? `${siteSetting.site_name} Solar` : DEFAULT_ORGANIZATION_PROFILE.alternateName,
+    email: siteSetting?.email || DEFAULT_ORGANIZATION_PROFILE.email,
+    telephone: siteSetting?.phone || DEFAULT_ORGANIZATION_PROFILE.telephone,
     logo: {
-      ...DEFAULT_ORGANIZATION_PROFILE.logo,
-      ...(dbProfile?.logo || {}),
+      url: siteSetting?.logo_url || DEFAULT_ORGANIZATION_PROFILE.logo.url,
+      width: 500,
+      height: 500,
     },
+    ...(dbProfile && typeof dbProfile === "object" ? dbProfile : {}),
     founder: {
       ...DEFAULT_ORGANIZATION_PROFILE.founder,
       ...(dbProfile?.founder || {}),
     },
     address: {
       ...DEFAULT_ORGANIZATION_PROFILE.address,
+      ...(siteSetting?.address ? { streetAddress: siteSetting.address } : {}),
       ...(dbProfile?.address || {}),
     },
     whatsapp: {
       ...DEFAULT_ORGANIZATION_PROFILE.whatsapp,
+      ...(siteSetting?.whatsapp ? { telephone: siteSetting.whatsapp } : {}),
       ...(dbProfile?.whatsapp || {}),
     },
+  }
+
+  const socials = [
+    siteSetting?.instagram_url,
+    siteSetting?.facebook_url,
+    siteSetting?.linkedin_url,
+    siteSetting?.youtube_url,
+  ].filter(Boolean) as string[]
+
+  if (socials.length > 0) {
+    profile.sameAs = socials
   }
 
   return {

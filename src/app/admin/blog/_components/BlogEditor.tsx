@@ -42,7 +42,7 @@ export default function BlogEditor({
     featured_image: initialData?.featured_image || "",
     excerpt: initialData?.excerpt || "",
     content: initialData?.content || "",
-    author_name: initialData?.author_name || "Mommantum Team",
+    author_name: initialData?.author_name || "AG POWER Solar Team",
     status: initialData?.status || "draft",
     publish_at: toLocalInput(initialData?.publish_at),
   })
@@ -73,12 +73,13 @@ export default function BlogEditor({
     initialData?.image_urls?.[2] || "",
   ])
 
-  // Phase 3: Removed store category fetch from deleted /api/admin/categories.
+  // Phase 3: Solar specific blog categories
   const blogCategories = [
-    "D2C Marketing",
-    "Creative Strategy",
-    "Paid Ads",
-    "SEO & AEO",
+    "Rooftop Solar",
+    "PM Surya Ghar",
+    "Commercial Solar",
+    "Solar Technology",
+    "Net Metering",
   ]
 
   // Image Library states

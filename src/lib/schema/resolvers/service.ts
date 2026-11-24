@@ -46,39 +46,27 @@ function buildServiceFallbackTitle(title: string): string {
 
   // Brand suffixes that do NOT contain the word Service/Services
   const brandSuffixes = [
-    " | Mommantum Growth Studio Jaipur Agency",
-    " | Mommantum Digital Marketing Agency",
-    " | Mommantum Growth Studio Jaipur",
-    " | Mommantum Growth Agency Jaipur",
-    " | Mommantum Jaipur Growth Agency",
-    " | Mommantum Studio Jaipur Agency",
-    " | Mommantum Creative Growth Agency",
-    " | Mommantum Marketing Agency",
-    " | Mommantum Studio Jaipur",
-    " | Mommantum Agency Jaipur",
-    " | Mommantum Growth Studio",
-    " | Mommantum Growth Agency",
-    " | Mommantum Jaipur Agency",
-    " | Mommantum Studio",
-    " | Mommantum Agency",
-    " | Mommantum Jaipur",
-    " | Mommantum",
+    " | AG POWER Solar EPC Solutions",
+    " | AG POWER Solar Rooftop Solutions",
+    " | AG POWER Solar Engineering",
+    " | AG POWER Solar EPC Company",
+    " | AG POWER Solar Rooftop Bihar",
+    " | AG POWER Solar Solutions",
+    " | AG POWER Solar Bihar",
+    " | AG POWER Solar Energy",
+    " | AG POWER Solar",
+    " | AG POWER",
   ]
 
   // Service suffixes that contain the word Services (only used if title does not already have Service/Services)
   const serviceSuffixes = [
-    " Services | Mommantum Growth Studio Jaipur",
-    " Services | Mommantum Growth Agency Jaipur",
-    " Services | Mommantum Jaipur Growth Agency",
-    " Services | Mommantum Growth Studio",
-    " Services | Mommantum Growth Agency",
-    " Services | Mommantum Jaipur Agency",
-    " Services | Mommantum Studio Jaipur",
-    " Services | Mommantum Agency Jaipur",
-    " Services | Mommantum Jaipur",
-    " Services | Mommantum Studio",
-    " Services | Mommantum Agency",
-    " Services | Mommantum",
+    " Services | AG POWER Solar EPC Solutions",
+    " Services | AG POWER Solar Rooftop Solutions",
+    " Services | AG POWER Solar Engineering",
+    " Services | AG POWER Solar EPC Company",
+    " Services | AG POWER Solar Bihar",
+    " Services | AG POWER Solar",
+    " Services | AG POWER",
   ]
 
   if (hasServiceWord) {

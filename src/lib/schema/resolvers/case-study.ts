@@ -31,18 +31,18 @@ function buildCaseStudyFallbackTitle(title: string, category?: string): string {
   const candidates: string[] = []
   if (firstCat) {
     candidates.push(
-      `${title} (${firstCat}) Case Study | Mommantum`,
-      `${title} — ${firstCat} Case Study | Mommantum`,
-      `${title} | ${firstCat} Case Study | Mommantum`
+      `${title} (${firstCat}) Case Study | AG POWER Solar`,
+      `${title} — ${firstCat} Case Study | AG POWER Solar`,
+      `${title} | ${firstCat} Case Study | AG POWER Solar`
     )
   }
   candidates.push(
-    `${title} Case Study | Mommantum Client Growth Results`,
-    `${title} Case Study | Mommantum Growth Results`,
-    `${title} Case Study | Mommantum Agency Jaipur`,
-    `${title} Case Study | Mommantum Growth Agency`,
-    `${title} Case Study | Mommantum Studio Jaipur`,
-    `${title} Case Study | Mommantum Studio`
+    `${title} Case Study | AG POWER Solar Project Results`,
+    `${title} Case Study | AG POWER Solar Energy Impact`,
+    `${title} Case Study | AG POWER Solar Rooftop Bihar`,
+    `${title} Case Study | AG POWER Solar Engineering`,
+    `${title} Case Study | AG POWER Solar Solutions`,
+    `${title} Case Study | AG POWER Solar`
   )
 
   for (const c of candidates) {
@@ -51,7 +51,7 @@ function buildCaseStudyFallbackTitle(title: string, category?: string): string {
     }
   }
 
-  const base = `${title} Case Study | Mommantum Growth Results`
+  const base = `${title} Case Study | AG POWER Solar Impact`
   if (base.length >= 50 && base.length <= 60) return base
   if (base.length < 50) return base.padEnd(50, " ")
   return base.slice(0, 60)

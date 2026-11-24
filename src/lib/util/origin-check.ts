@@ -9,7 +9,7 @@ import { NextRequest } from "next/server"
  * separated) and the Vercel preview URL. Localhost is accepted only outside production.
  */
 
-const PRODUCTION_HOSTS = ["www.mommantum.com", "mommantum.com"]
+const PRODUCTION_HOSTS = ["www.agpower.in", "agpower.in", "ag-power-solar.vercel.app"]
 const DEV_HOSTS = ["localhost:8000", "localhost:3000", "127.0.0.1:8000"]
 
 function hostOf(value: string | undefined | null): string | null {

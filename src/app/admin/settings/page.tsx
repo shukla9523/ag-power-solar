@@ -13,15 +13,30 @@ import { Card, ErrorBanner, PageHeader, buttonGhost, buttonPrimary, inputClass }
 type Integration = { key: string; label: string; ok: boolean; detail: string }
 
 const SITE_FIELDS: { key: string; label: string; placeholder: string }[] = [
-  { key: "site_name", label: "Site name", placeholder: "Mommantum" },
-  { key: "twitter_handle", label: "X / Twitter handle", placeholder: "@mommantum" },
-  { key: "default_og_image", label: "Default share image URL (1200×630)", placeholder: "https://www.mommantum.com/opengraph-image.jpg" },
+  { key: "site_name", label: "Site name", placeholder: "AG POWER Solar" },
+  { key: "twitter_handle", label: "X / Twitter handle", placeholder: "@agpowersolar" },
+  { key: "default_og_image", label: "Default share image URL (1200×630)", placeholder: "https://agpower.in/opengraph-image.jpg" },
   { key: "leads_sheet_url", label: "Leads Google Sheet URL", placeholder: "https://docs.google.com/spreadsheets/d/…" },
   { key: "google_site_verification", label: "Google Search Console verification code", placeholder: "abc123…" },
 ]
 
+const COMPANY_FIELDS: { key: string; label: string; placeholder: string }[] = [
+  { key: "legal_name", label: "Legal entity name", placeholder: "AG POWER (Electro Global)" },
+  { key: "tagline", label: "Corporate tagline", placeholder: "Enterprise Solar EPC & Rooftop Solutions" },
+  { key: "phone", label: "Official telephone / mobile", placeholder: "+91 95234 67849" },
+  { key: "whatsapp", label: "WhatsApp support number", placeholder: "+91 95234 67849" },
+  { key: "email", label: "Official contact email", placeholder: "akashshukla9523@gmail.com" },
+  { key: "address", label: "Headquarters / Office address", placeholder: "Electro Global, Corporate Office, Patna, Bihar, India" },
+  { key: "google_maps_url", label: "Google Maps location link", placeholder: "https://maps.google.com/?q=Patna+Bihar" },
+  { key: "instagram_url", label: "Instagram URL", placeholder: "https://instagram.com/agpowersolar" },
+  { key: "facebook_url", label: "Facebook page URL", placeholder: "https://facebook.com/agpowersolar" },
+  { key: "linkedin_url", label: "LinkedIn company URL", placeholder: "https://linkedin.com/company/agpowersolar" },
+  { key: "youtube_url", label: "YouTube channel URL", placeholder: "https://youtube.com/@agpowersolar" },
+]
+
 export default function SettingsPage() {
   const [site, setSite] = useState<Record<string, string>>({})
+  const [company, setCompany] = useState<Record<string, string>>({})
   const [theme, setTheme] = useState<Record<string, string>>({})
   const [integrations, setIntegrations] = useState<Integration[]>([])
   const [ownerEmail, setOwnerEmail] = useState("")
@@ -35,6 +50,7 @@ export default function SettingsPage() {
       .then((d) => {
         const s = d.setting || {}
         setSite(Object.fromEntries(SITE_FIELDS.map((f) => [f.key, s[f.key] || ""])))
+        setCompany(Object.fromEntries(COMPANY_FIELDS.map((f) => [f.key, s[f.key] || ""])))
         setTheme(s.theme_tokens || {})
       })
       .catch(() => setError("Could not load site settings"))
@@ -108,6 +124,26 @@ export default function SettingsPage() {
           </div>
         </Card>
 
+        <Card title="Company Profile & Social Channels">
+          <div className="space-y-4">
+            {COMPANY_FIELDS.map((f) => (
+              <label key={f.key} className="block">
+                <span className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-slate-400">{f.label}</span>
+                <input value={company[f.key] || ""} placeholder={f.placeholder} onChange={(e) => setCompany((c) => ({ ...c, [f.key]: e.target.value }))} className={inputClass} />
+              </label>
+            ))}
+            <button
+              disabled={saving}
+              onClick={() => save(Object.fromEntries(Object.entries(company).map(([k, v]) => [k, v.trim() || null])), "Company profile saved.")}
+              className={buttonPrimary}
+            >
+              Save company profile
+            </button>
+          </div>
+        </Card>
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-2 mt-6">
         <Card title="Integrations">
           <ul className="divide-y divide-admin-line">
             {integrations.map((i) => (

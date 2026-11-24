@@ -1,6 +1,6 @@
 /**
  * Purpose: /llms.txt — a plain-text guide for AI answer engines (llmstxt.org format):
- * what Mommantum is, its primary services with absolute URLs, and the key pages.
+ * what AG POWER Solar is, its primary services with absolute URLs, and the key pages.
  * Facts come from the organization profile (src/lib/schema/site.ts), services from the page
  * registry (which falls back to the built-in service list). Cached for an hour.
  * Middleware lets *.txt paths through untouched (STATIC_FILE in src/middleware.ts).

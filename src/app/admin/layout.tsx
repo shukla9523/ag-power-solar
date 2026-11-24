@@ -186,7 +186,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
 
           {/* Nav items */}
-          <nav className="flex-1 space-y-5 overflow-y-auto pr-1">
+          <nav className="flex-1 space-y-5 overflow-y-auto pr-1 pb-10 scrollbar-thin scrollbar-thumb-slate-700 [scrollbar-width:thin]">
             {groups.map((group) => (
               <div key={group.title}>
                 {!collapsed && (
@@ -274,7 +274,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </button>
               </div>
 
-              <nav className="flex-1 space-y-4 overflow-y-auto py-4">
+              <nav className="flex-1 space-y-4 overflow-y-auto py-4 pb-12 scrollbar-thin scrollbar-thumb-slate-700 [scrollbar-width:thin]">
                 {groups.map((group) => (
                   <div key={group.title}>
                     <p className="mb-1 px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400">

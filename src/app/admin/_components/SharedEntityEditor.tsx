@@ -120,9 +120,10 @@ export default function SharedEntityEditor({
   const [copiedJson, setCopiedJson] = useState(false)
   const [jsonValidationError, setJsonValidationError] = useState<string | null>(null)
 
-  // Fetch existing SEO settings on mount if pageKey provided
+  // Fetch existing SEO settings on mount if pageKey provided (only for existing entities, not :new)
   useEffect(() => {
-    if (!pageKey) return
+    const isNew = !slug || pageKey.endsWith(":new")
+    if (!pageKey || isNew) return
     let isMounted = true
 
     // Load this page's own meta object (works for blog:* keys too).
@@ -353,11 +354,13 @@ export default function SharedEntityEditor({
           <div className="space-y-0.5">
             <div className="flex items-center gap-2.5">
               <h2 className="text-[18px] font-extrabold text-white">
-                Edit {entityLabelSingular}: {title || pageKey}
+                {!slug || pageKey.endsWith(":new") ? `New ${entityLabelSingular}` : `Edit ${entityLabelSingular}: ${title || pageKey}`}
               </h2>
-              <span className="rounded-[6px] bg-brand/15 px-2 py-0.5 text-[11px] font-bold text-brand border border-brand/30">
-                {pageKey}
-              </span>
+              {slug && !pageKey.endsWith(":new") && (
+                <span className="rounded-[6px] bg-brand/15 px-2 py-0.5 text-[11px] font-bold text-brand border border-brand/30">
+                  {pageKey}
+                </span>
+              )}
             </div>
             {/* Active Schema Badges */}
             <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
@@ -468,8 +471,8 @@ export default function SharedEntityEditor({
         </button>
       </div>
 
-      {/* ── Scrollable Tab Content Container (Centered with max-w-6xl mx-auto) ── */}
-      <div className="flex-1 overflow-y-auto px-6 py-8">
+      {/* ── Scrollable Tab Content Container (Centered with max-w-6xl mx-auto, pb-32 to clear sticky footer) ── */}
+      <div className="flex-1 overflow-y-auto px-6 py-8 pb-32">
         <form id="shared-entity-form" onSubmit={handleSaveSubmit} className="max-w-6xl mx-auto space-y-6">
 
           {/* ════ TAB 1: General & Meta SEO ════ */}
@@ -486,7 +489,7 @@ export default function SharedEntityEditor({
                       type="text"
                       value={seoData.canonical_url}
                       onChange={(e) => setSeoData({ ...seoData, canonical_url: e.target.value })}
-                      placeholder="e.g. https://www.mommantum.com/services/..."
+                      placeholder="e.g. https://agpower.in/services/your-service-slug"
                       className={inputClass}
                     />
                     <p className="mt-1 text-[11px] text-slate-500">
@@ -499,7 +502,7 @@ export default function SharedEntityEditor({
                       type="text"
                       value={seoData.primary_keyword}
                       onChange={(e) => setSeoData({ ...seoData, primary_keyword: e.target.value })}
-                      placeholder="e.g. digital marketing agency jaipur"
+                      placeholder="e.g. rooftop solar installation"
                       className={inputClass}
                     />
                     <p className="mt-1 text-[11px] text-slate-500">
@@ -590,7 +593,7 @@ export default function SharedEntityEditor({
                     type="text"
                     value={seoData.secondary_keywords}
                     onChange={(e) => setSeoData({ ...seoData, secondary_keywords: e.target.value })}
-                    placeholder="e.g. performance marketing, meta ads, lead generation"
+                    placeholder="e.g. pm surya ghar, solar subsidy bihar, 5kw solar system"
                     className={inputClass}
                   />
                 </div>

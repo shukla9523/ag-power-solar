@@ -121,7 +121,7 @@ export default function ClientsPage() {
     const url = URL.createObjectURL(blob)
     const link = document.createElement("a")
     link.href = url
-    link.setAttribute("download", `mommantum-leads-${new Date().toISOString().slice(0, 10)}.csv`)
+    link.setAttribute("download", `agpower-leads-${new Date().toISOString().slice(0, 10)}.csv`)
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)

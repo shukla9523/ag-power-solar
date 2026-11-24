@@ -14,11 +14,11 @@ export default function Footer() {
             <LocalizedClientLink href="/" className="group inline-flex items-center gap-2.5 mb-3 transition-transform duration-200 hover:scale-[1.02]">
               <div className="relative flex items-center justify-center">
                 <Image
-                  src="/mommantum_logo.webp"
-                  alt="MOMMANTUM"
+                  src="/logo.webp"
+                  alt="AG POWER Solar"
                   width={36}
                   height={36}
-                  className="w-9 h-9 rounded-full object-cover shadow-sm ring-2 ring-pink-500/20"
+                  className="w-9 h-9 rounded-full object-cover shadow-sm ring-2 ring-brand/20"
                 />
               </div>
               <span className="flex items-center font-extrabold text-[22px] tracking-[-0.03em] text-navy">
@@ -66,7 +66,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-editz-muted">
-          <div>© 2026 MOMMANTUM EDITZ. All Rights Reserved.</div>
+          <div>© 2026 AG POWER Solar. All Rights Reserved.</div>
           <div>Email: <a href="mailto:akashshukla9523@gmail.com" className="font-semibold text-editz-black hover:underline">akashshukla9523@gmail.com</a></div>
         </div>
       </div>
