@@ -1,9 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
+import { getPanelBySlug } from "@data/panels"
 import { Phone, Mail, MapPin, MessageSquare, SunMedium, ShieldCheck, CheckCircle2, ArrowRight, ExternalLink } from "lucide-react"
 
 export default function ContactClient() {
+  const searchParams = useSearchParams()
+  const panelSlug = searchParams.get("panel")
+
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [email, setEmail] = useState("")
@@ -19,6 +24,17 @@ export default function ContactClient() {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
+
+  // Pre-fill message and enquiry if panel search param is provided
+  useEffect(() => {
+    if (panelSlug) {
+      const panel = getPanelBySlug(panelSlug)
+      if (panel) {
+        setMessage(`I am interested in a quotation and site feasibility assessment for ${panel.name} (${panel.wattageRange}).`)
+        setService("Rooftop Solar Installation")
+      }
+    }
+  }, [panelSlug])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -48,7 +64,7 @@ export default function ContactClient() {
         monthly_bill: monthlyBill,
         message,
         enquiry_type: "Contact",
-        source_page: "/contact",
+        source_page: panelSlug ? `/contact?panel=${panelSlug}` : "/contact",
         consent: true,
       }
 

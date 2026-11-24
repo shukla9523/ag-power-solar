@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  const title = `${panel.brand} ${panel.name} (${panel.wattageRange}) | AG POWER Jaipur`
-  const description = `${panel.tagline} Verified Tier-1 specifications, 25-30 yr warranty, PM Surya Ghar subsidy guide, and turnkey installation by AG POWER.`
+  const title = `${panel.brand} ${panel.name} (${panel.wattageRange}) | AG POWER`
+  const description = `${panel.tagline} Tier-1 ALMM certified specifications, warranty details, and turnkey installation by AG POWER.`
   const canonicalUrl = `https://www.agpower.in/solar-panels/${panel.slug}`
 
   return {
@@ -70,7 +70,7 @@ export default async function SolarPanelDetailPage({ params }: PageProps) {
 
   const relatedPanels = SOLAR_PANELS.filter((p) => p.slug !== slug)
 
-  // Product and BreadcrumbList JSON-LD Schema
+  // Product, BreadcrumbList, and FAQPage JSON-LD Schema (clean, no fake aggregate offers)
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -85,15 +85,6 @@ export default async function SolarPanelDetailPage({ params }: PageProps) {
         description: panel.tagline,
         image: `https://www.agpower.in${panel.images[0].src}`,
         category: "Solar Photovoltaic Modules",
-        offers: {
-          "@type": "AggregateOffer",
-          priceCurrency: "INR",
-          availability: "https://schema.org/InStock",
-          seller: {
-            "@type": "Organization",
-            name: "AG POWER",
-          },
-        },
       },
       {
         "@type": "BreadcrumbList",
@@ -118,6 +109,18 @@ export default async function SolarPanelDetailPage({ params }: PageProps) {
             item: `https://www.agpower.in/solar-panels/${panel.slug}`,
           },
         ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `https://www.agpower.in/solar-panels/${panel.slug}/#faq`,
+        mainEntity: panel.faqs.slice(0, 5).map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: f.answer,
+          },
+        })),
       },
     ],
   }

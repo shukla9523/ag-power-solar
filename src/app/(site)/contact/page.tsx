@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { Suspense } from "react"
 import { getSeoSetting } from "@lib/data/seo"
 import { resolveContactData, buildMetadataFromResolved } from "@lib/schema/resolvers"
 import JsonLd from "@modules/common/components/json-ld"
@@ -21,7 +22,9 @@ export default async function ContactPage() {
   return (
     <>
       <JsonLd type="contact" seoSetting={seoSetting} />
-      <ContactClient />
+      <Suspense fallback={<div className="py-20 text-center text-slate-500">Loading consultation form...</div>}>
+        <ContactClient />
+      </Suspense>
       {faqs && faqs.length > 0 && (
         <PageFaqSection
           faqs={faqs}
@@ -32,3 +35,4 @@ export default async function ContactPage() {
     </>
   )
 }
+

@@ -19,7 +19,7 @@ export default function FeaturedSolarPanels() {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-100 px-3.5 py-1 text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest-deep mb-3">
               <Award className="h-3.5 w-3.5 text-amber-500" />
-              <span>Certified Hardware</span>
+              <span>Tier-1 Modules</span>
             </div>
             <h2 className="font-manrope text-[clamp(30px,3.2vw,42px)] font-extrabold tracking-tight text-forest-deep leading-[1.2]">
               High-Efficiency <span className="text-emerald-600">Tier-1 Solar Panels</span>
@@ -69,10 +69,15 @@ export default function FeaturedSolarPanels() {
 
                   {/* Top Floating Badges */}
                   <div className="absolute top-3.5 inset-x-3.5 flex items-center justify-between z-10">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600/95 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wide text-white backdrop-blur-md shadow-md border border-white/20">
-                      <Sparkles className="h-3 w-3 text-amber-300" />
-                      <span>{panel.badge}</span>
-                    </span>
+                    {panel.badge ? (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600/95 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wide text-white backdrop-blur-md shadow-md border border-white/20">
+                        <span>{panel.badge}</span>
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-slate-950/80 px-2.5 py-1 text-[11px] font-semibold text-slate-200 backdrop-blur-md border border-white/15">
+                        {panel.brand}
+                      </span>
+                    )}
 
                     <span className="rounded-full bg-slate-950/85 px-3 py-1 font-manrope text-[13px] font-black text-amber-400 backdrop-blur-md shadow-md border border-white/20">
                       {panel.wattageRange}
