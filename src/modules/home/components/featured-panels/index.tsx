@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { SOLAR_PANELS } from "@data/panels"
+import { getPanelCardImage } from "@lib/config/images"
 import { ArrowRight, CheckCircle2, Award, Sparkles, Zap } from "lucide-react"
 
 export default function FeaturedSolarPanels() {
@@ -52,7 +53,7 @@ export default function FeaturedSolarPanels() {
                   aria-label={`View detailed specifications for ${panel.brand} ${panel.name}`}
                 >
                   <Image
-                    src={panel.images[0]?.src || "/panels/n-type-topcon-bifacial/main.webp"}
+                    src={getPanelCardImage(panel.slug) || panel.images[0]?.src || "/images/panels/waaree-arka-topcon-550w/front.webp?v=4"}
                     alt={panel.images[0]?.alt || `${panel.brand} ${panel.name}`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

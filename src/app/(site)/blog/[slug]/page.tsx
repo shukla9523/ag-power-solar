@@ -157,6 +157,10 @@ export default async function BlogPostDetailPage({
                   <time dateTime={post.published_at || undefined}>{formattedDate}</time>
                 </>
               )}
+              <span>•</span>
+              <span className="font-medium text-slate-600">
+                {Math.max(1, Math.ceil((post.content || "").replace(/<[^>]+>/g, " ").trim().split(/\s+/).length / 200))} min read
+              </span>
             </div>
 
             {post.excerpt && (
@@ -186,6 +190,27 @@ export default async function BlogPostDetailPage({
               className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:text-forest prose-headings:tracking-tight prose-a:text-forest prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-strong:text-charcoal"
               dangerouslySetInnerHTML={{ __html: articleHtml }}
             />
+          </div>
+
+          {/* ─── SUBSIDY CALCULATOR CTA STRIP ─── */}
+          <div className="mt-10 rounded-2xl bg-gradient-to-br from-forest-deep via-forest to-forest-deep p-6 sm:p-8 text-white shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300">
+                PM Surya Ghar Muft Bijli Yojana
+              </span>
+              <h3 className={`${manrope.className} mt-1 text-xl sm:text-2xl font-bold text-white`}>
+                अपनी सोलर सब्सिडी और बचत चेक करें
+              </h3>
+              <p className="mt-1.5 text-[13px] text-emerald-100/90 max-w-lg leading-relaxed">
+                अपने बिजली बिल के आधार पर जानें कि आपको कितनी सरकारी सब्सिडी (₹78,000 तक) मिलेगी और हर महीने कितनी बिजली फ्री होगी।
+              </p>
+            </div>
+            <LocalizedClientLink
+              href="/calculator"
+              className="inline-flex items-center justify-center rounded-xl bg-amber-400 hover:bg-amber-300 px-5 py-3 text-[13.5px] font-bold text-slate-900 shadow-sm transition-all active:scale-95 flex-shrink-0"
+            >
+              <span>Check Subsidy &amp; Savings →</span>
+            </LocalizedClientLink>
           </div>
 
           {/* ─── ARTICLE FAQS ─── */}

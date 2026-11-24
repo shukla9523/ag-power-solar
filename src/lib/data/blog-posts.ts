@@ -1,5 +1,6 @@
 import { supabase } from "@lib/supabase"
 import { unstable_cache } from "next/cache"
+import { BLOG_COVER_IMAGES } from "@lib/config/images"
 
 export type FAQ = {
   question: string
@@ -356,7 +357,7 @@ function mapPost(p: any): BlogPost {
     slug: p.slug,
     title: p.title,
     category_id: p.category_id || null,
-    featured_image: p.featured_image ? normalizeImagePath(p.featured_image) : null,
+    featured_image: BLOG_COVER_IMAGES[p.slug] || (p.featured_image ? normalizeImagePath(p.featured_image) : null),
     image_urls: (p.image_urls || []).map(normalizeImagePath).filter(Boolean),
     excerpt: p.excerpt || null,
     content: p.content || null,

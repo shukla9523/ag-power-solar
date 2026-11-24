@@ -8,15 +8,17 @@ import { Phone, Mail, MapPin, MessageSquare, SunMedium, ShieldCheck, CheckCircle
 export default function ContactClient() {
   const searchParams = useSearchParams()
   const panelSlug = searchParams.get("panel")
+  const panelsParam = searchParams.get("panels")
 
+  const [step, setStep] = useState<1 | 2 | 3>(1)
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [email, setEmail] = useState("")
   const [category, setCategory] = useState("residential")
-  const [city, setCity] = useState("")
-  const [pincode, setPincode] = useState("")
+  const [city, setCity] = useState("Jaipur")
+  const [pincode, setPincode] = useState("302020")
   const [service, setService] = useState("Rooftop Solar Installation")
-  const [monthlyBill, setMonthlyBill] = useState("")
+  const [monthlyBill, setMonthlyBill] = useState("6000")
   const [message, setMessage] = useState("")
   const [consent, setConsent] = useState(true)
   const [honeypot, setHoneypot] = useState("") // anti-bot spam protection
@@ -25,16 +27,20 @@ export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
 
-  // Pre-fill message and enquiry if panel search param is provided
+  // Pre-fill message and enquiry if panel or shortlisted panels search param is provided
   useEffect(() => {
-    if (panelSlug) {
+    if (panelsParam) {
+      const panelNames = panelsParam.split(",").join(", ")
+      setMessage(`I am interested in receiving an official quote and feasibility check for the shortlisted panels: ${panelNames}.`)
+      setService("Solar Panel Enquiry")
+    } else if (panelSlug) {
       const panel = getPanelBySlug(panelSlug)
       if (panel) {
         setMessage(`I am interested in a quotation and site feasibility assessment for ${panel.name} (${panel.wattageRange}).`)
         setService("Rooftop Solar Installation")
       }
     }
-  }, [panelSlug])
+  }, [panelSlug, panelsParam])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -226,166 +232,229 @@ export default function ContactClient() {
                   autoComplete="off"
                 />
 
-                <div className="flex items-center justify-between">
-                  <h3 className="font-manrope text-[20px] font-bold text-forest">
-                    Request Solar Feasibility Proposal
-                  </h3>
-                  <span className="text-[12px] text-charcoal-muted">* Required</span>
-                </div>
-
-                {/* Customer Category */}
+                {/* Progress Header */}
                 <div>
-                  <label className="text-[13px] font-semibold text-forest">Customer Category *</label>
-                  <div className="mt-1.5 grid grid-cols-3 gap-2">
-                    {[
-                      { id: "residential", label: "Residential" },
-                      { id: "commercial", label: "Commercial" },
-                      { id: "society", label: "Housing Society" },
-                    ].map((cat) => (
-                      <button
-                        key={cat.id}
-                        type="button"
-                        onClick={() => setCategory(cat.id)}
-                        className={`rounded-xl border py-2 text-[13px] font-bold transition-all ${
-                          category === cat.id
-                            ? "border-forest bg-forest text-white shadow-sm"
-                            : "border-charcoal/15 bg-ivory text-charcoal hover:bg-sage-mist"
-                        }`}
-                      >
-                        {cat.label}
-                      </button>
-                    ))}
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[12px] font-bold uppercase tracking-wider text-forest">
+                      Step {step} of 3: {step === 1 ? "Property & Bill" : step === 2 ? "Location & Service" : "Contact Details"}
+                    </span>
+                    <span className="text-[11.5px] font-semibold text-slate-500">
+                      {step === 1 ? "33%" : step === 2 ? "66%" : "100%"}
+                    </span>
                   </div>
-                </div>
-
-                {/* Name & Phone */}
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="text-[13px] font-semibold text-forest">Full Name *</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Ramesh Sharma"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-[13px] font-semibold text-forest">Phone Number *</label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="10-digit mobile number"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
+                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+                    <div
+                      className="h-full rounded-full bg-forest transition-all duration-300"
+                      style={{ width: `${(step / 3) * 100}%` }}
                     />
                   </div>
                 </div>
 
-                {/* Email & City */}
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="text-[13px] font-semibold text-forest">Email Address</label>
-                    <input
-                      type="email"
-                      placeholder="e.g. name@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
-                    />
+                {/* ── STEP 1: Property & Monthly Bill ── */}
+                {step === 1 && (
+                  <div className="space-y-4 pt-1">
+                    <div>
+                      <label className="text-[13px] font-semibold text-forest">Customer Category *</label>
+                      <div className="mt-1.5 grid grid-cols-3 gap-2">
+                        {[
+                          { id: "residential", label: "Residential" },
+                          { id: "commercial", label: "Commercial" },
+                          { id: "society", label: "Housing Society" },
+                        ].map((cat) => (
+                          <button
+                            key={cat.id}
+                            type="button"
+                            onClick={() => setCategory(cat.id)}
+                            className={`rounded-xl border py-2.5 text-[13px] font-bold transition-all ${
+                              category === cat.id
+                                ? "border-forest bg-forest text-white shadow-sm"
+                                : "border-charcoal/15 bg-ivory text-charcoal hover:bg-sage-mist"
+                            }`}
+                          >
+                            {cat.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-[13px] font-semibold text-forest">
+                        Average Monthly Electricity Bill (₹) *
+                      </label>
+                      <input
+                        type="number"
+                        required
+                        placeholder="e.g. 6000"
+                        value={monthlyBill}
+                        onChange={(e) => setMonthlyBill(e.target.value)}
+                        className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
+                      />
+                      <p className="mt-1 text-[11px] text-slate-500">
+                        Helps our engineers determine your solar KW capacity and subsidy slab.
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setStep(2)}
+                      className="w-full rounded-xl bg-forest py-3 text-[14.5px] font-bold text-white shadow-md transition-all hover:bg-forest-deep flex items-center justify-center gap-2"
+                    >
+                      <span>Continue to Location</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
                   </div>
-                  <div>
-                    <label className="text-[13px] font-semibold text-forest">City / Location</label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Jaipur, Delhi, Lucknow"
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
-                    />
-                  </div>
-                </div>
-
-                {/* Monthly Bill & Pincode */}
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="text-[13px] font-semibold text-forest">Average Monthly Bill (₹)</label>
-                    <input
-                      type="number"
-                      placeholder="e.g. 6000"
-                      value={monthlyBill}
-                      onChange={(e) => setMonthlyBill(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-[13px] font-semibold text-forest">Pincode</label>
-                    <input
-                      type="text"
-                      placeholder="6-digit pincode"
-                      maxLength={6}
-                      value={pincode}
-                      onChange={(e) => setPincode(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
-                    />
-                  </div>
-                </div>
-
-                {/* Service Requirement */}
-                <div>
-                  <label className="text-[13px] font-semibold text-forest">Service Required</label>
-                  <select
-                    value={service}
-                    onChange={(e) => setService(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] font-medium text-forest focus:border-forest focus:outline-none"
-                  >
-                    <option value="Rooftop Solar Installation">Rooftop Solar Installation</option>
-                    <option value="Commercial Solar Plant">Commercial & Industrial Solar Plant</option>
-                    <option value="Housing Society Solar">Housing Society Solar System</option>
-                    <option value="Solar Panel Enquiry">Solar Panel Procurement & Inverter</option>
-                    <option value="Solar Consultation">General Solar Feasibility Consultation</option>
-                  </select>
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label className="text-[13px] font-semibold text-forest">Additional Project Details</label>
-                  <textarea
-                    rows={3}
-                    placeholder="Tell us about your rooftop area, electrical load, or special requirements..."
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
-                  />
-                </div>
-
-                {/* Privacy Consent */}
-                <div className="flex items-start gap-2 pt-1">
-                  <input
-                    type="checkbox"
-                    id="privacy-consent"
-                    checked={consent}
-                    onChange={(e) => setConsent(e.target.checked)}
-                    className="mt-1 h-4 w-4 rounded border-charcoal/30 text-forest focus:ring-forest"
-                  />
-                  <label htmlFor="privacy-consent" className="text-[12px] text-charcoal-muted leading-relaxed">
-                    I authorize AG POWER to contact me via phone, email, or WhatsApp with my solar feasibility assessment. My information is stored securely in accordance with the Privacy Policy.
-                  </label>
-                </div>
-
-                {errorMsg && (
-                  <p className="text-[12px] font-semibold text-red-600">{errorMsg}</p>
                 )}
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full rounded-xl bg-forest py-3.5 text-[15px] font-bold text-white shadow-md transition-all hover:bg-forest-deep disabled:opacity-50"
-                >
-                  {loading ? "Submitting Request..." : "Get Free Solar Consultation →"}
-                </button>
+                {/* ── STEP 2: Location & Service ── */}
+                {step === 2 && (
+                  <div className="space-y-4 pt-1">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div>
+                        <label className="text-[13px] font-semibold text-forest">City / Location *</label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="e.g. Jaipur, Rajasthan"
+                          value={city}
+                          onChange={(e) => setCity(e.target.value)}
+                          className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[13px] font-semibold text-forest">Pincode *</label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="6-digit pincode"
+                          maxLength={6}
+                          value={pincode}
+                          onChange={(e) => setPincode(e.target.value)}
+                          className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-[13px] font-semibold text-forest">Service Required</label>
+                      <select
+                        value={service}
+                        onChange={(e) => setService(e.target.value)}
+                        className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] font-medium text-forest focus:border-forest focus:outline-none"
+                      >
+                        <option value="Rooftop Solar Installation">Rooftop Solar Installation</option>
+                        <option value="Commercial Solar Plant">Commercial &amp; Industrial Solar Plant</option>
+                        <option value="Housing Society Solar">Housing Society Solar System</option>
+                        <option value="Solar Panel Enquiry">Solar Panel Procurement &amp; Inverter</option>
+                        <option value="Solar Consultation">General Solar Feasibility Consultation</option>
+                      </select>
+                    </div>
+
+                    <div className="flex items-center gap-3 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setStep(1)}
+                        className="flex-1 rounded-xl border border-slate-300 bg-white py-3 text-[14px] font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                      >
+                        ← Back
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setStep(3)}
+                        className="flex-1 rounded-xl bg-forest py-3 text-[14px] font-bold text-white shadow-md hover:bg-forest-deep transition-all flex items-center justify-center gap-2"
+                      >
+                        <span>Continue</span>
+                        <ArrowRight className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── STEP 3: Contact Info & Submission ── */}
+                {step === 3 && (
+                  <div className="space-y-4 pt-1">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div>
+                        <label className="text-[13px] font-semibold text-forest">Full Name *</label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="e.g. Ramesh Sharma"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[13px] font-semibold text-forest">Phone Number *</label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="10-digit mobile number"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-[13px] font-semibold text-forest">Email Address (Optional)</label>
+                      <input
+                        type="email"
+                        placeholder="e.g. name@example.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[13px] font-semibold text-forest">Additional Project Details</label>
+                      <textarea
+                        rows={2}
+                        placeholder="Tell us about your rooftop area, electrical load, or shortlisted panels..."
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="mt-1 w-full rounded-xl border border-charcoal/20 bg-ivory px-4 py-2.5 text-[14px] text-charcoal focus:border-forest focus:outline-none"
+                      />
+                    </div>
+
+                    {/* Privacy Consent */}
+                    <div className="flex items-start gap-2 pt-1">
+                      <input
+                        type="checkbox"
+                        id="privacy-consent"
+                        checked={consent}
+                        onChange={(e) => setConsent(e.target.checked)}
+                        className="mt-1 h-4 w-4 rounded border-charcoal/30 text-forest focus:ring-forest"
+                      />
+                      <label htmlFor="privacy-consent" className="text-[12px] text-charcoal-muted leading-relaxed">
+                        I authorize AG POWER to contact me via phone or WhatsApp with my solar feasibility proposal.
+                      </label>
+                    </div>
+
+                    {errorMsg && (
+                      <p className="text-[12px] font-semibold text-red-600">{errorMsg}</p>
+                    )}
+
+                    <div className="flex items-center gap-3 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setStep(2)}
+                        className="rounded-xl border border-slate-300 bg-white px-5 py-3 text-[14px] font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                      >
+                        ← Back
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="flex-1 rounded-xl bg-forest py-3.5 text-[15px] font-bold text-white shadow-md transition-all hover:bg-forest-deep disabled:opacity-50"
+                      >
+                        {loading ? "Submitting Request..." : "Submit Feasibility Request →"}
+                      </button>
+                    </div>
+                  </div>
+                )}
               </form>
             )}
           </div>

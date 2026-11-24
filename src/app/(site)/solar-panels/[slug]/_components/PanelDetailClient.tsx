@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react"
 import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { SolarPanelDetail } from "@data/panels"
+import { getPanelGallery, getPanelCardImage } from "@lib/config/images"
 import {
   ArrowRight,
   ShieldCheck,
@@ -30,10 +31,18 @@ interface PanelDetailClientProps {
 }
 
 export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailClientProps) {
-  // Compute distinct images to prevent rendering identical/duplicate images
+  // Compute distinct authentic images using central image registry (No AI models/people)
   const distinctImages = useMemo(() => {
+    const centralGallery = getPanelGallery(panel.slug)
+    if (centralGallery && centralGallery.length > 0) {
+      return centralGallery.map((img) => ({
+        src: img.src,
+        alt: img.alt,
+        label: img.caption,
+      }))
+    }
     return Array.from(new Map(panel.images.map((img) => [img.src, img])).values())
-  }, [panel.images])
+  }, [panel.slug, panel.images])
 
   const hasMultipleImages = distinctImages.length > 1
 
@@ -113,6 +122,13 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
   }
 
   const currentImage = distinctImages[activeImageIndex] || distinctImages[0]
+
+  // Progress bar percentages (0-25% for module efficiency, 0-30 years for linear warranty)
+  const effVal = parseFloat(panel.efficiency.replace(/[^0-9.]/g, "")) || 21.5
+  const effPercent = Math.min(Math.max(Math.round((effVal / 25) * 100), 0), 100)
+
+  const warYears = parseInt(panel.warranty.performance.replace(/[^0-9]/g, "")) || 25
+  const warPercent = Math.min(Math.max(Math.round((warYears / 30) * 100), 0), 100)
 
   return (
     <div className="bg-white text-slate-900 pb-28 md:pb-16">
@@ -259,23 +275,54 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
                   {panel.tagline}
                 </p>
 
-                {/* Compact Technical Specifications Table (TASK 5) */}
+                {/* Compact Technical Specifications Table (with 0-25% Efficiency & 0-30yr Warranty Progress Bars) */}
                 <div className="mt-5 overflow-hidden rounded-xl border border-slate-200 bg-white text-[13px]">
                   <div className="divide-y divide-slate-100">
                     <div className="flex justify-between items-center py-2 px-3.5 bg-slate-50/70">
                       <span className="text-slate-500 font-medium">Power Range</span>
                       <span className="font-semibold text-slate-900">{panel.specs.powerRange}</span>
                     </div>
-                    <div className="flex justify-between items-center py-2 px-3.5">
-                      <span className="text-slate-500 font-medium">Module Efficiency</span>
-                      <span className="font-semibold text-forest">{panel.specs.moduleEfficiency}</span>
+
+                    {/* Efficiency with 0-25% progress bar */}
+                    <div className="py-2.5 px-3.5">
+                      <div className="flex justify-between items-center mb-1.5">
+                        <span className="text-slate-500 font-medium">Module Efficiency</span>
+                        <span className="font-bold text-forest">{panel.specs.moduleEfficiency}</span>
+                      </div>
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
+                        <div
+                          className="h-full rounded-full bg-forest transition-all duration-500"
+                          style={{ width: `${effPercent}%` }}
+                        />
+                      </div>
+                      <div className="mt-1 flex justify-between text-[10px] text-slate-400">
+                        <span>0%</span>
+                        <span>Industry: 20%</span>
+                        <span>Max: 25%</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center py-2 px-3.5 bg-slate-50/70">
-                      <span className="text-slate-500 font-medium">Linear Warranty</span>
-                      <span className="font-semibold text-slate-900">
-                        {panel.warranty.performance.split(" ")[0]} Linear Output
-                      </span>
+
+                    {/* Linear Warranty with 0-30yr progress bar */}
+                    <div className="py-2.5 px-3.5 bg-slate-50/70">
+                      <div className="flex justify-between items-center mb-1.5">
+                        <span className="text-slate-500 font-medium">Linear Warranty</span>
+                        <span className="font-bold text-slate-900">
+                          {panel.warranty.performance.split(" ")[0]} Linear Output
+                        </span>
+                      </div>
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
+                        <div
+                          className="h-full rounded-full bg-emerald-600 transition-all duration-500"
+                          style={{ width: `${warPercent}%` }}
+                        />
+                      </div>
+                      <div className="mt-1 flex justify-between text-[10px] text-slate-400">
+                        <span>0 Yrs</span>
+                        <span>Standard: 25 Yrs</span>
+                        <span>Tier-1: 30 Yrs</span>
+                      </div>
                     </div>
+
                     <div className="flex justify-between items-center py-2 px-3.5">
                       <span className="text-slate-500 font-medium">Cell Technology</span>
                       <span className="font-semibold text-slate-900 text-right truncate max-w-[200px]">
@@ -709,7 +756,7 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
                   <div>
                     <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center">
                       <Image
-                        src={rp.images[0]?.src || "/panels/n-type-topcon-bifacial/main.webp"}
+                        src={getPanelCardImage(rp.slug) || rp.images[0]?.src || "/images/panels/waaree-arka-topcon-550w/front.webp?v=4"}
                         alt={rp.name}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"

@@ -19,6 +19,7 @@ import {
   Sparkles,
 } from "lucide-react"
 import { calculateSolarSavings, CalculatorResult } from "@lib/services/solar-calculator"
+import { CALCULATOR_CONFIG } from "@lib/config/calculator"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 interface Props {
@@ -32,8 +33,8 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
 
   const [category, setCategory] = useState<"residential" | "commercial" | "society">(validCat)
   const [monthlyBill, setMonthlyBill] = useState<number>(validBill)
-  const [city, setCity] = useState<string>("")
-  const [pincode, setPincode] = useState<string>("")
+  const [city, setCity] = useState<string>(CALCULATOR_CONFIG.defaultCity)
+  const [pincode, setPincode] = useState<string>(CALCULATOR_CONFIG.defaultPincode)
   const [roofArea, setRoofArea] = useState<number | undefined>(undefined)
   const [roofType, setRoofType] = useState<"flat_rcc" | "slanted_metal" | "tiled">("flat_rcc")
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false)
@@ -187,11 +188,23 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
                     2. Monthly Electricity Bill
                   </h3>
                   <p className="text-[10.5px] text-slate-500">
-                    Adjust to match your average monthly power invoice
+                    Type exact bill amount or slide to match average
                   </p>
                 </div>
-                <div className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-0.5 font-manrope text-[15px] font-extrabold text-slate-900 shadow-2xs">
-                  ₹ {monthlyBill.toLocaleString("en-IN")}
+                <div className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 shadow-2xs focus-within:border-emerald-600 focus-within:bg-white focus-within:ring-1 focus-within:ring-emerald-600">
+                  <span className="font-manrope text-[14px] font-bold text-slate-500">₹</span>
+                  <input
+                    type="number"
+                    min={category === "commercial" ? 15000 : 1500}
+                    max={category === "commercial" ? 500000 : 100000}
+                    step={category === "commercial" ? 5000 : 500}
+                    value={monthlyBill}
+                    onChange={(e) => {
+                      const val = Number(e.target.value)
+                      if (!isNaN(val)) setMonthlyBill(val)
+                    }}
+                    className="w-24 font-manrope text-[15px] font-extrabold text-slate-900 focus:outline-none"
+                  />
                 </div>
               </div>
 
@@ -213,15 +226,20 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
 
             {/* 3. Location info */}
             <div className="mt-4 border-t border-slate-100 pt-3.5">
-              <h3 className="text-[12px] font-bold uppercase tracking-wider text-slate-800">
-                3. Installation Location
-              </h3>
+              <div className="flex items-center justify-between">
+                <h3 className="text-[12px] font-bold uppercase tracking-wider text-slate-800">
+                  3. Installation Location
+                </h3>
+                <span className="text-[10px] font-semibold text-forest bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  Rajasthan Default
+                </span>
+              </div>
               <div className="mt-2 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <div>
-                  <label className="text-[10.5px] font-bold text-slate-600 uppercase">City</label>
+                  <label className="text-[10.5px] font-bold text-slate-600 uppercase">City / State</label>
                   <input
                     type="text"
-                    placeholder="e.g. Jaipur, Delhi, NCR, Pune"
+                    placeholder="e.g. Jaipur, Rajasthan"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     className="mt-0.5 w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-[12.5px] text-slate-900 placeholder:text-slate-400 focus:border-emerald-600 focus:bg-white focus:outline-none"
@@ -440,6 +458,37 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
                 </div>
               </div>
 
+              {/* 25-Year Financial Progression Chart */}
+              <div className="mt-3.5 rounded-lg border border-white/10 bg-white/5 p-3">
+                <div className="flex items-center justify-between text-[11px] font-bold text-amber-300">
+                  <span>25-Year Savings Progression</span>
+                  <span>₹ {result.estimatedLifetimeSavingsInr.toLocaleString("en-IN")}</span>
+                </div>
+                <div className="mt-2 grid grid-cols-5 gap-1.5 items-end h-16 pt-1">
+                  {[
+                    { yr: "Yr 5", frac: 0.18 },
+                    { yr: "Yr 10", frac: 0.38 },
+                    { yr: "Yr 15", frac: 0.58 },
+                    { yr: "Yr 20", frac: 0.79 },
+                    { yr: "Yr 25", frac: 1.0 },
+                  ].map((item, idx) => {
+                    const amount = Math.round(result.estimatedLifetimeSavingsInr * item.frac)
+                    return (
+                      <div key={idx} className="flex flex-col items-center gap-1 h-full justify-end">
+                        <span className="text-[8.5px] text-emerald-200/90 font-mono">
+                          ₹{(amount / 100000).toFixed(1)}L
+                        </span>
+                        <div
+                          className="w-full rounded-t-sm bg-gradient-to-t from-emerald-600 to-amber-400 transition-all duration-500"
+                          style={{ height: `${Math.round(item.frac * 100)}%` }}
+                        />
+                        <span className="text-[9px] text-slate-400 font-medium">{item.yr}</span>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+
               {/* Environmental Impact Pill */}
               <div className="mt-3 rounded-lg border border-white/10 bg-white/5 p-2.5">
                 <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-300">
@@ -464,9 +513,14 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
 
             </div>
 
-            {/* Bottom Disclaimer */}
-            <div className="mt-3 border-t border-white/10 pt-2 text-[9.5px] leading-relaxed text-slate-400">
-              Disclaimer: All calculations are indicative estimates based on typical solar irradiance and applicable DISCOM rules. Actual system capacity, subsidy sanction, and electricity savings depend on physical site inspection, shadow analysis, and DISCOM net-metering approvals.
+            {/* Bilingual Disclaimer */}
+            <div className="mt-3.5 space-y-1 rounded-lg border border-amber-500/20 bg-amber-500/10 p-2.5 text-[10px] text-amber-200/90 leading-relaxed">
+              <p className="font-semibold text-amber-300">
+                ⚠️ {CALCULATOR_CONFIG.disclaimers.hi}
+              </p>
+              <p className="text-slate-300/80">
+                {CALCULATOR_CONFIG.disclaimers.en}
+              </p>
             </div>
 
           </div>
