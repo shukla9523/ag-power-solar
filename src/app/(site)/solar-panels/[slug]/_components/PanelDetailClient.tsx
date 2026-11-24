@@ -160,48 +160,48 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
       </nav>
 
       {/* ── HERO SECTION: 1200px Centered Image & Technical Summary ── */}
-      <section className="py-8 sm:py-12 border-b border-slate-200/80 bg-white">
-        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
-          
+      <section className="py-5 sm:py-10 lg:py-12 border-b border-slate-200/80 bg-white">
+        <div className="mx-auto w-full max-w-[1200px] px-3.5 sm:px-6 lg:px-8">
+
           {/* Top Centered Header */}
-          <div className="mx-auto max-w-3xl text-center mb-8">
-            <div className="flex items-center justify-center flex-wrap gap-2">
-              <span className="text-[13px] font-bold uppercase tracking-wider text-forest">
+          <div className="mx-auto max-w-3xl text-center mb-6 sm:mb-8">
+            <div className="flex items-center justify-center flex-wrap gap-1.5 sm:gap-2">
+              <span className="text-[12px] sm:text-[13px] font-bold uppercase tracking-wider text-forest">
                 {panel.brand}
               </span>
               {panel.badge ? (
-                <span className="inline-flex items-center rounded-md bg-forest px-2.5 py-0.5 text-[11px] font-semibold text-white">
+                <span className="inline-flex items-center rounded-md bg-forest px-2 sm:px-2.5 py-0.5 text-[10.5px] sm:text-[11px] font-semibold text-white">
                   {panel.badge}
                 </span>
               ) : null}
               {panel.almm_listed && (
-                <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 border border-blue-200 px-2.5 py-0.5 text-[11px] font-semibold text-blue-700">
+                <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 border border-blue-200 px-2 sm:px-2.5 py-0.5 text-[10.5px] sm:text-[11px] font-semibold text-blue-700">
                   <ShieldCheck className="h-3 w-3 text-blue-600" />
                   ALMM Listed
                 </span>
               )}
               {panel.dcr_compliant && (
-                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700">
+                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 border border-emerald-200 px-2 sm:px-2.5 py-0.5 text-[10.5px] sm:text-[11px] font-semibold text-emerald-700">
                   <CheckCircle2 className="h-3 w-3 text-emerald-600" />
                   DCR Compliant
                 </span>
               )}
             </div>
 
-            <h1 className="mt-2.5 text-2xl sm:text-3xl lg:text-[34px] font-bold text-slate-900 leading-snug">
+            <h1 className="mt-2 text-[21px] sm:text-3xl lg:text-[34px] font-bold text-slate-900 leading-snug">
               {panel.name}
             </h1>
 
-            <div className="mt-2.5 flex items-center justify-center flex-wrap gap-2 text-[13px]">
-              <span className="rounded-md bg-slate-100 px-2.5 py-1 font-medium text-slate-800">
+            <div className="mt-2 flex items-center justify-center flex-wrap gap-1.5 sm:gap-2 text-[12px] sm:text-[13px]">
+              <span className="rounded-md bg-slate-100 px-2 sm:px-2.5 py-0.5 sm:py-1 font-medium text-slate-800">
                 {panel.technology}
               </span>
-              <span className="rounded-md bg-slate-100 px-2.5 py-1 font-semibold text-slate-800">
+              <span className="rounded-md bg-slate-100 px-2 sm:px-2.5 py-0.5 sm:py-1 font-semibold text-slate-800">
                 {panel.wattageRange}
               </span>
             </div>
 
-            <p className="mt-3.5 mx-auto max-w-2xl text-[14.5px] leading-relaxed text-slate-600">
+            <p className="mt-2.5 sm:mt-3.5 mx-auto max-w-2xl text-[13.5px] sm:text-[14.5px] leading-relaxed text-slate-600">
               {panel.tagline}
             </p>
           </div>
@@ -210,58 +210,57 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
           <div className="mx-auto max-w-[800px]">
             <div
               onClick={() => openLightbox(activeImageIndex)}
-              className="group relative w-full aspect-[4/3] sm:aspect-[16/10] max-h-[460px] overflow-hidden rounded-2xl bg-slate-50 border border-slate-200 cursor-zoom-in shadow-xs flex items-center justify-center"
+              className="group relative w-full aspect-[4/3] sm:aspect-[16/10] max-h-[340px] sm:max-h-[460px] overflow-hidden rounded-2xl bg-slate-50 border border-slate-200 cursor-zoom-in shadow-xs flex items-center justify-center"
             >
               <Image
                 src={currentImage.src}
                 alt={currentImage.alt || panel.name}
                 fill
                 priority
-                sizes="(max-width: 1200px) 100vw, 800px"
-                className="object-contain p-4 sm:p-6 transition-transform duration-300 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 800px"
+                className="object-contain p-2.5 sm:p-6 transition-transform duration-300 group-hover:scale-105"
               />
 
               {/* Top-Right Zoom Button */}
-              <div className="absolute top-3.5 right-3.5 z-10">
+              <div className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 z-10">
                 <button
                   type="button"
                   aria-label="Enlarge image"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 border border-slate-200 text-slate-700 shadow-xs backdrop-blur-xs transition-transform hover:scale-105 active:scale-95"
+                  className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white/90 border border-slate-200 text-slate-700 shadow-xs backdrop-blur-xs transition-transform hover:scale-105 active:scale-95"
                 >
-                  <Maximize2 className="h-4 w-4" />
+                  <Maximize2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </button>
               </div>
 
               {/* Counter */}
               {hasMultipleImages && (
-                <div className="absolute bottom-3 right-3 z-10">
-                  <span className="text-[11.5px] font-medium text-slate-700 bg-white/90 border border-slate-200 px-2.5 py-0.5 rounded-full shadow-xs">
+                <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 z-10">
+                  <span className="text-[10.5px] sm:text-[11.5px] font-medium text-slate-700 bg-white/90 border border-slate-200 px-2 sm:px-2.5 py-0.5 rounded-full shadow-xs">
                     {activeImageIndex + 1} / {distinctImages.length}
                   </span>
                 </div>
               )}
             </div>
 
-            {/* Centered Thumbnails Row */}
+            {/* Centered Thumbnails Row (Swipeable on mobile, Centered on desktop) */}
             {hasMultipleImages && (
-              <div className="flex justify-center items-center gap-2.5 sm:gap-3 mt-4 overflow-x-auto pb-1">
+              <div className="flex justify-start sm:justify-center items-center gap-2 sm:gap-3 mt-3 sm:mt-4 overflow-x-auto pb-2 px-1 scrollbar-none">
                 {distinctImages.map((img, idx) => (
                   <button
                     key={idx}
                     type="button"
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`relative h-16 w-20 sm:h-18 sm:w-22 flex-shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
-                      activeImageIndex === idx
+                    className={`relative h-14 w-18 sm:h-18 sm:w-22 flex-shrink-0 overflow-hidden rounded-xl border-2 transition-all ${activeImageIndex === idx
                         ? "border-forest ring-1 ring-forest/30 shadow-xs"
                         : "border-slate-200 bg-slate-50 opacity-70 hover:opacity-100 hover:border-slate-300"
-                    }`}
+                      }`}
                     aria-label={`View photo ${idx + 1}`}
                   >
                     <Image
                       src={img.src}
                       alt={img.alt}
                       fill
-                      sizes="90px"
+                      sizes="(max-width: 768px) 72px, 90px"
                       className="object-contain p-1"
                     />
                   </button>
@@ -270,19 +269,19 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
             )}
           </div>
 
-          {/* Key Specs Cards (Centered directly below photo in 1200px) */}
-          <div className="mx-auto max-w-[900px] mt-8 sm:mt-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-              
-              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 text-center">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Power Range</span>
-                <p className="mt-1 font-bold text-slate-900 text-[15px]">{panel.specs.powerRange}</p>
+          {/* Key Specs Cards (2-cols on mobile, 4-cols on laptop) */}
+          <div className="mx-auto max-w-[900px] mt-6 sm:mt-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
+
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-2.5 sm:p-3.5 text-center">
+                <span className="text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-500">Power Range</span>
+                <p className="mt-0.5 sm:mt-1 font-bold text-slate-900 text-[14px] sm:text-[15px]">{panel.specs.powerRange}</p>
               </div>
 
-              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 text-center">
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-2.5 sm:p-3.5 text-center">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Efficiency</span>
-                  <span className="font-bold text-forest text-[13px]">{panel.specs.moduleEfficiency}</span>
+                  <span className="text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-500">Efficiency</span>
+                  <span className="font-bold text-forest text-[12px] sm:text-[13px]">{panel.specs.moduleEfficiency}</span>
                 </div>
                 <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
                   <div
@@ -290,16 +289,16 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
                     style={{ width: `${effPercent}%` }}
                   />
                 </div>
-                <div className="mt-1 flex justify-between text-[9.5px] text-slate-400">
+                <div className="mt-1 flex justify-between text-[9px] sm:text-[9.5px] text-slate-400">
                   <span>0%</span>
                   <span>Max: 25%</span>
                 </div>
               </div>
 
-              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 text-center">
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-2.5 sm:p-3.5 text-center">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Warranty</span>
-                  <span className="font-bold text-slate-900 text-[13px]">{panel.warranty.performance.split(" ")[0]} Linear</span>
+                  <span className="text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-500">Warranty</span>
+                  <span className="font-bold text-slate-900 text-[12px] sm:text-[13px]">{panel.warranty.performance.split(" ")[0]} Linear</span>
                 </div>
                 <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
                   <div
@@ -307,37 +306,37 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
                     style={{ width: `${warPercent}%` }}
                   />
                 </div>
-                <div className="mt-1 flex justify-between text-[9.5px] text-slate-400">
+                <div className="mt-1 flex justify-between text-[9px] sm:text-[9.5px] text-slate-400">
                   <span>0 Yrs</span>
                   <span>Tier-1: 30 Yrs</span>
                 </div>
               </div>
 
-              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 text-center">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Cell Technology</span>
-                <p className="mt-1 font-bold text-slate-900 text-[13.5px] truncate">{panel.specs.cellTechnology.split("(")[0].trim()}</p>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-2.5 sm:p-3.5 text-center">
+                <span className="text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-500">Cell Technology</span>
+                <p className="mt-0.5 sm:mt-1 font-bold text-slate-900 text-[12.5px] sm:text-[13.5px] truncate">{panel.specs.cellTechnology.split("(")[0].trim()}</p>
               </div>
 
             </div>
 
             {/* PM Surya Ghar Subsidy Banner (Centered) */}
-            <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50/60 p-3.5 text-center">
-              <p className="text-[13px] text-slate-700">
+            <div className="mt-3.5 sm:mt-4 rounded-xl border border-emerald-200 bg-emerald-50/60 p-3 sm:p-3.5 text-center">
+              <p className="text-[12px] sm:text-[13px] text-slate-700 leading-snug">
                 Eligible for central capital subsidy up to ₹78,000 under PM Surya Ghar Muft Bijli Yojana.{" "}
                 <LocalizedClientLink
                   href="/calculator"
-                  className="font-bold text-forest underline hover:text-forest-deep"
+                  className="font-bold text-forest underline hover:text-forest-deep block sm:inline mt-0.5 sm:mt-0"
                 >
                   Calculate subsidy savings →
                 </LocalizedClientLink>
               </p>
             </div>
 
-            {/* Action Buttons (Centered) */}
-            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+            {/* Action Buttons: Full-width on mobile, inline on laptop */}
+            <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-3">
               <LocalizedClientLink
                 href={`/contact?panel=${panel.slug}`}
-                className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-forest hover:bg-forest-deep px-8 py-2.5 text-[14px] font-bold text-white shadow-xs transition-all active:scale-95 text-center"
+                className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-forest hover:bg-forest-deep px-6 sm:px-8 py-2.5 text-[13.5px] sm:text-[14px] font-bold text-white shadow-xs transition-all active:scale-95 text-center"
               >
                 <span>Get Free Installation Quote</span>
                 <ArrowRight className="h-4 w-4" />
@@ -348,7 +347,7 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
                   href={panel.datasheetUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 px-5 py-2.5 text-[14px] font-semibold text-slate-800 transition-all active:scale-95 text-center"
+                  className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 px-4 sm:px-5 py-2.5 text-[13.5px] sm:text-[14px] font-semibold text-slate-800 transition-all active:scale-95 text-center"
                 >
                   <FileText className="h-4 w-4 text-emerald-600" />
                   <span>Download Datasheet (PDF)</span>
@@ -357,7 +356,7 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
 
               <a
                 href="tel:+919523467849"
-                className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 px-5 py-2.5 text-[14px] font-semibold text-slate-800 transition-all active:scale-95 text-center"
+                className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 px-4 sm:px-5 py-2.5 text-[13.5px] sm:text-[14px] font-semibold text-slate-800 transition-all active:scale-95 text-center"
               >
                 <Phone className="h-4 w-4 text-forest flex-shrink-0" />
                 <span>Call +91 95234 67849</span>
@@ -466,93 +465,93 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
           <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs">
             <div className="divide-y divide-slate-100">
               {panel.specs.powerRange && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Power Output Range</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-bold text-slate-900">{panel.specs.powerRange}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Power Output Range</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-bold text-slate-900 text-right sm:text-left">{panel.specs.powerRange}</span>
                 </div>
               )}
 
               {panel.specs.cellTechnology && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Cell Technology</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-medium text-slate-900">{panel.specs.cellTechnology}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Cell Technology</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-medium text-slate-900 text-right sm:text-left">{panel.specs.cellTechnology}</span>
                 </div>
               )}
 
               {panel.specs.numberOfCells && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Number of Cells</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-medium text-slate-800">{panel.specs.numberOfCells}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Number of Cells</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-medium text-slate-800 text-right sm:text-left">{panel.specs.numberOfCells}</span>
                 </div>
               )}
 
               {panel.specs.moduleEfficiency && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Module Efficiency</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-bold text-forest">{panel.specs.moduleEfficiency}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Module Efficiency</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-bold text-forest text-right sm:text-left">{panel.specs.moduleEfficiency}</span>
                 </div>
               )}
 
               {panel.specs.dimensions && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Dimensions (L x W x H)</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-medium text-slate-800">{panel.specs.dimensions}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Dimensions (L x W x H)</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-medium text-slate-800 text-right sm:text-left">{panel.specs.dimensions}</span>
                 </div>
               )}
 
               {panel.specs.weight && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Weight</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-medium text-slate-800">{panel.specs.weight}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Weight</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-medium text-slate-800 text-right sm:text-left">{panel.specs.weight}</span>
                 </div>
               )}
 
               {panel.specs.frontRearGlass && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Front / Rear Structure</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-medium text-slate-800">{panel.specs.frontRearGlass}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Front / Rear Structure</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-medium text-slate-800 text-right sm:text-left">{panel.specs.frontRearGlass}</span>
                 </div>
               )}
 
               {panel.specs.frame && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Frame Material</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-medium text-slate-800">{panel.specs.frame}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Frame Material</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-medium text-slate-800 text-right sm:text-left">{panel.specs.frame}</span>
                 </div>
               )}
 
               {panel.specs.junctionBox && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Junction Box</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-medium text-slate-800">{panel.specs.junctionBox}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Junction Box</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-medium text-slate-800 text-right sm:text-left">{panel.specs.junctionBox}</span>
                 </div>
               )}
 
               {panel.specs.operatingTemperature && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Operating Temperature</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-medium text-slate-800">{panel.specs.operatingTemperature}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Operating Temperature</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-medium text-slate-800 text-right sm:text-left">{panel.specs.operatingTemperature}</span>
                 </div>
               )}
 
               {panel.specs.temperatureCoefficient && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Temperature Coefficient</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-medium text-slate-800">{panel.specs.temperatureCoefficient}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Temperature Coefficient</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-medium text-slate-800 text-right sm:text-left">{panel.specs.temperatureCoefficient}</span>
                 </div>
               )}
 
               {panel.specs.maxSystemVoltage && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors">
-                  <span className="text-[13px] font-semibold text-slate-500">Max System Voltage</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-medium text-slate-800">{panel.specs.maxSystemVoltage}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-slate-500">Max System Voltage</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-medium text-slate-800 text-right sm:text-left">{panel.specs.maxSystemVoltage}</span>
                 </div>
               )}
 
               {panel.specs.bifaciality && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50/70 transition-colors bg-emerald-50/30">
-                  <span className="text-[13px] font-semibold text-forest">Bifaciality Factor</span>
-                  <span className="sm:col-span-2 text-[13.5px] font-bold text-forest">{panel.specs.bifaciality}</span>
+                <div className="flex justify-between items-baseline gap-3 sm:grid sm:grid-cols-3 p-2.5 sm:p-3.5 hover:bg-slate-50/70 transition-colors bg-emerald-50/30">
+                  <span className="text-[12.5px] sm:text-[13px] font-semibold text-forest">Bifaciality Factor</span>
+                  <span className="sm:col-span-2 text-[13px] sm:text-[13.5px] font-bold text-forest text-right sm:text-left">{panel.specs.bifaciality}</span>
                 </div>
               )}
             </div>
@@ -693,9 +692,8 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
                       {faq.question}
                     </span>
                     <ChevronDown
-                      className={`h-4 w-4 text-slate-500 flex-shrink-0 transition-transform duration-200 ${
-                        isOpen ? "rotate-180 text-forest" : ""
-                      }`}
+                      className={`h-4 w-4 text-slate-500 flex-shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180 text-forest" : ""
+                        }`}
                     />
                   </button>
                   {isOpen && (
@@ -910,9 +908,8 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
                   key={i}
                   type="button"
                   onClick={() => setLightboxIndex(i)}
-                  className={`relative h-12 w-16 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
-                    lightboxIndex === i ? "border-forest scale-105" : "border-white/30 opacity-60 hover:opacity-100"
-                  }`}
+                  className={`relative h-12 w-16 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${lightboxIndex === i ? "border-forest scale-105" : "border-white/30 opacity-60 hover:opacity-100"
+                    }`}
                 >
                   <Image src={img.src} alt={img.alt} fill sizes="80px" className="object-contain p-1" />
                 </button>

@@ -60,16 +60,16 @@ export default async function BlogPage() {
             <span className="inline-block rounded-full bg-forest/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-forest border border-forest/15">
               Engineering &amp; Subsidy Guides
             </span>
-            <h1 className={`${manrope.className} mt-3 text-[32px] font-extrabold leading-[1.1] tracking-[-0.03em] text-forest sm:text-[42px] lg:text-[48px]`}>
+            <h1 className={`${manrope.className} mt-3 text-[24px] font-extrabold leading-[1.15] tracking-[-0.03em] text-forest sm:text-[38px] lg:text-[48px]`}>
               Solar Insights &amp; Engineering Guides
             </h1>
-            <p className="mt-3.5 mx-auto max-w-[680px] text-[15px] leading-relaxed text-charcoal/80 sm:text-[16px]">
+            <p className="mt-2.5 sm:mt-3.5 mx-auto max-w-[680px] text-[14px] sm:text-[16px] leading-relaxed text-charcoal/80">
               Authoritative guides by AG POWER engineers covering rooftop solar system sizing, PM Surya Ghar subsidy procedures, TOPCon module technologies, DISCOM net-metering, and long-term financial payback in India.
             </p>
           </div>
 
           {/* ── FEATURED POST (Photo Centered, Headings & Text Centered) ── */}
-          <section className="mt-10 sm:mt-12">
+          <section className="mt-8 sm:mt-12">
             <article className="group mx-auto max-w-[1100px] overflow-hidden rounded-3xl border border-charcoal/10 bg-white shadow-xs transition-all duration-300 hover:shadow-lg">
               <LocalizedClientLink href={`/blog/${featured.slug}`} className="block">
                 <div className="relative aspect-[16/9] max-h-[460px] w-full overflow-hidden bg-slate-100 flex items-center justify-center">
@@ -87,8 +87,8 @@ export default async function BlogPage() {
                     <div className="h-full w-full bg-forest" />
                   )}
                   {featured.category_id && (
-                    <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-10">
-                      <span className="rounded-full bg-forest px-4 py-1 text-[12px] font-bold text-white shadow-md">
+                    <div className="absolute top-3 left-3 sm:top-5 sm:left-5 z-10">
+                      <span className="rounded-full bg-forest px-3 sm:px-4 py-1 text-[11px] sm:text-[12px] font-bold text-white shadow-md">
                         {featured.category_id}
                       </span>
                     </div>
@@ -97,24 +97,24 @@ export default async function BlogPage() {
               </LocalizedClientLink>
 
               {/* Centered Content Below Photo */}
-              <div className="p-6 text-center sm:p-8 lg:p-10">
+              <div className="p-4 sm:p-8 lg:p-10 text-center">
                 {featured.category_id && (
-                  <span className="inline-block text-[12px] font-bold uppercase tracking-wider text-forest/90 mb-2">
+                  <span className="inline-block text-[11px] sm:text-[12px] font-bold uppercase tracking-wider text-forest/90 mb-1.5 sm:mb-2">
                     {featured.category_id}
                   </span>
                 )}
-                <h2 className={`${manrope.className} mx-auto max-w-3xl text-2xl sm:text-3xl lg:text-[30px] font-extrabold leading-snug tracking-tight text-forest transition-colors group-hover:text-gold`}>
+                <h2 className={`${manrope.className} mx-auto max-w-3xl text-xl sm:text-3xl lg:text-[30px] font-extrabold leading-snug tracking-tight text-forest transition-colors group-hover:text-gold`}>
                   <LocalizedClientLink href={`/blog/${featured.slug}`}>
                     {featured.title}
                   </LocalizedClientLink>
                 </h2>
-                <p className="mt-3.5 mx-auto max-w-2xl text-[15px] leading-relaxed text-charcoal/80 sm:text-[16px]">
+                <p className="mt-2.5 sm:mt-3.5 mx-auto max-w-2xl text-[14px] sm:text-[16px] leading-relaxed text-charcoal/80">
                   {featured.excerpt}
                 </p>
-                <div className="mt-6 flex justify-center">
+                <div className="mt-5 sm:mt-6 flex justify-center">
                   <LocalizedClientLink
                     href={`/blog/${featured.slug}`}
-                    className={`${manrope.className} inline-flex items-center justify-center rounded-xl bg-forest hover:bg-forest-deep px-6 py-3 text-[14px] font-bold text-white shadow-md transition-all active:scale-95`}
+                    className={`${manrope.className} inline-flex w-full sm:w-auto items-center justify-center rounded-xl bg-forest hover:bg-forest-deep px-6 py-2.5 sm:py-3 text-[13.5px] sm:text-[14px] font-bold text-white shadow-md transition-all active:scale-95`}
                   >
                     <span>Read Complete Guide</span>
                     <span className="ml-2 text-[16px]">→</span>
@@ -200,27 +200,27 @@ export default async function BlogPage() {
           )}
 
           {/* ── SOLAR CONSULTATION BANNER (Centered in 1200px) ── */}
-          <section className="mt-14 sm:mt-16 lg:mt-20">
-            <div className="mx-auto max-w-[1100px] rounded-3xl bg-forest p-8 sm:p-12 text-center text-white shadow-md">
-              <span className="inline-block rounded-full bg-gold/20 px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-gold">
+          <section className="mt-10 sm:mt-16 lg:mt-20">
+            <div className="mx-auto max-w-[1100px] rounded-3xl bg-forest p-5 sm:p-12 text-center text-white shadow-md">
+              <span className="inline-block rounded-full bg-gold/20 px-3.5 py-1 text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider text-gold">
                 Free Feasibility Audit
               </span>
-              <h3 className={`${manrope.className} mt-3 text-2xl sm:text-3xl lg:text-[32px] font-extrabold leading-snug`}>
+              <h3 className={`${manrope.className} mt-2.5 sm:mt-3 text-xl sm:text-3xl lg:text-[32px] font-extrabold leading-snug`}>
                 Ready to cut your electricity bill by 80%?
               </h3>
-              <p className="mt-2.5 mx-auto max-w-xl text-[14px] sm:text-[15px] leading-relaxed text-white/85">
+              <p className="mt-2 sm:mt-2.5 mx-auto max-w-xl text-[13px] sm:text-[15px] leading-relaxed text-white/85">
                 Get a personalized rooftop solar sizing report, 25-year financial cash flow, and PM Surya Ghar subsidy estimate from AG POWER.
               </p>
-              <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+              <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <LocalizedClientLink
                   href="/calculator"
-                  className={`${manrope.className} flex h-[46px] w-full sm:w-auto items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 text-[13.5px] font-bold text-white shadow-md transition-all active:scale-95`}
+                  className={`${manrope.className} flex h-[44px] sm:h-[46px] w-full sm:w-auto items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 text-[13px] sm:text-[13.5px] font-bold text-white shadow-md transition-all active:scale-95`}
                 >
                   Calculate Solar Savings →
                 </LocalizedClientLink>
                 <LocalizedClientLink
                   href="/contact"
-                  className={`${manrope.className} flex h-[46px] w-full sm:w-auto items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 text-[13.5px] font-bold text-slate-900 shadow-md transition-all active:scale-95`}
+                  className={`${manrope.className} flex h-[44px] sm:h-[46px] w-full sm:w-auto items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 text-[13px] sm:text-[13.5px] font-bold text-slate-900 shadow-md transition-all active:scale-95`}
                 >
                   Request Free Site Audit
                 </LocalizedClientLink>

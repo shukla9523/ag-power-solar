@@ -131,17 +131,17 @@ export default async function BlogPostDetailPage({
         </div>
 
         {/* ─── ARTICLE HEADER (Centered) ─── */}
-        <article className="content-container mx-auto max-w-[1200px] px-4 pt-10 sm:px-6 lg:px-8">
-          <header className="mb-10 text-center mx-auto max-w-3xl">
-            <span className="inline-block rounded-full bg-forest/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-forest border border-forest/15">
+        <article className="content-container mx-auto max-w-[1200px] px-3.5 pt-6 sm:px-6 sm:pt-10 lg:px-8">
+          <header className="mb-6 sm:mb-10 text-center mx-auto max-w-3xl">
+            <span className="inline-block rounded-full bg-forest/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-forest border border-forest/15">
               {cleanCategoryName(post.category_id, "Solar Insights")}
             </span>
 
-            <h1 className={`${manrope.className} mt-3 text-2xl sm:text-3xl lg:text-[34px] font-bold tracking-tight text-forest leading-snug`}>
+            <h1 className={`${manrope.className} mt-2.5 sm:mt-3 text-xl sm:text-3xl lg:text-[34px] font-bold tracking-tight text-forest leading-snug`}>
               {post.title}
             </h1>
 
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5 text-sm text-charcoal/70">
+            <div className="mt-3 sm:mt-4 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm text-charcoal/70">
               <span className="font-semibold text-forest">By {post.author_name || "AG POWER Solar Engineering Team"}</span>
               <span>•</span>
               <span className="font-medium text-slate-600">
@@ -150,7 +150,7 @@ export default async function BlogPostDetailPage({
             </div>
 
             {post.excerpt && (
-              <p className="mt-4 text-[15px] sm:text-[16px] leading-relaxed text-charcoal/80 max-w-2xl mx-auto italic">
+              <p className="mt-3 sm:mt-4 text-[14px] sm:text-[16px] leading-relaxed text-charcoal/80 max-w-2xl mx-auto italic">
                 {post.excerpt}
               </p>
             )}
@@ -158,7 +158,7 @@ export default async function BlogPostDetailPage({
 
           {/* ─── FEATURED IMAGE (Centered, 16:9 in 1200px container) ─── */}
           {post.featured_image && (
-            <div className="relative mb-10 mx-auto aspect-[16/9] max-h-[480px] w-full max-w-[1100px] overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-xs flex items-center justify-center">
+            <div className="relative mb-6 sm:mb-10 mx-auto aspect-[16/9] max-h-[300px] sm:max-h-[480px] w-full max-w-[1100px] overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200 bg-slate-50 shadow-xs flex items-center justify-center">
               <Image
                 src={post.featured_image}
                 alt={post.title}
@@ -171,29 +171,29 @@ export default async function BlogPostDetailPage({
           )}
 
           {/* ─── ARTICLE BODY (Centered container) ─── */}
-          <div className="mx-auto max-w-[960px] rounded-3xl border border-charcoal/10 bg-white p-6 sm:p-10 lg:p-12 shadow-xs">
+          <div className="mx-auto max-w-[960px] rounded-2xl sm:rounded-3xl border border-charcoal/10 bg-white p-4 sm:p-10 lg:p-12 shadow-xs">
             <div
-              className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:text-forest prose-headings:tracking-tight prose-a:text-forest prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-strong:text-charcoal"
+              className="prose prose-base sm:prose-lg max-w-none prose-headings:font-extrabold prose-headings:text-forest prose-headings:tracking-tight prose-a:text-forest prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-strong:text-charcoal"
               dangerouslySetInnerHTML={{ __html: articleHtml }}
             />
           </div>
 
           {/* ─── SUBSIDY CALCULATOR CTA STRIP ─── */}
-          <div className="mt-10 rounded-2xl bg-gradient-to-br from-forest-deep via-forest to-forest-deep p-6 sm:p-8 text-white shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+          <div className="mt-8 sm:mt-10 rounded-2xl bg-gradient-to-br from-forest-deep via-forest to-forest-deep p-5 sm:p-8 text-white shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-5">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300">
+              <span className="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider text-emerald-300">
                 PM Surya Ghar Muft Bijli Yojana
               </span>
-              <h3 className={`${manrope.className} mt-1 text-xl sm:text-2xl font-bold text-white`}>
+              <h3 className={`${manrope.className} mt-1 text-lg sm:text-2xl font-bold text-white`}>
                 Check Your Solar Subsidy &amp; Savings
               </h3>
-              <p className="mt-1.5 text-[13px] text-emerald-100/90 max-w-lg leading-relaxed">
+              <p className="mt-1 text-[12.5px] sm:text-[13px] text-emerald-100/90 max-w-lg leading-relaxed">
                 Calculate your central government subsidy entitlement (up to ₹78,000) and estimate your monthly free electricity generation with AG POWER.
               </p>
             </div>
             <LocalizedClientLink
               href="/calculator"
-              className="inline-flex items-center justify-center rounded-xl bg-amber-400 hover:bg-amber-300 px-5 py-3 text-[13.5px] font-bold text-slate-900 shadow-sm transition-all active:scale-95 flex-shrink-0"
+              className="inline-flex w-full sm:w-auto items-center justify-center rounded-xl bg-amber-400 hover:bg-amber-300 px-5 py-2.5 sm:py-3 text-[13px] sm:text-[13.5px] font-bold text-slate-900 shadow-sm transition-all active:scale-95 flex-shrink-0"
             >
               <span>Check Subsidy &amp; Savings →</span>
             </LocalizedClientLink>

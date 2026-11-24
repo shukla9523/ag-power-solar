@@ -148,16 +148,16 @@ function CatalogueClientContent({ initialPanels }: Props) {
         
         {/* Header (Clean, Trustworthy, Solid Background) */}
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 leading-tight">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 leading-tight">
             Solar Panels Catalogue
           </h1>
-          <p className="mt-3.5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-2.5 sm:mt-3.5 text-sm sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
             Explore verified photovoltaic modules from India&apos;s leading manufacturers. Compare N-Type TOPCon and Mono PERC specifications engineered for long-term rooftop generation.
           </p>
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="mt-8 sm:mt-10 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-xs">
+        <div className="mt-6 sm:mt-10 rounded-2xl border border-slate-200 bg-white p-3.5 sm:p-5 shadow-xs">
           <div className="flex flex-col gap-4">
             
             {/* Top Row: Search Input + Shortlist Badge + Sort Dropdown */}
@@ -314,13 +314,13 @@ function CatalogueClientContent({ initialPanels }: Props) {
             return (
               <div
                 key={panel.id}
-                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-forest/40 h-full w-full"
+                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-3.5 sm:p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-forest/40 h-full w-full"
               >
                 <div>
                   {/* Card Image: Clickable to /solar-panels/[slug] */}
                   <LocalizedClientLink
                     href={`/solar-panels/${panel.slug}`}
-                    className="relative block h-[210px] sm:h-[225px] w-full overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-3"
+                    className="relative block h-[185px] sm:h-[225px] w-full overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-2.5 sm:p-3"
                   >
                     <Image
                       src={getPanelCardImage(panel.slug)}
