@@ -33,8 +33,8 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
 
   const [category, setCategory] = useState<"residential" | "commercial" | "society">(validCat)
   const [monthlyBill, setMonthlyBill] = useState<number>(validBill)
-  const [city, setCity] = useState<string>(CALCULATOR_CONFIG.defaultCity)
-  const [pincode, setPincode] = useState<string>(CALCULATOR_CONFIG.defaultPincode)
+  const [city, setCity] = useState<string>("")
+  const [pincode, setPincode] = useState<string>("")
   const [roofArea, setRoofArea] = useState<number | undefined>(undefined)
   const [roofType, setRoofType] = useState<"flat_rcc" | "slanted_metal" | "tiled">("flat_rcc")
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false)
@@ -226,20 +226,15 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
 
             {/* 3. Location info */}
             <div className="mt-4 border-t border-slate-100 pt-3.5">
-              <div className="flex items-center justify-between">
-                <h3 className="text-[12px] font-bold uppercase tracking-wider text-slate-800">
-                  3. Installation Location
-                </h3>
-                <span className="text-[10px] font-semibold text-forest bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                  Rajasthan Default
-                </span>
-              </div>
+              <h3 className="text-[12px] font-bold uppercase tracking-wider text-slate-800">
+                3. Installation Location
+              </h3>
               <div className="mt-2 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <div>
                   <label className="text-[10.5px] font-bold text-slate-600 uppercase">City / State</label>
                   <input
                     type="text"
-                    placeholder="e.g. Jaipur, Rajasthan"
+                    placeholder="e.g. Jaipur, Delhi, NCR, Pune"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     className="mt-0.5 w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-[12.5px] text-slate-900 placeholder:text-slate-400 focus:border-emerald-600 focus:bg-white focus:outline-none"
@@ -513,14 +508,9 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
 
             </div>
 
-            {/* Bilingual Disclaimer */}
-            <div className="mt-3.5 space-y-1 rounded-lg border border-amber-500/20 bg-amber-500/10 p-2.5 text-[10px] text-amber-200/90 leading-relaxed">
-              <p className="font-semibold text-amber-300">
-                ⚠️ {CALCULATOR_CONFIG.disclaimers.hi}
-              </p>
-              <p className="text-slate-300/80">
-                {CALCULATOR_CONFIG.disclaimers.en}
-              </p>
+            {/* Minimized English Disclaimer */}
+            <div className="mt-3.5 rounded-lg border border-white/10 bg-white/5 p-2 text-[10.5px] text-slate-400 leading-snug">
+              <span className="font-semibold text-slate-300">Note:</span> Indicative estimate. Final system capacity, subsidy sanction, and electricity savings depend on physical roof inspection and DISCOM net-metering approvals.
             </div>
 
           </div>

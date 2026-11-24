@@ -123,19 +123,19 @@ export default function AboutClient({ children }: Props) {
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 text-center">
             <div>
               <p className="font-manrope text-[36px] font-black text-gold sm:text-[44px]">25+</p>
-              <p className="text-[13px] text-sage">Years Linear Warranty</p>
+              <p className="text-[13.5px] font-medium text-white">Years Linear Warranty</p>
             </div>
             <div>
               <p className="font-manrope text-[36px] font-black text-white sm:text-[44px]">90%</p>
-              <p className="text-[13px] text-sage">Maximum Bill Savings</p>
+              <p className="text-[13.5px] font-medium text-white">Maximum Bill Savings</p>
             </div>
             <div>
               <p className="font-manrope text-[36px] font-black text-gold sm:text-[44px]">100%</p>
-              <p className="text-[13px] text-sage">DCR Compliant</p>
+              <p className="text-[13.5px] font-medium text-white">DCR Compliant</p>
             </div>
             <div>
               <p className="font-manrope text-[36px] font-black text-white sm:text-[44px]">₹78K</p>
-              <p className="text-[13px] text-sage">Max Central Subsidy</p>
+              <p className="text-[13.5px] font-medium text-white">Max Central Subsidy</p>
             </div>
           </div>
         </div>

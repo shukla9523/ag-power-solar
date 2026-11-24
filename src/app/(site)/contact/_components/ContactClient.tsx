@@ -115,79 +115,65 @@ export default function ContactClient() {
           {/* Left Column: Direct Contacts (5 cols) */}
           <div className="flex flex-col justify-between rounded-3xl bg-forest p-8 text-white shadow-xl sm:p-10 lg:col-span-5">
             <div>
-              <span className="text-[12px] font-bold uppercase tracking-wider text-gold">
+              <span className="text-[12px] font-bold uppercase tracking-wider text-amber-400">
                 Electro Global · AG POWER
               </span>
               <h2 className="mt-2 font-manrope text-[28px] font-extrabold text-white">
                 Contact Information
               </h2>
-              <p className="mt-3 text-[14px] leading-relaxed text-sage-mist/85">
+              <p className="mt-3 text-[14px] leading-relaxed text-emerald-100/90">
                 Our solar consultation team is available Monday to Saturday to answer technical questions and schedule on-site surveys.
               </p>
 
               <div className="mt-8 space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15 text-amber-400">
                     <Phone className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[12px] text-sage">Direct Phone Line</p>
+                    <p className="text-[12px] font-semibold text-emerald-300">Direct Phone Line</p>
                     <a
                       href="tel:+919523467849"
-                      className="font-manrope text-[16px] font-bold text-white hover:text-gold transition-colors"
+                      className="font-manrope text-[18px] font-extrabold text-white hover:text-amber-300 transition-colors block mt-0.5"
                     >
                       +91 95234 67849
                     </a>
-                    <p className="text-[11px] text-sage-mist/60">Mon – Sat, 9:00 AM – 7:00 PM</p>
+                    <p className="text-[12px] text-emerald-100/80 mt-0.5">Mon – Sat, 9:00 AM – 7:00 PM</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15 text-amber-400">
                     <Mail className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[12px] text-sage">Email Inquiries</p>
+                    <p className="text-[12px] font-semibold text-emerald-300">Email Inquiries</p>
                     <a
                       href="mailto:akashshukla9523@gmail.com"
-                      className="font-manrope text-[16px] font-bold text-white hover:text-gold transition-colors"
+                      className="font-manrope text-[16px] font-bold text-white hover:text-amber-300 transition-colors block mt-0.5"
                     >
                       akashshukla9523@gmail.com
                     </a>
-                    <p className="text-[11px] text-sage-mist/60">Verified reply within 2 business hours</p>
+                    <p className="text-[12px] text-emerald-100/80 mt-0.5">Verified reply within 2 business hours</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15 text-amber-400">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[12px] text-sage">Corporate Office</p>
-                    <p className="font-manrope text-[15px] font-medium text-white">
+                    <p className="text-[12px] font-semibold text-emerald-300">Corporate Office</p>
+                    <p className="font-manrope text-[15.5px] font-bold text-white mt-0.5">
                       Electro Global Solar EPC Division, India
                     </p>
-                    <p className="text-[11px] text-sage-mist/60">Pan-India Solar EPC Execution</p>
+                    <p className="text-[12px] text-emerald-100/80 mt-0.5">Pan-India Solar EPC Execution</p>
                   </div>
                 </div>
               </div>
-
-              {/* WhatsApp Quick CTA */}
-              <div className="mt-8 rounded-2xl bg-white/10 p-4 border border-white/10">
-                <p className="text-[13px] font-semibold text-white">Need a quick WhatsApp chat?</p>
-                <a
-                  href="https://wa.me/919523467849?text=Hi%2C%20I%20am%20interested%20in%20AG%20POWER%20solar%20solutions."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-2 rounded-xl bg-social-whatsapp px-4 py-2 text-[13px] font-bold text-white hover:opacity-90"
-                >
-                  <MessageSquare className="h-4 w-4" />
-                  <span>Chat on WhatsApp</span>
-                </a>
-              </div>
             </div>
 
-            <div className="mt-8 border-t border-white/10 pt-4 text-[12px] text-sage">
+            <div className="mt-8 border-t border-white/15 pt-4 text-[12px] text-emerald-100/85">
               ✓ MNRE compliant vendor · 25-Year performance warranty · 100% turnkey DISCOM net-metering.
             </div>
           </div>
