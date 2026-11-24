@@ -6,11 +6,12 @@
  */
 
 import { useState } from "react"
+import Link from "next/link"
 import { Download, ImagePlus, PlayCircle, Sparkles } from "lucide-react"
 import { Card, EmptyState, ErrorBanner, PageHeader, StatTile, buttonGhost, buttonPrimary } from "../../_components/ui"
 
-type Issue = { severity: "error" | "warning" | "info"; message: string }
-type PageRow = { pageKey: string; path: string; title: string; kind: string; score: number; indexable: boolean; issues: Issue[] }
+type Issue = { severity: "error" | "warning" | "info"; message: string; fixUrl?: string }
+type PageRow = { pageKey: string; path: string; title: string; kind: string; score: number; indexable: boolean; fixUrl?: string; issues: Issue[] }
 type Report = {
   generatedAt: string
   averageScore: number
@@ -102,7 +103,7 @@ export default function SeoReportPage() {
       {error && <ErrorBanner message={error} />}
       {jobMessage && <div className="mb-6 rounded-xl border border-accent-purple/30 bg-accent-purple/10 px-4 py-3 text-[13px] text-slate-200">{jobMessage}</div>}
 
-      {!report && !loading && <EmptyState title="No report yet" description="Click “Run report” to audit every page on mommantum.com." />}
+      {!report && !loading && <EmptyState title="No report yet" description="Click “Run report” to audit every page on ag-power-solar.vercel.app." />}
       {loading && !report && <div className="h-40 animate-pulse rounded-2xl bg-admin-line/40" />}
 
       {report && (
@@ -127,7 +128,14 @@ export default function SeoReportPage() {
           <Card title="Site-wide" className="mt-6">
             <ul className="space-y-2">
               {report.siteIssues.map((issue, i) => (
-                <li key={i} className={`text-[13px] ${SEVERITY[issue.severity]}`}>• {issue.message}</li>
+                <li key={i} className={`flex items-start justify-between gap-3 text-[13px] ${SEVERITY[issue.severity]}`}>
+                  <span>• {issue.message}</span>
+                  {issue.fixUrl && (
+                    <Link href={issue.fixUrl} className="shrink-0 text-[11px] underline underline-offset-2 opacity-80 hover:opacity-100">
+                      Fix ↗
+                    </Link>
+                  )}
+                </li>
               ))}
             </ul>
           </Card>
@@ -154,14 +162,28 @@ export default function SeoReportPage() {
                     <span className="text-[11.5px] text-slate-400">{p.issues.length} issue(s)</span>
                   </summary>
                   <div className="mt-3 pl-16">
+                    <div className="mb-2 flex items-center gap-2">
+                      {p.fixUrl && (
+                        <Link href={p.fixUrl} className="inline-flex items-center gap-1.5 rounded-lg bg-brand/10 border border-brand/30 px-2.5 py-1 text-[11.5px] font-semibold text-brand hover:bg-brand/20">
+                          Fix Page Details & SEO ↗
+                        </Link>
+                      )}
+                      <button onClick={() => job("meta", p.pageKey)} disabled={!!busy} className={`${buttonGhost}`}>
+                        <Sparkles size={13} /> {busy === `meta:${p.pageKey}` ? "Filling…" : "Fill empty fields with AI"}
+                      </button>
+                    </div>
                     <ul className="space-y-1.5">
                       {p.issues.map((issue, i) => (
-                        <li key={i} className={`text-[12.5px] ${SEVERITY[issue.severity]}`}>• {issue.message}</li>
+                        <li key={i} className={`flex items-start justify-between gap-3 text-[12.5px] ${SEVERITY[issue.severity]}`}>
+                          <span>• {issue.message}</span>
+                          {issue.fixUrl && (
+                            <Link href={issue.fixUrl} className="shrink-0 text-[11px] underline underline-offset-2 opacity-80 hover:opacity-100">
+                              Fix ↗
+                            </Link>
+                          )}
+                        </li>
                       ))}
                     </ul>
-                    <button onClick={() => job("meta", p.pageKey)} disabled={!!busy} className={`${buttonGhost} mt-3`}>
-                      <Sparkles size={13} /> {busy === `meta:${p.pageKey}` ? "Filling…" : "Fill empty fields for this page"}
-                    </button>
                   </div>
                 </details>
               ))}

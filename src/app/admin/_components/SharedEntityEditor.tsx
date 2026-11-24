@@ -337,9 +337,9 @@ export default function SharedEntityEditor({
     "mb-1 block text-[11px] font-bold uppercase tracking-[0.05em] text-slate-400"
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-admin-bg text-white overflow-hidden w-full h-full">
-      {/* ── Top Bar Header (Sticky) ── */}
-      <div className="flex items-center justify-between px-6 sm:px-8 py-3.5 border-b border-charcoal bg-ink shrink-0">
+    <div className="fixed inset-0 z-[100] flex flex-col bg-slate-950 text-white overflow-hidden w-full h-full">
+      {/* ── Top Bar Header (Sticky Solid) ── */}
+      <div className="flex items-center justify-between px-6 sm:px-8 py-3.5 border-b border-slate-800 bg-slate-900 shrink-0">
         <div className="flex items-center gap-4">
           <button
             type="button"
@@ -516,28 +516,28 @@ export default function SharedEntityEditor({
                         seoData.meta_title.length > 60
                           ? "text-rose-400 font-bold"
                           : seoData.meta_title.length >= 50
-                          ? "text-emerald-400 font-semibold"
-                          : "text-slate-400"
+                          ? "text-emerald-400 font-bold"
+                          : "text-amber-400 font-medium"
                       }`}
                     >
-                      {seoData.meta_title.length}/60 chars (Recommended: 50-60)
+                      {seoData.meta_title.length}/60 chars ({seoData.meta_title.length > 60 ? "Over limit" : seoData.meta_title.length >= 50 ? "Optimal" : "Too short: recommended 50-60"})
                     </span>
                   </div>
                   <input
                     type="text"
                     value={seoData.meta_title}
                     onChange={(e) => setSeoData({ ...seoData, meta_title: e.target.value })}
-                    placeholder="Page Title | Mommantum"
+                    placeholder="Page Title | AG POWER Solar"
                     className={inputClass}
                   />
-                  <div className="mt-1.5 h-1 w-full bg-charcoal rounded-full overflow-hidden">
+                  <div className="mt-1.5 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                     <div
-                      className={`h-full transition-all ${
+                      className={`h-full transition-all duration-300 ${
                         seoData.meta_title.length > 60
                           ? "bg-rose-500"
                           : seoData.meta_title.length >= 50
                           ? "bg-emerald-500"
-                          : "bg-sky-500"
+                          : "bg-amber-500"
                       }`}
                       style={{
                         width: `${Math.min(100, (seoData.meta_title.length / 60) * 100)}%`,
@@ -553,29 +553,29 @@ export default function SharedEntityEditor({
                       className={`text-[11px] font-mono ${
                         seoData.meta_description.length > 160
                           ? "text-rose-400 font-bold"
-                          : seoData.meta_description.length >= 120
-                          ? "text-emerald-400 font-semibold"
-                          : "text-slate-400"
+                          : seoData.meta_description.length >= 140
+                          ? "text-emerald-400 font-bold"
+                          : "text-amber-400 font-medium"
                       }`}
                     >
-                      {seoData.meta_description.length}/160 chars (Recommended: 120-160)
+                      {seoData.meta_description.length}/160 chars ({seoData.meta_description.length > 160 ? "Over limit" : seoData.meta_description.length >= 140 ? "Optimal" : "Too short: recommended 140-160"})
                     </span>
                   </div>
                   <textarea
                     rows={3}
                     value={seoData.meta_description}
                     onChange={(e) => setSeoData({ ...seoData, meta_description: e.target.value })}
-                    placeholder="Brief description for search engine snippets..."
+                    placeholder="High-efficiency solar solutions engineered for residential and commercial rooftops across India..."
                     className={inputClass}
                   />
-                  <div className="mt-1.5 h-1 w-full bg-charcoal rounded-full overflow-hidden">
+                  <div className="mt-1.5 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                     <div
-                      className={`h-full transition-all ${
+                      className={`h-full transition-all duration-300 ${
                         seoData.meta_description.length > 160
                           ? "bg-rose-500"
-                          : seoData.meta_description.length >= 120
+                          : seoData.meta_description.length >= 140
                           ? "bg-emerald-500"
-                          : "bg-sky-500"
+                          : "bg-amber-500"
                       }`}
                       style={{
                         width: `${Math.min(100, (seoData.meta_description.length / 160) * 100)}%`,

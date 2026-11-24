@@ -1,44 +1,26 @@
 "use client"
 
-/**
- * Purpose: leads inbox — every contact-form submission (contact page, EDITZ, Blog AI) with
- * search, filters, status updates, notes, delivery status, CSV export and the Google Sheet link.
- */
-
 import { useCallback, useEffect, useState } from "react"
-import { Download, ExternalLink, Mail, Search } from "lucide-react"
-import { Card, EmptyState, ErrorBanner, PageHeader, buttonGhost, inputClass } from "../_components/ui"
+import { Download, ExternalLink, Mail, Search, CheckCircle, Eye, EyeOff, MessageSquare } from "lucide-react"
+import { Card, EmptyState, ErrorBanner, PageHeader, buttonGhost, buttonPrimary, inputClass } from "../_components/ui"
+import { Badge } from "@/components/ui/Badge"
+import { Modal } from "@/components/ui/Modal"
 
 type Lead = {
   id: string
   name: string
   email: string
   phone: string | null
-  subject: string
   message: string
-  source: string
-  source_page: string | null
+  source_page?: string | null
+  source?: string | null
   status: string
+  is_read?: boolean
   notes: string | null
-  sheet_status: string
-  email_status: string
   created_at: string
 }
 
-const STATUSES = ["new", "contacted", "qualified", "closed", "spam"]
-const SOURCES = [
-  { value: "", label: "All sources" },
-  { value: "contact", label: "Contact page" },
-  { value: "editz", label: "EDITZ" },
-  { value: "blog-ai", label: "Blog AI" },
-]
-const STATUS_STYLE: Record<string, string> = {
-  new: "bg-brand/15 text-brand",
-  contacted: "bg-accent-sky/15 text-accent-sky",
-  qualified: "bg-emerald-500/15 text-emerald-400",
-  closed: "bg-slate-500/15 text-slate-300",
-  spam: "bg-red-500/15 text-red-400",
-}
+const STATUSES = ["new", "contacted", "closed"]
 
 export default function LeadsPage() {
   const [leads, setLeads] = useState<Lead[]>([])
@@ -47,19 +29,13 @@ export default function LeadsPage() {
   const [q, setQ] = useState("")
   const [query, setQuery] = useState("")
   const [status, setStatus] = useState("")
-  const [source, setSource] = useState("")
-  const [sheetUrl, setSheetUrl] = useState<string | null>(null)
   const [selected, setSelected] = useState<Lead | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [updatingId, setUpdatingId] = useState<string | null>(null)
   const limit = 25
 
-  useEffect(() => {
-    const initial = new URLSearchParams(window.location.search).get("status")
-    if (initial) setStatus(initial)
-  }, [])
-
-  // Debounce search input (300 ms) so typing does not fire a request per key.
+  // Debounce search input
   useEffect(() => {
     const t = setTimeout(() => {
       setQuery(q)
@@ -74,149 +50,288 @@ export default function LeadsPage() {
     const params = new URLSearchParams({ page: String(page), limit: String(limit) })
     if (query) params.set("q", query)
     if (status) params.set("status", status)
-    if (source) params.set("source", source)
+
     try {
       const res = await fetch(`/api/admin/leads?${params}`, { cache: "no-store" })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || "Could not load leads")
-      setLeads(data.leads)
-      setTotal(data.meta.total)
-      setSheetUrl(data.sheetUrl)
+      setLeads(data.leads || [])
+      setTotal(data.meta?.total || 0)
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not load leads")
     } finally {
       setLoading(false)
     }
-  }, [page, query, status, source])
+  }, [page, query, status])
 
   useEffect(() => {
     load()
   }, [load])
 
-  async function update(lead: Lead, patch: Partial<Pick<Lead, "status" | "notes">>) {
-    const res = await fetch(`/api/admin/leads/${lead.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(patch),
-    })
-    if (!res.ok) {
-      setError((await res.json().catch(() => null))?.error || "Could not update the lead")
-      return
+  async function updateLead(leadId: string, patch: Partial<Lead>) {
+    setUpdatingId(leadId)
+    try {
+      const res = await fetch(`/api/admin/leads/${leadId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(patch),
+      })
+      if (!res.ok) {
+        const err = await res.json().catch(() => null)
+        throw new Error(err?.error || "Update failed")
+      }
+      setLeads((prev) => prev.map((l) => (l.id === leadId ? { ...l, ...patch } : l)))
+      if (selected && selected.id === leadId) {
+        setSelected((s) => (s ? { ...s, ...patch } : null))
+      }
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to update lead")
+    } finally {
+      setUpdatingId(null)
     }
-    setLeads((prev) => prev.map((l) => (l.id === lead.id ? { ...l, ...patch } : l)))
-    setSelected((s) => (s && s.id === lead.id ? { ...s, ...patch } : s))
   }
 
   const pages = Math.max(1, Math.ceil(total / limit))
 
   return (
-    <div>
+    <div className="space-y-6">
       <PageHeader
-        title="Leads"
-        description="Every enquiry is saved here first, then copied to the Google Sheet and emailed through Zoho."
+        title="Customer Leads"
+        description="Direct rooftop solar quote requests, inquiries, and customer contact submissions."
         actions={
-          <>
-            {sheetUrl && (
-              <a href={sheetUrl} target="_blank" rel="noopener noreferrer" className={buttonGhost}>
-                <ExternalLink size={14} /> Open Google Sheet
-              </a>
-            )}
-            <button type="button" onClick={() => (window.location.href = "/api/admin/leads/export")} className={buttonGhost}>
-              <Download size={14} /> Export CSV
+          <div className="flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={() => (window.location.href = "/api/admin/leads/export")}
+              className={`${buttonGhost} border-slate-700 hover:border-emerald-500`}
+            >
+              <Download className="h-4 w-4 text-emerald-400" />
+              <span>Export CSV</span>
             </button>
-          </>
+          </div>
         }
       />
+
       {error && <ErrorBanner message={error} />}
 
-      <div className="mb-4 flex flex-wrap gap-3">
-        <div className="relative min-w-[260px] flex-1">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, email or subject" className={`${inputClass} pl-9`} />
+      {/* ── Filters Bar ── */}
+      <div className="flex flex-wrap items-center gap-3">
+        <div className="relative min-w-[280px] flex-1">
+          <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search lead name, phone, or email..."
+            className={`${inputClass} pl-10 border-slate-800 bg-slate-900`}
+          />
         </div>
-        <select value={status} onChange={(e) => { setStatus(e.target.value); setPage(1) }} className={`${inputClass} w-auto`}>
-          <option value="">All statuses</option>
-          {STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
-        </select>
-        <select value={source} onChange={(e) => { setSource(e.target.value); setPage(1) }} className={`${inputClass} w-auto`}>
-          {SOURCES.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
+        <select
+          value={status}
+          onChange={(e) => {
+            setStatus(e.target.value)
+            setPage(1)
+          }}
+          className={`${inputClass} w-auto border-slate-800 bg-slate-900 cursor-pointer font-medium`}
+        >
+          <option value="">All Statuses</option>
+          {STATUSES.map((s) => (
+            <option key={s} value={s}>
+              {s.charAt(0).toUpperCase() + s.slice(1)}
+            </option>
+          ))}
         </select>
       </div>
 
+      {/* ── Leads Table ── */}
       <Card>
-        {loading && <div className="space-y-2">{[0, 1, 2, 3].map((i) => <div key={i} className="h-12 animate-pulse rounded-xl bg-admin-line/40" />)}</div>}
-        {!loading && leads.length === 0 && !error && <EmptyState title="No leads match" description="New enquiries from the website appear here instantly." />}
-        {!loading && leads.length > 0 && (
+        {loading ? (
+          <div className="space-y-3 py-2">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="h-14 animate-pulse rounded-xl bg-slate-800/40" />
+            ))}
+          </div>
+        ) : leads.length === 0 ? (
+          <EmptyState
+            title="No leads found"
+            description="When users submit the Solar Quote or Contact form, their details will display here."
+          />
+        ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-[13px]">
-              <thead className="text-[11px] uppercase tracking-wider text-slate-500">
-                <tr>
-                  <th className="pb-3">Received</th>
-                  <th className="pb-3">Name</th>
-                  <th className="pb-3">Subject</th>
-                  <th className="pb-3">Source</th>
-                  <th className="pb-3">Status</th>
-                  <th className="pb-3">Delivery</th>
+              <thead>
+                <tr className="border-b border-slate-800 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  <th className="pb-3.5 pl-2">Status</th>
+                  <th className="pb-3.5">Customer Name & Contact</th>
+                  <th className="pb-3.5">Inquiry / Message</th>
+                  <th className="pb-3.5">Source Page</th>
+                  <th className="pb-3.5">Date</th>
+                  <th className="pb-3.5 pr-2 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-admin-line">
-                {leads.map((lead) => (
-                  <tr key={lead.id} onClick={() => setSelected(lead)} className="cursor-pointer text-slate-200 hover:bg-admin-panel">
-                    <td className="py-3 pr-4 text-slate-400">{new Date(lead.created_at).toLocaleString()}</td>
-                    <td className="py-3 pr-4"><p className="font-semibold text-white">{lead.name}</p><p className="text-[11.5px] text-slate-500">{lead.email}</p></td>
-                    <td className="max-w-[260px] truncate py-3 pr-4">{lead.subject}</td>
-                    <td className="py-3 pr-4 text-slate-400">{lead.source}</td>
-                    <td className="py-3 pr-4"><span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold capitalize ${STATUS_STYLE[lead.status] || ""}`}>{lead.status}</span></td>
-                    <td className="py-3 text-[11px] text-slate-400">Sheet: {lead.sheet_status} · Email: {lead.email_status}</td>
-                  </tr>
-                ))}
+              <tbody className="divide-y divide-slate-800/80">
+                {leads.map((lead) => {
+                  const isRead = lead.is_read !== false && lead.status !== "new"
+                  return (
+                    <tr
+                      key={lead.id}
+                      onClick={() => setSelected(lead)}
+                      className={`cursor-pointer transition-colors hover:bg-slate-800/40 ${
+                        !isRead ? "bg-emerald-950/10 font-semibold" : ""
+                      }`}
+                    >
+                      <td className="py-3.5 pl-2" onClick={(e) => e.stopPropagation()}>
+                        <select
+                          value={lead.status}
+                          disabled={updatingId === lead.id}
+                          onChange={(e) => updateLead(lead.id, { status: e.target.value })}
+                          className={`rounded-lg px-2.5 py-1 text-[11px] font-bold uppercase border cursor-pointer ${
+                            lead.status === "new"
+                              ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+                              : lead.status === "contacted"
+                              ? "bg-amber-500/15 text-amber-300 border-amber-500/30"
+                              : "bg-slate-800 text-slate-300 border-slate-700"
+                          }`}
+                        >
+                          <option value="new">New</option>
+                          <option value="contacted">Contacted</option>
+                          <option value="closed">Closed</option>
+                        </select>
+                      </td>
+                      <td className="py-3.5">
+                        <p className="font-bold text-white text-[13.5px]">{lead.name}</p>
+                        <p className="text-[12px] text-slate-300 font-normal">
+                          {lead.phone ? `${lead.phone} • ` : ""}
+                          <span className="text-slate-400">{lead.email}</span>
+                        </p>
+                      </td>
+                      <td className="max-w-[260px] truncate py-3.5 text-slate-200">
+                        {lead.message}
+                      </td>
+                      <td className="py-3.5 text-slate-300">
+                        <span className="rounded bg-slate-800 px-2 py-0.5 text-[11px] font-mono text-emerald-300">
+                          {lead.source_page || lead.source || "/"}
+                        </span>
+                      </td>
+                      <td className="py-3.5 text-[12px] text-slate-400 whitespace-nowrap">
+                        {new Date(lead.created_at).toLocaleDateString()}
+                      </td>
+                      <td className="py-3.5 pr-2 text-right" onClick={(e) => e.stopPropagation()}>
+                        <div className="flex items-center justify-end gap-2">
+                          <button
+                            type="button"
+                            onClick={() => updateLead(lead.id, { is_read: !lead.is_read })}
+                            title={lead.is_read ? "Mark unread" : "Mark read"}
+                            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white"
+                          >
+                            {lead.is_read ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4 text-emerald-400" />}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setSelected(lead)}
+                            className="rounded-lg border border-slate-700 px-2.5 py-1 text-[11.5px] font-bold text-slate-200 hover:bg-slate-800 hover:text-white"
+                          >
+                            Details
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>
         )}
-        <div className="mt-4 flex items-center justify-between text-[12px] text-slate-400">
-          <span>{total} lead(s)</span>
-          <div className="flex gap-2">
-            <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className={buttonGhost}>Previous</button>
-            <span className="self-center">Page {page} / {pages}</span>
-            <button disabled={page >= pages} onClick={() => setPage((p) => p + 1)} className={buttonGhost}>Next</button>
+
+        {/* ── Pagination ── */}
+        <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-4 text-[12px] text-slate-400">
+          <span>
+            Showing <strong className="text-white">{leads.length}</strong> of{" "}
+            <strong className="text-white">{total}</strong> leads
+          </span>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              disabled={page <= 1}
+              onClick={() => setPage((p) => p - 1)}
+              className={`${buttonGhost} px-3 py-1 text-[12px] disabled:opacity-30`}
+            >
+              Previous
+            </button>
+            <span className="px-2 font-mono text-slate-300">
+              Page {page} of {pages}
+            </span>
+            <button
+              type="button"
+              disabled={page >= pages}
+              onClick={() => setPage((p) => p + 1)}
+              className={`${buttonGhost} px-3 py-1 text-[12px] disabled:opacity-30`}
+            >
+              Next
+            </button>
           </div>
         </div>
       </Card>
 
+      {/* ── Lead Detail Modal ── */}
       {selected && (
-        <div className="fixed inset-0 z-[90] flex justify-end bg-black/50" onClick={() => setSelected(null)}>
-          <aside className="h-full w-full max-w-[520px] overflow-y-auto border-l border-admin-line bg-admin-bg-deep p-6" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-start justify-between gap-3">
+        <Modal
+          isOpen={Boolean(selected)}
+          onClose={() => setSelected(null)}
+          title={`Lead: ${selected.name}`}
+          description={`Submitted on ${new Date(selected.created_at).toLocaleString()}`}
+          maxWidth="lg"
+        >
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4 rounded-xl bg-slate-950 p-4 border border-slate-800">
               <div>
-                <h2 className="text-[18px] font-bold text-white">{selected.name}</h2>
-                <a href={`mailto:${selected.email}`} className="mt-1 inline-flex items-center gap-1 text-[13px] text-brand"><Mail size={13} /> {selected.email}</a>
-                {selected.phone && <p className="text-[13px] text-slate-400">{selected.phone}</p>}
+                <p className="text-[11px] font-bold uppercase text-slate-400">Email Address</p>
+                <a href={`mailto:${selected.email}`} className="text-[13px] font-semibold text-emerald-400 hover:underline">
+                  {selected.email}
+                </a>
               </div>
-              <button onClick={() => setSelected(null)} className="text-slate-400 hover:text-white" aria-label="Close">✕</button>
+              <div>
+                <p className="text-[11px] font-bold uppercase text-slate-400">Phone Number</p>
+                <a href={`tel:${selected.phone}`} className="text-[13px] font-semibold text-white hover:underline">
+                  {selected.phone || "Not provided"}
+                </a>
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase text-slate-400">Status</p>
+                <select
+                  value={selected.status}
+                  onChange={(e) => updateLead(selected.id, { status: e.target.value })}
+                  className="mt-1 rounded border border-slate-700 bg-slate-900 px-2.5 py-1 text-[12px] text-white"
+                >
+                  <option value="new">New</option>
+                  <option value="contacted">Contacted</option>
+                  <option value="closed">Closed</option>
+                </select>
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase text-slate-400">Source Page</p>
+                <p className="text-[12px] font-mono text-slate-300">{selected.source_page || selected.source || "/"}</p>
+              </div>
             </div>
-            <p className="mt-5 text-[11px] font-bold uppercase tracking-wider text-slate-500">Subject</p>
-            <p className="text-[14px] text-white">{selected.subject}</p>
-            <p className="mt-4 text-[11px] font-bold uppercase tracking-wider text-slate-500">Message</p>
-            <p className="whitespace-pre-wrap text-[13.5px] leading-relaxed text-slate-200">{selected.message}</p>
-            <p className="mt-4 text-[11.5px] text-slate-500">From {selected.source}{selected.source_page ? ` · ${selected.source_page}` : ""} · {new Date(selected.created_at).toLocaleString()}</p>
 
-            <p className="mt-6 text-[11px] font-bold uppercase tracking-wider text-slate-500">Status</p>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {STATUSES.map((s) => (
-                <button key={s} onClick={() => update(selected, { status: s })} className={`rounded-full px-3 py-1 text-[12px] font-semibold capitalize ${selected.status === s ? STATUS_STYLE[s] : "border border-admin-line text-slate-400 hover:text-white"}`}>{s}</button>
-              ))}
+            <div>
+              <p className="text-[11px] font-bold uppercase text-slate-400 mb-1">Customer Message</p>
+              <div className="rounded-xl border border-slate-800 bg-slate-950 p-4 text-[13px] text-slate-200 whitespace-pre-wrap leading-relaxed">
+                {selected.message}
+              </div>
             </div>
-            <p className="mt-6 text-[11px] font-bold uppercase tracking-wider text-slate-500">Notes</p>
-            <textarea
-              defaultValue={selected.notes || ""}
-              onBlur={(e) => e.target.value !== (selected.notes || "") && update(selected, { notes: e.target.value })}
-              rows={5}
-              className={`${inputClass} mt-2`}
-              placeholder="Internal notes (saved when you click outside)"
-            />
-          </aside>
-        </div>
+
+            <div>
+              <p className="text-[11px] font-bold uppercase text-slate-400 mb-1">Internal Notes</p>
+              <textarea
+                rows={3}
+                defaultValue={selected.notes || ""}
+                onBlur={(e) => updateLead(selected.id, { notes: e.target.value })}
+                placeholder="Add notes about customer rooftop size, quote given, or call follow-up..."
+                className="w-full rounded-xl border border-slate-800 bg-slate-950 p-3 text-[13px] text-white outline-none focus:border-emerald-500"
+              />
+            </div>
+          </div>
+        </Modal>
       )}
     </div>
   )

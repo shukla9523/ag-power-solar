@@ -6,37 +6,38 @@
  * The frontend only uses it to hide navigation; every API re-checks on the server.
  */
 
-export type AppRole = "owner" | "admin" | "marketer" | "customer"
+export type AppRole = "owner" | "editor" | "admin" | "marketer" | "customer"
 
-export const APP_ROLES: AppRole[] = ["owner", "admin", "marketer", "customer"]
+export const APP_ROLES: AppRole[] = ["owner", "editor", "admin", "marketer", "customer"]
 
 /** Roles that may be assigned through the admin UI (owner is never assignable). */
-export const ASSIGNABLE_ROLES: AppRole[] = ["admin", "marketer", "customer"]
+export const ASSIGNABLE_ROLES: AppRole[] = ["editor", "admin", "marketer", "customer"]
 
 /** Higher number = more privilege. */
 export const ROLE_RANK: Record<AppRole, number> = {
   customer: 0,
   marketer: 1,
+  editor: 2,
   admin: 2,
   owner: 3,
 }
 
 /**
- * Maps legacy role values still present in the profiles table to the new model,
- * so the platform works before and after the role migration SQL is run.
+ * Maps legacy role values to standard owner | editor roles.
  */
 export function normalizeRole(raw: string | null | undefined): AppRole {
   const role = String(raw || "").trim().toLowerCase()
   switch (role) {
     case "owner":
       return "owner"
+    case "editor":
+      return "editor"
     case "admin":
       return "admin"
     case "marketer":
     case "manager":
     case "seo":
     case "content_manager":
-    case "editor":
     case "viewer":
       return "marketer"
     default:
@@ -49,7 +50,7 @@ export interface RolePermission {
   allowedApiPaths: string[]
 }
 
-const MARKETING_FRONTEND = [
+const EDITOR_FRONTEND = [
   "/admin",
   "/admin/blog",
   "/admin/services",
@@ -64,7 +65,7 @@ const MARKETING_FRONTEND = [
   "/admin/security",
 ]
 
-const MARKETING_API = [
+const EDITOR_API = [
   "/api/admin/stats",
   "/api/admin/blog",
   "/api/admin/services",
@@ -82,8 +83,9 @@ const MARKETING_API = [
 
 export const rolesConfig: Record<AppRole, RolePermission> = {
   owner: { allowedFrontendPaths: ["*"], allowedApiPaths: ["*"] },
+  editor: { allowedFrontendPaths: EDITOR_FRONTEND, allowedApiPaths: EDITOR_API },
   admin: { allowedFrontendPaths: ["*"], allowedApiPaths: ["*"] },
-  marketer: { allowedFrontendPaths: MARKETING_FRONTEND, allowedApiPaths: MARKETING_API },
+  marketer: { allowedFrontendPaths: EDITOR_FRONTEND, allowedApiPaths: EDITOR_API },
   customer: { allowedFrontendPaths: [], allowedApiPaths: [] },
 }
 
