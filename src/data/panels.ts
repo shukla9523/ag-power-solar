@@ -117,27 +117,27 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     images: [
       {
-        src: "/images/panels//front.webp",
+        src: "/images/panels/waaree-arka-topcon-550w/front.webp?v=2026_real",
         alt: "Waaree Arka N-Type TOPCon Dual-Glass Bifacial Solar Panel - Front View",
         label: "Front Elevation",
       },
       {
-        src: "/images/panels//rooftop.webp",
+        src: "/images/panels/waaree-arka-topcon-550w/rooftop.webp?v=2026_real",
         alt: "Waaree Arka N-Type TOPCon - Rooftop Solar Installation",
         label: "Rooftop Installation",
       },
       {
-        src: "/images/panels//closeup.webp",
+        src: "/images/panels/waaree-arka-topcon-550w/closeup.webp?v=2026_real",
         alt: "Waaree Arka N-Type TOPCon - Photovoltaic Cell Detail",
         label: "Cell Close-up",
       },
       {
-        src: "/images/panels//mounting.webp",
+        src: "/images/panels/waaree-arka-topcon-550w/mounting.webp?v=2026_real",
         alt: "Waaree Arka N-Type TOPCon - Structural Clamping & Mounting",
         label: "Mounting Structure",
       },
       {
-        src: "/images/panels//back.webp",
+        src: "/images/panels/waaree-arka-topcon-550w/back.webp?v=2026_real",
         alt: "Waaree Arka N-Type TOPCon - Dual Glass & Anodized Frame",
         label: "Surface Detail",
       },
@@ -275,27 +275,27 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     images: [
       {
-        src: "/images/panels//front.webp",
+        src: "/images/panels/adani-shine-mono-perc-540w/front.webp?v=2026_real",
         alt: "Adani Solar Shine Mono PERC Half-Cut Solar Panel - Front View",
         label: "Front Elevation",
       },
       {
-        src: "/images/panels//rooftop.webp",
+        src: "/images/panels/adani-shine-mono-perc-540w/rooftop.webp?v=2026_real",
         alt: "Adani Solar Shine - Residential Rooftop Array",
         label: "Rooftop Installation",
       },
       {
-        src: "/images/panels//closeup.webp",
+        src: "/images/panels/adani-shine-mono-perc-540w/closeup.webp?v=2026_real",
         alt: "Adani Solar Shine - Multi-Busbar Half-Cut Cells",
         label: "Cell Close-up",
       },
       {
-        src: "/images/panels//mounting.webp",
+        src: "/images/panels/adani-shine-mono-perc-540w/mounting.webp?v=2026_real",
         alt: "Adani Solar Shine - Hot-Dip Galvanized Mounting Setup",
         label: "Mounting Structure",
       },
       {
-        src: "/images/panels//back.webp",
+        src: "/images/panels/adani-shine-mono-perc-540w/back.webp?v=2026_real",
         alt: "Adani Solar Shine - 35mm Anodized Frame & Weatherproof Backsheet",
         label: "Surface Detail",
       },
@@ -431,27 +431,27 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     images: [
       {
-        src: "/images/panels//front.webp",
+        src: "/images/panels/vikram-somera-topcon-575w/front.webp?v=2026_real",
         alt: "Vikram Solar SOMERA Grand TOPCon Bifacial Module - Front View",
         label: "Front Elevation",
       },
       {
-        src: "/images/panels//rooftop.webp",
+        src: "/images/panels/vikram-somera-topcon-575w/rooftop.webp?v=2026_real",
         alt: "Vikram Solar SOMERA Grand - Industrial Rooftop Array",
         label: "Rooftop Installation",
       },
       {
-        src: "/images/panels//closeup.webp",
+        src: "/images/panels/vikram-somera-topcon-575w/closeup.webp?v=2026_real",
         alt: "Vikram Solar SOMERA Grand - Micro-Gap TOPCon Cells",
         label: "Cell Close-up",
       },
       {
-        src: "/images/panels//mounting.webp",
+        src: "/images/panels/vikram-somera-topcon-575w/mounting.webp?v=2026_real",
         alt: "Vikram Solar SOMERA Grand - Heavy-Duty Clamping Rail",
         label: "Mounting Structure",
       },
       {
-        src: "/images/panels//back.webp",
+        src: "/images/panels/vikram-somera-topcon-575w/back.webp?v=2026_real",
         alt: "Vikram Solar SOMERA Grand - Dual-Glass Junction Box & Connectors",
         label: "Surface Detail",
       },
@@ -581,27 +581,27 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     images: [
       {
-        src: "/images/panels//front.webp",
+        src: "/images/panels/tata-power-mono-perc-545w/front.webp?v=2026_real",
         alt: "Tata Power Solar TP Series Mono PERC Module - Front View",
         label: "Front Elevation",
       },
       {
-        src: "/images/panels//rooftop.webp",
+        src: "/images/panels/tata-power-mono-perc-545w/rooftop.webp?v=2026_real",
         alt: "Tata Power Solar - Rooftop Solar Installation",
         label: "Rooftop Installation",
       },
       {
-        src: "/images/panels//closeup.webp",
+        src: "/images/panels/tata-power-mono-perc-545w/closeup.webp?v=2026_real",
         alt: "Tata Power Solar - Half-Cell Matrix Detail",
         label: "Cell Close-up",
       },
       {
-        src: "/images/panels//mounting.webp",
+        src: "/images/panels/tata-power-mono-perc-545w/mounting.webp?v=2026_real",
         alt: "Tata Power Solar - Anodized Rail & Structure Assembly",
         label: "Mounting Structure",
       },
       {
-        src: "/images/panels//back.webp",
+        src: "/images/panels/tata-power-mono-perc-545w/back.webp?v=2026_real",
         alt: "Tata Power Solar - Weatherproof Junction Box & Cables",
         label: "Surface Detail",
       },
@@ -729,27 +729,27 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     images: [
       {
-        src: "/images/panels//front.webp",
+        src: "/images/panels/goldi-heloc-plus-topcon-550w/front.webp?v=2026_real",
         alt: "Goldi Solar HELOC Plus TOPCon Module - Front View",
         label: "Front Elevation",
       },
       {
-        src: "/images/panels//rooftop.webp",
+        src: "/images/panels/goldi-heloc-plus-topcon-550w/rooftop.webp?v=2026_real",
         alt: "Goldi Solar HELOC Plus - Commercial Rooftop Array",
         label: "Rooftop Installation",
       },
       {
-        src: "/images/panels//closeup.webp",
+        src: "/images/panels/goldi-heloc-plus-topcon-550w/closeup.webp?v=2026_real",
         alt: "Goldi Solar HELOC Plus - Bifacial TOPCon Cell Architecture",
         label: "Cell Close-up",
       },
       {
-        src: "/images/panels//mounting.webp",
+        src: "/images/panels/goldi-heloc-plus-topcon-550w/mounting.webp?v=2026_real",
         alt: "Goldi Solar HELOC Plus - Dual Glass Mounting Clamps",
         label: "Mounting Structure",
       },
       {
-        src: "/images/panels//back.webp",
+        src: "/images/panels/goldi-heloc-plus-topcon-550w/back.webp?v=2026_real",
         alt: "Goldi Solar HELOC Plus - Semi-Tempered Glass Surface",
         label: "Surface Detail",
       },
@@ -874,27 +874,27 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     images: [
       {
-        src: "/images/panels//front.webp",
+        src: "/images/panels/architectural-all-black-450w/front.webp?v=2026_real",
         alt: "RenewSys Architectural All-Black Solar Panel - Front View",
         label: "Front Elevation",
       },
       {
-        src: "/images/panels//rooftop.webp",
+        src: "/images/panels/architectural-all-black-450w/rooftop.webp?v=2026_real",
         alt: "RenewSys Architectural All-Black - Modern Villa Rooftop Array",
         label: "Rooftop Installation",
       },
       {
-        src: "/images/panels//closeup.webp",
+        src: "/images/panels/architectural-all-black-450w/closeup.webp?v=2026_real",
         alt: "RenewSys Architectural All-Black - Matte Black Cell Texture",
         label: "Cell Close-up",
       },
       {
-        src: "/images/panels//mounting.webp",
+        src: "/images/panels/architectural-all-black-450w/mounting.webp?v=2026_real",
         alt: "RenewSys Architectural All-Black - Black Anodized Mounting Hardware",
         label: "Mounting Structure",
       },
       {
-        src: "/images/panels//back.webp",
+        src: "/images/panels/architectural-all-black-450w/back.webp?v=2026_real",
         alt: "RenewSys Architectural All-Black - Seamless Frame Edge Detail",
         label: "Surface Detail",
       },

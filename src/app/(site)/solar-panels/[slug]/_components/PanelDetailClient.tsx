@@ -159,226 +159,213 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
         </div>
       </nav>
 
-      {/* ── HERO SECTION: 2-Column Grid (1200px centered) ── */}
-      <section className="py-8 sm:py-12 border-b border-slate-200/80">
+      {/* ── HERO SECTION: 1200px Centered Image & Technical Summary ── */}
+      <section className="py-8 sm:py-12 border-b border-slate-200/80 bg-white">
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            
-            {/* LEFT: Image Gallery (~55% width on desktop, 4:3 aspect ratio, capped at 440px height) */}
-            <div className="lg:col-span-7 flex flex-col gap-3">
-              <div
-                onClick={() => openLightbox(activeImageIndex)}
-                className="group relative w-full aspect-[4/3] max-h-[440px] overflow-hidden rounded-2xl bg-slate-50 border border-slate-200 cursor-zoom-in shadow-xs flex items-center justify-center"
-              >
-                <Image
-                  src={currentImage.src}
-                  alt={currentImage.alt || panel.name}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 55vw"
-                  className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-                />
+          
+          {/* Top Centered Header */}
+          <div className="mx-auto max-w-3xl text-center mb-8">
+            <div className="flex items-center justify-center flex-wrap gap-2">
+              <span className="text-[13px] font-bold uppercase tracking-wider text-forest">
+                {panel.brand}
+              </span>
+              {panel.badge ? (
+                <span className="inline-flex items-center rounded-md bg-forest px-2.5 py-0.5 text-[11px] font-semibold text-white">
+                  {panel.badge}
+                </span>
+              ) : null}
+              {panel.almm_listed && (
+                <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 border border-blue-200 px-2.5 py-0.5 text-[11px] font-semibold text-blue-700">
+                  <ShieldCheck className="h-3 w-3 text-blue-600" />
+                  ALMM Listed
+                </span>
+              )}
+              {panel.dcr_compliant && (
+                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700">
+                  <CheckCircle2 className="h-3 w-3 text-emerald-600" />
+                  DCR Compliant
+                </span>
+              )}
+            </div>
 
-                {/* Top-Right Zoom Button */}
-                <div className="absolute top-3.5 right-3.5 z-10">
-                  <button
-                    type="button"
-                    aria-label="Enlarge image"
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 border border-slate-200 text-slate-700 shadow-xs backdrop-blur-xs transition-transform hover:scale-105 active:scale-95"
-                  >
-                    <Maximize2 className="h-4 w-4" />
-                  </button>
-                </div>
+            <h1 className="mt-2.5 text-2xl sm:text-3xl lg:text-[34px] font-bold text-slate-900 leading-snug">
+              {panel.name}
+            </h1>
 
-                {/* Optional Counter - ONLY if multiple distinct images exist */}
-                {hasMultipleImages && (
-                  <div className="absolute bottom-3 right-3 z-10">
-                    <span className="text-[11.5px] font-medium text-slate-700 bg-white/90 border border-slate-200 px-2.5 py-0.5 rounded-full shadow-xs">
-                      {activeImageIndex + 1} / {distinctImages.length}
-                    </span>
-                  </div>
-                )}
+            <div className="mt-2.5 flex items-center justify-center flex-wrap gap-2 text-[13px]">
+              <span className="rounded-md bg-slate-100 px-2.5 py-1 font-medium text-slate-800">
+                {panel.technology}
+              </span>
+              <span className="rounded-md bg-slate-100 px-2.5 py-1 font-semibold text-slate-800">
+                {panel.wattageRange}
+              </span>
+            </div>
+
+            <p className="mt-3.5 mx-auto max-w-2xl text-[14.5px] leading-relaxed text-slate-600">
+              {panel.tagline}
+            </p>
+          </div>
+
+          {/* Centered Solar Panel Photo Box (In the Center of 1200px) */}
+          <div className="mx-auto max-w-[800px]">
+            <div
+              onClick={() => openLightbox(activeImageIndex)}
+              className="group relative w-full aspect-[4/3] sm:aspect-[16/10] max-h-[460px] overflow-hidden rounded-2xl bg-slate-50 border border-slate-200 cursor-zoom-in shadow-xs flex items-center justify-center"
+            >
+              <Image
+                src={currentImage.src}
+                alt={currentImage.alt || panel.name}
+                fill
+                priority
+                sizes="(max-width: 1200px) 100vw, 800px"
+                className="object-contain p-4 sm:p-6 transition-transform duration-300 group-hover:scale-105"
+              />
+
+              {/* Top-Right Zoom Button */}
+              <div className="absolute top-3.5 right-3.5 z-10">
+                <button
+                  type="button"
+                  aria-label="Enlarge image"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 border border-slate-200 text-slate-700 shadow-xs backdrop-blur-xs transition-transform hover:scale-105 active:scale-95"
+                >
+                  <Maximize2 className="h-4 w-4" />
+                </button>
               </div>
 
-              {/* Thumbnails Row - ONLY rendered if multiple distinct images exist */}
+              {/* Counter */}
               {hasMultipleImages && (
-                <div className="flex gap-2.5 overflow-x-auto pb-1">
-                  {distinctImages.map((img, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => setActiveImageIndex(idx)}
-                      className={`relative h-16 w-20 flex-shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
-                        activeImageIndex === idx
-                          ? "border-forest ring-1 ring-forest/30 shadow-xs"
-                          : "border-slate-200 bg-slate-50 opacity-70 hover:opacity-100 hover:border-slate-300"
-                      }`}
-                      aria-label={`View photo ${idx + 1}`}
-                    >
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        sizes="80px"
-                        className="object-contain p-1"
-                      />
-                    </button>
-                  ))}
+                <div className="absolute bottom-3 right-3 z-10">
+                  <span className="text-[11.5px] font-medium text-slate-700 bg-white/90 border border-slate-200 px-2.5 py-0.5 rounded-full shadow-xs">
+                    {activeImageIndex + 1} / {distinctImages.length}
+                  </span>
                 </div>
               )}
             </div>
 
-            {/* RIGHT: Panel Details & Compact Specs (~45% width) */}
-            <div className="lg:col-span-5 flex flex-col justify-start">
-              <div>
-                {/* Brand & Badges */}
-                <div className="flex items-center flex-wrap gap-2">
-                  <span className="text-[13px] font-bold uppercase tracking-wider text-forest">
-                    {panel.brand}
-                  </span>
-                  {panel.badge ? (
-                    <span className="inline-flex items-center rounded-md bg-forest px-2 py-0.5 text-[11px] font-semibold text-white">
-                      {panel.badge}
-                    </span>
-                  ) : null}
-                  {panel.almm_listed && (
-                    <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 border border-blue-200 px-2 py-0.5 text-[11px] font-semibold text-blue-700">
-                      <ShieldCheck className="h-3 w-3 text-blue-600" />
-                      ALMM Listed
-                    </span>
-                  )}
-                  {panel.dcr_compliant && (
-                    <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">
-                      <CheckCircle2 className="h-3 w-3 text-emerald-600" />
-                      DCR Compliant
-                    </span>
-                  )}
-                </div>
-
-                {/* H1 Title: max text-3xl md:text-4xl, font-semibold */}
-                <h1 className="mt-2.5 text-2xl sm:text-3xl lg:text-[32px] font-semibold text-slate-900 leading-snug">
-                  {panel.name}
-                </h1>
-
-                {/* Technology & Wattage */}
-                <div className="mt-2.5 flex items-center flex-wrap gap-2 text-[13px]">
-                  <span className="rounded-md bg-slate-100 px-2.5 py-1 font-medium text-slate-800">
-                    {panel.technology}
-                  </span>
-                  <span className="rounded-md bg-slate-100 px-2.5 py-1 font-semibold text-slate-800">
-                    {panel.wattageRange}
-                  </span>
-                </div>
-
-                {/* Factual Datasheet Tagline */}
-                <p className="mt-3.5 text-[14.5px] leading-relaxed text-slate-600">
-                  {panel.tagline}
-                </p>
-
-                {/* Compact Technical Specifications Table (with 0-25% Efficiency & 0-30yr Warranty Progress Bars) */}
-                <div className="mt-5 overflow-hidden rounded-xl border border-slate-200 bg-white text-[13px]">
-                  <div className="divide-y divide-slate-100">
-                    <div className="flex justify-between items-center py-2 px-3.5 bg-slate-50/70">
-                      <span className="text-slate-500 font-medium">Power Range</span>
-                      <span className="font-semibold text-slate-900">{panel.specs.powerRange}</span>
-                    </div>
-
-                    {/* Efficiency with 0-25% progress bar */}
-                    <div className="py-2.5 px-3.5">
-                      <div className="flex justify-between items-center mb-1.5">
-                        <span className="text-slate-500 font-medium">Module Efficiency</span>
-                        <span className="font-bold text-forest">{panel.specs.moduleEfficiency}</span>
-                      </div>
-                      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
-                        <div
-                          className="h-full rounded-full bg-forest transition-all duration-500"
-                          style={{ width: `${effPercent}%` }}
-                        />
-                      </div>
-                      <div className="mt-1 flex justify-between text-[10px] text-slate-400">
-                        <span>0%</span>
-                        <span>Industry: 20%</span>
-                        <span>Max: 25%</span>
-                      </div>
-                    </div>
-
-                    {/* Linear Warranty with 0-30yr progress bar */}
-                    <div className="py-2.5 px-3.5 bg-slate-50/70">
-                      <div className="flex justify-between items-center mb-1.5">
-                        <span className="text-slate-500 font-medium">Linear Warranty</span>
-                        <span className="font-bold text-slate-900">
-                          {panel.warranty.performance.split(" ")[0]} Linear Output
-                        </span>
-                      </div>
-                      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
-                        <div
-                          className="h-full rounded-full bg-emerald-600 transition-all duration-500"
-                          style={{ width: `${warPercent}%` }}
-                        />
-                      </div>
-                      <div className="mt-1 flex justify-between text-[10px] text-slate-400">
-                        <span>0 Yrs</span>
-                        <span>Standard: 25 Yrs</span>
-                        <span>Tier-1: 30 Yrs</span>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-between items-center py-2 px-3.5">
-                      <span className="text-slate-500 font-medium">Cell Technology</span>
-                      <span className="font-semibold text-slate-900 text-right truncate max-w-[200px]">
-                        {panel.specs.cellTechnology.split("(")[0].trim()}
-                      </span>
-                    </div>
-                    {panel.specs.dimensions && (
-                      <div className="flex justify-between items-center py-2 px-3.5 bg-slate-50/70">
-                        <span className="text-slate-500 font-medium">Dimensions</span>
-                        <span className="font-semibold text-slate-900">{panel.specs.dimensions}</span>
-                      </div>
-                    )}
-                    {panel.specs.weight && (
-                      <div className="flex justify-between items-center py-2 px-3.5">
-                        <span className="text-slate-500 font-medium">Weight</span>
-                        <span className="font-semibold text-slate-900">
-                          {panel.specs.weight.split("(")[0].trim()}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Dedicated Subsidy Text Link (TASK 1) */}
-                <p className="mt-3.5 text-[12.5px] text-slate-600 leading-normal">
-                  Eligible for central subsidy under PM Surya Ghar Muft Bijli Yojana.{" "}
-                  <LocalizedClientLink
-                    href="/calculator"
-                    className="font-semibold text-forest underline hover:text-forest-deep"
+            {/* Centered Thumbnails Row */}
+            {hasMultipleImages && (
+              <div className="flex justify-center items-center gap-2.5 sm:gap-3 mt-4 overflow-x-auto pb-1">
+                {distinctImages.map((img, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActiveImageIndex(idx)}
+                    className={`relative h-16 w-20 sm:h-18 sm:w-22 flex-shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
+                      activeImageIndex === idx
+                        ? "border-forest ring-1 ring-forest/30 shadow-xs"
+                        : "border-slate-200 bg-slate-50 opacity-70 hover:opacity-100 hover:border-slate-300"
+                    }`}
+                    aria-label={`View photo ${idx + 1}`}
                   >
-                    Calculate subsidy savings →
-                  </LocalizedClientLink>
-                </p>
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="90px"
+                      className="object-contain p-1"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Key Specs Cards (Centered directly below photo in 1200px) */}
+          <div className="mx-auto max-w-[900px] mt-8 sm:mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 text-center">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Power Range</span>
+                <p className="mt-1 font-bold text-slate-900 text-[15px]">{panel.specs.powerRange}</p>
               </div>
 
-              {/* Action Buttons: Primary + Direct Phone Call */}
-              <div className="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 text-center">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Efficiency</span>
+                  <span className="font-bold text-forest text-[13px]">{panel.specs.moduleEfficiency}</span>
+                </div>
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+                  <div
+                    className="h-full rounded-full bg-forest transition-all duration-500"
+                    style={{ width: `${effPercent}%` }}
+                  />
+                </div>
+                <div className="mt-1 flex justify-between text-[9.5px] text-slate-400">
+                  <span>0%</span>
+                  <span>Max: 25%</span>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 text-center">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Warranty</span>
+                  <span className="font-bold text-slate-900 text-[13px]">{panel.warranty.performance.split(" ")[0]} Linear</span>
+                </div>
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+                  <div
+                    className="h-full rounded-full bg-emerald-600 transition-all duration-500"
+                    style={{ width: `${warPercent}%` }}
+                  />
+                </div>
+                <div className="mt-1 flex justify-between text-[9.5px] text-slate-400">
+                  <span>0 Yrs</span>
+                  <span>Tier-1: 30 Yrs</span>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 text-center">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Cell Technology</span>
+                <p className="mt-1 font-bold text-slate-900 text-[13.5px] truncate">{panel.specs.cellTechnology.split("(")[0].trim()}</p>
+              </div>
+
+            </div>
+
+            {/* PM Surya Ghar Subsidy Banner (Centered) */}
+            <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50/60 p-3.5 text-center">
+              <p className="text-[13px] text-slate-700">
+                Eligible for central capital subsidy up to ₹78,000 under PM Surya Ghar Muft Bijli Yojana.{" "}
                 <LocalizedClientLink
-                  href={`/contact?panel=${panel.slug}`}
-                  className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-xl bg-forest hover:bg-forest-deep px-5 py-2.5 text-[14px] font-bold text-white shadow-xs transition-all active:scale-95 text-center"
+                  href="/calculator"
+                  className="font-bold text-forest underline hover:text-forest-deep"
                 >
-                  <span>Get Free Quote</span>
-                  <ArrowRight className="h-4 w-4" />
+                  Calculate subsidy savings →
                 </LocalizedClientLink>
+              </p>
+            </div>
 
+            {/* Action Buttons (Centered) */}
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <LocalizedClientLink
+                href={`/contact?panel=${panel.slug}`}
+                className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-forest hover:bg-forest-deep px-8 py-2.5 text-[14px] font-bold text-white shadow-xs transition-all active:scale-95 text-center"
+              >
+                <span>Get Free Installation Quote</span>
+                <ArrowRight className="h-4 w-4" />
+              </LocalizedClientLink>
+
+              {panel.datasheetUrl && (
                 <a
-                  href="tel:+919523467849"
-                  className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 px-4 py-2.5 text-[14px] font-semibold text-slate-800 transition-all active:scale-95"
+                  href={panel.datasheetUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 px-5 py-2.5 text-[14px] font-semibold text-slate-800 transition-all active:scale-95 text-center"
                 >
-                  <Phone className="h-4 w-4 text-forest flex-shrink-0" />
-                  <span>Call +91 95234 67849</span>
+                  <FileText className="h-4 w-4 text-emerald-600" />
+                  <span>Download Datasheet (PDF)</span>
                 </a>
-              </div>
+              )}
+
+              <a
+                href="tel:+919523467849"
+                className="inline-flex min-h-[46px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 px-5 py-2.5 text-[14px] font-semibold text-slate-800 transition-all active:scale-95 text-center"
+              >
+                <Phone className="h-4 w-4 text-forest flex-shrink-0" />
+                <span>Call +91 95234 67849</span>
+              </a>
             </div>
 
           </div>
+
         </div>
       </section>
 
