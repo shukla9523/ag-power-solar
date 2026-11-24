@@ -135,7 +135,7 @@ export const SOLAR_PANELS_DATA: SolarPanel[] = [
     temperatureCoefficient: "-0.34%/°C",
     maxSystemVoltage: "1500V DC",
     keyBenefits: [
-      "Backed by Tata Power&apos;s trusted Indian energy engineering legacy",
+      "Backed by Tata Power's trusted Indian energy engineering legacy",
       "Stringent 100% EL (Electroluminescence) testing to prevent micro-cracks",
       "Anti-reflective ARC coated tempered solar glass",
       "Seamless DISCOM subsidy verification under PM Surya Ghar",

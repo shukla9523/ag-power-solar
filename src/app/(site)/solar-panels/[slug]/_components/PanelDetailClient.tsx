@@ -215,8 +215,8 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
             {/* RIGHT: Panel Details & Compact Specs (~45% width) */}
             <div className="lg:col-span-5 flex flex-col justify-start">
               <div>
-                {/* Brand */}
-                <div className="flex items-center gap-2">
+                {/* Brand & Badges */}
+                <div className="flex items-center flex-wrap gap-2">
                   <span className="text-[13px] font-bold uppercase tracking-wider text-forest">
                     {panel.brand}
                   </span>
@@ -225,6 +225,18 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
                       {panel.badge}
                     </span>
                   ) : null}
+                  {panel.almm_listed && (
+                    <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 border border-blue-200 px-2 py-0.5 text-[11px] font-semibold text-blue-700">
+                      <ShieldCheck className="h-3 w-3 text-blue-600" />
+                      ALMM Listed
+                    </span>
+                  )}
+                  {panel.dcr_compliant && (
+                    <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">
+                      <CheckCircle2 className="h-3 w-3 text-emerald-600" />
+                      DCR Compliant
+                    </span>
+                  )}
                 </div>
 
                 {/* H1 Title: max text-3xl md:text-4xl, font-semibold */}
@@ -326,6 +338,25 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
           </div>
         </div>
       </section>
+
+      {/* ── OVERVIEW SECTION (1200px centered) ── */}
+      {panel.overview && (
+        <section className="py-8 sm:py-12 border-b border-slate-200/80 bg-white">
+          <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-[12px] font-bold uppercase tracking-wider text-forest">
+                Engineering Overview
+              </span>
+              <h2 className="mt-1 text-2xl sm:text-[26px] font-semibold text-slate-900">
+                About the {panel.name}
+              </h2>
+              <p className="mt-3.5 text-[15px] sm:text-[15.5px] leading-relaxed text-slate-600">
+                {panel.overview}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── KEY HIGHLIGHTS STRIP (1200px centered) ── */}
       <section className="bg-slate-50 py-6 border-b border-slate-200/80">
@@ -715,6 +746,41 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
           </div>
         </section>
       )}
+
+      {/* ── FINAL CTA STRIP (1200px centered) ── */}
+      <section className="py-12 sm:py-16 bg-gradient-to-br from-forest-deep via-forest to-forest-deep text-white">
+        <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 rounded-2xl bg-white/5 border border-white/10 p-6 sm:p-8 backdrop-blur-xs">
+            <div>
+              <span className="text-[12px] font-semibold uppercase tracking-wider text-emerald-300">
+                Turnkey Solar EPC & Engineering
+              </span>
+              <h2 className="mt-1 text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                Ready to install {panel.brand} modules?
+              </h2>
+              <p className="mt-2 text-emerald-100 text-[14.5px] max-w-xl">
+                Get a comprehensive site assessment, 3D shadow analysis, and turnkey MNRE/discom approval for your solar setup.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <LocalizedClientLink
+                href={`/contact?panel=${panel.slug}`}
+                className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5 text-[14px] font-bold text-forest shadow-xs hover:bg-slate-50 transition-all active:scale-95"
+              >
+                <span>Get Free Quote</span>
+                <ArrowRight className="h-4 w-4" />
+              </LocalizedClientLink>
+              <a
+                href="tel:+919523467849"
+                className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-white/30 bg-transparent px-5 py-2.5 text-[14px] font-bold text-white hover:bg-white/10 transition-all active:scale-95"
+              >
+                <Phone className="h-4 w-4" />
+                <span>Call +91 95234 67849</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── MOBILE STICKY CTA BAR (<768px screen, does not overlap footer) ── */}
       <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-2.5 shadow-lg md:hidden">

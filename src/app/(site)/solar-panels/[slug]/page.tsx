@@ -9,9 +9,16 @@ interface PageProps {
 }
 
 export function generateStaticParams() {
-  return SOLAR_PANELS.map((panel) => ({
-    slug: panel.slug,
-  }))
+  const params: { slug: string }[] = []
+  SOLAR_PANELS.forEach((panel) => {
+    params.push({ slug: panel.slug })
+    if (panel.aliases) {
+      panel.aliases.forEach((alias) => {
+        params.push({ slug: alias })
+      })
+    }
+  })
+  return params
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
