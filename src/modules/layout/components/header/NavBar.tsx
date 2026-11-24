@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "motion/react"
 import ServicesDropdown from "./ServicesDropdown"
@@ -22,6 +22,7 @@ export default function NavBar() {
   const [solutionsOpen, setSolutionsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState<boolean | null>(null)
+  const scrollYRef = useRef(0)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -41,9 +42,42 @@ export default function NavBar() {
     if (isMobile === false) setMenuOpen(false)
   }, [isMobile])
 
+  // Automatically close mobile menu on route change
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : ""
-    return () => { document.body.style.overflow = "" }
+    setMenuOpen(false)
+  }, [pathname])
+
+  // Mobile body scroll lock with iOS Safari position: fixed compensation
+  useEffect(() => {
+    if (menuOpen) {
+      scrollYRef.current = window.scrollY
+      document.documentElement.classList.add("menu-open")
+      document.body.classList.add("menu-open")
+      document.body.style.position = "fixed"
+      document.body.style.top = `-${scrollYRef.current}px`
+      document.body.style.width = "100%"
+      document.body.style.overflow = "hidden"
+    } else {
+      const savedY = scrollYRef.current
+      document.documentElement.classList.remove("menu-open")
+      document.body.classList.remove("menu-open")
+      document.body.style.position = ""
+      document.body.style.top = ""
+      document.body.style.width = ""
+      document.body.style.overflow = ""
+      if (savedY > 0) {
+        window.scrollTo(0, savedY)
+      }
+    }
+
+    return () => {
+      document.documentElement.classList.remove("menu-open")
+      document.body.classList.remove("menu-open")
+      document.body.style.position = ""
+      document.body.style.top = ""
+      document.body.style.width = ""
+      document.body.style.overflow = ""
+    }
   }, [menuOpen])
 
   return (
@@ -174,128 +208,166 @@ export default function NavBar() {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu (Pure Solid Crisp White, Never Transparent) */}
+      {/* Mobile Drawer Menu (Pure Solid Crisp White, Fullscreen Over Everything) */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
             style={{ backgroundColor: "#ffffff" }}
-            className="fixed inset-x-0 top-[58px] sm:top-[64px] bottom-0 z-50 bg-white overflow-y-auto px-5 py-6 lg:hidden shadow-2xl border-t border-slate-100 flex flex-col justify-between"
+            className="fixed inset-0 z-[9999] h-[100vh] h-[100dvh] w-full bg-white flex flex-col lg:hidden"
           >
-            <div className="flex flex-col gap-2">
+            {/* Top Bar inside Menu Panel: Aligns seamlessly with the header */}
+            <div className="flex items-center justify-between px-3.5 py-3 sm:px-6 sm:py-3.5 border-b border-slate-200 bg-white shrink-0">
               <LocalizedClientLink
                 href="/"
                 onClick={() => setMenuOpen(false)}
-                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
-                  }`}
+                className="inline-flex items-center transition-transform active:scale-95"
               >
-                Home
+                <AgPowerLogo variant="default" size="md" />
               </LocalizedClientLink>
 
-              <LocalizedClientLink
-                href="/about"
-                onClick={() => setMenuOpen(false)}
-                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/about" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
-                  }`}
-              >
-                About AG POWER
-              </LocalizedClientLink>
+              <div className="flex items-center gap-2">
+                <a
+                  href="tel:+919523467849"
+                  className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-green-main text-white shadow-xs transition-transform active:scale-95 hover:bg-emerald-600"
+                  aria-label="Call AG POWER Solar"
+                >
+                  <Phone className="h-5 w-5 text-white" />
+                </a>
 
-              {/* Mobile Solutions Accordion */}
-              <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-2.5">
                 <button
                   type="button"
-                  onClick={() => setSolutionsOpen(!solutionsOpen)}
-                  className="flex min-h-[42px] w-full items-center justify-between px-2 text-[16px] font-bold text-slate-900"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex h-[44px] w-[44px] items-center justify-center rounded-xl border-[1.5px] border-green-dark bg-white text-green-dark shadow-xs hover:bg-green-light transition-colors active:scale-95"
+                  aria-label="Close Navigation Menu"
                 >
-                  <span>Services & Solutions</span>
-                  <ChevronDown className={`h-4 w-4 text-emerald-700 transition-transform ${solutionsOpen ? "rotate-180" : ""}`} />
+                  <X className="h-6 w-6 text-green-dark" />
                 </button>
-                {solutionsOpen && (
-                  <div className="mt-2 flex flex-col gap-1.5 border-t border-slate-200 pt-2">
-                    {solarSolutions.map((sol) => (
-                      <LocalizedClientLink
-                        key={sol.link}
-                        href={sol.link}
-                        onClick={() => setMenuOpen(false)}
-                        className="rounded-lg px-2.5 py-2 text-[14px] text-slate-900 hover:bg-emerald-100/60 transition-colors"
-                      >
-                        <p className="font-extrabold text-emerald-800">{sol.name}</p>
-                        <p className="text-[12px] text-slate-600">{sol.desc}</p>
-                      </LocalizedClientLink>
-                    ))}
+              </div>
+            </div>
+
+            {/* Scrollable Navigation Body */}
+            <div
+              className="flex-1 overflow-y-auto overscroll-contain px-5 py-6 flex flex-col justify-between"
+              style={{
+                WebkitOverflowScrolling: "touch",
+                overscrollBehavior: "contain",
+              }}
+            >
+              <div className="flex flex-col gap-2">
+                <LocalizedClientLink
+                  href="/"
+                  onClick={() => setMenuOpen(false)}
+                  className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                    }`}
+                >
+                  Home
+                </LocalizedClientLink>
+
+                <LocalizedClientLink
+                  href="/about"
+                  onClick={() => setMenuOpen(false)}
+                  className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/about" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                    }`}
+                >
+                  About AG POWER
+                </LocalizedClientLink>
+
+                {/* Mobile Solutions Accordion */}
+                <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-2.5">
+                  <button
+                    type="button"
+                    onClick={() => setSolutionsOpen(!solutionsOpen)}
+                    className="flex min-h-[42px] w-full items-center justify-between px-2 text-[16px] font-bold text-slate-900"
+                  >
+                    <span>Services & Solutions</span>
+                    <ChevronDown className={`h-4 w-4 text-emerald-700 transition-transform ${solutionsOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  {solutionsOpen && (
+                    <div className="mt-2 flex flex-col gap-1.5 border-t border-slate-200 pt-2">
+                      {solarSolutions.map((sol) => (
+                        <LocalizedClientLink
+                          key={sol.link}
+                          href={sol.link}
+                          onClick={() => setMenuOpen(false)}
+                          className="rounded-lg px-2.5 py-2 text-[14px] text-slate-900 hover:bg-emerald-100/60 transition-colors"
+                        >
+                          <p className="font-extrabold text-emerald-800">{sol.name}</p>
+                          <p className="text-[12px] text-slate-600">{sol.desc}</p>
+                        </LocalizedClientLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <LocalizedClientLink
+                  href="/calculator"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex min-h-[46px] items-center justify-between rounded-xl px-3.5 text-[16px] font-bold text-slate-900 hover:bg-slate-50 transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Calculator className="h-5 w-5 text-amber-500" />
+                    <span className="text-slate-900">Solar Calculator</span>
                   </div>
-                )}
+                  <span className="rounded-md bg-amber-100 border border-amber-300 px-2 py-0.5 text-[11px] font-extrabold text-amber-900">
+                    Interactive
+                  </span>
+                </LocalizedClientLink>
+
+                <LocalizedClientLink
+                  href="/solar-panels"
+                  onClick={() => setMenuOpen(false)}
+                  className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/solar-panels" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                    }`}
+                >
+                  Tier-1 Solar Panels
+                </LocalizedClientLink>
+
+                <LocalizedClientLink
+                  href="/blog"
+                  onClick={() => setMenuOpen(false)}
+                  className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname?.startsWith("/blog") ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                    }`}
+                >
+                  Solar Guides & Blog
+                </LocalizedClientLink>
+
+                <LocalizedClientLink
+                  href="/contact"
+                  onClick={() => setMenuOpen(false)}
+                  className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/contact" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
+                    }`}
+                >
+                  Contact & Support
+                </LocalizedClientLink>
               </div>
 
-              <LocalizedClientLink
-                href="/calculator"
-                onClick={() => setMenuOpen(false)}
-                className="flex min-h-[46px] items-center justify-between rounded-xl px-3.5 text-[16px] font-bold text-slate-900 hover:bg-slate-50 transition-colors"
-              >
-                <div className="flex items-center gap-2.5">
-                  <Calculator className="h-5 w-5 text-amber-500" />
-                  <span className="text-slate-900">Solar Calculator</span>
-                </div>
-                <span className="rounded-md bg-amber-100 border border-amber-300 px-2 py-0.5 text-[11px] font-extrabold text-amber-900">
-                  Interactive
-                </span>
-              </LocalizedClientLink>
+              {/* Mobile Action CTAs at bottom of screen */}
+              <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col gap-3 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+                <LocalizedClientLink
+                  href="/contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex min-h-[50px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 text-center font-inter text-[15px] font-extrabold text-white shadow-md active:scale-95 transition-all"
+                >
+                  <span>Get Free Solar Quote</span>
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </LocalizedClientLink>
 
-              <LocalizedClientLink
-                href="/solar-panels"
-                onClick={() => setMenuOpen(false)}
-                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/solar-panels" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
-                  }`}
-              >
-                Tier-1 Solar Panels
-              </LocalizedClientLink>
-
-              <LocalizedClientLink
-                href="/blog"
-                onClick={() => setMenuOpen(false)}
-                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname?.startsWith("/blog") ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
-                  }`}
-              >
-                Solar Guides & Blog
-              </LocalizedClientLink>
-
-              <LocalizedClientLink
-                href="/contact"
-                onClick={() => setMenuOpen(false)}
-                className={`flex min-h-[46px] items-center rounded-xl px-3.5 text-[16px] font-bold transition-colors ${pathname === "/contact" ? "bg-emerald-50 text-emerald-700" : "text-slate-900 hover:bg-slate-50"
-                  }`}
-              >
-                Contact & Support
-              </LocalizedClientLink>
-            </div>
-
-            {/* Mobile Action CTAs at bottom of screen */}
-            <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col gap-3 pb-4">
-              <LocalizedClientLink
-                href="/contact"
-                onClick={() => setMenuOpen(false)}
-                className="flex min-h-[50px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 text-center font-inter text-[15px] font-extrabold text-white shadow-md active:scale-95 transition-all"
-              >
-                <span>Get Free Solar Quote</span>
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </LocalizedClientLink>
-
-              <a
-                href="tel:+919523467849"
-                className="flex min-h-[46px] w-full items-center justify-center rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-300 text-center font-inter text-[14px] font-bold text-slate-900 shadow-xs active:scale-95 transition-all"
-              >
-                <Phone className="mr-2 h-4 w-4 text-emerald-700" />
-                <span>Call Us: +91 95234 67849</span>
-              </a>
+                <a
+                  href="tel:+919523467849"
+                  className="flex min-h-[46px] w-full items-center justify-center rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-300 text-center font-inter text-[14px] font-bold text-slate-900 shadow-xs active:scale-95 transition-all"
+                >
+                  <Phone className="mr-2 h-4 w-4 text-emerald-700" />
+                  <span>Call Us: +91 95234 67849</span>
+                </a>
+              </div>
             </div>
           </motion.div>
-        )
-        }
-      </AnimatePresence >
+        )}
+      </AnimatePresence>
     </>
   )
 }
