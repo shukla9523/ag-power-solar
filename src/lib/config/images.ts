@@ -292,16 +292,19 @@ export function getPanelGallery(slug: string): ProductGalleryItem[] {
  * Central blog post cover images
  */
 export const BLOG_COVER_IMAGES: Record<string, string> = {
-  "pm-surya-ghar-muft-bijli-yojana-guide": "/images/blog/pm-surya-ghar.webp?v=5",
-  "topcon-vs-mono-perc-solar-panels": "/images/blog/topcon-vs-mono-perc.webp?v=5",
-  "residential-solar-roi-payback-india": "/images/blog/residential-solar-roi.webp?v=5",
-  "commercial-industrial-solar-benefits": "/images/blog/commercial-solar-benefits.webp?v=5",
-  "solar-for-housing-societies-slashing-maintenance": "/images/blog/on-grid-vs-hybrid.webp?v=5",
-  "how-grid-tie-solar-system-works": "/images/blog/net-metering-guide.webp?v=5",
-  "complete-solar-installation-process": "/images/blog/installation-step-by-step.webp?v=5",
-  "solar-panel-cleaning-maintenance-guide": "/images/blog/cleaning-maintenance.webp?v=5",
-  "solar-net-metering-guide-india": "/images/blog/net-metering-guide.webp?v=5",
-  "solar-maintenance-cleaning-guide": "/images/blog/cleaning-maintenance.webp?v=5",
-  "on-grid-vs-hybrid-solar-systems": "/images/blog/on-grid-vs-hybrid.webp?v=5",
-  "rooftop-solar-installation-step-by-step": "/images/blog/installation-step-by-step.webp?v=5"
+  "pm-surya-ghar-muft-bijli-yojana-guide": "/images/blog/real-solar-pm-surya-ghar.webp?v=2026",
+  "topcon-vs-mono-perc-solar-panels": "/images/blog/real-solar-topcon-technology.webp?v=2026",
+  "residential-solar-roi-payback-india": "/images/blog/real-solar-residential-roi.webp?v=2026",
+  "commercial-industrial-solar-benefits": "/images/blog/real-solar-commercial-plant.webp?v=2026",
+  "solar-for-apartment-complexes-housing-societies": "/images/blog/real-solar-housing-society.webp?v=2026",
+  "solar-for-housing-societies-slashing-maintenance": "/images/blog/real-solar-housing-society.webp?v=2026",
+  "solar-energy-basics-on-grid-inverters-net-metering": "/images/blog/real-solar-net-metering.webp?v=2026",
+  "how-grid-tie-solar-system-works": "/images/blog/real-solar-net-metering.webp?v=2026",
+  "rooftop-solar-installation-step-by-step-process": "/images/blog/real-solar-installation-process.webp?v=2026",
+  "complete-solar-installation-process": "/images/blog/real-solar-installation-process.webp?v=2026",
+  "solar-panel-cleaning-maintenance-guide": "/images/blog/real-solar-panel-cleaning.webp?v=2026",
+  "solar-net-metering-guide-india": "/images/blog/real-solar-net-metering.webp?v=2026",
+  "solar-maintenance-cleaning-guide": "/images/blog/real-solar-panel-cleaning.webp?v=2026",
+  "on-grid-vs-hybrid-solar-systems": "/images/blog/real-solar-housing-society.webp?v=2026",
+  "rooftop-solar-installation-step-by-step": "/images/blog/real-solar-installation-process.webp?v=2026"
 }

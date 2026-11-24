@@ -43,8 +43,6 @@ export default async function BlogPage() {
     )
   }
 
-  const popular = blogPosts.slice(0, 5)
-
   return (
     <main className={`relative overflow-hidden bg-ivory pt-10 pb-20 lg:pt-14 lg:pb-24 ${inter.className}`}>
       <JsonLd
@@ -59,184 +57,177 @@ export default async function BlogPage() {
 
           {/* ── TOP HEADER (Centered) ── */}
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className={`${manrope.className} text-[32px] font-extrabold leading-[1.1] tracking-[-0.03em] text-forest sm:text-[42px] lg:text-[48px]`}>
-              Solar Insights & Engineering Guides
+            <span className="inline-block rounded-full bg-forest/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-forest border border-forest/15">
+              Engineering &amp; Subsidy Guides
+            </span>
+            <h1 className={`${manrope.className} mt-3 text-[32px] font-extrabold leading-[1.1] tracking-[-0.03em] text-forest sm:text-[42px] lg:text-[48px]`}>
+              Solar Insights &amp; Engineering Guides
             </h1>
             <p className="mt-3.5 mx-auto max-w-[680px] text-[15px] leading-relaxed text-charcoal/80 sm:text-[16px]">
               Authoritative guides by AG POWER engineers covering rooftop solar system sizing, PM Surya Ghar subsidy procedures, TOPCon module technologies, DISCOM net-metering, and long-term financial payback in India.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-8 lg:mt-12 lg:grid-cols-[1fr_360px] lg:items-start lg:gap-10">
-
-            {/* LEFT: ARTICLES LIST */}
-            <div>
-              {/* Featured Post Card (Centered Solar Photo, Clean Alignment, No Date) */}
-              <article className="group overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-xs transition-all duration-300 hover:shadow-md">
-                <LocalizedClientLink href={`/blog/${featured.slug}`} className="block">
-                  <div className="relative aspect-[16/9] max-h-[360px] w-full overflow-hidden bg-slate-50 flex items-center justify-center">
-                    {featured.featured_image ? (
-                      <Image
-                        src={featured.featured_image}
-                        alt={featured.title}
-                        fill
-                        priority
-                        fetchPriority="high"
-                        sizes="(max-width: 1024px) 100vw, 820px"
-                        className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
-                    ) : (
-                      <div className="h-full w-full bg-forest" />
-                    )}
-                    <div className="absolute left-3.5 top-3.5 sm:left-4 sm:top-4 z-10">
-                      {featured.category_id && (
-                        <span className="rounded-full bg-forest px-3.5 py-1 text-[12px] font-bold text-white shadow-sm">
-                          {featured.category_id}
-                        </span>
-                      )}
+          {/* ── FEATURED POST (Photo Centered, Headings & Text Centered) ── */}
+          <section className="mt-10 sm:mt-12">
+            <article className="group mx-auto max-w-[1100px] overflow-hidden rounded-3xl border border-charcoal/10 bg-white shadow-xs transition-all duration-300 hover:shadow-lg">
+              <LocalizedClientLink href={`/blog/${featured.slug}`} className="block">
+                <div className="relative aspect-[16/9] max-h-[460px] w-full overflow-hidden bg-slate-100 flex items-center justify-center">
+                  {featured.featured_image ? (
+                    <Image
+                      src={featured.featured_image}
+                      alt={featured.title}
+                      fill
+                      priority
+                      fetchPriority="high"
+                      sizes="(max-width: 1200px) 100vw, 1100px"
+                      className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div className="h-full w-full bg-forest" />
+                  )}
+                  {featured.category_id && (
+                    <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-10">
+                      <span className="rounded-full bg-forest px-4 py-1 text-[12px] font-bold text-white shadow-md">
+                        {featured.category_id}
+                      </span>
                     </div>
-                  </div>
-                </LocalizedClientLink>
-
-                <div className="p-6 sm:p-7">
-                  <h2 className={`${manrope.className} text-xl sm:text-2xl lg:text-[24px] font-bold leading-snug tracking-tight text-forest transition-colors group-hover:text-gold`}>
-                    <LocalizedClientLink href={`/blog/${featured.slug}`}>
-                      {featured.title}
-                    </LocalizedClientLink>
-                  </h2>
-                  <p className="mt-2.5 text-[14.5px] leading-[1.7] text-charcoal/80 sm:text-[15px]">
-                    {featured.excerpt}
-                  </p>
-                  <div className="mt-4 pt-3 border-t border-charcoal/10 flex items-center justify-between">
-                    <LocalizedClientLink
-                      href={`/blog/${featured.slug}`}
-                      className={`${manrope.className} inline-flex items-center text-[13.5px] font-bold text-forest transition-colors hover:text-gold`}
-                    >
-                      Read Complete Guide <span className="ml-1.5 text-[16px]">→</span>
-                    </LocalizedClientLink>
-                  </div>
+                  )}
                 </div>
-              </article>
+              </LocalizedClientLink>
 
-              {rest.length > 0 && (
-                <div className="my-8 border-t border-charcoal/10 lg:my-10" />
-              )}
+              {/* Centered Content Below Photo */}
+              <div className="p-6 text-center sm:p-8 lg:p-10">
+                {featured.category_id && (
+                  <span className="inline-block text-[12px] font-bold uppercase tracking-wider text-forest/90 mb-2">
+                    {featured.category_id}
+                  </span>
+                )}
+                <h2 className={`${manrope.className} mx-auto max-w-3xl text-2xl sm:text-3xl lg:text-[30px] font-extrabold leading-snug tracking-tight text-forest transition-colors group-hover:text-gold`}>
+                  <LocalizedClientLink href={`/blog/${featured.slug}`}>
+                    {featured.title}
+                  </LocalizedClientLink>
+                </h2>
+                <p className="mt-3.5 mx-auto max-w-2xl text-[15px] leading-relaxed text-charcoal/80 sm:text-[16px]">
+                  {featured.excerpt}
+                </p>
+                <div className="mt-6 flex justify-center">
+                  <LocalizedClientLink
+                    href={`/blog/${featured.slug}`}
+                    className={`${manrope.className} inline-flex items-center justify-center rounded-xl bg-forest hover:bg-forest-deep px-6 py-3 text-[14px] font-bold text-white shadow-md transition-all active:scale-95`}
+                  >
+                    <span>Read Complete Guide</span>
+                    <span className="ml-2 text-[16px]">→</span>
+                  </LocalizedClientLink>
+                </div>
+              </div>
+            </article>
+          </section>
 
-              {/* Other Posts List (Centered Thumbnails, Clean Spacing, No Dates) */}
-              <div className="space-y-5 sm:space-y-6">
+          {/* ── ALL OTHER SOLAR ARTICLES (Centered 3-Column Grid) ── */}
+          {rest.length > 0 && (
+            <section className="mt-14 sm:mt-16 lg:mt-20">
+              <div className="text-center mb-8 sm:mb-10">
+                <span className="inline-block text-[12px] font-bold uppercase tracking-wider text-forest/80">
+                  Solar Knowledge Library
+                </span>
+                <h3 className={`${manrope.className} mt-1.5 text-2xl sm:text-3xl font-extrabold text-forest`}>
+                  More Engineering &amp; Subsidy Guides
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
                 {rest.map((post) => (
                   <article
                     key={post.slug}
-                    className="group flex flex-col sm:flex-row gap-4 sm:gap-5 rounded-2xl border border-charcoal/10 bg-white p-4 sm:p-5 shadow-xs transition-all hover:border-forest/30 hover:shadow-md"
+                    className="group flex flex-col overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-xs transition-all duration-300 hover:border-forest/40 hover:shadow-lg"
                   >
-                    <LocalizedClientLink href={`/blog/${post.slug}`} className="shrink-0 self-center sm:self-start">
-                      <div className="relative h-[150px] w-full sm:h-[120px] sm:w-[170px] overflow-hidden rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-center">
+                    <LocalizedClientLink href={`/blog/${post.slug}`} className="block">
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 flex items-center justify-center">
                         {post.featured_image ? (
                           <Image
                             src={post.featured_image}
                             alt={post.title}
                             fill
-                            sizes="(max-width: 640px) 100vw, 170px"
-                            className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+                            className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.05]"
                           />
                         ) : (
                           <div className="h-full w-full bg-forest" />
                         )}
+                        {post.category_id && (
+                          <div className="absolute top-3 left-3 z-10">
+                            <span className="rounded-full bg-forest/90 backdrop-blur-xs px-3 py-0.5 text-[11px] font-bold text-white shadow-sm">
+                              {post.category_id}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </LocalizedClientLink>
 
-                    <div className="flex flex-col justify-between min-w-0 flex-1">
+                    {/* Centered Card Content */}
+                    <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 text-center">
                       <div>
                         {post.category_id && (
-                          <span className="inline-block text-[11.5px] font-bold uppercase tracking-wider text-forest">
+                          <span className="block text-[11px] font-bold uppercase tracking-wider text-forest/80 mb-1">
                             {post.category_id}
                           </span>
                         )}
-                        <h3 className={`${manrope.className} mt-1 text-[16px] sm:text-[17.5px] font-bold leading-snug text-forest transition-colors group-hover:text-gold`}>
+                        <h4 className={`${manrope.className} text-[17px] sm:text-[18px] font-bold leading-snug text-forest transition-colors group-hover:text-gold`}>
                           <LocalizedClientLink href={`/blog/${post.slug}`}>
                             {post.title}
                           </LocalizedClientLink>
-                        </h3>
-                        <p className="mt-1.5 line-clamp-2 text-[13px] sm:text-[13.5px] leading-relaxed text-charcoal/70">
+                        </h4>
+                        <p className="mt-2.5 line-clamp-3 text-[13.5px] leading-relaxed text-charcoal/70">
                           {post.excerpt}
                         </p>
                       </div>
 
-                      <div className="mt-3 pt-2">
+                      <div className="mt-5 pt-3 border-t border-charcoal/5 flex justify-center">
                         <LocalizedClientLink
                           href={`/blog/${post.slug}`}
-                          className="inline-flex items-center text-[12.5px] font-bold text-forest hover:text-gold"
+                          className="inline-flex items-center justify-center text-[13px] font-bold text-forest hover:text-gold transition-colors"
                         >
                           <span>Read Guide</span>
-                          <span className="ml-1 text-[14px]">→</span>
+                          <span className="ml-1.5 text-[14px]">→</span>
                         </LocalizedClientLink>
                       </div>
                     </div>
                   </article>
                 ))}
               </div>
-            </div>
+            </section>
+          )}
 
-            {/* RIGHT SIDEBAR */}
-            <div className="space-y-6 lg:sticky lg:top-[100px] lg:space-y-7">
-
-              {/* Featured Solar Guides (No Dates) */}
-              <div className="rounded-2xl border border-charcoal/10 bg-white p-5 shadow-xs sm:rounded-2xl sm:p-6">
-                <h3 className={`${manrope.className} mb-4 text-[17px] font-extrabold tracking-[-0.02em] text-forest sm:mb-5 sm:text-[18px]`}>
-                  Featured Solar Guides
-                </h3>
-                <div className="space-y-3.5 sm:space-y-4">
-                  {popular.map((post, i) => (
-                    <div key={post.slug} className="flex gap-3 pb-3 border-b border-charcoal/5 last:border-b-0 last:pb-0 items-start">
-                      <span className={`${manrope.className} mt-0.5 shrink-0 text-[12px] font-extrabold text-gold sm:text-[13px]`}>
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <div className="min-w-0">
-                        {post.category_id && (
-                          <span className="text-[10.5px] font-bold text-forest uppercase tracking-wider block mb-0.5">
-                            {post.category_id}
-                          </span>
-                        )}
-                        <LocalizedClientLink href={`/blog/${post.slug}`}>
-                          <h4 className={`${manrope.className} text-[13px] font-bold leading-[1.35] text-slate-800 transition-colors hover:text-forest sm:text-[13.5px]`}>
-                            {post.title}
-                          </h4>
-                        </LocalizedClientLink>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+          {/* ── SOLAR CONSULTATION BANNER (Centered in 1200px) ── */}
+          <section className="mt-14 sm:mt-16 lg:mt-20">
+            <div className="mx-auto max-w-[1100px] rounded-3xl bg-forest p-8 sm:p-12 text-center text-white shadow-md">
+              <span className="inline-block rounded-full bg-gold/20 px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-gold">
+                Free Feasibility Audit
+              </span>
+              <h3 className={`${manrope.className} mt-3 text-2xl sm:text-3xl lg:text-[32px] font-extrabold leading-snug`}>
+                Ready to cut your electricity bill by 80%?
+              </h3>
+              <p className="mt-2.5 mx-auto max-w-xl text-[14px] sm:text-[15px] leading-relaxed text-white/85">
+                Get a personalized rooftop solar sizing report, 25-year financial cash flow, and PM Surya Ghar subsidy estimate from AG POWER.
+              </p>
+              <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+                <LocalizedClientLink
+                  href="/calculator"
+                  className={`${manrope.className} flex h-[46px] w-full sm:w-auto items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 text-[13.5px] font-bold text-white shadow-md transition-all active:scale-95`}
+                >
+                  Calculate Solar Savings →
+                </LocalizedClientLink>
+                <LocalizedClientLink
+                  href="/contact"
+                  className={`${manrope.className} flex h-[46px] w-full sm:w-auto items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 text-[13.5px] font-bold text-slate-900 shadow-md transition-all active:scale-95`}
+                >
+                  Request Free Site Audit
+                </LocalizedClientLink>
               </div>
-
-              {/* Solar Consultation Sidebar Card */}
-              <div className="rounded-2xl bg-forest p-6 text-white shadow-sm sm:rounded-2xl sm:p-7">
-                <span className="inline-block rounded-full bg-gold/20 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-gold">
-                  Free Feasibility
-                </span>
-                <h3 className={`${manrope.className} mt-3 text-[19px] font-extrabold leading-snug sm:text-[21px]`}>
-                  Ready to cut your electricity bill by 80%?
-                </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-white/80">
-                  Get a personalized rooftop solar sizing report, 25-year financial cash flow, and PM Surya Ghar subsidy estimate from AG POWER.
-                </p>
-                <div className="mt-5 space-y-2.5">
-                  <LocalizedClientLink
-                    href="/calculator"
-                    className={`${manrope.className} flex h-[44px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-4 text-[13px] font-bold text-white shadow-md transition-all active:scale-95`}
-                  >
-                    Calculate Solar Savings →
-                  </LocalizedClientLink>
-                  <LocalizedClientLink
-                    href="/contact"
-                    className={`${manrope.className} flex h-[44px] w-full items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-4 text-[13px] font-bold text-slate-900 shadow-md transition-all active:scale-95`}
-                  >
-                    Request Free Site Audit
-                  </LocalizedClientLink>
-                </div>
-              </div>
-
             </div>
-          </div>
+          </section>
+
         </div>
       </div>
 

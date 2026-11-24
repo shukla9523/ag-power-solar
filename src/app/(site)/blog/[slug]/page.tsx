@@ -113,7 +113,7 @@ export default async function BlogPostDetailPage({
       <main className={`min-h-screen bg-ivory text-charcoal pb-24 ${inter.className}`}>
         {/* ─── BREADCRUMBS ─── */}
         <div className="border-b border-charcoal/10 bg-white">
-          <div className="content-container mx-auto max-w-[1000px] px-4 py-4 sm:px-6 lg:px-8">
+          <div className="content-container mx-auto max-w-[1200px] px-4 py-4 sm:px-6 lg:px-8">
             <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs text-charcoal/60">
               <LocalizedClientLink href="/" className="hover:text-forest transition-colors">
                 Home
@@ -131,7 +131,7 @@ export default async function BlogPostDetailPage({
         </div>
 
         {/* ─── ARTICLE HEADER (Centered) ─── */}
-        <article className="content-container mx-auto max-w-[1000px] px-4 pt-10 sm:px-6 lg:px-8">
+        <article className="content-container mx-auto max-w-[1200px] px-4 pt-10 sm:px-6 lg:px-8">
           <header className="mb-10 text-center mx-auto max-w-3xl">
             <span className="inline-block rounded-full bg-forest/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-forest border border-forest/15">
               {cleanCategoryName(post.category_id, "Solar Insights")}
@@ -156,22 +156,22 @@ export default async function BlogPostDetailPage({
             )}
           </header>
 
-          {/* ─── FEATURED IMAGE (Centered, 16:9 or max 400px height, rounded corners) ─── */}
+          {/* ─── FEATURED IMAGE (Centered, 16:9 in 1200px container) ─── */}
           {post.featured_image && (
-            <div className="relative mb-10 mx-auto h-[240px] sm:h-[340px] md:h-[400px] max-h-[420px] w-full max-w-[960px] overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-xs flex items-center justify-center">
+            <div className="relative mb-10 mx-auto aspect-[16/9] max-h-[480px] w-full max-w-[1100px] overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-xs flex items-center justify-center">
               <Image
                 src={post.featured_image}
                 alt={post.title}
                 fill
                 priority
-                sizes="(max-width: 1000px) 100vw, 1000px"
+                sizes="(max-width: 1200px) 100vw, 1100px"
                 className="object-cover object-center"
               />
             </div>
           )}
 
-          {/* ─── ARTICLE BODY ─── */}
-          <div className="rounded-2xl border border-charcoal/10 bg-white p-6 sm:p-10 lg:p-12 shadow-xs">
+          {/* ─── ARTICLE BODY (Centered container) ─── */}
+          <div className="mx-auto max-w-[960px] rounded-3xl border border-charcoal/10 bg-white p-6 sm:p-10 lg:p-12 shadow-xs">
             <div
               className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:text-forest prose-headings:tracking-tight prose-a:text-forest prose-a:font-semibold prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-strong:text-charcoal"
               dangerouslySetInnerHTML={{ __html: articleHtml }}
@@ -234,7 +234,7 @@ export default async function BlogPostDetailPage({
                 {relatedPosts.map((rel) => (
                   <article
                     key={rel.slug}
-                    className="group flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-white p-5 shadow-xs transition-all hover:border-forest/30 hover:shadow-md"
+                    className="group flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-white p-5 text-center shadow-xs transition-all hover:border-forest/30 hover:shadow-md"
                   >
                     <div>
                       {rel.featured_image && (
@@ -249,11 +249,11 @@ export default async function BlogPostDetailPage({
                         </div>
                       )}
                       {rel.category_id && (
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-forest">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-forest block mb-1">
                           {rel.category_id}
                         </span>
                       )}
-                      <h4 className={`${manrope.className} mt-1.5 text-[15px] font-bold leading-snug text-forest transition-colors group-hover:text-gold`}>
+                      <h4 className={`${manrope.className} mt-1 text-[15px] font-bold leading-snug text-forest transition-colors group-hover:text-gold`}>
                         <LocalizedClientLink href={`/blog/${rel.slug}`}>
                           {rel.title}
                         </LocalizedClientLink>
@@ -264,7 +264,7 @@ export default async function BlogPostDetailPage({
                         </p>
                       )}
                     </div>
-                    <div className="mt-4 pt-3 border-t border-charcoal/8">
+                    <div className="mt-4 pt-3 border-t border-charcoal/8 flex justify-center">
                       <LocalizedClientLink
                         href={`/blog/${rel.slug}`}
                         className="text-[12px] font-bold text-forest hover:text-gold transition-colors inline-flex items-center gap-1"
