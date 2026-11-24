@@ -108,7 +108,7 @@ export default function FaqPageClient({ categories }: { categories?: FAQCategory
             </h1>
 
             <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-charcoal/80 sm:text-[16px]">
-              Find clear, verified answers about residential and commercial rooftop solar, PM Surya Ghar subsidy, net metering, Tier-1 solar panels, and system maintenance from AG POWER engineers.
+              Find clear, verified answers about residential and commercial rooftop solar, PM Surya Ghar subsidy, net metering, high-efficiency solar panels, and system maintenance from AG POWER engineers.
             </p>
 
             {/* ── Search Input ── */}

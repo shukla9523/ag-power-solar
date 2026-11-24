@@ -47,7 +47,7 @@ const servicesList = [
   {
     icon: HeadphonesIcon,
     title: "Dedicated After-Sales Assistance",
-    desc: "Lifetime technical assistance, warranty claim handling with Tier-1 manufacturers, and continuous monitoring app support.",
+    desc: "Lifetime technical assistance, warranty claim handling with equipment manufacturers, and continuous monitoring app support.",
   },
 ]
 
@@ -66,7 +66,7 @@ const serviceFaqs = [
   },
   {
     q: "How does AG POWER handle manufacturer warranty claims?",
-    a: "You do not have to struggle with third-party manufacturer portals. AG POWER facilitates all 10-15 year product warranty and 25-30 year linear output claims directly with Tier-1 brands (Waaree, Adani, Tata Power, Sungrow, Growatt), including module testing and RMA replacements.",
+    a: "You do not have to struggle with third-party manufacturer portals. AG POWER facilitates all 10-15 year product warranty and 25-30 year linear output claims directly with leading brands (Waaree, Adani, Tata Power, Sungrow, Growatt), including module testing and RMA replacements.",
   },
   {
     q: "Do you provide assistance with DISCOM net-metering and government subsidies?",

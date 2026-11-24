@@ -22,7 +22,7 @@ export const PAGE_META_DEFAULTS: Record<string, PageMetaDefault> = {
   about: {
     title: "About AG POWER | Solar Energy Solutions by Electro Global",
     description:
-      "Learn about AG POWER, an engineering-first solar EPC company delivering Tier-1 rooftop solar systems, expert DISCOM liaison, and 25-year reliability.",
+      "Learn about AG POWER, an engineering-first solar EPC company delivering high-efficiency rooftop solar systems, expert DISCOM liaison, and 25-year reliability.",
   },
   contact: {
     title: "Contact AG POWER | Request a Free Rooftop Solar Survey",
@@ -35,7 +35,7 @@ export const PAGE_META_DEFAULTS: Record<string, PageMetaDefault> = {
       "Turnkey solar EPC services by AG POWER: residential rooftop plants, commercial solar, housing society common systems, DISCOM liaison, and solar AMC.",
   },
   "solar-panels": {
-    title: "Solar Panel Catalogue | Tier-1 N-Type TOPCon & Bifacial",
+    title: "Solar Panel Catalogue | High-Efficiency N-Type TOPCon & Bifacial",
     description:
       "Explore solar panels from Waaree, Adani, Tata Power, and Vikram Solar. Compare N-Type TOPCon and Bifacial module specs with AG POWER.",
   },
@@ -52,7 +52,7 @@ export const PAGE_META_DEFAULTS: Record<string, PageMetaDefault> = {
   work: {
     title: "Solar Project Portfolio | AG POWER Rooftop Installations",
     description:
-      "Explore verified residential, commercial, and housing society solar installations executed across India with high-efficiency Tier-1 solar modules.",
+      "Explore verified residential, commercial, and housing society solar installations executed across India with high-efficiency solar modules.",
   },
   blog: {
     title: "Solar Insights Blog | Rooftop Guides & Subsidy Updates",
@@ -82,7 +82,7 @@ export const PAGE_META_DEFAULTS: Record<string, PageMetaDefault> = {
   faq: {
     title: "Solar FAQs | AG POWER Subsidies, Net Metering & ROI",
     description:
-      "Find clear answers to questions on PM Surya Ghar subsidies, net metering, Tier-1 solar panel technology, and 25-year rooftop savings with AG POWER.",
+      "Find clear answers to questions on PM Surya Ghar subsidies, net metering, solar panel technology, and 25-year rooftop savings with AG POWER.",
   },
 }
 

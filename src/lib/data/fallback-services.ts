@@ -13,12 +13,12 @@ export const FALLBACK_SERVICES: Record<string, Service> = {
     title: "Residential Rooftop Solar Installation",
     shortLabel: "Residential Solar",
     description: "Turnkey rooftop solar solutions for independent homes, villas, and kothis. Slash electricity bills by up to 90% with PM Surya Ghar central subsidies.",
-    intro: "Transform your home rooftop into an independent clean energy generator. With customized system capacities from 1 kW to 10 kW, Tier-1 Mono PERC & TOPCon modules, and direct central government subsidies up to ₹78,000, AG POWER makes solar adoption seamless.",
+    intro: "Transform your home rooftop into an independent clean energy generator. With customized system capacities from 1 kW to 10 kW, high-efficiency Mono PERC & TOPCon modules, and direct central government subsidies up to ₹78,000, AG POWER makes solar adoption seamless.",
     image: "/og/services/residential-solar.jpg",
     heroImage: "/images/services/residential-solar.webp",
     points: [
       "1 kW to 10 kW custom system capacities engineered for your roof",
-      "Tier-1 Mono PERC and N-Type TOPCon panels with 25-30 year linear warranty",
+      "High-efficiency Mono PERC and N-Type TOPCon panels with 25-30 year linear warranty",
       "PM Surya Ghar Muft Bijli Yojana subsidy processing up to ₹78,000",
       "Non-penetrating, wind-rated mounting structures protecting roof waterproofing",
       "DISCOM net-metering synchronization and turnkey paperwork execution",
@@ -360,7 +360,7 @@ export const FALLBACK_SERVICES: Record<string, Service> = {
       "Strict safety guardrails, Zod schema validation & prompt grounding",
     ],
     outcomes: [
-      "Automate 70%+ of tier-1 customer inquiries without human intervention",
+      "Automate 70%+ of routine customer inquiries without human intervention",
       "Instantaneous, hyper-personalized customer recommendations",
       "Reliable autonomous execution backed by deterministic code guardrails",
     ],

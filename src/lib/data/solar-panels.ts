@@ -1,6 +1,6 @@
 /**
  * @file solar-panels.ts
- * @description Data model and verified Tier-1 solar panel specifications catalogue.
+ * @description Data model and verified solar panel specifications catalogue.
  * Strictly informational and discovery — non-ecommerce.
  */
 
@@ -179,7 +179,7 @@ export const SOLAR_PANELS_DATA: SolarPanel[] = [
   {
     id: "architectural-all-black-450w",
     slug: "architectural-all-black-450w",
-    brand: "RenewSys / Tier-1",
+    brand: "RenewSys",
     modelName: "Architectural Ultra All-Black Series",
     wattage: 450,
     wattageDisplay: "440W - 460W",

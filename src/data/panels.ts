@@ -295,7 +295,7 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     bestFor: {
       title: "Standard Residential Homes, Villas & Housing Societies",
-      description: "Recommended for residential and institutional rooftops requiring Tier-1 quality, DCR compliance for subsidies, and proven reliability.",
+      description: "Recommended for residential and institutional rooftops requiring high efficiency, DCR compliance for subsidies, and proven reliability.",
       useCases: [
         "Independent 1kW to 10kW residential rooftop systems",
         "Housing society common-meter power plants",
@@ -314,7 +314,7 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
         {
           step: 2,
           title: "Turnkey Installation",
-          desc: "Adani Tier-1 modules mounted using certified RCC mounting structures and inverter setup.",
+          desc: "Adani high-efficiency modules mounted using certified RCC mounting structures and inverter setup.",
         },
         {
           step: 3,

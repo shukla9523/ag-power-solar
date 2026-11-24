@@ -54,7 +54,7 @@ export const HOMEPAGE_FOOTER_FAQS: FAQItem[] = [
     id: "home-4",
     question: "What warranties and guarantees come with an AG POWER solar system?",
     answer:
-      "All our Tier-1 solar panels carry a 10 to 12-year product manufacturing warranty and a 25 to 30-year linear power generation warranty. Grid-tie inverters carry 5 to 10-year warranties. In addition, AG POWER provides a 5-year comprehensive workmanship guarantee.",
+      "All our solar panels carry a 10 to 12-year product manufacturing warranty and a 25 to 30-year linear power generation warranty. Grid-tie inverters carry 5 to 10-year warranties. In addition, AG POWER provides a 5-year comprehensive workmanship guarantee.",
     category: "Solar Panels",
   },
 ]
@@ -249,7 +249,7 @@ export const ALL_FAQ_CATEGORIES: FAQCategory[] = [
       {
         id: "maint-3",
         question: "What happens if a solar inverter or panel develops a defect?",
-        answer: "AG POWER assists with immediate on-site diagnostics and handles direct warranty replacement with the Tier-1 manufacturer without hassle to the customer.",
+        answer: "AG POWER assists with immediate on-site diagnostics and handles direct warranty replacement with the equipment manufacturer without hassle to the customer.",
         category: "Maintenance",
       },
     ],

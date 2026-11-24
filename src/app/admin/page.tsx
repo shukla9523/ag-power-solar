@@ -276,7 +276,7 @@ export default function AdminDashboard() {
         <StatTile
           label="Solar Products"
           value={content?.products}
-          hint={`${content?.productsDrafts ?? 0} drafts · Tier-1 panels`}
+          hint={`${content?.productsDrafts ?? 0} drafts · Solar panels`}
           href={prefixPath("/admin/products")}
           tone="amber"
           loading={loading}

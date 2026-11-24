@@ -23,7 +23,7 @@ const defaultFaqs = [
   },
   {
     q: "What is the warranty and expected lifespan of AG POWER solar systems?",
-    a: "Our Tier-1 solar panels carry a 10 to 12-year product manufacturing warranty and a 25 to 30-year linear power generation warranty. Grid-tie inverters typically carry 5 to 10-year warranties with extended options.",
+    a: "Our solar panels carry a 10 to 12-year product manufacturing warranty and a 25 to 30-year linear power generation warranty. Grid-tie inverters typically carry 5 to 10-year warranties with extended options.",
   },
   {
     q: "What maintenance is required for a rooftop solar system?",

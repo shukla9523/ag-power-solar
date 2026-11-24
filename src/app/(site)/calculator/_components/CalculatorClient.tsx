@@ -372,7 +372,7 @@ export default function CalculatorClient({ initialCat, initialBill }: Props) {
                   <span className="font-manrope text-[18px] font-bold text-white">kW System</span>
                 </div>
                 <p className="mt-1 text-[11px] text-slate-300">
-                  Approx. {result.approxPanelsCount} Tier-1 Panels ({result.assumptions.panelWattage}W each)
+                  Approx. {result.approxPanelsCount} High-Efficiency Panels ({result.assumptions.panelWattage}W each)
                 </p>
                 <p className="text-[11px] text-slate-300">
                   Roof area required: ~{result.rooftopAreaRequiredSqFt} sq.ft

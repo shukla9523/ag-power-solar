@@ -611,7 +611,7 @@ export default function CatalogueClient({ initialPanels }: Props) {
               </h2>
             </div>
             <p className="mt-1 text-[13px] text-charcoal-muted">
-              Comparing technical specifications of {comparedPanels.length} Tier-1 solar modules.
+              Comparing technical specifications of {comparedPanels.length} solar modules.
             </p>
 
             <div className="mt-6 overflow-x-auto">

@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { SunMedium, ArrowRight, ShieldCheck, Award, CheckCircle2, Star } from "lucide-react"
+import { SunMedium, ArrowRight, ShieldCheck, Award, CheckCircle2 } from "lucide-react"
 
 export default function Hero() {
   return (
@@ -77,10 +77,10 @@ export default function Hero() {
 
               {/* Supporting Copy: Dark green-grey on mobile (text-subtext-dark) */}
               <p className="mt-2 sm:mt-3 max-w-[480px] lg:max-w-[440px] font-inter text-[15px] sm:text-[15.5px] lg:text-[16.5px] leading-[1.5] text-subtext-dark md:text-slate-700 font-medium">
-                Guaranteed savings. Tier-1 solar modules. End-to-end MNRE subsidy care.
+                Guaranteed savings. Premium solar modules. End-to-end MNRE subsidy care.
               </p>
 
-              {/* ── Mobile Dedicated Photo Area: Height 195px, Top-Center alignment, Single 4.9 Rating Pill ── */}
+              {/* ── Mobile Dedicated Photo Area: Height 195px, Top-Center alignment ── */}
               <div className="lg:hidden relative w-full h-[195px] rounded-[16px] overflow-hidden border border-card-border shadow-xs my-3 bg-slate-50">
                 <Image
                   src="/images/hero-solar-engineer-mobile-v3.webp"
@@ -91,12 +91,6 @@ export default function Hero() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-[top_center]"
                 />
-
-                {/* Rating pill bottom-right: white bg, yellow star, dark green text */}
-                <div className="absolute bottom-2.5 right-2.5 inline-flex items-center gap-1 rounded-lg bg-white px-2.5 py-1 text-[12px] font-extrabold text-green-dark shadow-sm border border-card-border">
-                  <Star className="h-3.5 w-3.5 fill-sun-yellow text-sun-yellow flex-shrink-0" />
-                  <span>4.9 Rating</span>
-                </div>
               </div>
 
               {/* ── 3. CHIPS: 3 Equal Columns on Mobile Grid (bg-green-light, border-chip-border, text-green-dark, text-green-main icon) ── */}
@@ -148,23 +142,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Small White Floating Card Near Engineer with Yellow Star and '4.9 Rating' */}
-          <div className="hidden lg:flex lg:col-span-4 flex-col justify-end items-end h-full pb-10 pr-6">
-            <div
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.95)",
-                backdropFilter: "blur(8px)",
-                WebkitBackdropFilter: "blur(8px)",
-                borderRadius: "14px",
-              }}
-              className="inline-flex items-center gap-2 px-3.5 py-2 border border-slate-100 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-transform duration-300 hover:scale-105"
-            >
-              <Star className="h-4 w-4 text-amber-400 fill-amber-400 flex-shrink-0" />
-              <span className="font-manrope text-[14px] font-extrabold text-slate-900 whitespace-nowrap">
-                4.9 Rating
-              </span>
-            </div>
-          </div>
+          {/* Right Column spacer on desktop */}
+          <div className="hidden lg:flex lg:col-span-4 h-full pointer-events-none" />
 
         </div>
       </div>

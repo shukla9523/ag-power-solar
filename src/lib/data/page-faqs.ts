@@ -33,7 +33,7 @@ export const PAGE_FAQS_MAP: Record<string, PageFAQ[]> = {
     },
     {
       question: "What warranties and guarantees come with an AG POWER solar system?",
-      answer: "We only install Tier-1 modules backed by a 10 to 12-year product manufacturing warranty and a 25 to 30-year linear performance warranty. Inverters carry 5 to 10-year manufacturer guarantees. Furthermore, AG POWER provides an initial 5-year comprehensive workmanship warranty covering installation structural integrity, cabling, and site maintenance."
+      answer: "We only install certified, high-efficiency modules backed by a 10 to 12-year product manufacturing warranty and a 25 to 30-year linear performance warranty. Inverters carry 5 to 10-year manufacturer guarantees. Furthermore, AG POWER provides an initial 5-year comprehensive workmanship warranty covering installation structural integrity, cabling, and site maintenance."
     },
     {
       question: "How long does it take to install a rooftop solar system?",
@@ -67,7 +67,7 @@ export const PAGE_FAQS_MAP: Record<string, PageFAQ[]> = {
     },
     {
       question: "What sets AG POWER apart from local solar contractors?",
-      answer: "Unlike unorganized local contractors, AG POWER delivers an institutional end-to-end engineering EPC experience. We provide customized 3D shadow analysis, certified structural rooftop load validation, complete liaison for state DISCOM net-metering approvals, transparent Tier-1 hardware specifications, and proactive annual maintenance contracts with cloud-based IoT generation tracking systems."
+      answer: "Unlike unorganized local contractors, AG POWER delivers an institutional end-to-end engineering EPC experience. We provide customized 3D shadow analysis, certified structural rooftop load validation, complete liaison for state DISCOM net-metering approvals, transparent engineering hardware specifications, and proactive annual maintenance contracts with cloud-based IoT generation tracking systems."
     },
     {
       question: "Does AG POWER manufacture its own solar panels?",

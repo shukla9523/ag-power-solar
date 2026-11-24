@@ -95,7 +95,7 @@ export default function AboutClient({ children }: Props) {
                 02
               </div>
               <h3 className="mt-5 font-manrope text-[19px] font-bold text-forest">
-                Tier-1 Components Only
+                High-Efficiency Components Only
               </h3>
               <p className="mt-2 text-[14px] leading-relaxed text-charcoal/80">
                 We only deploy ALMM-listed, DCR-compliant Mono PERC and TOPCon panels from verified manufacturers with guaranteed 25-30 year linear warranties.
@@ -131,7 +131,7 @@ export default function AboutClient({ children }: Props) {
             </div>
             <div>
               <p className="font-manrope text-[36px] font-black text-gold sm:text-[44px]">100%</p>
-              <p className="text-[13px] text-sage">Tier-1 Hardware</p>
+              <p className="text-[13px] text-sage">DCR Compliant</p>
             </div>
             <div>
               <p className="font-manrope text-[36px] font-black text-white sm:text-[44px]">₹78K</p>

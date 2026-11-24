@@ -27,7 +27,7 @@ export default async function AboutPage() {
           <PageFaqSection
             faqs={faqs}
             title="About AG POWER FAQs"
-            subtitle="Verified answers about our solar EPC engineering, Tier-1 standards, and Electro Global leadership."
+            subtitle="Verified answers about our solar EPC engineering, quality standards, and Electro Global leadership."
           />
         )}
       </AboutClient>

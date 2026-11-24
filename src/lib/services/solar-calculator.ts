@@ -39,7 +39,7 @@ export interface CalculatorResult {
   treesEquivalentAnnual: number
   assumptions: {
     generationPerKwDaily: number // ~4.16 kWh/day/kW -> ~125 kWh/month
-    panelWattage: number // 550W Tier-1
+    panelWattage: number // 550W High-Efficiency
     costPerKw: number
     tariffAssumption: number
   }
@@ -77,7 +77,7 @@ export function calculateSolarSavings(input: CalculatorInput): CalculatorResult 
     recommendedKw = 100
   }
 
-  // 550W Tier-1 modules
+  // 550W high-efficiency modules
   const panelWattage = 550
   const approxPanelsCount = Math.ceil((recommendedKw * 1000) / panelWattage)
 

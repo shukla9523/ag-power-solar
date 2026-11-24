@@ -2,7 +2,7 @@
 
 /**
  * Section 5: Why AG POWER?
- * Clear, verifiable company differentiators and engineering standards.
+ * Clear, verifiable company differentiators and installation quality.
  */
 import { useEffect, useState, useRef } from "react"
 import { Compass, Cpu, Wrench, FileCheck2, HeadphonesIcon, ShieldCheck, Award } from "lucide-react"
@@ -64,7 +64,7 @@ const differentiators = [
   },
   {
     icon: Cpu,
-    title: "Tier-1 Tested Modules",
+    title: "Tested & Certified Modules",
     description: "High-efficiency Mono PERC & TOPCon panels engineered for harsh Indian weather.",
   },
   {
@@ -155,7 +155,7 @@ export default function WhyAgPower() {
             <p className="font-manrope text-[28px] sm:text-[38px] lg:text-[44px] font-black text-amber-400 tracking-tight">
               <StatCounter target={100} suffix="%" />
             </p>
-            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-100">Tier-1 Hardware</p>
+            <p className="mt-0.5 sm:mt-1 text-[12px] sm:text-[13px] font-medium text-emerald-100">DCR Compliant</p>
           </div>
           <div className="relative z-10 text-center">
             <p className="font-manrope text-[28px] sm:text-[38px] lg:text-[44px] font-black text-white tracking-tight">

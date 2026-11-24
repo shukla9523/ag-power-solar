@@ -57,7 +57,7 @@ export const FALLBACK_BLOG_POSTS: BlogPost[] = [
       <h2>Mandatory Eligibility Requirements</h2>
       <p>To successfully claim the central subsidy without administrative rejection, your rooftop installation must meet three strict technical criteria:</p>
       <ol>
-        <li><strong>Domestic Content Requirement (DCR) Modules:</strong> The solar panels installed must be manufactured in India using domestically fabricated solar cells and modules, listed under the Ministry of New and Renewable Energy (MNRE) ALMM register. Explore verified <a href="/solar-panels">Tier-1 DCR Solar Panels</a>.</li>
+        <li><strong>Domestic Content Requirement (DCR) Modules:</strong> The solar panels installed must be manufactured in India using domestically fabricated solar cells and modules, listed under the Ministry of New and Renewable Energy (MNRE) ALMM register. Explore verified <a href="/solar-panels">DCR Solar Panels</a>.</li>
         <li><strong>Registered Solar EPC Partner:</strong> The installation must be executed by an empaneled, certified EPC provider such as AG POWER. Self-installations or unauthorized non-empaneled local contractors do not qualify.</li>
         <li><strong>Bi-directional Net Metering:</strong> Your state electricity distribution company (DISCOM) must approve and synchronize a certified bi-directional net meter.</li>
       </ol>
@@ -97,7 +97,7 @@ export const FALLBACK_BLOG_POSTS: BlogPost[] = [
     meta_description: "Detailed technical comparison between TOPCon and Mono PERC solar panels. Learn why N-Type TOPCon delivers up to 5% more annual yield in hot climates.",
     content: `
       <h2>The Shift to N-Type TOPCon Photovoltaic Cells</h2>
-      <p>For nearly a decade, P-Type Mono PERC (Passivated Emitter and Rear Cell) panels dominated the global solar market. However, in 2024–2026, the solar industry underwent a decisive generational transition to <strong>N-Type TOPCon (Tunnel Oxide Passivated Contact)</strong> technology. Today, all Tier-1 manufacturers—including Waaree, Adani, Vikram Solar, and Tata Power—have converted their prime production lines to TOPCon.</p>
+      <p>For nearly a decade, P-Type Mono PERC (Passivated Emitter and Rear Cell) panels dominated the global solar market. However, in 2024–2026, the solar industry underwent a decisive generational transition to <strong>N-Type TOPCon (Tunnel Oxide Passivated Contact)</strong> technology. Today, all leading manufacturers—including Waaree, Adani, Vikram Solar, and Tata Power—have converted their prime production lines to TOPCon.</p>
 
       <h2>Key Technical Differences: TOPCon vs Mono PERC</h2>
       <p>Here is how the two technologies compare on the metrics that determine your 25-year return on investment:</p>
@@ -111,7 +111,7 @@ export const FALLBACK_BLOG_POSTS: BlogPost[] = [
       <p>Browse detailed datasheets in our <a href="/solar-panels">Solar Panel Discovery Catalogue</a>.</p>
 
       <h2>Why AG POWER Standardizes on N-Type TOPCon</h2>
-      <p>At AG POWER, we prioritize long-term system yield over marginal upfront equipment cost savings. By deploying Tier-1 550W+ TOPCon modules, our clients benefit from:</p>
+      <p>At AG POWER, we prioritize long-term system yield over marginal upfront equipment cost savings. By deploying high-efficiency 550W+ TOPCon modules, our clients benefit from:</p>
       <ol>
         <li>Fewer panels required to achieve the target kilowatt capacity, preserving precious rooftop recreational space.</li>
         <li>Up to 4%–6% higher cumulative kilowatt-hour generation annually, particularly during peak summer cooling months.</li>
@@ -148,7 +148,7 @@ export const FALLBACK_BLOG_POSTS: BlogPost[] = [
       <ul>
         <li><strong>System Capacity:</strong> 3.0 kW on-grid solar plant.</li>
         <li><strong>Rooftop Space Required:</strong> Approx. 250 to 280 sq.ft of shadow-free area.</li>
-        <li><strong>Gross Project Cost:</strong> ₹1,85,000 (all inclusive: Tier-1 TOPCon panels, grid-tie inverter, elevated mounting structure, cabling, surge protection, DISCOM net-meter liaison).</li>
+        <li><strong>Gross Project Cost:</strong> ₹1,85,000 (all inclusive: high-efficiency TOPCon panels, grid-tie inverter, elevated mounting structure, cabling, surge protection, DISCOM net-meter liaison).</li>
         <li><strong>PM Surya Ghar Subsidy:</strong> -₹78,000 (credited to homeowner's bank account).</li>
         <li><strong>Net Capital Investment:</strong> ₹1,07,000.</li>
       </ul>
@@ -248,7 +248,7 @@ export const FALLBACK_BLOG_POSTS: BlogPost[] = [
       <h2>The Core Components of an On-Grid Solar System</h2>
       <p>An on-grid (or grid-tied) rooftop solar plant consists of four primary engineering components working in seamless synchronization:</p>
       <ol>
-        <li><strong>Photovoltaic Solar Modules:</strong> Tier-1 silicon solar cells convert photons from solar irradiance into Direct Current (DC) electricity via the photovoltaic effect.</li>
+        <li><strong>Photovoltaic Solar Modules:</strong> High-efficiency silicon solar cells convert photons from solar irradiance into Direct Current (DC) electricity via the photovoltaic effect.</li>
         <li><strong>Grid-Tied String Inverter:</strong> The inverter converts variable DC power into stable, 230V single-phase or 415V three-phase Alternating Current (AC) matched perfectly to your utility grid frequency (50 Hz).</li>
         <li><strong>Bi-Directional Net-Meter:</strong> An official meter provided by your DISCOM that records both the electricity you import from the grid and the excess solar electricity you export to the grid.</li>
         <li><strong>BOS (Balance of System):</strong> Hot-dip galvanized mounting structures, UV-protected DC solar cables, dual safety earthing pits, and AC/DC Surge Protection Devices (SPDs).</li>
@@ -288,7 +288,7 @@ export const FALLBACK_BLOG_POSTS: BlogPost[] = [
       <p>Depending on whether your roof is RCC concrete flat slab, pre-engineered metal shed, or inclined tiles, our technicians anchor hot-dip galvanized mounting structures with a minimum coating of 80 microns. Anchor bolts are sealed with weatherproof waterproofing compound to ensure zero roof seepage.</p>
 
       <h2>Stage 2: Module Placement & Dual Clamping</h2>
-      <p>Tier-1 dual-glass modules are affixed using heavy-duty anodized aluminum mid-clamps and end-clamps torqued to manufacturer specifications. Tilt angles are calibrated between 12° and 26° south-facing to maximize annual solar irradiance.</p>
+      <p>Dual-glass modules are affixed using heavy-duty anodized aluminum mid-clamps and end-clamps torqued to manufacturer specifications. Tilt angles are calibrated between 12° and 26° south-facing to maximize annual solar irradiance.</p>
 
       <h2>Stage 3: Electrical Cabling & Chemical Earthing</h2>
       <p>UV-stabilized 4 sq.mm / 6 sq.mm multi-strand copper solar cables are routed through weatherproof conduit pipes. Dedicated chemical earthing pits are installed: one for the solar structure, one for the inverter AC/DC ground, and one for the lightning arrestor (LA), guaranteeing resistance under 2 Ohms.</p>
