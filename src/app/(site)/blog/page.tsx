@@ -83,7 +83,7 @@ export default async function BlogPage() {
               <article className="group">
                 <LocalizedClientLink href={`/blog/${featured.slug}`} className="block">
                   <div className="overflow-hidden rounded-[16px] bg-white shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-md lg:rounded-[18px]">
-                    <div className="relative aspect-[16/9] w-full">
+                    <div className="relative h-[220px] sm:h-[300px] lg:h-[340px] max-h-[360px] w-full overflow-hidden rounded-[16px] lg:rounded-[18px]">
                       {featured.featured_image ? (
                         <Image
                           src={featured.featured_image}
@@ -111,7 +111,7 @@ export default async function BlogPage() {
                   <p className="text-[12px] font-semibold uppercase tracking-[0.04em] text-charcoal/60 sm:text-[13px]">
                     {formatDate(featured.published_at)}
                   </p>
-                  <h2 className={`${manrope.className} mt-2 text-[22px] font-extrabold leading-[1.15] tracking-[-0.02em] text-forest transition-colors hover:text-gold sm:text-[26px] lg:text-[30px]`}>
+                  <h2 className={`${manrope.className} mt-2 text-xl sm:text-2xl lg:text-[26px] font-bold leading-snug tracking-tight text-forest transition-colors hover:text-gold`}>
                     <LocalizedClientLink
                       href={`/blog/${featured.slug}`}
                     >

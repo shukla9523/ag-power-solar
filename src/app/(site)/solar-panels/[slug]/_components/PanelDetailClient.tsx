@@ -148,11 +148,11 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
         <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             
-            {/* LEFT: Image Gallery (~55% width on desktop, 4:3 aspect ratio, object-contain) */}
+            {/* LEFT: Image Gallery (~55% width on desktop, 4:3 aspect ratio, capped at 440px height) */}
             <div className="lg:col-span-7 flex flex-col gap-3">
               <div
                 onClick={() => openLightbox(activeImageIndex)}
-                className="group relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-slate-50 border border-slate-200 cursor-zoom-in shadow-xs flex items-center justify-center"
+                className="group relative w-full aspect-[4/3] max-h-[440px] overflow-hidden rounded-2xl bg-slate-50 border border-slate-200 cursor-zoom-in shadow-xs flex items-center justify-center"
               >
                 <Image
                   src={currentImage.src}
@@ -160,7 +160,7 @@ export default function PanelDetailClient({ panel, relatedPanels }: PanelDetailC
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 55vw"
-                  className="object-contain p-6 transition-transform duration-300 group-hover:scale-105"
+                  className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                 />
 
                 {/* Top-Right Zoom Button */}

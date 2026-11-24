@@ -265,18 +265,18 @@ function CatalogueClientContent({ initialPanels }: Props) {
           </div>
         </div>
 
-        {/* Panels Grid: Equal-Height Cards (flex-col, pinned buttons) */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+        {/* Panels Grid: Equal-Height Cards (3 per row desktop, 2 tablet, 1 mobile) */}
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch w-full overflow-hidden">
           {filteredPanels.map((panel, idx) => {
             const cleanBrand = panel.brand.replace(" / Tier-1", "").trim()
             return (
               <div
                 key={panel.id}
-                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-xs hover:border-forest/40 hover:shadow-md transition-all h-full"
+                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-xs hover:border-forest/40 hover:shadow-md transition-all h-full w-full"
               >
                 <div>
-                  {/* Card Image: Clean photo ONLY, NO burned-on text overlay */}
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-4">
+                  {/* Card Image: Clamped to 210-230px height, clean photo ONLY */}
+                  <div className="relative h-[210px] sm:h-[225px] w-full overflow-hidden rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-3">
                     <Image
                       src={getPanelImage(panel.slug)}
                       alt={`${cleanBrand} ${panel.modelName}`}
@@ -304,30 +304,30 @@ function CatalogueClientContent({ initialPanels }: Props) {
                     </div>
                   </div>
 
-                  {/* Brand & Model Title */}
-                  <div className="mt-4">
-                    <span className="text-xs font-bold uppercase tracking-wider text-forest">
+                  {/* Brand & Model Title (12px brand, 18-19px title) */}
+                  <div className="mt-3.5">
+                    <span className="text-[12px] font-bold uppercase tracking-wider text-forest">
                       {cleanBrand}
                     </span>
-                    <h2 className="mt-1 font-manrope text-lg sm:text-[19px] font-bold text-slate-900 leading-snug line-clamp-2">
+                    <h2 className="mt-1 font-manrope text-[18px] sm:text-[19px] font-bold text-slate-900 leading-snug line-clamp-2">
                       {panel.modelName}
                     </h2>
                   </div>
 
                   {/* Wattage Range & Efficiency (Normal text below image) */}
-                  <div className="mt-2.5 flex items-center flex-wrap gap-2 text-[12.5px] font-medium text-slate-600">
+                  <div className="mt-2 flex items-center flex-wrap gap-2 text-[12.5px] font-medium text-slate-600">
                     <span className="font-bold text-slate-900">{panel.wattageDisplay}</span>
                     <span className="text-slate-300">•</span>
                     <span className="font-semibold text-forest">{panel.efficiency}% Efficiency</span>
                     <span className="text-slate-300">•</span>
-                    <span className="text-slate-500 truncate max-w-[150px]">{panel.cellTechnology}</span>
+                    <span className="text-slate-500 truncate max-w-[140px]">{panel.cellTechnology}</span>
                   </div>
 
-                  {/* Specs Table */}
-                  <div className="mt-4 space-y-1.5 border-t border-slate-100 pt-3 text-[12.5px]">
+                  {/* Specs Table (14px font, compact) */}
+                  <div className="mt-3.5 space-y-1 border-t border-slate-100 pt-2.5 text-[13.5px] sm:text-[14px]">
                     <div className="flex items-center justify-between py-1">
                       <span className="text-slate-500 font-medium">Dimensions:</span>
-                      <span className="font-semibold text-slate-800">{panel.dimensions}</span>
+                      <span className="font-semibold text-slate-800 text-[13px] sm:text-[13.5px]">{panel.dimensions}</span>
                     </div>
                     <div className="flex items-center justify-between py-1">
                       <span className="text-slate-500 font-medium">Weight:</span>
@@ -340,11 +340,11 @@ function CatalogueClientContent({ initialPanels }: Props) {
                   </div>
 
                   {/* Key Advantages */}
-                  <div className="mt-4 border-t border-slate-100 pt-3">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2">
+                  <div className="mt-3 border-t border-slate-100 pt-2.5">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
                       Key Technical Advantages:
                     </p>
-                    <ul className="space-y-1.5 text-[12.5px] text-slate-600">
+                    <ul className="space-y-1 text-[12.5px] sm:text-[13px] text-slate-600">
                       {panel.keyBenefits.slice(0, 2).map((benefit, i) => (
                         <li key={i} className="flex items-start gap-2">
                           <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
@@ -355,18 +355,18 @@ function CatalogueClientContent({ initialPanels }: Props) {
                   </div>
                 </div>
 
-                {/* Bottom-Pinned Action Buttons (Compare checkbox removed) */}
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2.5">
+                {/* Bottom-Pinned Action Buttons */}
+                <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center gap-2.5">
                   <LocalizedClientLink
                     href={`/solar-panels/${panel.slug}`}
-                    className="flex-1 inline-flex min-h-[42px] items-center justify-center rounded-xl border border-slate-300 bg-white hover:bg-slate-50 py-2 px-3 text-xs sm:text-[13px] font-bold text-slate-800 transition-colors shadow-2xs text-center"
+                    className="flex-1 inline-flex min-h-[40px] items-center justify-center rounded-xl border border-slate-300 bg-white hover:bg-slate-50 py-2 px-3 text-xs sm:text-[13px] font-bold text-slate-800 transition-colors shadow-2xs text-center"
                   >
                     <span>Full Specs</span>
                   </LocalizedClientLink>
 
                   <LocalizedClientLink
                     href={`/contact?panel=${panel.slug}`}
-                    className="flex-1 inline-flex min-h-[42px] items-center justify-center gap-1 rounded-xl bg-forest hover:bg-forest-deep py-2 px-3 text-xs sm:text-[13px] font-bold text-white transition-all shadow-xs text-center"
+                    className="flex-1 inline-flex min-h-[40px] items-center justify-center gap-1 rounded-xl bg-forest hover:bg-forest-deep py-2 px-3 text-xs sm:text-[13px] font-bold text-white transition-all shadow-xs text-center"
                   >
                     <span>Enquire Now</span>
                     <ArrowRight className="h-3.5 w-3.5" />

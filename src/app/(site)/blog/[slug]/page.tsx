@@ -145,11 +145,11 @@ export default async function BlogPostDetailPage({
               {cleanCategoryName(post.category_id, "Solar Insights")}
             </span>
 
-            <h1 className={`${manrope.className} mt-4 text-3xl font-extrabold tracking-[-0.03em] text-forest sm:text-4xl lg:text-5xl lg:leading-[1.15]`}>
+            <h1 className={`${manrope.className} mt-3 text-2xl sm:text-3xl lg:text-[34px] font-bold tracking-tight text-forest leading-snug`}>
               {post.title}
             </h1>
 
-            <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-charcoal/70">
+            <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-charcoal/70">
               <span className="font-medium text-forest">By {post.author_name || "AG POWER Solar Engineering Team"}</span>
               {formattedDate && (
                 <>
@@ -160,15 +160,15 @@ export default async function BlogPostDetailPage({
             </div>
 
             {post.excerpt && (
-              <p className="mt-6 text-lg leading-relaxed text-charcoal/80 border-l-4 border-gold pl-4 italic">
+              <p className="mt-4 text-[15px] sm:text-[16px] leading-relaxed text-charcoal/80 border-l-4 border-gold pl-3.5 italic">
                 {post.excerpt}
               </p>
             )}
           </header>
 
-          {/* ─── FEATURED IMAGE ─── */}
+          {/* ─── FEATURED IMAGE (Max 360px height desktop, rounded corners) ─── */}
           {post.featured_image && (
-            <div className="relative mb-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-sm">
+            <div className="relative mb-8 h-[220px] sm:h-[300px] md:h-[350px] max-h-[360px] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-xs">
               <Image
                 src={post.featured_image}
                 alt={post.title}
