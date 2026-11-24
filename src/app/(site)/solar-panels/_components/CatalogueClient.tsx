@@ -18,7 +18,7 @@ interface Props {
 }
 
 function getPanelImage(slug: string): string {
-  return `/panels/${slug}/main.webp`
+  return `/panels/${slug}/main.webp?v=3`
 }
 
 function CatalogueClientContent({ initialPanels }: Props) {
