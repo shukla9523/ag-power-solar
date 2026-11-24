@@ -32,6 +32,8 @@ module.exports = {
         "pill-yellow": token("pill-yellow"),
         "pill-yellow-border": token("pill-yellow-border"),
         "sun-yellow": token("sun-yellow"),
+        "footer-text": token("footer-text"),
+        "footer-link-hover": token("footer-link-hover"),
         "forest": token("forest"),
         "forest-green": token("forest"),
         "forest-deep": token("forest-deep"),

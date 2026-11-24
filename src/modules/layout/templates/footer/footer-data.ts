@@ -38,4 +38,23 @@ export const editzAiVideo: FooterLink[] = solarGuideLinks
 
 export const popularSearches = `Rooftop Solar Installation · Residential Solar Panels · Commercial Solar Energy India · Housing Society Solar System · PM Surya Ghar Muft Bijli Yojana · Solar Panel Subsidy in India · Solar Calculator · Solar Net Metering · Best Solar Panels India · TOPCon Solar Modules · Mono PERC Bifacial Panels · 3kW Solar System Cost · 5kW Solar System Price · On-Grid Rooftop Solar · Solar Maintenance Services · Industrial Solar Solutions`
 
+export const popularSearchList: FooterLink[] = [
+  { name: "Rooftop Solar Installation", href: "/services/residential-solar" },
+  { name: "Residential Solar Panels", href: "/solar-panels" },
+  { name: "Commercial Solar Energy India", href: "/services/commercial-solar" },
+  { name: "Housing Society Solar System", href: "/services/housing-society-solar" },
+  { name: "PM Surya Ghar Muft Bijli Yojana", href: "/blog" },
+  { name: "Solar Panel Subsidy in India", href: "/blog" },
+  { name: "Solar Calculator", href: "/calculator" },
+  { name: "Solar Net Metering", href: "/blog" },
+  { name: "Best Solar Panels India", href: "/solar-panels" },
+  { name: "TOPCon Solar Modules", href: "/solar-panels/n-type-topcon-bifacial" },
+  { name: "Mono PERC Bifacial Panels", href: "/solar-panels/mono-perc-half-cut-mbb" },
+  { name: "3kW Solar System Cost", href: "/calculator" },
+  { name: "5kW Solar System Price", href: "/calculator" },
+  { name: "On-Grid Rooftop Solar", href: "/services" },
+  { name: "Solar Maintenance Services", href: "/customer-services" },
+  { name: "Industrial Solar Solutions", href: "/services/commercial-solar" },
+]
+
 export const seoContent = `AG POWER (Electro Global) is a premier clean energy solutions provider in India, delivering engineered rooftop solar installations for independent homeowners, commercial enterprises, factories, and housing societies. We provide end-to-end solar services including feasibility assessment, custom design, MNRE subsidy assistance, net-metering approvals, professional installation, and lifelong maintenance. Power your home and business with smarter, cleaner energy and take control of your electricity bills with AG POWER.`

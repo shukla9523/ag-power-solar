@@ -55,13 +55,15 @@ export default function AgPowerLogo({
           <div className="flex items-center">
             <span
               className={`${textSizes[size]} font-black tracking-tight transition-colors duration-200 ${
-                isDark ? "text-white" : "text-slate-900 group-hover:text-forest-deep"
+                isDark ? "text-[var(--footer-text)]" : "text-slate-900 group-hover:text-forest-deep"
               }`}
             >
               AG
             </span>
             <span
-              className={`${textSizes[size]} font-black tracking-tight text-emerald-600 group-hover:text-emerald-500 ml-1.5 transition-colors duration-200`}
+              className={`${textSizes[size]} font-black tracking-tight ${
+                isDark ? "text-[var(--footer-text)]" : "text-emerald-600 group-hover:text-emerald-500"
+              } ml-1.5 transition-colors duration-200`}
             >
               POWER
             </span>
@@ -71,7 +73,7 @@ export default function AgPowerLogo({
 
           <span
             className={`${subSizes[size]} font-bold uppercase mt-1 transition-colors duration-200 ${
-              isDark ? "text-emerald-300" : "text-forest-deep group-hover:text-emerald-700"
+              isDark ? "text-[var(--footer-text)]" : "text-forest-deep group-hover:text-emerald-700"
             }`}
           >
             Solar Solutions

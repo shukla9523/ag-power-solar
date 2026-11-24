@@ -124,6 +124,12 @@
   --yellow: #FACC15;
   --white: #FFFFFF;
 
+  /* ── Footer High-Contrast Tokens ── */
+  --footer-text: #FFFFFF;
+  --footer-link-hover: #FFB020;
+  --color-footer-text: 255 255 255;
+  --color-footer-link-hover: 255 176 32;
+
   --color-green-dark: 11 79 60;
   --color-green-main: 22 163 74;
   --color-green-light: 232 245 238;

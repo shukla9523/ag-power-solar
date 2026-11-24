@@ -55,6 +55,12 @@ export interface PanelFaq {
   answer: string
 }
 
+export interface PanelCustomerBenefit {
+  tag: string
+  highlight: string
+  points: string[]
+}
+
 export interface SolarPanelDetail {
   slug: string
   name: string
@@ -64,6 +70,7 @@ export interface SolarPanelDetail {
   efficiency: string
   tagline: string
   badge: string
+  customerBenefit: PanelCustomerBenefit
   images: PanelImage[]
   benefits: PanelBenefit[]
   specs: PanelSpecs
@@ -89,6 +96,16 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     efficiency: "22.6%",
     tagline: "India's highest yielding dual-glass solar module engineered for up to 25% extra generation from rear reflection.",
     badge: "Highest Efficiency",
+    customerBenefit: {
+      tag: "Up to 90% Bill Savings",
+      highlight: "+25% Extra Generation from Rear Glass",
+      points: [
+        "Cuts monthly electricity bills by up to 90%",
+        "Direct PM Surya Ghar subsidy eligible (up to ₹78,000)",
+        "30-Year linear power warranty guarantees long-term output",
+        "Dual-glass structure survives 150 km/h wind & hailstorms",
+      ],
+    },
     images: [
       {
         src: "/panels/n-type-topcon-bifacial/main.webp",
@@ -235,6 +252,16 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     efficiency: "21.3%",
     tagline: "India's highest selling, most dependable solar panel offering the fastest ROI and lowest capital cost per watt.",
     badge: "Best Value & Fast Payback",
+    customerBenefit: {
+      tag: "3.2-Year Fast ROI",
+      highlight: "Lowest Capital Cost per Watt in India",
+      points: [
+        "Fastest payback period with immediate grid bill savings",
+        "Full DISCOM net-metering & ALMM Tier-1 compliance",
+        "Half-cut multi-busbar cells minimize tree & building shadow loss",
+        "25-Year performance warranty backed by Adani Solar",
+      ],
+    },
     images: [
       {
         src: "/panels/mono-perc-half-cut-mbb/main.webp",
@@ -380,6 +407,16 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     efficiency: "22.1%",
     tagline: "Ultra-luxury full matte-black solar panels engineered to blend invisibly with premium modern villa architecture.",
     badge: "Architectural Choice",
+    customerBenefit: {
+      tag: "Luxury Villa Aesthetics",
+      highlight: "Seamless Full Matte Black Finish",
+      points: [
+        "Blends seamlessly with modern rooftop architecture",
+        "Superior generation even during extreme 45°C+ summer heat",
+        "Backed by 25-Year Tata Power reliability & trust",
+        "Anti-dust hydrophobic coating reduces cleaning effort",
+      ],
+    },
     images: [
       {
         src: "/panels/architectural-all-black-premium/main.webp",

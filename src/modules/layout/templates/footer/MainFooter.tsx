@@ -1,14 +1,16 @@
 /**
  * Purpose: AG POWER main site footer (Deep Forest Green theme).
  */
+import React from "react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import AgPowerLogo from "@modules/common/components/brand/AgPowerLogo"
-import { SunMedium, Phone, Mail, MapPin, ArrowRight, ShieldCheck } from "lucide-react"
+import { SunMedium, Phone, Mail, MapPin, ArrowRight } from "lucide-react"
 import {
   solarSolutionsLinks,
   companyLinks,
   solarGuideLinks,
   popularSearches,
+  popularSearchList,
   seoContent,
 } from "./footer-data"
 import { FacebookIcon, InstagramIcon, LinkedInIcon } from "./FooterIcons"
@@ -31,7 +33,7 @@ export default function MainFooter({
               <h3 className="font-manrope text-[18px] font-bold text-white">
                 Ready to cut your electricity bill by up to 90%?
               </h3>
-              <p className="text-[13px] text-sage">
+              <p className="text-[13px] font-medium text-[var(--footer-text)]/90">
                 Get a customized rooftop assessment & ROI calculation today.
               </p>
             </div>
@@ -63,20 +65,20 @@ export default function MainFooter({
               <AgPowerLogo variant="dark" size="lg" />
             </LocalizedClientLink>
 
-            <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-sage-mist/80">
+            <p className="mt-4 max-w-sm text-[14px] font-medium leading-relaxed text-[var(--footer-text)]">
               AG POWER by Electro Global delivers high-performance rooftop solar solutions for residences, businesses, and housing societies. Engineered for reliability, built for clean energy independence.
             </p>
 
-            <div className="mt-5 flex flex-col gap-2 text-[13px] text-sage-mist/90">
+            <div className="mt-5 flex flex-col gap-2 text-[13px] font-medium text-[var(--footer-text)]">
               <div className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 text-gold" />
-                <a href="tel:+919523467849" className="hover:text-gold transition-colors">
+                <Phone className="h-4 w-4 text-gold flex-shrink-0" />
+                <a href="tel:+919523467849" className="hover:text-[var(--footer-link-hover)] transition-colors">
                   +91 95234 67849
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 text-gold" />
-                <a href="mailto:akashshukla9523@gmail.com" className="hover:text-gold transition-colors">
+                <Mail className="h-4 w-4 text-gold flex-shrink-0" />
+                <a href="mailto:akashshukla9523@gmail.com" className="hover:text-[var(--footer-link-hover)] transition-colors">
                   akashshukla9523@gmail.com
                 </a>
               </div>
@@ -128,7 +130,7 @@ export default function MainFooter({
                 <li key={item.name}>
                   <LocalizedClientLink
                     href={item.href}
-                    className="text-sage-mist/80 transition-colors hover:text-gold"
+                    className="text-[var(--footer-text)] font-medium transition-colors hover:text-[var(--footer-link-hover)]"
                   >
                     {item.name}
                   </LocalizedClientLink>
@@ -147,7 +149,7 @@ export default function MainFooter({
                 <li key={item.name}>
                   <LocalizedClientLink
                     href={item.href}
-                    className="text-sage-mist/80 transition-colors hover:text-gold"
+                    className="text-[var(--footer-text)] font-medium transition-colors hover:text-[var(--footer-link-hover)]"
                   >
                     {item.name}
                   </LocalizedClientLink>
@@ -166,7 +168,7 @@ export default function MainFooter({
                 <li key={item.name}>
                   <LocalizedClientLink
                     href={item.href}
-                    className="text-sage-mist/80 transition-colors hover:text-gold"
+                    className="text-[var(--footer-text)] font-medium transition-colors hover:text-[var(--footer-link-hover)]"
                   >
                     {item.name}
                   </LocalizedClientLink>
@@ -177,26 +179,38 @@ export default function MainFooter({
 
         </div>
 
-        {/* SEO Statement */}
-        <div className="mt-12 border-t border-white/10 pt-8 text-[12px] leading-relaxed text-sage/80">
+        {/* SEO Statement & Popular Searches */}
+        <div className="mt-12 border-t border-white/10 pt-8 text-[14px] leading-relaxed text-[var(--footer-text)] font-medium">
           <p>{seoContent}</p>
-          <div className="mt-3 text-[11px] text-sage/60">
-            <span className="font-semibold text-sage">Popular Searches: </span>
-            {popularSearches}
+          <div className="mt-4 text-[14px] leading-[1.7] text-[var(--footer-text)] font-medium">
+            <span className="font-semibold text-[var(--footer-text)]">Popular Searches: </span>
+            {popularSearchList.map((item, idx) => (
+              <React.Fragment key={item.name}>
+                <LocalizedClientLink
+                  href={item.href}
+                  className="text-[var(--footer-text)] font-medium transition-colors hover:text-[var(--footer-link-hover)]"
+                >
+                  {item.name}
+                </LocalizedClientLink>
+                {idx < popularSearchList.length - 1 && (
+                  <span className="text-[var(--footer-text)] mx-2 select-none">·</span>
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-[13px] text-sage sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-[13px] font-medium text-[var(--footer-text)] sm:flex-row">
           <p>© {new Date().getFullYear()} AG POWER (Electro Global). All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <LocalizedClientLink href="/privacy-policy" className="hover:text-white transition-colors">
+            <LocalizedClientLink href="/privacy-policy" className="text-[var(--footer-text)] font-medium hover:text-[var(--footer-link-hover)] transition-colors">
               Privacy Policy
             </LocalizedClientLink>
-            <LocalizedClientLink href="/terms-and-conditions" className="hover:text-white transition-colors">
+            <LocalizedClientLink href="/terms-and-conditions" className="text-[var(--footer-text)] font-medium hover:text-[var(--footer-link-hover)] transition-colors">
               Terms of Service
             </LocalizedClientLink>
-            <LocalizedClientLink href="/contact" className="hover:text-white transition-colors">
+            <LocalizedClientLink href="/contact" className="text-[var(--footer-text)] font-medium hover:text-[var(--footer-link-hover)] transition-colors">
               Support
             </LocalizedClientLink>
           </div>
