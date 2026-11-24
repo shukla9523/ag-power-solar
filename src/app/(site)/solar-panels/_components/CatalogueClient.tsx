@@ -286,22 +286,14 @@ function CatalogueClientContent({ initialPanels }: Props) {
                       className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
                     />
 
-                    {/* Top Badges (Top Left: Admin Badge, Top Right: DCR Approved) */}
-                    <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between pointer-events-none z-10">
-                      {panel.badge ? (
+                    {/* Top Badges (Top Left: Admin Badge only) */}
+                    {panel.badge && (
+                      <div className="absolute top-2.5 left-2.5 pointer-events-none z-10">
                         <span className="rounded-md bg-forest px-2.5 py-0.5 text-[11px] font-bold text-white shadow-2xs">
                           {panel.badge}
                         </span>
-                      ) : (
-                        <span />
-                      )}
-
-                      {panel.dcrCompliant && (
-                        <span className="rounded-md bg-amber-500 px-2.5 py-0.5 text-[10.5px] font-extrabold text-white shadow-2xs">
-                          DCR Approved
-                        </span>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Brand & Model Title (12px brand, 18-19px title) */}
