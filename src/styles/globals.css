@@ -435,6 +435,13 @@ html body .blog-content :is(div, section)[style*="padding"][style*="border-radiu
   body.menu-open #site-header {
     z-index: 9999 !important;
   }
+  .mobile-menu-container {
+    height: 100vh;
+    height: 100dvh;
+  }
+  .mobile-menu-footer {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 

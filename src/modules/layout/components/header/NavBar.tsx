@@ -217,10 +217,10 @@ export default function NavBar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
             style={{ backgroundColor: "#ffffff" }}
-            className="fixed inset-0 z-[9999] h-[100vh] h-[100dvh] w-full bg-white flex flex-col lg:hidden"
+            className="mobile-menu-container fixed inset-0 z-[9999] h-screen h-[100dvh] w-full bg-white flex flex-col lg:hidden"
           >
-            {/* Top Bar inside Menu Panel: Aligns seamlessly with the header */}
-            <div className="flex items-center justify-between px-3.5 py-3 sm:px-6 sm:py-3.5 border-b border-slate-200 bg-white shrink-0">
+            {/* 1. Header Block: flex-shrink: 0, fixed height, natural flow above links list */}
+            <div className="flex h-[60px] sm:h-[64px] shrink-0 items-center justify-between px-3.5 sm:px-6 border-b border-slate-200 bg-white">
               <LocalizedClientLink
                 href="/"
                 onClick={() => setMenuOpen(false)}
@@ -249,9 +249,9 @@ export default function NavBar() {
               </div>
             </div>
 
-            {/* Scrollable Navigation Body */}
+            {/* 2. Scrollable Links Area: flex: 1, min-height: 0, overflow-y: auto, separate from header & footer */}
             <div
-              className="flex-1 overflow-y-auto overscroll-contain px-5 py-6 flex flex-col justify-between"
+              className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-5 py-4"
               style={{
                 WebkitOverflowScrolling: "touch",
                 overscrollBehavior: "contain",
@@ -344,26 +344,29 @@ export default function NavBar() {
                   Contact & Support
                 </LocalizedClientLink>
               </div>
+            </div>
 
-              {/* Mobile Action CTAs at bottom of screen */}
-              <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col gap-3 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
-                <LocalizedClientLink
-                  href="/contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex min-h-[50px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 text-center font-inter text-[15px] font-extrabold text-white shadow-md active:scale-95 transition-all"
-                >
-                  <span>Get Free Solar Quote</span>
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </LocalizedClientLink>
+            {/* 3. Footer Block: flex-shrink: 0, always visible at bottom with safe-area padding */}
+            <div
+              className="mobile-menu-footer shrink-0 border-t border-slate-200 bg-white px-5 pt-3.5 pb-6 flex flex-col gap-2.5"
+              style={{ paddingBottom: "max(1.5rem, calc(24px + env(safe-area-inset-bottom, 0px)))" }}
+            >
+              <LocalizedClientLink
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                className="flex min-h-[48px] w-full items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 text-center font-inter text-[15px] font-extrabold text-white shadow-md active:scale-95 transition-all"
+              >
+                <span>Get Free Solar Quote</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </LocalizedClientLink>
 
-                <a
-                  href="tel:+919523467849"
-                  className="flex min-h-[46px] w-full items-center justify-center rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-300 text-center font-inter text-[14px] font-bold text-slate-900 shadow-xs active:scale-95 transition-all"
-                >
-                  <Phone className="mr-2 h-4 w-4 text-emerald-700" />
-                  <span>Call Us: +91 95234 67849</span>
-                </a>
-              </div>
+              <a
+                href="tel:+919523467849"
+                className="flex min-h-[46px] w-full items-center justify-center rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-300 text-center font-inter text-[14px] font-bold text-slate-900 shadow-xs active:scale-95 transition-all"
+              >
+                <Phone className="mr-2 h-4 w-4 text-emerald-700" />
+                <span>Call Us: +91 95234 67849</span>
+              </a>
             </div>
           </motion.div>
         )}

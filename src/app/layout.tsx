@@ -9,6 +9,7 @@ import { buildThemeCss } from "@lib/theme/theme-tokens"
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 }
 
 /**
@@ -49,7 +50,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en-IN" className={fontVariables}>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         {themeCss && <style id="theme-tokens" dangerouslySetInnerHTML={{ __html: themeCss }} />}
         {/*
           Google Tag Manager. Loaded only when NEXT_PUBLIC_GTM_ID is explicitly configured.
