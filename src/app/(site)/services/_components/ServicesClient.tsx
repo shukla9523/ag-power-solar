@@ -78,17 +78,17 @@ export default function ServicesClient({ services }: Props) {
               AG POWER delivers high-yield rooftop and ground-mounted solar installations for residences, commercial enterprises, and housing societies across India.
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
               <LocalizedClientLink
                 href="/calculator"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-emerald-500 hover:bg-emerald-400 px-7 font-inter text-[15px] font-extrabold text-slate-950 shadow-md transition-all"
+                className="btn-primary w-full sm:w-auto"
               >
                 <span>Calculate Solar Potential</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </LocalizedClientLink>
               <LocalizedClientLink
                 href="/contact"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 font-inter text-[15px] font-bold text-slate-950 shadow-md transition-all"
+                className="btn-secondary w-full sm:w-auto"
               >
                 Get Free Consultation
               </LocalizedClientLink>
@@ -171,7 +171,9 @@ export default function ServicesClient({ services }: Props) {
                       <div className="mt-5 space-y-3 text-[13px] text-sage-mist">
                         <div className="flex items-center justify-between border-b border-white/10 pb-2">
                           <span className="text-sage">Bill Offset:</span>
-                          <span className="font-bold text-white">Up to 90%</span>
+                          <span className="font-bold text-white">
+                            {cat.slug === "housing-society-solar" ? "Up to 80%" : "Up to 90%"}
+                          </span>
                         </div>
                         <div className="flex items-center justify-between border-b border-white/10 pb-2">
                           <span className="text-sage">Warranty:</span>

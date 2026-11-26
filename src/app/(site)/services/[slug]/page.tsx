@@ -1,5 +1,4 @@
 import { Metadata } from "next"
-import Image from "next/image"
 import { notFound, permanentRedirect } from "next/navigation"
 import { findRedirect } from "@lib/seo/redirects"
 import { getService, getServices } from "@lib/data/services"
@@ -8,7 +7,15 @@ import { resolveServiceData, buildMetadataFromResolved } from "@lib/schema/resol
 import JsonLd from "@modules/common/components/json-ld"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import PageFaqSection from "@modules/common/components/page-faq-section"
-import { SunMedium, ArrowRight, CheckCircle2, ShieldCheck, Zap, Calculator, Sparkles, Building2, Home, Users } from "lucide-react"
+import { CheckCircle2 } from "lucide-react"
+
+// Reusable Service Page Components conforming to AG POWER Design Tokens
+import ServiceHero from "../_components/ServiceHero"
+import ServiceTrustStrip from "../_components/ServiceTrustStrip"
+import ServiceRwaWorkflow from "../_components/ServiceRwaWorkflow"
+import ServiceCaseStudies from "../_components/ServiceCaseStudies"
+import ServiceCtaSection from "../_components/ServiceCtaSection"
+import ServiceMobileWhatsApp from "../_components/ServiceMobileWhatsApp"
 
 export const revalidate = 60
 
@@ -62,22 +69,9 @@ export default async function ServiceDetailPage({
     notFound()
   }
 
-  // Primary & Secondary CTAs tailored to service type
   const isResidential = slug.includes("residential")
   const isCommercial = slug.includes("commercial")
   const isSociety = slug.includes("society")
-
-  const primaryCta = isResidential
-    ? { text: "Calculate My Home Solar Savings", href: "/calculator?cat=residential" }
-    : isCommercial
-    ? { text: "Get a Commercial Solar Proposal", href: "/contact?cat=commercial" }
-    : { text: "Get a Society Solar Consultation", href: "/contact?cat=society" }
-
-  const secondaryCta = isResidential
-    ? { text: "Get Free Consultation", href: "/contact?service=residential-solar" }
-    : isCommercial
-    ? { text: "Calculate Commercial ROI", href: "/calculator?cat=commercial" }
-    : { text: "Calculate Society Savings", href: "/calculator?cat=society" }
 
   // System Capacities Table Data
   const capacities = isResidential
@@ -132,100 +126,21 @@ export default async function ServiceDetailPage({
           </div>
         </div>
 
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-forest py-16 text-white sm:py-20 lg:py-24">
-          <div className="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-gold/15 blur-3xl" />
-          
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-              
-              <div className="lg:col-span-7">
-                <h1 className="font-manrope text-[38px] font-extrabold leading-[1.15] tracking-tight text-white sm:text-[48px] lg:text-[54px]">
-                  {service.title}
-                </h1>
-                <p className="mt-6 text-[17px] leading-relaxed text-sage-mist/90 sm:text-[19px]">
-                  {service.intro || service.description}
-                </p>
+        {/* 1. Hero Section (Design tokens, WCAG AA contrast, custom cards & buttons) */}
+        <ServiceHero service={service} slug={slug} />
 
-                {/* Quick Points */}
-                <div className="mt-8 flex flex-wrap gap-4 text-[13px] text-sage">
-                  <span className="flex items-center gap-1.5">
-                    <ShieldCheck className="h-4 w-4 text-gold" />
-                    <span>25-Year Performance Warranty</span>
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <Zap className="h-4 w-4 text-gold" />
-                    <span>Bifacial & TOPCon Modules</span>
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <CheckCircle2 className="h-4 w-4 text-gold" />
-                    <span>Complete DISCOM Liaison</span>
-                  </span>
-                </div>
+        {/* 2. Trust Strip (Installations, experience, customer rating, approved vendor) */}
+        <ServiceTrustStrip />
 
-                {/* CTAs: Main Green + Secondary White */}
-                <div className="mt-10 flex flex-wrap items-center gap-4">
-                  <LocalizedClientLink
-                    href={primaryCta.href}
-                    className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-emerald-500 hover:bg-emerald-400 px-7 font-inter text-[15px] font-extrabold text-slate-950 shadow-md transition-all active:scale-95"
-                  >
-                    <span>{primaryCta.text}</span>
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </LocalizedClientLink>
-
-                  <LocalizedClientLink
-                    href={secondaryCta.href}
-                    className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 font-inter text-[15px] font-bold text-slate-950 shadow-md transition-all active:scale-95"
-                  >
-                    {secondaryCta.text}
-                  </LocalizedClientLink>
-                </div>
-              </div>
-
-              {/* Graphic Showcase Card */}
-              <div className="lg:col-span-5">
-                <div className="rounded-3xl border border-white/15 bg-gradient-to-br from-forest to-forest-deep p-7 shadow-2xl">
-                  <h3 className="font-manrope text-[20px] font-bold text-white">
-                    {service.shortLabel} Snapshot
-                  </h3>
-                  <p className="mt-1 text-[13px] text-sage">
-                    Engineered for continuous reliability and maximum ROI
-                  </p>
-
-                  <div className="mt-6 space-y-4">
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                      <p className="text-[12px] text-sage">Bill Offset</p>
-                      <p className="font-manrope text-[26px] font-bold text-gold">Up to 90%</p>
-                      <p className="text-[12px] text-sage-mist/70">Direct reduction in grid dependency</p>
-                    </div>
-
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                      <p className="text-[12px] text-sage">Capital Payback</p>
-                      <p className="font-manrope text-[26px] font-bold text-white">2.5 - 4 Years</p>
-                      <p className="text-[12px] text-sage-mist/70">Free energy for the next 20+ years</p>
-                    </div>
-
-                    <div className="rounded-xl bg-gold/20 border border-gold/30 p-3.5 text-[13px] text-sage-mist">
-                      <span className="font-bold text-gold">Turnkey Guarantee: </span>
-                      AG POWER manages DISCOM net-meter approvals, engineering CAD drawings, and subsidy portal processing.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* Suitable System Capacities Table */}
+        {/* 3. Suitable System Capacities Table */}
         <section className="py-16 sm:py-20 bg-white border-b border-charcoal/10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <span className="text-[13px] font-bold uppercase tracking-wider text-charcoal-muted">
                 Capacity Guide
               </span>
-              <h2 className="mt-2 font-manrope text-[30px] font-extrabold text-forest sm:text-[38px]">
-                Recommended System Sizes & Specifications
+              <h2 className="mt-2 font-manrope text-[30px] font-extrabold text-forest-deep sm:text-[38px]">
+                Recommended System Sizes &amp; Specifications
               </h2>
               <p className="mt-3 text-[15px] text-charcoal/80">
                 Choose the capacity tailored to your electrical load and available rooftop surface.
@@ -236,13 +151,13 @@ export default async function ServiceDetailPage({
               {capacities.map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-ivory p-6 transition-all hover:border-forest/30 hover:shadow-lg"
+                  className="flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-ivory p-6 transition-all hover:border-forest/40 hover:shadow-lg"
                 >
                   <div>
-                    <span className="rounded-full bg-forest px-3 py-1 text-[11px] font-bold text-gold">
+                    <span className="rounded-full bg-forest-deep px-3 py-1 text-[11px] font-bold text-gold">
                       {item.subsidy}
                     </span>
-                    <h3 className="mt-4 font-manrope text-[22px] font-bold text-forest">
+                    <h3 className="mt-4 font-manrope text-[22px] font-bold text-forest-deep">
                       {item.cap}
                     </h3>
                     <div className="mt-4 space-y-2 text-[13px] text-charcoal">
@@ -264,7 +179,7 @@ export default async function ServiceDetailPage({
                   <div className="mt-6 pt-4 border-t border-charcoal/8">
                     <LocalizedClientLink
                       href={`/contact?service=${slug}&capacity=${item.cap}`}
-                      className="inline-flex min-h-[40px] w-full items-center justify-center rounded-xl bg-forest text-[13px] font-bold text-white transition-colors hover:bg-forest-deep"
+                      className="inline-flex min-h-[42px] w-full items-center justify-center rounded-xl bg-forest-deep text-[13px] font-bold text-white transition-colors hover:bg-forest"
                     >
                       Enquire For {item.cap}
                     </LocalizedClientLink>
@@ -275,15 +190,15 @@ export default async function ServiceDetailPage({
           </div>
         </section>
 
-        {/* Deliverables & Benefits */}
-        <section className="py-16 sm:py-20 bg-ivory">
+        {/* 4. Deliverables & Benefits */}
+        <section className="py-16 sm:py-20 bg-ivory border-b border-charcoal/10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
               
               {/* Deliverables */}
               {service.points && service.points.length > 0 && (
                 <div className="rounded-3xl border border-charcoal/10 bg-white p-8 shadow-sm">
-                  <h3 className="font-manrope text-[22px] font-bold text-forest">
+                  <h3 className="font-manrope text-[22px] font-bold text-forest-deep">
                     What&apos;s Included in Our {service.shortLabel}
                   </h3>
                   <p className="mt-1 text-[13px] text-charcoal-muted">
@@ -304,13 +219,13 @@ export default async function ServiceDetailPage({
               <div className="space-y-6">
                 {service.outcomes && service.outcomes.length > 0 && (
                   <div className="rounded-3xl border border-charcoal/10 bg-white p-8 shadow-sm">
-                    <h3 className="font-manrope text-[22px] font-bold text-forest">
+                    <h3 className="font-manrope text-[22px] font-bold text-forest-deep">
                       Guaranteed Outcomes
                     </h3>
                     <ul className="mt-5 space-y-3">
                       {service.outcomes.map((oc, idx) => (
                         <li key={idx} className="flex items-start gap-3 text-[14px] text-charcoal">
-                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sage-mist text-forest font-bold text-xs">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest/15 text-forest font-bold text-xs">
                             ✓
                           </span>
                           <span>{oc}</span>
@@ -321,8 +236,8 @@ export default async function ServiceDetailPage({
                 )}
 
                 {service.whyItMatters && service.whyItMatters.length > 0 && (
-                  <div className="rounded-3xl border border-forest/15 bg-sage-mist/70 p-8">
-                    <h3 className="font-manrope text-[20px] font-bold text-forest">
+                  <div className="rounded-3xl border border-forest/20 bg-forest/5 p-8">
+                    <h3 className="font-manrope text-[20px] font-bold text-forest-deep">
                       Why This Matters For You
                     </h3>
                     <ul className="mt-4 space-y-2.5">
@@ -341,7 +256,13 @@ export default async function ServiceDetailPage({
           </div>
         </section>
 
-        {/* FAQs */}
+        {/* 5. How It Works for RWAs (Specifically on Housing Society page) */}
+        {isSociety && <ServiceRwaWorkflow />}
+
+        {/* 6. Case Studies / Project Showcase (location, system size kW, monthly saving) */}
+        <ServiceCaseStudies slug={slug} />
+
+        {/* 7. FAQs */}
         {formattedFaqs.length > 0 && (
           <PageFaqSection
             faqs={formattedFaqs}
@@ -350,36 +271,11 @@ export default async function ServiceDetailPage({
           />
         )}
 
-        {/* Final Conversion Section */}
-        <section className="bg-forest py-16 text-white sm:py-20">
-          <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-            <span className="text-[13px] font-bold uppercase tracking-wider text-gold">
-              Get Started Today
-            </span>
-            <h2 className="mt-3 font-manrope text-[32px] font-extrabold sm:text-[42px]">
-              Ready to Power Your Rooftop with Solar?
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[16px] text-sage-mist/85">
-              Contact our certified solar engineers for a free site assessment and customized financial yield proposal.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <LocalizedClientLink
-                href={`/contact?service=${slug}`}
-                className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-emerald-500 hover:bg-emerald-400 px-8 font-inter text-[15px] font-extrabold text-slate-950 shadow-md transition-all"
-              >
-                <span>Request Feasibility Assessment</span>
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </LocalizedClientLink>
-              <LocalizedClientLink
-                href="/calculator"
-                className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 font-inter text-[15px] font-bold text-slate-950 shadow-md"
-              >
-                <Calculator className="mr-2 h-4 w-4 text-emerald-600" />
-                <span>Calculate Savings</span>
-              </LocalizedClientLink>
-            </div>
-          </div>
-        </section>
+        {/* 8. Bottom Conversion Section (Identical buttons as Hero + WhatsApp & Call buttons) */}
+        <ServiceCtaSection slug={slug} />
+
+        {/* 9. Mobile Sticky WhatsApp Floating Button */}
+        <ServiceMobileWhatsApp />
 
       </main>
     </>

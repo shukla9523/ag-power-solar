@@ -10,6 +10,16 @@
  */
 
 :root {
+  /* ── Service Pages Design Tokens (AG POWER) ── */
+  --green-dark: #065F46;
+  --green-main: #047857;
+  --yellow: #FBBF24;
+  --yellow-hover: #F59E0B;
+  --white: #FFFFFF;
+  --cream: #FDE68A;
+  --color-cream: 253 230 138;
+  --text-muted: rgba(255, 255, 255, 0.85);
+
   /* ── AG POWER 60-30-10 Brand Tokens ── */
   --color-forest: 4 120 87;
   /* #047857  Deep Solar Emerald Green (30% Green Brand Secondary) */

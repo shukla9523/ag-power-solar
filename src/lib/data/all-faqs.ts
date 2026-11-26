@@ -174,6 +174,20 @@ export const ALL_FAQ_CATEGORIES: FAQCategory[] = [
         answer: "Yes. Our senior engineers provide complete feasibility presentations, financial ROI models, and technical Q&A sessions for your RWA General Body Meeting.",
         category: "Housing Society Solar",
       },
+      {
+        id: "soc-4",
+        question: "Is group housing society rooftop solar eligible for government subsidies?",
+        // TODO: Verify group housing subsidy slabs with local DISCOM/MNRE scheme before updating exact amounts
+        answer: "Group housing societies and residential RWAs can claim central financial assistance for common utility rooftop installations up to 500 kW capacity. Exact financial assistance is subject to current government scheme regulations, technical feasibility approvals, and regional DISCOM net-metering sanction guidelines for common connections.",
+        category: "Housing Society Solar",
+      },
+      {
+        id: "soc-5",
+        question: "How does virtual net-metering work for housing societies?",
+        // TODO: Check DISCOM virtual net metering policy in your specific state/circle
+        answer: "Virtual net-metering allows solar power produced from a collective rooftop plant to be proportionally allocated and credited across multiple individual resident electricity meters or common service accounts. Implementation and eligibility are strictly subject to state DISCOM regulations, technical grid compatibility, and state electricity regulatory commission guidelines.",
+        category: "Housing Society Solar",
+      },
     ],
   },
   {

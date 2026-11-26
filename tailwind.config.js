@@ -42,6 +42,7 @@ module.exports = {
         "solar-gold": token("gold"),
         "gold-hover": token("gold-hover"),
         "gold-tint": token("gold-tint"),
+        "cream": token("cream"),
         "ivory": token("ivory"),
         "warm-ivory": token("ivory"),
         "sage": token("sage"),
