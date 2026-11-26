@@ -147,11 +147,11 @@ export const PANEL_IMAGE_CONFIGS: Record<string, PanelImageConfig> = {
     slug: "tata-power-mono-perc-545w",
     brand: "Tata Power Solar",
     modelName: "TP Series High Efficiency Half-Cell Mono PERC",
-    cardImage: "/images/panels/tata-power-mono-perc-545w/front.webp?v=2026_real",
+    cardImage: "/images/panels/tata-power-mono-perc-545w/front.webp?v=2026_tp_perc",
     cardAlt: "Tata Power Solar TP Series 545W Mono PERC half-cell module",
     gallery: [
       {
-        src: "/images/panels/tata-power-mono-perc-545w/front.webp?v=2026_real",
+        src: "/images/panels/tata-power-mono-perc-545w/front.webp?v=2026_tp_perc",
         alt: "Tata Power Solar TP Series module front view",
         caption: "Front view of 545W-550W high efficiency half-cell Mono PERC panel",
         type: "front"

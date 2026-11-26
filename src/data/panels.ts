@@ -581,7 +581,7 @@ export const SOLAR_PANELS: SolarPanelDetail[] = [
     },
     images: [
       {
-        src: "/images/panels/tata-power-mono-perc-545w/front.webp?v=2026_real",
+        src: "/images/panels/tata-power-mono-perc-545w/front.webp?v=2026_tp_perc",
         alt: "Tata Power Solar TP Series Mono PERC Module - Front View",
         label: "Front Elevation",
       },

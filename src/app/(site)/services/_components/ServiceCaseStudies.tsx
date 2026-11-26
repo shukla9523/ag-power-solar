@@ -1,6 +1,6 @@
 import React from "react"
 import Image from "next/image"
-import { MapPin, Zap, PiggyBank, Calendar, SunMedium } from "lucide-react"
+import { Zap, PiggyBank, Calendar, SunMedium } from "lucide-react"
 
 interface CaseStudy {
   id: string
@@ -202,16 +202,8 @@ export default function ServiceCaseStudies({ slug }: ServiceCaseStudiesProps) {
                     {item.title}
                   </h3>
 
-                  {/* Fields: Location, System Size (kW), Monthly Saving */}
+                  {/* Fields: System Size (kW), Monthly Saving */}
                   <div className="mt-4 space-y-2.5 text-[14px]">
-                    <div className="flex items-center justify-between border-b border-charcoal/8 pb-2">
-                      <span className="flex items-center gap-1.5 text-charcoal-muted">
-                        <MapPin className="h-4 w-4 text-forest" />
-                        <span>Location:</span>
-                      </span>
-                      <span className="font-semibold text-charcoal">{item.location}</span>
-                    </div>
-
                     <div className="flex items-center justify-between border-b border-charcoal/8 pb-2">
                       <span className="flex items-center gap-1.5 text-charcoal-muted">
                         <Zap className="h-4 w-4 text-forest" />
