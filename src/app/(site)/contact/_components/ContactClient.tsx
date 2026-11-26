@@ -126,54 +126,86 @@ export default function ContactClient() {
               </p>
 
               <div className="mt-8 space-y-6">
+                {/* 1. Direct Phone Line */}
                 <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15 text-amber-400">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15 text-gold">
                     <Phone className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[12px] font-semibold text-emerald-300">Direct Phone Line</p>
+                    <p className="text-[14px] font-bold text-cream">Direct Phone Line</p>
                     <a
                       href="tel:+919523467849"
-                      className="font-manrope text-[18px] font-extrabold text-white hover:text-amber-300 transition-colors block mt-0.5"
+                      className="font-manrope text-[18px] font-extrabold text-white hover:text-gold transition-colors block mt-0.5"
                     >
                       +91 95234 67849
                     </a>
-                    <p className="text-[12px] text-emerald-100/80 mt-0.5">Mon – Sat, 9:00 AM – 7:00 PM</p>
+                    <p className="text-[14px] text-white/85 mt-0.5">Mon – Sat, 9:00 AM – 7:00 PM</p>
                   </div>
                 </div>
 
+                {/* 2. Email Inquiries */}
                 <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15 text-amber-400">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15 text-gold">
                     <Mail className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[12px] font-semibold text-emerald-300">Email Inquiries</p>
+                    <p className="text-[14px] font-bold text-cream">Email Inquiries</p>
+                    {/* TODO: Replace akashshukla9523@gmail.com with official business-domain email (e.g. contact@agpower.in) */}
                     <a
                       href="mailto:akashshukla9523@gmail.com"
-                      className="font-manrope text-[16px] font-bold text-white hover:text-amber-300 transition-colors block mt-0.5"
+                      className="font-manrope text-[16px] font-bold text-white hover:text-gold transition-colors block mt-0.5"
                     >
                       akashshukla9523@gmail.com
                     </a>
-                    <p className="text-[12px] text-emerald-100/80 mt-0.5">Verified reply within 2 business hours</p>
+                    <p className="text-[14px] text-white/85 mt-0.5">Verified reply within 2 business hours</p>
                   </div>
                 </div>
 
+                {/* 3. Lucknow Office & Experience Centre (Address Field + Get Directions Link) */}
                 <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15 text-amber-400">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15 text-gold">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[12px] font-semibold text-emerald-300">Corporate Office</p>
+                    <p className="text-[14px] font-bold text-cream">Lucknow Office &amp; Experience Centre</p>
+                    {/* TODO: Replace with real Lucknow office address (e.g., Plot/Office No, Street, Sector/Area, Lucknow, UP - Pin Code) */}
+                    <p className="font-manrope text-[15.5px] font-bold text-white mt-0.5">
+                      AG POWER Solar, Lucknow
+                    </p>
+                    <p className="text-[14px] text-white/85 mt-0.5">
+                      [Insert Exact Street Address / Landmark, Lucknow, Uttar Pradesh - 226010]
+                    </p>
+                    {/* TODO: Replace with verified Google Maps place link for the Lucknow office */}
+                    <a
+                      href="https://maps.google.com/?q=Lucknow,+Uttar+Pradesh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 mt-2 text-[14px] font-bold text-gold hover:text-white underline underline-offset-4 transition-colors"
+                      aria-label="Get Directions to AG POWER Lucknow Office on Google Maps"
+                    >
+                      <span>Get Directions</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* 4. Corporate Office */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/15 text-gold">
+                    <MapPin className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-[14px] font-bold text-cream">Corporate Office</p>
                     <p className="font-manrope text-[15.5px] font-bold text-white mt-0.5">
                       Electro Global Solar EPC Division, India
                     </p>
-                    <p className="text-[12px] text-emerald-100/80 mt-0.5">Pan-India Solar EPC Execution</p>
+                    <p className="text-[14px] text-white/85 mt-0.5">Pan-India Solar EPC Execution</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 border-t border-white/15 pt-4 text-[12px] text-emerald-100/85">
+            <div className="mt-8 border-t border-white/15 pt-4 text-[14px] leading-relaxed text-white/85">
               ✓ MNRE compliant vendor · 25-Year performance warranty · 100% turnkey DISCOM net-metering.
             </div>
           </div>

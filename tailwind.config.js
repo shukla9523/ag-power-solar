@@ -98,6 +98,7 @@ module.exports = {
         "charcoal": token("charcoal"),
         "charcoal-muted": token("charcoal-muted"),
         "social-whatsapp": token("social-whatsapp"),
+        "whatsapp-dark": token("whatsapp-dark"),
         "cloud": token("cloud"),
         "editz-alert": token("editz-alert"),
         "editz-black": token("editz-black"),

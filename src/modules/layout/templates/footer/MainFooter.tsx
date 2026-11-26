@@ -41,16 +41,16 @@ export default function MainFooter({
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full md:w-auto">
             <LocalizedClientLink
               href="/calculator"
-              className="inline-flex min-h-[44px] w-full sm:w-auto items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-5 py-2.5 font-inter text-[14px] font-bold text-slate-900 shadow-sm transition-all text-center"
+              className="inline-flex min-h-[48px] w-full sm:w-auto items-center justify-center rounded-xl bg-white hover:bg-slate-100 px-6 py-2.5 font-inter text-[14px] font-bold text-slate-900 shadow-sm transition-all text-center"
             >
               Calculate Savings
             </LocalizedClientLink>
             <LocalizedClientLink
               href="/contact"
-              className="inline-flex min-h-[44px] w-full sm:w-auto items-center justify-center rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 py-2.5 font-inter text-[14px] font-bold text-white shadow-sm transition-all text-center"
+              className="btn-primary w-full sm:w-auto text-center"
             >
-              Get Free Consultation
-              <ArrowRight className="ml-1.5 h-4 w-4 text-white" />
+              <span>Get Free Consultation</span>
+              <ArrowRight className="ml-1.5 h-4 w-4" />
             </LocalizedClientLink>
           </div>
         </div>

@@ -61,26 +61,26 @@ export default function ServiceCtaSection({ slug }: ServiceCtaSectionProps) {
 
         {/* Quick Contact Strip: WhatsApp + Direct Call */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 pt-6 border-t border-white/10">
-          {/* WhatsApp Button (wa.me) */}
+          {/* WhatsApp Button (wa.me) - bg #25D366, dark text #052e1b, hover slightly darker */}
           <a
             href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-[44px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-social-whatsapp px-5 text-[14px] font-bold text-slate-950 transition-all hover:opacity-90 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white"
+            className="inline-flex min-h-[44px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-social-whatsapp px-5 text-[14px] font-bold text-whatsapp-dark transition-all hover:brightness-95 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white"
             aria-label="Chat with AG POWER Solar Engineer on WhatsApp"
           >
-            <MessageSquare className="h-4 w-4 fill-slate-950 text-slate-950" />
+            <MessageSquare className="h-4 w-4 fill-whatsapp-dark text-whatsapp-dark" />
             {/* TODO: Update WhatsApp button label if needed */}
             <span>Chat on WhatsApp (+91 95234 67849)</span>
           </a>
 
-          {/* Direct Phone Call Button (tel:) */}
+          {/* Direct Phone Call Button (tel:) - high contrast border rgba(255,255,255,0.5), white text, hover rgba(255,255,255,0.12) */}
           <a
             href={`tel:${phoneNumber}`}
-            className="inline-flex min-h-[44px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white/10 border border-white/20 px-5 text-[14px] font-bold text-white transition-all hover:bg-white/20 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gold"
+            className="inline-flex min-h-[44px] w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-transparent border border-white/50 px-5 text-[14px] font-bold text-white transition-all hover:bg-white/[0.12] hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gold"
             aria-label="Call AG POWER Solar Desk Directly"
           >
-            <Phone className="h-4 w-4 text-gold" />
+            <Phone className="h-4 w-4 text-white" />
             {/* TODO: Update phone number label if needed */}
             <span>Call +91 95234 67849</span>
           </a>

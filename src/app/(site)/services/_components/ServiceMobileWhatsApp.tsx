@@ -26,7 +26,7 @@ export default function ServiceMobileWhatsApp() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Solar Consultant on WhatsApp"
-        className="group relative flex h-14 items-center gap-2.5 rounded-full bg-social-whatsapp px-4 text-slate-950 shadow-2xl transition-all duration-300 hover:scale-105 hover:opacity-95 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+        className="group relative flex h-14 items-center gap-2.5 rounded-full bg-social-whatsapp px-4 text-whatsapp-dark shadow-2xl transition-all duration-300 hover:scale-105 hover:brightness-95 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
       >
         {/* Pulsing beacon indicator */}
         <span className="relative flex h-3 w-3">
@@ -35,7 +35,7 @@ export default function ServiceMobileWhatsApp() {
         </span>
 
         {/* WhatsApp Icon */}
-        <MessageSquare className="h-5 w-5 fill-slate-950 text-slate-950" />
+        <MessageSquare className="h-5 w-5 fill-whatsapp-dark text-whatsapp-dark" />
 
         <span className="font-manrope text-[14px] font-extrabold tracking-tight">
           WhatsApp Us
