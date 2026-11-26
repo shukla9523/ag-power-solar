@@ -37,7 +37,7 @@ export default function ServiceCaseStudies({ slug }: ServiceCaseStudiesProps) {
           capacity: "5 kW On-Grid", // TODO: Replace with actual system size (kW)
           monthlySaving: "₹6,800 / month", // TODO: Replace with certified monthly electricity savings
           commissionDate: "Jan 2026", // TODO: Replace with actual commissioning date
-          image: "/panels/n-type-topcon-bifacial/rooftop.webp", // Distinct real aerial villa photo (not reused)
+          image: "/images/case-studies/residential-villa.webp", // Distinct real aerial villa solar photo
           clientType: "Residential Villa",
         },
         {
@@ -48,7 +48,7 @@ export default function ServiceCaseStudies({ slug }: ServiceCaseStudiesProps) {
           capacity: "8 kW TOPCon Bifacial", // TODO: Replace with actual system size (kW)
           monthlySaving: "₹11,400 / month", // TODO: Replace with certified monthly electricity savings
           commissionDate: "Feb 2026", // TODO: Replace with actual commissioning date
-          image: "/panels/goldi-heloc-plus-topcon-550w/rooftop.webp", // Distinct real bungalow photo (not reused)
+          image: "/images/case-studies/residential-bungalow.webp", // Distinct real bungalow solar photo
           clientType: "Residential Bungalow",
         },
         {
@@ -59,7 +59,7 @@ export default function ServiceCaseStudies({ slug }: ServiceCaseStudiesProps) {
           capacity: "3 kW High-Yield System", // TODO: Replace with actual system size (kW)
           monthlySaving: "₹4,200 / month", // TODO: Replace with certified monthly electricity savings
           commissionDate: "Nov 2025", // TODO: Replace with actual commissioning date
-          image: null, // TODO: Replace with real project photo (shows neutral placeholder to avoid photo reuse)
+          image: "/images/case-studies/residential-duplex.webp", // Distinct real duplex solar photo
           clientType: "Duplex Residence",
         },
       ]
@@ -73,7 +73,7 @@ export default function ServiceCaseStudies({ slug }: ServiceCaseStudiesProps) {
           capacity: "100 kW Rooftop System", // TODO: Replace with actual system size (kW)
           monthlySaving: "₹1,25,000 / month", // TODO: Replace with certified commercial electricity savings
           commissionDate: "Dec 2025", // TODO: Replace with actual commissioning date
-          image: null, // TODO: Replace with real project photo (neutral placeholder prevents misleading residential image)
+          image: "/images/case-studies/commercial-cold-storage.webp", // Distinct commercial flat roof solar array
           clientType: "Cold Storage Facility",
         },
         {
@@ -84,7 +84,7 @@ export default function ServiceCaseStudies({ slug }: ServiceCaseStudiesProps) {
           capacity: "50 kW Elevated Structure", // TODO: Replace with actual system size (kW)
           monthlySaving: "₹65,000 / month", // TODO: Replace with certified commercial electricity savings
           commissionDate: "Oct 2025", // TODO: Replace with actual commissioning date
-          image: null, // TODO: Replace with real project photo
+          image: "/images/case-studies/commercial-auto-showroom.webp", // Distinct showroom elevated solar canopy
           clientType: "Commercial Enterprise",
         },
         {
@@ -95,7 +95,7 @@ export default function ServiceCaseStudies({ slug }: ServiceCaseStudiesProps) {
           capacity: "75 kW Industrial Shed Solar", // TODO: Replace with actual system size (kW)
           monthlySaving: "₹92,000 / month", // TODO: Replace with certified commercial electricity savings
           commissionDate: "Jan 2026", // TODO: Replace with actual commissioning date
-          image: null, // TODO: Replace with real project photo (neutral placeholder prevents misleading residential image)
+          image: "/images/case-studies/commercial-manufacturing.webp", // Distinct industrial manufacturing shed solar
           clientType: "Manufacturing Plant",
         },
       ]
@@ -108,7 +108,7 @@ export default function ServiceCaseStudies({ slug }: ServiceCaseStudiesProps) {
           capacity: "45 kW Common Meter Solar", // TODO: Replace with actual system size (kW)
           monthlySaving: "₹56,000 / month", // TODO: Replace with certified RWA utility savings
           commissionDate: "Jan 2026", // TODO: Replace with actual commissioning date
-          image: null, // TODO: Replace with real project photo
+          image: "/images/case-studies/society-high-rise.webp", // Distinct high-rise apartment terrace solar
           clientType: "120-Flat RWA Society",
         },
         {
@@ -119,7 +119,7 @@ export default function ServiceCaseStudies({ slug }: ServiceCaseStudiesProps) {
           capacity: "30 kW Water Pump & Lights", // TODO: Replace with actual system size (kW)
           monthlySaving: "₹38,000 / month", // TODO: Replace with certified RWA utility savings
           commissionDate: "Nov 2025", // TODO: Replace with actual commissioning date
-          image: null, // TODO: Replace with real project photo
+          image: "/images/case-studies/society-gated-club.webp", // Distinct gated enclave clubhouse solar
           clientType: "Gated Community Society",
         },
         {
@@ -130,7 +130,7 @@ export default function ServiceCaseStudies({ slug }: ServiceCaseStudiesProps) {
           capacity: "60 kW Rooftop Multi-Inverter", // TODO: Replace with actual system size (kW)
           monthlySaving: "₹76,000 / month", // TODO: Replace with certified RWA utility savings
           commissionDate: "Feb 2026", // TODO: Replace with actual commissioning date
-          image: null, // TODO: Replace with real project photo
+          image: "/images/case-studies/society-multi-tower.webp", // Distinct multi-tower housing society solar array
           clientType: "Multi-Tower Society",
         },
       ]
