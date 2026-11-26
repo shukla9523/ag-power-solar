@@ -35,9 +35,9 @@ export const PAGE_META_DEFAULTS: Record<string, PageMetaDefault> = {
       "Turnkey solar EPC services by AG POWER: residential rooftop plants, commercial solar, housing society common systems, DISCOM liaison, and solar AMC.",
   },
   "solar-panels": {
-    title: "Solar Panel Catalogue | High-Efficiency N-Type TOPCon & Bifacial",
+    title: "Solar Panels Catalogue | High-Efficiency N-Type TOPCon",
     description:
-      "Explore solar panels from Waaree, Adani, Tata Power, and Vikram Solar. Compare N-Type TOPCon and Bifacial module specs with AG POWER.",
+      "Explore verified solar panels from Waaree, Adani, Tata Power, and Vikram Solar. Compare N-Type TOPCon and Bifacial module specifications with AG POWER in India.",
   },
   calculator: {
     title: "Solar Savings Calculator | Estimate kW, Cost & Subsidy",
@@ -52,7 +52,7 @@ export const PAGE_META_DEFAULTS: Record<string, PageMetaDefault> = {
   work: {
     title: "Solar Project Portfolio | AG POWER Rooftop Installations",
     description:
-      "Explore verified residential, commercial, and housing society solar installations executed across India with high-efficiency solar modules.",
+      "Explore verified residential, commercial, and housing society rooftop solar installations executed across India with high-efficiency solar modules.",
   },
   blog: {
     title: "Solar Insights Blog | Rooftop Guides & Subsidy Updates",
